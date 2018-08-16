@@ -53,7 +53,7 @@ end
 
 function TaskManager:moveDown()
 
-	
+	local loopTesting = 0
 	--self.parent:DebugSay(self.Tasks[0].Name.." isComplete:"..tostring((self.Tasks[0]:isComplete() == true)))
 	while ((not self.Tasks[0]) or (self.Tasks[0]:isComplete() == true)) do
 	
@@ -70,11 +70,22 @@ function TaskManager:moveDown()
 			end		
 			self.TaskCount = self.TaskCount - 1
 		end
+
+		loopTesting = loopTesting + 1
+		if( loopTesting > 1000 ) then
+			print( "SSurvivors: TaskManager:moveDown" )
+			print( "    We're stuck in while loop, breaking out..." )
+			print( "    The current survivor is " .. ((self.parent==nil) and "nil" or self.parent.player:getForname() ) )
+			print( "    The current task is " .. ((self.Tasks[0]==nil) and "nil" or self.Tasks[0].Name ) )
+			print( "    self.TaskCount = " .. self.TaskCount )
+			print( "    self.TaskUpdateCount = " .. self.TaskUpdateCount )
+			break
+		end
 	end
-		
+
 	self.TaskUpdateCount = 0
 	--self.TaskUpdateLimit = 0
-	
+
 	return false
 end
 
