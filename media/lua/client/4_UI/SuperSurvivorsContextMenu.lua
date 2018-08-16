@@ -333,24 +333,35 @@ function survivorMenu(context,o)
 		local survivorOption = context:addOption(SS:getName(), worldobjects, nil);
 		local submenu = context:getNew(context);
 		
-		if (o:getModData().isHostile ~= true) then
+		local isHostile = o:getModData().isHostile
+		local currentTask = SS:getTaskManager():getCurrentTask()
+		local survivorsGroupID = SS:getGroupID()
+		local playersGroupID = SSM:Get(0):getGroupID()
+		
+		print( "SSurvivors: survivorMenu for " .. o:getForname() )
+		print( "    isHostile = " .. ((isHostile == true) and "true" or ((isHostile == false) and "false" or "unknown" )) )
+		print( "    currentTask = " .. currentTask )
+		print( "    survivorsGroupID = " .. ((survivorsGroupID == nil) and "nil" or survivorsGroupID ) )
+		print( "    playersGroupID = " .. ((playersGroupID == nil) and "nil" or playersGroupID ) )
+
+		if (isHostile ~= true) then
 			local medicalOption = submenu:addOption(getText("ContextMenu_Medical_Check"), nil, MedicalCheckSurvivor, o, nil);
 			local toolTip = makeToolTip(medicalOption,"Medical / First Aid Check","Walk to this survivor and medical check him, if they move the process can be interupted");
-		end		
-		if (o:getModData().isHostile ~= true) and ((SS:getTaskManager():getCurrentTask() == "Listen") or (SS:getTaskManager():getCurrentTask() == "Take Gift")) then
+		end
+		if (isHostile ~= true) and ((currentTask == "Listen") or (currentTask == "Take Gift")) then
 			local selectOption = submenu:addOption(getText("ContextMenu_SD_TalkOption"), nil, TalkToSurvivor, o, nil);
 			local toolTip = makeToolTip(selectOption,getText("ContextMenu_SD_TalkOption"),getText("ContextMenu_SD_TalkOption_Desc"));
-			if((SS:getGroupID() ~= SSM:Get(0):getGroupID()) or SS:getGroupID() == nil) then -- not in group
+			if((survivorsGroupID ~= playersGroupID) or survivorsGroupID == nil) then -- not in group
 				if (o:getModData().NoParty ~= true) then
 					submenu:addOption(getText("ContextMenu_SD_InviteToGroup"), nil, InviteToParty, o, nil);
 				end
-				if ((SS:getGroupID() ~= nil) and (SS:getGroupID() ~= SSM:Get(0):getGroupID())) and (o:getModData().NoParty ~= true) then
+				if ((survivorsGroupID ~= nil) and (survivorsGroupID ~= playersGroupID)) and (o:getModData().NoParty ~= true) then
 					submenu:addOption(getText("ContextMenu_SD_AskToJoin"), nil, AskToJoin, o, nil);
 				end				
 				if ((o:getPrimaryHandItem() == nil) and (getSpecificPlayer(0):getPrimaryHandItem() ~= nil) ) then
 					submenu:addOption(getText("ContextMenu_SD_OfferWeapon"), nil, OfferWeapon, o, nil);
 				end
-			elseif((SS:getGroupID() == SSM:Get(0):getGroupID()) and SS:getGroupID() ~= nil) then
+			elseif((survivorsGroupID == playersGroupID) and survivorsGroupID ~= nil) then
 				---orders
 				local i = 1;
 				local orderOption = submenu:addOption(getText("ContextMenu_SD_GiveOrder"), worldobjects, nil);
@@ -472,9 +483,9 @@ function survivorMenu(context,o)
 			end
 			
 		end
-		if (o:getModData().isHostile ~= true) and (SS:getDangerSeenCount() == 0) and (SS:getTaskManager():getCurrentTask() ~= "Listen") then
+		if (o:getModData().isHostile ~= true) and (SS:getDangerSeenCount() == 0) and (currentTask ~= "Listen") then
 			local selectOption = submenu:addOption(getText("ContextMenu_SD_CallOver"), nil, CallSurvivor, o, nil);
-			local toolTip = makeToolTip(selectOption,getText("ContextMenu_SD_CallOver"),getText("ContextMenu_SD_CallOverDesc"));
+			local toolTip = makeToolTip(selectOption,getText("ContextMenu_SD_CallOver"), getText("ContextMenu_SD_CallOverDesc"));
 		end
 		
 		

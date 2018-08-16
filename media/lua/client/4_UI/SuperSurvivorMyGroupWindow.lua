@@ -12,6 +12,9 @@ local function SSItemClickHandle()
 	--print("selected is:"..tostring(selected))
 	if(member) then
 		--getSpecificPlayer(0):Say(tostring(member:getName()))
+		if( not mySurvivorInfoWindow ) then
+			SurvivorInfoWindowCreate()
+		end
 		mySurvivorInfoWindow:Load(member)
 		mySurvivorInfoWindow:setVisible(true)
 	end
