@@ -51,6 +51,9 @@ function ListenTask:update()
 			self.parent:walkTo(self.Aite:getCurrentSquare()) 				 		
 		else
 			StopWalk(self.parent.player)
+			if(self.onCompletedWalking ~= nil) then
+				self.onCompletedWalking()
+			end
 			self.parent.player:faceThisObject(self.Aite)
 			if(self.Spoke == false) then
 				self.Spoke = true

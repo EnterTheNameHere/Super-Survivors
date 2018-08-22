@@ -6,17 +6,11 @@ SurvivorInfoWindow = ISCollapsableWindow:derive("SurvivorInfoWindow");
 
 function SurvivorInfoWindow:ShowCommandsMenu()
 	print( "Showing Commands Menu" )
-	--if( not self.CommandsMenu:isVisible() ) then
-	--	self.CommandsMenu:setVisible(true)
-	--end
+
 	local context = ISContextMenu.get( 0, self:getAbsoluteX() + 265, self:getAbsoluteY() + 90 )
 	context:setVisible(true)
 
 	survivorMenu( context, self.memberWeAreWaitingFor:Get() )
-end
-
-function OnCommandSelect()
-	print("Command selected")
 end
 
 function WaitUntilSurvivorIsInRange()
@@ -41,19 +35,12 @@ function SurvivorInfoWindow:CommandButtonPressed()
 	if( member ) then
 		self.memberWeAreWaitingFor = member
 		getSpecificPlayer(0):Say( getText("ContextMenu_SD_CallName_Before") .. member:getName() .. getText("ContextMenu_SD_CallName_After") )
-		member:getTaskManager():AddToTop( ListenTask:new( member, getSpecificPlayer(0), false ) )
-		Events.OnTick.Add( WaitUntilSurvivorIsInRange )
-	end
-end
-
-function CallButtonPressed()
-	local GID = SSM:Get(0):getGroupID()
-	local members = SSGM:Get(GID):getMembers()
-	local selected = tonumber(myGroupWindow:getSelected())
-	local member = members[selected]
-	if(member) then 
-		getSpecificPlayer(0):Say(getText("ContextMenu_SD_CallName_Before") .. member:getName()..getText("ContextMenu_SD_CallName_After"))
-		member:getTaskManager():AddToTop(ListenTask:new(member,getSpecificPlayer(0),false))
+		local task = ListenTask:new( member, getSpecificPlayer(0), false )
+		task.onCompletedWalking = function()
+			SurvivorInfoWindow.ShowCommandsMenu(self)
+		end
+		member:getTaskManager():AddToTop( task )
+		--Events.OnTick.Add( WaitUntilSurvivorIsInRange )
 	end
 end
 
@@ -78,28 +65,14 @@ function SurvivorInfoWindow:setText(newText)
 	self.HomeWindow:paginate();
 end
 
-
 function SurvivorInfoWindow:createChildren()
-
-
 	self.HomeWindow = ISRichTextPanel:new(0, 16, 375, 615);
 	self.HomeWindow:initialise();
 	self.HomeWindow.autosetheight = false
 	self.HomeWindow:ignoreHeightChange()
 	self:addChild(self.HomeWindow)
 
-	self.MyCallButton = ISButton:new( 265, 25, 75, 25, getText("ContextMenu_SD_CallOver"), self, CallButtonPressed );
-
-	self.MyCallButton:setEnable(true);
-	self.MyCallButton:initialise();
-	--MyCallButton.textureColor.r = 255;
-	self.MyCallButton:addToUIManager();
-	self:addChild(self.MyCallButton)
-
-	self.MyCallButton:setVisible(true);
-
-
-	self.CommandButton = ISButton:new( 265, 60, 75, 25, "Command", self, self.CommandButtonPressed )
+	self.CommandButton = ISButton:new( 265, 25, 75, 25, "Command", self, self.CommandButtonPressed )
 	self.CommandButton:initialise()
 	self.CommandButton:setEnable(true)
 	self.CommandButton:setVisible(true)
