@@ -5,7 +5,7 @@ ContextMenu_JP = {
 	ContextMenu_SShotkey2 = "ホットキー2",
 	ContextMenu_SShotkey3 = "ホットキー3",
 	ContextMenu_SShotkey4 = "ホットキー4",
-	ContextMenu_SShotkeyDesc = "このホットキーを押した時に実行される動作を選びます。<br>プレイヤーの話を聞いている人にのみ効果があります。(ホットキー(t)で使用)<br>また"総員に告ぐ"コマンドは範囲内の全メンバーに効果があります。",
+	ContextMenu_SShotkeyDesc = "このホットキーを押した時に実行される動作を選びます。<br>プレイヤーの話を聞いている人にのみ効果があります。(ホットキー(t)で使用)<br>また\"総員に告ぐ\"コマンドは範囲内の全メンバーに効果があります。",
 	
 	ContextMenu_speech_NoForagingHere = "ここには何もないな。",
 	
@@ -328,7 +328,7 @@ ContextMenu_JP = {
 	ContextMenu_SD_CallToArms = "戦闘準備を命じる",
 	
 	
-	ContextMenu_SOption_CallClosestGroupMember = "近くのグループメンバーを呼ぶ"
+	ContextMenu_SOption_CallClosestGroupMember = "近くのグループメンバーを呼ぶ",
 	ContextMenu_SOption_CallClosestNonGroupMember = "近くのグループメンバー以外を呼ぶ",
 	ContextMenu_SOption_AskClosestGroupMembertoFollow = "近くのグループメンバーを追従させる",
 	ContextMenu_SOption_SpawnWildSurvivor = "野生の生存者を生成する",
@@ -343,7 +343,7 @@ ContextMenu_JP = {
 	ContextMenu_SOption_RaidersGuaranteed = "次の襲撃者イベントが発生するまでの時間",
 	ContextMenu_SOption_RaidersGuaranteedDesc = "襲撃者イベントは設定した時間が経過するまで発生しません。<br>襲撃者は設定した時間を経過した後に生成されます。",
 	ContextMenu_SOption_RaidersAfterHours = "襲撃者が生成を開始する時間",
-	ContextMenu_SOption_RaidersAfterHoursDesc = "襲撃者イベントは設定された時間が経過した後にランダムで発生する様になります。<br>上のオプションの"次の襲撃者イベントが発生するまでの時間"はこの設定の時間が経過した後に計算を始めます。",
+	ContextMenu_SOption_RaidersAfterHoursDesc = "襲撃者イベントは設定された時間が経過した後にランダムで発生する様になります。<br>上のオプションの\"次の襲撃者イベントが発生するまでの時間\"はこの設定の時間が経過した後に計算を始めます。",
 	ContextMenu_SOption_RaidersChance = "ランダムな襲撃者の生成率",
 	ContextMenu_SOption_RaidersChanceDesc = "襲撃者が生成を開始する時間を過ぎた後に、襲撃者イベントが発生する確率を設定します。",
 	ContextMenu_SOption_WepSpawnRate = "近接武器を持って生成される確率",
@@ -513,7 +513,7 @@ ContextMenu_JP = {
     ContextMenu_speech_Respond1 = "うん？",
     ContextMenu_speech_Respond2 = "はい？",
     ContextMenu_speech_Respond3 = "ん？",
-    ContextMenu_speech_Respond4 = 何？",
+    ContextMenu_speech_Respond4 = "何？",
     ContextMenu_speech_Respond5 = "何か用？",
     ContextMenu_speech_Respond6 = "何か？",
     ContextMenu_speech_Respond7 = "ここにいるけど。",
@@ -975,7 +975,7 @@ ContextMenu_JP = {
     ContextMenu_speech_Greetings41 = "君はこの状況を生き抜く力がありそうだね。一緒に行かないか？",
     ContextMenu_speech_Greetings42 = "わ..私はこんなところで1人で生き残れそうにないんだ。一緒に来てくれないか？",
     ContextMenu_speech_Greetings43 = "うーん。私は仲間の為に働けるよ。",
-    ContextMenu_speech_Greetings44 = "了解、仲間になろう。だが何かあった時に君を殺すのに躊躇いはないからな..,
+    ContextMenu_speech_Greetings44 = "了解、仲間になろう。だが何かあった時に君を殺すのに躊躇いはないからな..",
     ContextMenu_speech_Greetings45 = "やぁ！そう、君だ！チームを組まない？大丈夫、私を信じてよ。",
     ContextMenu_speech_Greetings46 = "君は他人の様には思えないな。君を助けるよ。",
 
@@ -1312,6 +1312,4 @@ ContextMenu_JP = {
     ContextMenu_speech_FoundZombie17 = "厄介な事になるかもな..",
     ContextMenu_speech_FoundZombie18 = "いたぞ！",
     ContextMenu_speech_FoundZombie19 = "あは！奴らだ！",
-	
-	
 }

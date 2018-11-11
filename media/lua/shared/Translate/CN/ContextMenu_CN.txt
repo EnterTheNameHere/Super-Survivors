@@ -1,15 +1,15 @@
 ContextMenu_CN = {
 
 	ContextMenu_SD_NoPreSetSpawn = "禁止全部预置/唯一的幸存者",
-ContextMenu_SD_NoPreSetSpawnDesc = "禁止全部预置/唯一的幸存者",
-ContextMenu_SD_RulesOfEngagement = "交战规则",
-ContextMenu_SD_AttackAnyoneOnSight = "攻击视线内任意目标",
-ContextMenu_SD_AttackHostilesOnSight = "攻击视线内敌对目标",
+    ContextMenu_SD_NoPreSetSpawnDesc = "禁止全部预置/唯一的幸存者",
+    ContextMenu_SD_RulesOfEngagement = "交战规则",
+    ContextMenu_SD_AttackAnyoneOnSight = "攻击视线内任意目标",
+    ContextMenu_SD_AttackHostilesOnSight = "攻击视线内敌对目标",
 	
 	ContextMenu_SD_IGotABadFeeling = "我的直觉告诉我这是不祥之兆。",
-ContextMenu_SD_WhatWasThatSound = "那是什么声音!?",
-ContextMenu_SD_IAttackFoodThief = "就是那样！！给我滚出去！！",
-ContextMenu_SD_IWarnFoodThief = "嘿！你这个小偷!!不要拿走我们的食物或者其他东西！！",
+    ContextMenu_SD_WhatWasThatSound = "那是什么声音!?",
+    ContextMenu_SD_IAttackFoodThief = "就是那样！！给我滚出去！！",
+    ContextMenu_SD_IWarnFoodThief = "嘿！你这个小偷!!不要拿走我们的食物或者其他东西！！",
 	
 	ContextMenu_SD_OrderAll = "命令全部 ",
 	ContextMenu_SShotkey1 = "快捷键 1 指令",
@@ -29,13 +29,13 @@ ContextMenu_SD_IWarnFoodThief = "嘿！你这个小偷!!不要拿走我们的食
 	ContextMenu_speech_SSick1 = "我要吐了",
     ContextMenu_speech_SSick2 = "我有一种想要呕吐的感觉",
 		
-	ContextMenu_SD_PerkLeveledUp_After = " 技术等级提升!*"
-	ContextMenu_SD_PerkLeveledUp_Before = "*"
-	ContextMenu_speech_Foraging = "*野外采集中..."
-	ContextMenu_speech_FarmingActionPlanting = "*将种子埋进土壤中...*"
-	ContextMenu_speech_FarmingActionHarvesting = "*收割农作物中...*"
-	ContextMenu_speech_FarmingActionWatering = "*浇水中...*"
-	ContextMenu_speech_NoFarmingArea = "没有指定的农业区"
+	ContextMenu_SD_PerkLeveledUp_After = " 技术等级提升!*",
+	ContextMenu_SD_PerkLeveledUp_Before = "*",
+	ContextMenu_speech_Foraging = "*野外采集中...",
+	ContextMenu_speech_FarmingActionPlanting = "*将种子埋进土壤中...*",
+	ContextMenu_speech_FarmingActionHarvesting = "*收割农作物中...*",
+	ContextMenu_speech_FarmingActionWatering = "*浇水中...*",
+	ContextMenu_speech_NoFarmingArea = "没有指定的农业区",
 	 ContextMenu_speech_IDontKnowHowFarming = "我不知道该如何耕种",
 	ContextMenu_SOption_SurvivorBravery = "幸存者的勇气",
 	ContextMenu_SOption_SurvivorBraveryDesc = "决定了幸存者是如何战斗的，而不是逃跑或躲避。",
@@ -339,7 +339,7 @@ ContextMenu_SD_IWarnFoodThief = "嘿！你这个小偷!!不要拿走我们的食
 	ContextMenu_SD_CallToArms = "武装召集",
 	
 	
-	ContextMenu_SOption_CallClosestGroupMember = "召唤附近团队成员"
+	ContextMenu_SOption_CallClosestGroupMember = "召唤附近团队成员",
 	ContextMenu_SOption_CallClosestNonGroupMember = "召唤附近无团队的幸存者",
 	ContextMenu_SOption_AskClosestGroupMembertoFollow = "命令附近团队成员跟随",
 	ContextMenu_SOption_SpawnWildSurvivor = "刷新野外幸存者",
@@ -1072,7 +1072,7 @@ ContextMenu_SD_IWarnFoodThief = "嘿！你这个小偷!!不要拿走我们的食
     ContextMenu_speech_NoWhereToHide11 = "我需要另寻他处。",
     ContextMenu_speech_NoWhereToHide12 = "干，那里一定会有个藏身之所。",
     ContextMenu_speech_NoWhereToHide13 = "我要去哪儿?",
-    ContextMenu_speech_NoWhereToHide14 = 我他妈的想离开这里。",
+    ContextMenu_speech_NoWhereToHide14 = "我他妈的想离开这里。",
     ContextMenu_speech_NoWhereToHide15 = "尸潮之前我最好离开。",
     ContextMenu_speech_NoWhereToHide16 = "我发誓这里曾经有个容身之处。",
     ContextMenu_speech_NoWhereToHide17 = "我他妈的该去哪儿?",
@@ -1323,6 +1323,4 @@ ContextMenu_SD_IWarnFoodThief = "嘿！你这个小偷!!不要拿走我们的食
     ContextMenu_speech_FoundZombie17 = "这可能是个问题。",
     ContextMenu_speech_FoundZombie18 = "那里有一只。",
     ContextMenu_speech_FoundZombie19 = "啊哈！我干掉了丧尸中的一只。",
-	
-	
 }

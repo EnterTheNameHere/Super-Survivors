@@ -28,15 +28,15 @@ ContextMenu_EN = {
 	
 	ContextMenu_speech_SSick1 = "I'm gonna puke",
     ContextMenu_speech_SSick2 = "feel like im gonna barf",
-		
-	ContextMenu_SD_PerkLeveledUp_After = " Perk Leveled Up!*"
-	ContextMenu_SD_PerkLeveledUp_Before = "*"
-	ContextMenu_speech_Foraging = "*Foraging..."
-	ContextMenu_speech_FarmingActionPlanting = "*Planting seeds...*"
-	ContextMenu_speech_FarmingActionHarvesting = "*Harvesting...*"
-	ContextMenu_speech_FarmingActionWatering = "*Watering...*"
-	ContextMenu_speech_NoFarmingArea = "there is no farming area designated"
-	 ContextMenu_speech_IDontKnowHowFarming = "I don't know how to do Farming",
+	
+	ContextMenu_SD_PerkLeveledUp_After = " Perk Leveled Up!*",
+	ContextMenu_SD_PerkLeveledUp_Before = "*",
+	ContextMenu_speech_Foraging = "*Foraging...",
+	ContextMenu_speech_FarmingActionPlanting = "*Planting seeds...*",
+	ContextMenu_speech_FarmingActionHarvesting = "*Harvesting...*",
+	ContextMenu_speech_FarmingActionWatering = "*Watering...*",
+	ContextMenu_speech_NoFarmingArea = "there is no farming area designated",
+	ContextMenu_speech_IDontKnowHowFarming = "I don't know how to do Farming",
 	ContextMenu_SOption_SurvivorBravery = "Survivor Bravery",
 	ContextMenu_SOption_SurvivorBraveryDesc = "Determines how likely Survivors are to fight, rather than flee or avoid.",
 	ContextMenu_SD_Cowardly = "Cowardly",
@@ -338,7 +338,7 @@ ContextMenu_EN = {
 	ContextMenu_SD_CallToArms = "Call to Arms",
 	
 	
-	ContextMenu_SOption_CallClosestGroupMember = "Call Closest Group Member"
+	ContextMenu_SOption_CallClosestGroupMember = "Call Closest Group Member",
 	ContextMenu_SOption_CallClosestNonGroupMember = "Call Closest Non-Group Member",
 	ContextMenu_SOption_AskClosestGroupMembertoFollow = "Ask Closest Group Member to Follow",
 	ContextMenu_SOption_SpawnWildSurvivor = "Spawn Wild Survivor",
@@ -1300,7 +1300,7 @@ ContextMenu_EN = {
     ContextMenu_speech_FoundSurvivor31 = "I'm doing you a favor.",
     ContextMenu_speech_FoundSurvivor32 = "Look at this sorry excuse of a human being. I'm just doing you a favor.",
     ContextMenu_speech_FoundSurvivor33 = "Looks like you got some nice stuff..",
-    ContextMenu_speech_FoundSurvivor34 = "I'm gonna enjoy You're loot.",
+    ContextMenu_speech_FoundSurvivor34 = "I'm gonna enjoy Your loot.",
 
 
     ContextMenu_speech_FoundZombie1 = "There's one!",
@@ -1322,6 +1322,4 @@ ContextMenu_EN = {
     ContextMenu_speech_FoundZombie17 = "This could be a problem..",
     ContextMenu_speech_FoundZombie18 = "There's one.",
     ContextMenu_speech_FoundZombie19 = "Aha! I got one of them.",
-	
-	
 }
