@@ -56,7 +56,7 @@ end
 -- the job 'companion' has alot of embedding put into it to keep it from breaking away from main player
 -- So if you add new commands for the npcs through here, make sure you keep in mind about companions
 -- if you don't change the job along with the task, the npc will just return to the player
-require ('CharacterSave_SaveLoad')
+-- Character saving uses SuperSurvivor:SaveSurvivor; no external save module is required.
 
 local function getJobText(text)
 	return getContextMenuText("Job_" .. text)

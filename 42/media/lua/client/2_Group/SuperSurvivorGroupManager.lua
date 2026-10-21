@@ -1,4 +1,5 @@
-require "SuperSurvivorGroup"
+require "2_Group/SuperSurvivorGroup"
+require "0_Utilities/SuperSurvivorTextUtilities"
 
 SuperSurvivorGroupManager = {}
 SuperSurvivorGroupManager.__index = SuperSurvivorGroupManager
