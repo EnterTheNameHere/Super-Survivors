@@ -1,6 +1,15 @@
 -- this file only has methods related to deal with files
 
-local modid = "SuperbSurvivors"
+local modid = "Super-Survivors" -- Must match id= in 42/mod.info.
+
+local function openSaveWriter(path)
+	local writer = getModFileWriter(modid, path, true, false)
+	if not writer then
+		error("[Super Survivors] Cannot open save writer for mod '" .. modid
+			.. "', path '" .. path .. "'; check the mod ID and write access.")
+	end
+	return writer
+end
 
 --- DEBUG ---
 
@@ -44,6 +53,7 @@ function doesFileExist( fileName )
 	local readFile = getModFileReader(modid, getFileFullPath(fileName), false)
 
 	if(readFile) then 
+		readFile:close()
 		return true
 	else 
 		return false 
@@ -107,9 +117,8 @@ function table.save( tbl,fileName )
 
 	debugMethodName("table.save")
 	debugMethodAction("saving file", fileName)
-	local themodID = modid
 	local thepath = getFileFullPath(fileName .. ".lua")
-	local writeFile = getModFileWriter(themodID,thepath , true, false)
+	local writeFile = openSaveWriter(thepath)
 	
 		for i = 1,#tbl do
 			debugMethodAction("writing line", tostring(i))
@@ -176,7 +185,7 @@ function kvtablesave( fileTable, fileName )
 		return false 
 	end
 
-	local writeFile = getModFileWriter(modid, getFileFullPath(fileName), true, false)
+	local writeFile = openSaveWriter(getFileFullPath(fileName))
 	
 	for index,value in pairs(fileTable) do
 
@@ -193,5 +202,5 @@ end
 
 
 function getSaveDir()
-	return Core.getMyDocumentFolder()..getFileSeparator().."Saves"..getFileSeparator().. getWorld():getGameMode() .. getFileSeparator() .. getWorld():getWorld().. getFileSeparator();
+	return Core.getMyDocumentFolder()..getFileSeparator().."Saves"..getFileSeparator().. getWorld():getGameMode():toString() .. getFileSeparator() .. getWorld():getWorld().. getFileSeparator();
 end
