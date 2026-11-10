@@ -28,11 +28,11 @@ function EatFoodTask:isComplete()
 	return self.Complete
 end
 function EatFoodTask:ForbiddenFoods()
-	if(self.TheFood) and (self.TheFood:getType() == "Bleach") or (self.TheFood:getType() == "Cigarettes") then
-		return true
-	else
-		return false
-	end
+	if not self.TheFood then return false end
+	local itemType = self.TheFood:getType()
+	return itemType == "Bleach" or itemType == "Cigarettes"
+		or itemType == "CigaretteSingle" or itemType == "CigarettePack"
+		or itemType == "CigaretteRolled"
 end
 function EatFoodTask:isValid()
 	if not self.parent or self.TheFood == nil then return false 
