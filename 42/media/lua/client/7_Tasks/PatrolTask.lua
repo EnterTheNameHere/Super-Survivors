@@ -28,6 +28,8 @@ function PatrolTask:new(superSurvivor, square1, square2)
 	
 	o.parent = superSurvivor
 	o.Name = "Patrol"
+	o.NextPoint = 1
+	o.ArrivalCount = 0
 	o.OnGoing = true
 	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	return o
@@ -49,11 +51,13 @@ function PatrolTask:update()
 	
 	if(self.parent:isInAction() == false) and (self.parent:getDangerSeenCount() == 0) then
 	
-		if (self.parent.player:getCurrentSquare() ~= self.Square1) then
-			self.parent:walkToDirect(self.Square1) 		
-		else
-			self.parent:walkToDirect(self.Square2) 		
+		local target = self.NextPoint == 1 and self.Square1 or self.Square2
+		if self.parent.player:getCurrentSquare() == target then
+			self.ArrivalCount = self.ArrivalCount + 1
+			self.NextPoint = self.NextPoint == 1 and 2 or 1
+			target = self.NextPoint == 1 and self.Square1 or self.Square2
 		end
+		self.parent:walkToDirect(target)
 	
 	end
 

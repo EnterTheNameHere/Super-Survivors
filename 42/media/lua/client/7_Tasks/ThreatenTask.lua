@@ -102,7 +102,7 @@ function ThreatenTask:update()
 		end
 		
 		if(self:dealComplete()) then 
-			self.parent.player:NPCSetAiming(false)
+			self.parent.player:setIsAiming(false)
 			self.Complete = true 
 		end
 		
@@ -113,7 +113,7 @@ function ThreatenTask:update()
 	if(self.parent.player:IsAttackRange(self.Aite:getX(),self.Aite:getY(),self.Aite:getZ())) or (self.theDistance < 0.65 )then
 			self.parent:DebugSay("ThreatenTask is about to trigger a StopWalk! Path A ")
 			self.parent:StopWalk()
-			self.parent.player:NPCSetAiming(true)
+			self.parent.player:setIsAiming(true)
 			self.parent.player:faceThisObject(self.Aite.player)	
 				if(self.StartedThreatening == false) then
 					self.parent:Speak("get out of here or else!")

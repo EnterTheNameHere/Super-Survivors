@@ -255,7 +255,7 @@ function SuperSurvivorsLoadGridsquare(square)
 			SurvivorMap[key] = {} -- i think this is faster			
 		end
 		
-		if (square:getModData().SurvivorSquareLoaded == nil) and (square:getZ()==0 or square:isOutside()==false) and (not SuperSurvivorPresetSpawn(square)) then
+		if not SSM.AutoSpawnsSuspended and (square:getModData().SurvivorSquareLoaded == nil) and (square:getZ()==0 or square:isOutside()==false) and (not SuperSurvivorPresetSpawn(square)) then
 		
 			SurvivorMap[key] = {} 
 			square:getModData().SurvivorSquareLoaded = true
@@ -422,7 +422,7 @@ end
 
 function SuperSurvivorsOnCharacterCollide(playerOne,PlayerTwo)
 	if(playerOne ~= nil) then
-		if(playerOne:isNPC()) then
+		if(playerOne:isNpc()) then
 			print("trying to cancel collision p1")
 			playerOne:setLastCollidedW(false)
 			playerOne:setLastCollidedN(false)
@@ -430,7 +430,7 @@ function SuperSurvivorsOnCharacterCollide(playerOne,PlayerTwo)
 		end
 	end
 	if(playerTwo ~= nil) then
-		if(playerTwo:isNPC()) then
+		if(playerTwo:isNpc()) then
 			print("trying to cancel collision p2")
 			playerTwo:setLastCollidedW(false)
 			playerTwo:setLastCollidedN(false)
@@ -441,52 +441,14 @@ end
 
 --Events.OnCharacterCollide.Add(SuperSurvivorsOnCharacterCollide)
 
-function SuperSurvivorsOnSwing(player,weapon)
-	--print("onswing")
-
-	local ID = player:getModData().ID
-	if(ID ~= nil) then
-	
-		local SS = SSM:Get(ID)
-		if(SS) and not player:isLocalPlayer() then
-		
-			if weapon:isRanged() then 
-				if weapon:haveChamber() then
-					weapon:setRoundChambered(false);
-				end
-				-- remove ammo, add one to chamber if we still have some
-				if weapon:getCurrentAmmoCount() >= weapon:getAmmoPerShoot() then
-					if weapon:haveChamber() then
-						weapon:setRoundChambered(true);
-					end
-					weapon:setCurrentAmmoCount(weapon:getCurrentAmmoCount() - weapon:getAmmoPerShoot())
-				end
-				if weapon:isRackAfterShoot() then -- shotgun need to be rack after each shot to rechamber round
-					player:setVariable("RackWeapon", weapon:getWeaponReloadType());
-				end
-				
-			end
-			
-			if(weapon:isRoundChambered()) then
-				local range = weapon:getSoundRadius() 
-				local volume = weapon:getSoundVolume()
-				--getWorldSoundManager():addWorldSound(player:getX(), player:getY(), range, volume) 
-				--AddWorldSound(player,range)
-				addSound(player, player:getX(), player:getY(),player:getZ(), range, volume)
-				getSoundManager():PlayWorldSound(weapon:getSwingSound(), player:getCurrentSquare(), 0.5, range, 1.0, false) 
-				
-				--print("gunshot sound made!" ..tostring(weapon:getSwingSound())..","..tostring(range))
-			end
-		
-			player:NPCSetAttack(false)
-			player:NPCSetMelee(false)
-		
-		elseif(player:isLocalPlayer()) and weapon:isRanged() then
-			SSM:GunShotHandle(SS)
-		end
-	
-	end
-
+function SuperSurvivorsOnSwing(player, weapon)
+    -- B42 CombatManager handles NPC ammo, chambering, sound and attack flags.
+    -- Keep only the player-gunshot reaction hook; do not apply a second shot.
+    if not player:isLocalPlayer() or not weapon or not weapon:isRanged() then return end
+    local id = player:getModData().ID
+    if id == nil then return end
+    local survivor = SSM:Get(id)
+    if survivor then SSM:GunShotHandle(survivor) end
 end
 
 Events.OnWeaponSwing.Add(SuperSurvivorsOnSwing)
@@ -522,15 +484,6 @@ function SuperSurvivorDeSpawnZombies(thissquare)
 	if(thissquare)
 
 end]]
-function SuperSurvivorTest(ob1)
-	
-	local o = ob1
-	local stop
-	stop:now()
-	
-end 
-Events.OnAIStateChange:Add(SuperSurvivorTest)
-
 function supersurvivortemp(keyNum)
 
 	if(getSpecificPlayer(0)) then
@@ -559,8 +512,8 @@ function supersurvivortemp(keyNum)
 		
 		elseif( keyNum == 208) then -- down key
 			
-		--	local f = getSpecificPlayer(0):getStats():getFatigue() + 0.1;
-		--getSpecificPlayer(0):getStats():setFatigue(f);
+		--	local f = getSpecificPlayer(0):getStats():get(CharacterStat.FATIGUE) + 0.1;
+		--getSpecificPlayer(0):getStats():set(CharacterStat.FATIGUE, f);
 			
 			--ISTimedActionQueue.add(ISGetHitFromBehindAction:new(getSpecificPlayer(0),getSpecificPlayer(0)))
 			
@@ -629,7 +582,7 @@ function supersurvivortemp(keyNum)
 				local hitChance = weapon:getHitChance() + weapon:getAimingPerkHitChanceModifier() * aimingPerk
 				local movePenalty = attacker:getBeenMovingFor() - (weapon:getAimingTime() + aimingPerk * 2)
 				if movePenalty < 0 then movePenalty = 0 end
-				if attacker:HasTrait("Marksman") then hitChance = hitChance + 20 end
+				if attacker:hasTrait(CharacterTrait.MARKSMAN) then hitChance = hitChance + 20 end
 				
 				for i=1, objs:size() do
 					if(objs:get(i)) then 
@@ -677,7 +630,7 @@ function supersurvivortemp(keyNum)
 					
 					local member = myGroup:getClosestMember(nil,mySS:Get())
 					if(member) then
-						mySS:Get():Say(getActionText("ComeWithMe_Before") .. member:Get():getForname() .. getActionText("ComeWithMe_After"))
+						mySS:Get():Say(getActionText("ComeWithMe_Before") .. member:Get():getDescriptor():getForename() .. getActionText("ComeWithMe_After"))
 						member:getTaskManager():clear()
 						member:getTaskManager():AddToTop(FollowTask:new(member,mySS:Get()))
 						--mySS:DebugSay("Follow Task triggered in supersurvivorsmod - path a")
@@ -699,7 +652,7 @@ function supersurvivortemp(keyNum)
 					
 					local member = myGroup:getClosestMember(nil,mySS:Get())
 					if(member) then
-						mySS:Get():Say(member:Get():getForname()..", come here.")
+						mySS:Get():Say(member:Get():getDescriptor():getForename()..", come here.")
 						member:getTaskManager():AddToTop(ListenTask:new(member,mySS:Get(),false))
 					else
 						--print("getClosestMember returned nil")
@@ -1044,6 +997,7 @@ end
 
 -- Debug version
 function SuperSurvivorDoRandomSpawns()
+	if SSM and SSM.AutoSpawnsSuspended then return end
 	if (DebugOptions == true) then
 		local RealAlternativeSpawning = AlternativeSpawning - 1
 		for i = RealAlternativeSpawning,1,-1 
@@ -1101,6 +1055,7 @@ Events.EveryHours.Add(SuperSurvivorDoRandomSpawns);
 
 
 function SuperSurvivorsRaiderManager()
+	if SSM and SSM.AutoSpawnsSuspended then return end
 
 	if(getSpecificPlayer(0) == nil) then return false end
 	--this unrelated to raiders but need this to run every once in a while

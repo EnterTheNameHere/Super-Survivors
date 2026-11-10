@@ -41,7 +41,7 @@ function ISNPCScavengeAction:stop()
 end
 
 function ISNPCScavengeAction:perform()
-    self.character:getStats():setFatigue(self.character:getStats():getFatigue() + 0.025)
+    self.character:getStats():set(CharacterStat.FATIGUE, self.character:getStats():get(CharacterStat.FATIGUE) + 0.025)
 
     -- relaunch the action if zone isn't empty
     local zone = self:getScavengeZone();
@@ -56,7 +56,7 @@ end
 
 -- random a plant/insect, more chance in deep forest
 function ISNPCScavengeAction:scavenge()
-    self.character:getStats():setEndurance(self.character:getStats():getEndurance() - 0.004)
+    self.character:getStats():set(CharacterStat.ENDURANCE, self.character:getStats():get(CharacterStat.ENDURANCE) - 0.004)
     local zone = self:getScavengeZone();
 
     local scavengeZoneNumber = ZombRand(5,15) + self.scavengeZoneIncrease;

@@ -19,7 +19,7 @@ function FarmingTask:new(superSurvivor, BringHere)
 	o.TargetSquare = nil
 	o.Complete = false
 	
-	o.Seeds = {"farming.BroccoliSeed","farming.CabbageSeed","farming.CarrotSeed","farming.PotatoSeed","farming.TomatoSeed","farming.RedRadishSeed"}
+	o.Seeds = {"Base.BroccoliSeed","Base.CabbageSeed","Base.CarrotSeed","Base.PotatoSeed","Base.TomatoSeed","Base.RedRadishSeed"}
 	
 	o.parent:DebugSay(tostring(o.parent:getCurrentTask()).." Started!" )
 	
@@ -32,7 +32,7 @@ function FarmingTask:getShovel()
 	local phi = self.parent:Get():getPrimaryHandItem()
 	if (not phi) or (phi:getType() ~= "HandShovel") then
 		local trowel = self.parent:getBag():FindAndReturn("HandShovel")
-		if not trowel then trowel = self.parent:getBag():AddItem("farming.HandShovel") end
+		if not trowel then trowel = self.parent:getBag():AddItem("Base.HandShovel") end
 		self.parent:Get():setPrimaryHandItem(trowel)
 		return trowel
 	end
@@ -340,7 +340,7 @@ function FarmingTask:update()
 				print("planting " .. typeOfSeed)
 				local seeds = {}
 				for i=1,12 do
-					seeds[i] = self.parent:Get():getInventory():AddItem("farming." .. typeOfSeed)
+					seeds[i] = self.parent:Get():getInventory():AddItem("Base." .. typeOfSeed)
 				end
 				ISTimedActionQueue.add(ISSeedAction:new(self.parent:Get(), seeds, #seeds, plantType, self.Plant, 200))
 				self:ClearVars()

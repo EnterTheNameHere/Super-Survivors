@@ -140,9 +140,9 @@ function FindThisTask:update()
 			end
 			
 			if(instanceof(self.TargetItem,"IsoObject")) then
-				self.parent:DrinkFromObject(self.TargetItem)
+				local queued = self.parent:DrinkFromObject(self.TargetItem)
 				self.Complete = true 
-				self.WasSuccessful = true
+				self.WasSuccessful = queued
 			else
 				if(self.BagToPutIn:contains(self.TargetItem) == false) then
 					if(self.TargetItem:getWorldItem() ~= nil) then

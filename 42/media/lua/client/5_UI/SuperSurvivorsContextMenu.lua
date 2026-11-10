@@ -208,7 +208,7 @@ function SurvivorOrder(test,player,order,orderParam)
 				--if(not container) then container = square:getItemContainer() end
 			end
 			
-		elseif(order == "Doctor") and (ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Doctor")) >= 1 or ASuperSurvivor:Get():getPerkLevel(Perks.FromString("First Aid")) >= 1) then 
+		elseif(order == "Doctor") and (ASuperSurvivor:Get():getPerkLevel(Perks.Doctor) >= 1) then
 			TaskMangerIn:AddToTop(DoctorTask:new(ASuperSurvivor))
 			ASuperSurvivor:setGroupRole(getJobText("Doctor"))
 		
@@ -478,7 +478,7 @@ end
 function DebugCharacterKill(test,SS)
 	local player = SS.player
 	
-	if(player:getBodyDamage():getInfectionLevel() <= 0) then
+	if(player:getStats():get(CharacterStat.ZOMBIE_INFECTION) <= 0) then
 	
 		local BPs = player:getBodyDamage():getBodyParts()
 		for i=0, BPs:size()-1 do	
@@ -487,7 +487,7 @@ function DebugCharacterKill(test,SS)
 			BPs:get(i):generateZombieInfection(200)
 			BPs:get(i):AddDamage(19)
 			
-			player:getBodyDamage():setInfectionLevel(1)  
+			player:getStats():set(CharacterStat.ZOMBIE_INFECTION, 1)
 			
 		end
 		
@@ -495,7 +495,7 @@ function DebugCharacterKill(test,SS)
 	player:update();
 end
 function DebugCharacterToggleNPC(test,SS)
-	SS:Get():setNPC(not SS:Get():isNPC())
+	SS:Get():setNpc(not SS:Get():isNpc())
 end
 function DebugCharacterToggleBM(test,SS)
 	SS:Get():setBlockMovement(not SS:Get():isBlockMovement())
@@ -508,12 +508,12 @@ function DebugCharacterOutput(test,SS)
 	print("SS Name:"..tostring(SS:getName()))
 	print("SS ID:"..tostring(SS:getID()))
 	print("isBlockMovement:"..tostring(SS:Get():isBlockMovement()))
-	print("isNPC:"..tostring(SS:Get():isNPC()))
+	print("isNPC:"..tostring(SS:Get():isNpc()))
 	print("isLocalPlayer:"..tostring(SS:Get():isLocalPlayer()))
-	print("NPCRunning:"..tostring(SS:Get():NPCGetRunning()))
+	print("NPCRunning:"..tostring(SS:Get():isRunning()))
 	print("isSneaking:"..tostring(SS:Get():isSneaking()))
 	print("isAiming:"..tostring(SS:Get():isAiming()))
-	print("infectionLevel:"..tostring(SS:Get():getBodyDamage():getInfectionLevel()))
+	print("infectionLevel:"..tostring(SS:Get():getStats():get(CharacterStat.ZOMBIE_INFECTION)))
 	print("isinAction:"..tostring(SS:isInAction()))
 	print("MDbWalking:"..tostring(SS.player:getModData().bWalking))
 	print("bWalking:"..tostring(SS:Get():getVariableBoolean("bWalking")))
@@ -589,10 +589,10 @@ function DebugCharacterUnStuck(test,SS)
 	--clearVariable("bShoveAiming");
 	--
 	--[[
-	SS.player:setNPC(false)
+	SS.player:setNpc(false)
 	SS.player:setBlockMovement(false)
 	SS.player:update()
-	SS.player:setNPC(true)
+	SS.player:setNpc(true)
 	SS.player:setBlockMovement(true)
 	ISTimedActionQueue.add(ISGetHitFromBehindAction:new(SS.player,getSpecificPlayer(0)))
 	
@@ -820,7 +820,7 @@ function survivorMenu(context,o)
 							--tooltipText = "Give your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName() .. " to this Survivor to be his Gun type Weapon"
 						else 
 							Label = getContextMenuText("SwapGuns") 
-							--tooltipText = "Trade your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName().." with ".. o:getForname().."\'s ".. SurvivorWeaponName						
+							--tooltipText = "Trade your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName().." with ".. o:getDescriptor():getForename().."\'s ".. SurvivorWeaponName
 						end
 						swapweaponsOption = submenu:addOption(Label, nil, SwapWeaponsSurvivor, SS, "Gun");
 					
@@ -831,7 +831,7 @@ function survivorMenu(context,o)
 							--tooltipText = "Give your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName() .. " to this Survivor to be his Melee type Weapon"
 						else 
 							Label = getContextMenuText("SwapWeapons")
-							--tooltipText = "Trade your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName().." with ".. o:getForname().."\'s ".. SurvivorWeaponName
+							--tooltipText = "Trade your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName().." with ".. o:getDescriptor():getForename().."\'s ".. SurvivorWeaponName
 						end
 						swapweaponsOption = submenu:addOption(Label, nil, SwapWeaponsSurvivor, SS, "Melee");
 						
@@ -1096,6 +1096,7 @@ function SurvivorsFillWorldObjectContextMenu(player, context, worldobjects, test
 	makeToolTip(subsubmenu:addOption(getContextMenuText("UseGun"), nil, SetMeleeOrGun, 'gun'),		getContextMenuText("UseGun"),	getContextMenuText("UseGunDesc"));
 
 	if (DebugOptions) then 
+		require "ISUI/PlayerStats/ISPlayerStatsUI"
 		submenu:addOption(getContextMenuText("Debug_Spawn_Soldier"), nil, DebugSpawnSoldier)  -- debug spawn soldier
 		submenu:addOption(getContextMenuText("Debug_Spawn_Soldier").." - Melee", nil, DebugSpawnSoldierMelee)  -- debug spawn soldier melee
 		submenu:addOption(getContextMenuText("Debug_Spawn_Soldier").. " - Hostile", nil, DebugSpawnSoldierHostile)  -- debug spawn soldier

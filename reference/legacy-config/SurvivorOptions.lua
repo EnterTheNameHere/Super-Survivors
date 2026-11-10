@@ -5,7 +5,7 @@ GunSpawnRate 3
 WepSpawnRate 6
 HostileSpawnRate 1
 MaxHostileSpawnRate 17
-InfinitAmmo 2
+InfiniteAmmo 2
 NoPreSetSpawn 1
 FindWork 1
 SurvivorHunger 1

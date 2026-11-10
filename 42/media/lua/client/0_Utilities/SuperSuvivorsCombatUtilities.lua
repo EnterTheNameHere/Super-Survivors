@@ -1,7 +1,7 @@
 -- this file has methods related to npc combat
 
 SuperSurvivorsAmmoBoxes = {   -- for the loot stores that are spawned with preset spawns.
-  "Base.223Box",
+  "Base.556Box",
   "Base.308Box",
   "Base.Bullets9mm",
   "Base.Bullets9mm",

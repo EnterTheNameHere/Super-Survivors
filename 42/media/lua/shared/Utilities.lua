@@ -12,7 +12,7 @@ end
 
 
 function getSaveDir()
-	return Core.getMyDocumentFolder()..getFileSeparator().."Saves"..getFileSeparator().. getWorld():getGameMode() .. getFileSeparator() .. getWorld():getWorld().. getFileSeparator();
+	return Core.getMyDocumentFolder()..getFileSeparator().."Saves"..getFileSeparator().. getWorld():getGameMode():toString() .. getFileSeparator() .. getWorld():getWorld().. getFileSeparator();
 end
 
 function getSourceSquareOfItem(item,character)

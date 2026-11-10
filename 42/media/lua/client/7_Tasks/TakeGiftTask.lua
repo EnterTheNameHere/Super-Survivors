@@ -97,7 +97,7 @@ function TakeGiftTask:update()
 					self.parent:WearThis(self.TheGift)
 				end
 			else
-				self.parent:DebugSay("ThreatenTask is about to trigger a StopWalk! ")("TakeGiftTask is about to trigger a StopWalk! ")
+				self.parent:DebugSay("TakeGiftTask is about to trigger a StopWalk! ")
 				self.parent:StopWalk()
 				ISTimedActionQueue.add(ISInventoryTransferAction:new (self.parent.player, self.TheGift, self.TheGift:getContainer(), self.parent:getBag(), 20))
 			end
@@ -107,7 +107,7 @@ function TakeGiftTask:update()
 			self.Complete = true
 			
 			local itemType = self.TheGift:getType()
-			if self.TheGift:isClothing()  then
+			if instanceof(self.TheGift, "Clothing") then
 				self.parent:getBag():Remove(self.TheGift)
 				self.parent:Get():getInventory():AddItem(self.TheGift)
 				self.parent:RoleplaySpeak(getActionText("EquipsArmor"))

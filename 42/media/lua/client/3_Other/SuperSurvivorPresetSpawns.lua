@@ -441,6 +441,7 @@ HairColors ["black"] = ImmutableColor.new(0.10,0.08,0.09)
 
 
 function SuperSurvivorPresetSpawnThis(PresetSpawn)
+	if SSM and SSM.AutoSpawnsSuspended then return false end
 			
 			local square = getCell():getGridSquare(PresetSpawn.X,PresetSpawn.Y,PresetSpawn.Z)	
 			
@@ -627,6 +628,7 @@ end
 
 
 function SuperSurvivorPresetSpawn(square)
+	if SSM and SSM.AutoSpawnsSuspended then return false end
 	
 	if(RPresetSpawns ~= nil) then
 		

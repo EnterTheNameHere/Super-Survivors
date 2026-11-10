@@ -65,27 +65,23 @@ end
 function InventoryRow:on_click_transfer(direction)
     -- > player to member
     -- < member to player
-    local item_id = self.item:getID()
-    local member = SSGM:Get(SSM:Get(0):getGroupID()):getMembers()[self.member_index]
+    local main = SSM and SSM:Get(0)
+    local group = main and SSGM:Get(main:getGroupID())
+    if not group then return end
+    local member = group:getMembers()[self.member_index]
+    if type(member) ~= "table" or not member.player or member.player:isDead() then return end
+    local player = getSpecificPlayer(0)
+    if getDistanceBetween(player, member.player) > 2 or player:getZ() ~= member.player:getZ() then return end
     local member_inventory = member.player:getInventory()
-    local player_inventory = getPlayerInventory(0).inventory
-    if direction == ">" then
-        if self.item:isEquipped() then
-            ISTimedActionQueue.add(ISUnequipAction:new(getSpecificPlayer(0), self.item, 1))
-        end
-        player_inventory:removeItemWithID(item_id)
-        --member_inventory:addItem(self.item:getFullType())
-        member_inventory:addItem(self.item)
-    else
-        if self.item:isEquipped() then
-            ISTimedActionQueue.add(ISUnequipAction:new(member.player, self.item, 1))
-        end
-        member_inventory:removeItemWithID(item_id)
-        --player_inventory:addItem(self.item:getFullType())
-        player_inventory:addItem(self.item)
-    end
-    panels[1]:dupdate()
-    panels[2]:dupdate()
+    local player_inventory = player:getInventory()
+    require "0_Utilities/SuperSurvivorTransferUtilities"
+    local owner = direction == ">" and player or member.player
+    local source = direction == ">" and player_inventory or member_inventory
+    local destination = direction == ">" and member_inventory or player_inventory
+    SuperSurvivorTransfers.queue(owner, self.item, source, destination, function()
+        if panels[1] then panels[1]:dupdate() end
+        if panels[2] then panels[2]:dupdate() end
+    end)
 end
 
 function InventoryRow:update_tooltip()

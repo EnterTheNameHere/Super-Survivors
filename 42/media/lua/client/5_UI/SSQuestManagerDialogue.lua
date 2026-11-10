@@ -162,7 +162,6 @@ function DialogueWindow:createChildren()
 	self.YesButton:setEnable(true);
 	self.YesButton:initialise();
 	--MyCallButton.textureColor.r = 255;
-	self.YesButton:addToUIManager();
 	self:addChild(self.YesButton)	
 	self.YesButton:setVisible(true);
 	
@@ -170,7 +169,6 @@ function DialogueWindow:createChildren()
 	self.NoButton:setEnable(true);
 	self.NoButton:initialise();
 	--MyCallButton.textureColor.r = 255;
-	self.NoButton:addToUIManager();
 	self:addChild(self.NoButton)	
 	self.NoButton:setVisible(true);
 	
@@ -178,7 +176,6 @@ function DialogueWindow:createChildren()
 	self.ContinueButton:setEnable(true);
 	self.ContinueButton:initialise();
 	--MyCallButton.textureColor.r = 255;
-	self.ContinueButton:addToUIManager();
 	self:addChild(self.ContinueButton)	
 	self.ContinueButton:setVisible(true);
 	

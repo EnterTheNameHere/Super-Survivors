@@ -558,8 +558,8 @@ end
 			group:removeMember(ASuperSurvivor:getID())
 		end
 		ASuperSurvivor:getTaskManager():clear()
-		if (ASuperSurvivor:Get():getStats():getHunger() > 0.40) then ASuperSurvivor:Get():getStats():setHunger(0.40) end
-		if (ASuperSurvivor:Get():getStats():getThirst() > 0.40) then ASuperSurvivor:Get():getStats():setThirst(0.40) end
+		if (ASuperSurvivor:Get():getStats():get(CharacterStat.HUNGER) > 0.40) then ASuperSurvivor:Get():getStats():set(CharacterStat.HUNGER, 0.40) end
+		if (ASuperSurvivor:Get():getStats():get(CharacterStat.THIRST) > 0.40) then ASuperSurvivor:Get():getStats():set(CharacterStat.THIRST, 0.40) end
 		ASuperSurvivor:Speak(getDialogue("LeaveGroupHungry"))
 		
 	elseif (TaskMangerIn:getCurrentTask() ~= "Enter New Building") and (TaskMangerIn:getCurrentTask() ~= "Clean Inventory") and (IsInAction == false) and (TaskMangerIn:getCurrentTask() ~= "Eat Food") and (TaskMangerIn:getCurrentTask() ~= "Find This") and (TaskMangerIn:getCurrentTask() ~= "First Aide")and (TaskMangerIn:getCurrentTask() ~= "Listen") and (((ASuperSurvivor:isHungry()) and (IsInBase)) or ASuperSurvivor:isVHungry() ) and (ASuperSurvivor:getDangerSeenCount() == 0) then
@@ -822,16 +822,16 @@ end
 					TaskMangerIn:AddToTop(FollowTask:new(ASuperSurvivor,getSpecificPlayer(0))) 	
 
 			elseif(SurvivorsFindWorkThemselves) and not (AiNPC_Job_Is(NPC,"Guard")) and not (AiNPC_Job_Is(NPC,"Leader")) and not (AiNPC_Job_Is(NPC,"Doctor")) and not (AiNPC_Job_Is(NPC,"Farming")) then
-			--	print("yes im a worker: "..tostring(ASuperSurvivor:Get():getBodyDamage():getWetness()))
+			--	print("yes im a worker: "..tostring(ASuperSurvivor:Get():getStats():get(CharacterStat.WETNESS)))
 
-				--if(RainManager.isRaining()) and (ASuperSurvivor:Get():getBodyDamage():getWetness() > 0.5) and (ASuperSurvivor:Get():isOutside()) and (TaskMangerIn.TaskUpdateLimit ~= 0) and (TaskMangerIn:getCurrentTask() ~= "Enter New Building") and (TaskMangerIn:getCurrentTask() ~= "Find Building") then
+				--if(RainManager.isRaining()) and (ASuperSurvivor:Get():getStats():get(CharacterStat.WETNESS) > 0.5) and (ASuperSurvivor:Get():isOutside()) and (TaskMangerIn.TaskUpdateLimit ~= 0) and (TaskMangerIn:getCurrentTask() ~= "Enter New Building") and (TaskMangerIn:getCurrentTask() ~= "Find Building") then
 				--	ASuperSurvivor:Speak(getActionText("RainingGoInside"))
 				--	TaskMangerIn:clear()
 				--	TaskMangerIn:AddToTop(AttemptEntryIntoBuildingTask:new(ASuperSurvivor,nil))
 				--	TaskMangerIn:AddToTop(FindBuildingTask:new(ASuperSurvivor))
 				--end
 
-				if (ASuperSurvivor:Get():getBodyDamage():getWetness() < 0.2) then
+				if (ASuperSurvivor:Get():getStats():get(CharacterStat.WETNESS) < 0.2) then
 					--print(ASuperSurvivor:getName().."/" .. ASuperSurvivor:getGroupRole() .." yes i should look for work")
 					if(SafeToGoOutAndWork) then
 						TaskMangerIn:setTaskUpdateLimit(AutoWorkTaskTimeLimit)
@@ -844,7 +844,7 @@ end
 						local jobScores = {}
 						local job = "Relax"
 						-- idle tasks
-						jobScores["Relax"] = 0 + math.floor(ASuperSurvivor:Get():getStats():getBoredom() * 20.0)
+						jobScores["Relax"] = 0 + math.floor(ASuperSurvivor:Get():getStats():get(CharacterStat.BOREDOM) * 20.0)
 						jobScores["Wash Self"] = 1
 
 						-- maintenance
@@ -854,11 +854,12 @@ end
 
 						-- skilled work
 						jobScores["Chop Wood"] = 2 + math.min(ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Axe")), 3)
-						jobScores["Forage"] = 2 + math.min(ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Foraging")), 3)
+						jobScores["Forage"] = 2 + math.min(ASuperSurvivor:Get():getPerkLevel(Perks.PlantScavenging), 3)
 
 						-- deprioritize assigned tasks
 						jobScores["Farming"] = 0 + math.min(ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Farming")), 3)
-						jobScores["Doctor"] = -2 + math.min(ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Doctor")), 3) + math.min(ASuperSurvivor:Get():getPerkLevel(Perks.FromString("First Aid")), 3)
+						-- First Aid's engine perk is Doctor; it is one skill, not two.
+						jobScores["Doctor"] = -2 + math.min(ASuperSurvivor:Get():getPerkLevel(Perks.Doctor), 3)
 						jobScores["Guard"] = 2 + math.min(ASuperSurvivor:Get():getPerkLevel(Perks.FromString("Aiming")), 3)
 
 						-- jobs requiring zoned areas
@@ -894,7 +895,7 @@ end
 							jobScores["Chop Wood"] = jobScores["Chop Wood"] - 3
 							jobScores["Forage"] = jobScores["Forage"] - 3
 						end
-						if ASuperSurvivor:Get():getBodyDamage():getWetness() > 0.5 then
+						if ASuperSurvivor:Get():getStats():get(CharacterStat.WETNESS) > 0.5 then
 							-- do indoor stuff to dry off
 							jobScores["Relax"] = jobScores["Relax"] + 3
 							jobScores["Clean Inventory"] = jobScores["Clean Inventory"] + 3
@@ -929,10 +930,10 @@ end
 							if value >= jobScores[job] then job = key end
 						end
 
-						ASuperSurvivor:Get():getStats():setBoredom(ASuperSurvivor:Get():getStats():getBoredom() + (ZombRand(5) / 100.0))
+						ASuperSurvivor:Get():getStats():set(CharacterStat.BOREDOM, ASuperSurvivor:Get():getStats():get(CharacterStat.BOREDOM) + (ZombRand(5) / 100.0))
 						if(job == "Relax") then
 							ASuperSurvivor:Speak(getActionText("IGoRelax"))
-							ASuperSurvivor:Get():getStats():setBoredom(0.0)
+							ASuperSurvivor:Get():getStats():set(CharacterStat.BOREDOM, 0.0)
 							TaskMangerIn:AddToTop(WanderInBaseTask:new(ASuperSurvivor))
 
 						elseif(job == "Gather Wood") then
@@ -1134,8 +1135,8 @@ end
 			print(ASuperSurvivor:getName()..": clearing task manager because too hungry")
 			ASuperSurvivor:resetAllTables()
 			ASuperSurvivor:setBaseBuilding(nil)
-			if (ASuperSurvivor:Get():getStats():getHunger() > 0.30) then ASuperSurvivor:Get():getStats():setHunger(0.30) end
-			if (ASuperSurvivor:Get():getStats():getThirst() > 0.30) then ASuperSurvivor:Get():getStats():setThirst(0.30) end
+			if (ASuperSurvivor:Get():getStats():get(CharacterStat.HUNGER) > 0.30) then ASuperSurvivor:Get():getStats():set(CharacterStat.HUNGER, 0.30) end
+			if (ASuperSurvivor:Get():getStats():get(CharacterStat.THIRST) > 0.30) then ASuperSurvivor:Get():getStats():set(CharacterStat.THIRST, 0.30) end
 			
 		end
 			

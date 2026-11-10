@@ -98,7 +98,7 @@ function EatFoodTask:update()
 			end
 			
 			if (HungerChange == nil) then HungerChange = 0 end
-			local hunger = self.parent.player:getStats():getHunger()
+			local hunger = self.parent.player:getStats():get(CharacterStat.HUNGER)
 			self.eatthisMuch = 0.25
 			if (((HungerChange * 0.25) + hunger) < 0.15)  then self.eatthisMuch = 0.25
 			elseif (((HungerChange * 0.50) + hunger) < 0.15) then self.eatthisMuch  = 0.50
@@ -110,7 +110,7 @@ function EatFoodTask:update()
 			self.parent:DebugSay("EatFoodTask is about to trigger a StopWalk! ")
 			self.parent:StopWalk()
 			ISTimedActionQueue.add(ISEatFoodAction:new(self.parent.player,self.TheFood,self.eatthisMuch))
-			--self.parent.player:getStats():setHunger(self.parent.player:getStats():getHunger() + self.TheFood:getHungChange());
+			--self.parent.player:getStats():set(CharacterStat.HUNGER, self.parent.player:getStats():get(CharacterStat.HUNGER) + self.TheFood:getHungChange());
 			--self.parent.player:getInventory():Remove(self.TheFood)	
 			self.EatingStarted = true
 		else

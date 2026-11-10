@@ -85,14 +85,14 @@ SurvivorRandomSuits["Rare"]["Swimwear1M"] = {
   "Base.Shoes_FlipFlop"
 }
 SurvivorRandomSuits["Rare"]["Nurse1"] = {
-  "Base.Hat_SurgicalMask_Blue", 
+  "Base.Hat_SurgicalMask",
   "Base.Tshirt_Scrubs", 
   "Base.Trousers_Scrubs", 
   "Base.Socks_Ankle", "Base.Shoes_Black"
 }
 SurvivorRandomSuits["Rare"]["Prepper1"] = {
   "Base.Hat_GasMask", 
-  "Base.HoodieUP_GreenTINT", "Base.Vest_BulletCivilian", 
+  "Base.HoodieUP_WhiteTINT", "Base.Vest_BulletCivilian",
   "Base.TrousersMesh_DenimLight", 
   "Base.Socks_Ankle", "Base.Shoes_Black"
 }
@@ -212,7 +212,7 @@ SurvivorRandomSuits["Common"]["Generic6F"] = {
 }
 
 SurvivorRandomSuits["Common"]["Generic1M"] = {
-  "Base.HoodieDOWN_GreyTINT", "Base.Tshirt_Rock", "Base.TrousersMesh_DenimLight", 
+  "Base.HoodieDOWN_WhiteTINT", "Base.Tshirt_Rock", "Base.TrousersMesh_DenimLight",
   "Base.Socks_Ankle", "Base.Shoes_TrainerTINT"
 }
 SurvivorRandomSuits["Common"]["Generic2M"] = {
@@ -302,7 +302,7 @@ SurvivorRandomSuits["Preset"]["Preset_Fireman"] = {
   "Base.Belt2"
 }
 SurvivorRandomSuits["Preset"]["Preset_Doctor"] = {
-  "Base.Hat_SurgicalCap_Blue", 
+  "Base.Hat_SurgicalCap",
   "Base.JacketLong_Doctor",
   "Base.Trousers_Scrubs",
   "Base.Shoes_Black",
@@ -359,7 +359,7 @@ SurvivorRandomSuits["Preset"]["Preset_Leader"] = {
   "Base.Belt2"
 }
 SurvivorRandomSuits["Preset"]["Preset_Worker"] = {
-  "Base.Hat_HardHatYellow", 
+  "Base.Hat_HardHat",
   "Base.Shirt_Workman",
   "Base.Trousers_DefaultTEXTURE",
   "Base.Shoes_BlackBoots",

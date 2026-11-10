@@ -1,6 +1,55 @@
 WashSelfTask = {}
 WashSelfTask.__index = WashSelfTask
 
+-- Use B42's vanilla actions and reserve water/soap for the whole queued batch.
+-- Actions consume and synchronize resources when they execute, not here.
+function WashSelfTask:queueWashActions()
+    local player = self.parent.player
+    local source = self.TargetItem
+    if not source or not instanceof(source, "IsoObject") or not source:hasWater() or
+       source:getFluidAmount() <= 0 then return false end
+    if not luautils.walkAdjObject(player, source, true, true) then return false end
+    require "TimedActions/ISWashYourself"
+    require "TimedActions/ISWashClothing"
+    local inv = player:getInventory()
+    local soaps = inv:getSoapList(nil, true)
+    local soapRemaining = ISWashClothing.GetSoapRemaining(soaps)
+    local waterRemaining = source:getFluidAmount()
+    local queued = false
+    local selfWater = math.min(ISWashYourself.GetRequiredWater(player), waterRemaining)
+    if selfWater > 0 then
+        ISTimedActionQueue.add(ISWashYourself:new(player, source))
+        waterRemaining = waterRemaining - selfWater
+        soapRemaining = math.max(0, soapRemaining - ISWashYourself.GetRequiredSoap(player))
+        queued = true
+    end
+    local items = inv:getItems()
+    for i = 0, items:size() - 1 do
+        local item = items:get(i)
+        local blood, dirt = 0, 0
+        if instanceof(item, "Clothing") then
+            local parts = BloodClothingType.getCoveredParts(item:getBloodClothingType())
+            if parts then
+                for j = 0, parts:size() - 1 do blood = blood + item:getBlood(parts:get(j)) end
+            end
+            dirt = item:getDirtiness()
+        elseif instanceof(item, "HandWeapon") then
+            blood = item:getBloodLevel()
+        end
+        if blood > 0 or dirt > 0 then
+            local waterRequired = ISWashClothing.GetRequiredWater(item)
+            if waterRemaining >= waterRequired then
+                local noSoap = soapRemaining <= 0
+                ISTimedActionQueue.add(ISWashClothing:new(player, source, item, blood, dirt, noSoap))
+                waterRemaining = waterRemaining - waterRequired
+                soapRemaining = math.max(0, soapRemaining - ISWashClothing.GetRequiredSoap(item))
+                queued = true
+            end
+        end
+    end
+    return queued
+end
+
 function WashSelfTask:new(superSurvivor)
 
 	local o = {}
@@ -89,63 +138,8 @@ function WashSelfTask:update()
 		if(distance > 2.0) then 
 			self.parent:walkTo(targetSquare)
 		else
-            -- Copied most of this from Aiteron's NPC mod
-			local inv = self.parent.player:getInventory()
-            
-            local waterRemaining = self.TargetItem:getWaterAmount()
-            local soapList = {}
-
-			local items = inv:getItems() ;
-			if(items) then
-				for i=1, items:size()-1 do
-                    local item = items:get(i)
-                    if string.match(item:getDisplayName(), "Soap") or string.match(item:getDisplayName(), "Cleaning") then
-                        table.insert(soapList, item)
-                    end
-                end
-            end
-
-            ISTimedActionQueue.add(ISWashYourself:new(self.parent.player, self.TargetItem, soapList))
-
-            local soapRemaining = ISWashClothing.GetSoapRemaining(soapList)
-            waterRemaining = self.TargetItem:getWaterAmount()
-            
-			if(items) then
-				for i=1, items:size()-1 do
-                    local item = items:get(i)
-                    local bloodAmount = 0
-                    local dirtAmount = 0
-                    if instanceof(item, "Clothing") then
-                        if BloodClothingType.getCoveredParts(item:getBloodClothingType()) then
-                            local coveredParts = BloodClothingType.getCoveredParts(item:getBloodClothingType())
-                            for j=0, coveredParts:size()-1 do
-                                local thisPart = coveredParts:get(j)
-                                bloodAmount = bloodAmount + item:getBlood(thisPart)
-                            end
-                        end
-                        if item:getDirtyness() > 0 then
-                            dirtAmount = dirtAmount + item:getDirtyness()
-                        end
-                    elseif instanceof(item, "Weapon") then
-                        bloodAmount = bloodAmount + item:getBloodLevel()
-                    end
-
-                    if (bloodAmount > 0 or dirtAmount > 0) then
-                        if waterRemaining > ISWashClothing.GetRequiredWater(item) then
-                            waterRemaining = waterRemaining - ISWashClothing.GetRequiredWater(item)
-
-                            local noSoap = true
-                            if soapRemaining > ISWashClothing.GetRequiredSoap(item) then
-                                soapRemaining = soapRemaining - ISWashClothing.GetRequiredSoap(item)
-                                noSoap = false
-                            end
-                            ISTimedActionQueue.add(ISWashClothing:new(self.parent.player, self.TargetItem, soapList, item, bloodAmount, dirtAmount, noSoap))
-                        end
-                    end
-                end
-            end
-            self.Complete = true 
-            self.WasSuccessful = true
+            self.WasSuccessful = self:queueWashActions()
+            self.Complete = true
 		end
 		
 	end		

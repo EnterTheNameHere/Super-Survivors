@@ -169,14 +169,14 @@ function show_survivor_info(member_index)
         end
     end
     text_info = text_info.."\n"
-    text_info = text_info..getText("Tooltip_food_Hunger")..": "..tostring(math.floor((player:getStats():getHunger()*100))).."\n"
-    text_info = text_info..getText("Tooltip_food_Thirst")..": "..tostring(math.floor((player:getStats():getThirst()*100))).."\n"
-    text_info = text_info.."Morale: "..tostring(math.floor(player:getStats():getMorale()*100)).."\n"
-    text_info = text_info.."Sanity: "..tostring(math.floor(player:getStats():getSanity()*100)).."\n"
-    text_info = text_info..getText("Tooltip_food_Boredom")..": "..tostring(math.floor(player:getStats():getBoredom()*100)).."\n"
-    text_info = text_info.."IdleBoredom: "..tostring(math.floor(player:getStats():getIdleboredom()*100)) .."\n"
-    text_info = text_info..getText("Tooltip_food_Unhappiness")..": "..tostring(math.floor(player:getBodyDamage():getUnhappynessLevel()*100)).."\n"
-    text_info = text_info..getText("Tooltip_Wetness")..": "..tostring(math.floor(player:getBodyDamage():getWetness()*100)).."\n"
+    text_info = text_info..getText("Tooltip_food_Hunger")..": "..tostring(math.floor((player:getStats():get(CharacterStat.HUNGER)*100))).."\n"
+    text_info = text_info..getText("Tooltip_food_Thirst")..": "..tostring(math.floor((player:getStats():get(CharacterStat.THIRST)*100))).."\n"
+    text_info = text_info.."Morale: "..tostring(math.floor(player:getStats():get(CharacterStat.MORALE)*100)).."\n"
+    text_info = text_info.."Sanity: "..tostring(math.floor(player:getStats():get(CharacterStat.SANITY)*100)).."\n"
+    text_info = text_info..getText("Tooltip_food_Boredom")..": "..tostring(math.floor(player:getStats():get(CharacterStat.BOREDOM)*100)).."\n"
+    text_info = text_info.."IdleBoredom: "..tostring(math.floor(player:getStats():get(CharacterStat.IDLENESS)*100)) .."\n"
+    text_info = text_info..getText("Tooltip_food_Unhappiness")..": "..tostring(math.floor(player:getStats():get(CharacterStat.UNHAPPINESS)*100)).."\n"
+    text_info = text_info..getText("Tooltip_Wetness")..": "..tostring(math.floor(player:getStats():get(CharacterStat.WETNESS)*100)).."\n"
     text_info = text_info..getText("Tooltip_clothing_dirty")..": "..tostring(math.floor(group_member:getFilth()*100)).."\n"
     text_info = text_info.."\n"
     local meleewepName = getText("Nothing")

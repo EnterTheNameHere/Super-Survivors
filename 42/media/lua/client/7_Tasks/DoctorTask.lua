@@ -51,6 +51,7 @@ function DoctorTask:FindPatient()
 					if (obj ~= nil) then 
 						if (instanceof(obj,"IsoPlayer") and (self.parent.player:CanSee(obj)) and (obj:isDead() == false) and (obj:getModData().isHostile ~= true) and RequiresTreatment(obj) and (distance < closestsoFar) ) then
 							patient = obj
+							closestsoFar = distance
 						end
 					end
 				end
@@ -65,7 +66,7 @@ end
 function DoctorTask:update()
 	
 	if(not self:isValid()) then return false end
-	if(not self.parent:isInAction() == false) then return false end
+	if self.parent:isInAction() then return false end
 	
 	if(self.Patient ~= nil) then 
 		
@@ -131,8 +132,8 @@ function DoctorTask:update()
 					local ID = self.Patient:getModData().ID
 					if(ID ~= nil) then
 						local SS = SSM:Get(ID)
-						local TM = SS:getTaskManager()
-						local Task = TM:getTask()
+						local TM = SS and SS:getTaskManager()
+						local Task = TM and TM:getTask()
 						if Task ~= nil and Task.Name == "Hold Still" then Task:setComplete() end
 					end
 					self.Patient = nil 	
@@ -152,8 +153,7 @@ function DoctorTask:update()
 			local ID = self.Patient:getModData().ID
 			if(ID ~= nil) and (ID ~= 0) then
 				local SS = SSM:Get(ID)
-				local TM = SS:getTaskManager()
-				local Task = TM:AddToTop(HoldStillTask:new(SS,false))		
+				if SS then SS:getTaskManager():AddToTop(HoldStillTask:new(SS,false)) end
 			end
 		end
 	end

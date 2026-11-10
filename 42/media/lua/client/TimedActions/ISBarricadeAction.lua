@@ -154,7 +154,7 @@ function ISBarricadeAction:new(character, item, isMetal, isMetalBar, time)
 	o.maxTime = time;
 	o.isMetal = isMetal;
     o.isMetalBar = isMetalBar;
-	if character:HasTrait("Handy") then
+	if character:hasTrait(CharacterTrait.HANDY) then
 		o.maxTime = time - 20;
     end
     if character:isTimedActionInstant() then

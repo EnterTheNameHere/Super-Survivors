@@ -34,10 +34,10 @@ end
 function SuperSurvivorManager:switchPlayer(newID)
 	
 	self.SuperSurvivors[newID].player:setBlockMovement(false)
-	self.SuperSurvivors[newID].player:setNPC(false)
+	self.SuperSurvivors[newID].player:setNpc(false)
 		
 	self.SuperSurvivors[self.MainPlayer].player:setBlockMovement(true)
-	self.SuperSurvivors[self.MainPlayer].player:setNPC(true)
+	self.SuperSurvivors[self.MainPlayer].player:setNpc(true)
 		
 	IsoPlayer.setInstance(self.SuperSurvivors[newID].player)
 	IsoPlayer.setLocalPlayer(0,self.SuperSurvivors[newID].player)
@@ -178,6 +178,7 @@ end
 function SuperSurvivorManager:update()
 	
 	for i=1, self.SurvivorCount+1 do
+		if not self.UpdateFilter or self.UpdateFilter(self.SuperSurvivors[i]) then
 		if (self.SuperSurvivors[i] ~= nil and self.MainPlayer ~= i) then
 			if (self.SuperSurvivors[i].TargetSquare ~= nil and self.SuperSurvivors[i].TargetSquare:getZ() ~= self.SuperSurvivors[i].player:getZ() and getGameSpeed() > 1) then
 				print("DANGER ZONE")
@@ -192,6 +193,7 @@ function SuperSurvivorManager:update()
 		if(self.SuperSurvivors[i] ~= nil) and (self.MainPlayer ~= i) and (self.SuperSurvivors[i]:updateTime()) and (not self.SuperSurvivors[i].player:isAsleep()) and (self.SuperSurvivors[i]:isInCell()) then 
 			self.SuperSurvivors[i]:update() 
 		--	if(self.SuperSurvivors[i].DebugMode) then print(self.SuperSurvivors[i]:getName() .. " update()") end
+		end
 		end
 	end
 

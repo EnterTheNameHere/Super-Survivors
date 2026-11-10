@@ -57,7 +57,7 @@ function SuperSurvivorGroup:isEnemy(SS,character)
 	elseif (SS.player:getModData().isHostile ~= true and character:getModData().surender == true) then return false -- so other npcs dont attack anyone surendering
 	elseif (SS.player:getModData().hitByCharacter == true) and (character:getModData().semiHostile == true) then return true 
 	elseif (character:getModData().isHostile ~= SS.player:getModData().isHostile) then 
-		--print(tostring(character:getForname()).."("..tostring(character:getModData().Group)..") is enemy to "..SS:getName().."("..tostring(self:getGroupID()))
+		--print(tostring(character:getDescriptor():getForename()).."("..tostring(character:getModData().Group)..") is enemy to "..SS:getName().."("..tostring(self:getGroupID()))
 		return true
 	elseif(self.ROE == 4) then
 		return true
@@ -72,7 +72,7 @@ function SuperSurvivorGroup:UseWeaponType(thisType)
 	local members = self:getMembers()
 	for i=1,#members do
 		if(thisType == "gun") and (members[i].reEquipGun ~= nil) then members[i]:reEquipGun()
-		elseif(members[i].reEquipMele ~= nil) then members[i]:reEquipMele() end
+		elseif(members[i].reEquipMelee ~= nil) then members[i]:reEquipMelee() end
 	end
 end
 

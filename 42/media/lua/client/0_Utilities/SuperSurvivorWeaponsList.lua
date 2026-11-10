@@ -6,16 +6,16 @@ require "0_Utilities/SuperSurvivorWeaponsRegistry"
 MeleeWeapons = {
 "Base.Hammer","Base.BallPeenHammer","Base.WoodenMallet","Base.Wrench","Base.PipeWrench",
 "Base.Shovel","Base.Shovel2","Base.Rake",
-"Base.Plank","Base.Plank","Base.Plank","Base.Plank","Base.PlankNail","Base.PlankNail","Base.PlankNail","Base.MetalPipe","Base.MetalBar",
-"Base.BaseballBat","Base.BaseballBat","Base.BaseballBat","Base.BaseballBatNails",
-"Base.Golfclub","Base.TennisRacket","Base.BadmintonRacket","Base.Poolcue","Base.HockeyStick","Base.LaCrosseStick","Base.IcePick",
+"Base.Plank","Base.Plank","Base.Plank","Base.Plank","Base.Plank_Nails","Base.Plank_Nails","Base.Plank_Nails","Base.MetalPipe","Base.MetalBar",
+"Base.BaseballBat","Base.BaseballBat","Base.BaseballBat","Base.BaseballBat_Nails",
+"Base.Golfclub","Base.TennisRacket","Base.BadmintonRacket","Base.Poolcue","Base.IceHockeyStick","Base.LaCrosseStick","Base.IcePick",
 "Base.Pan","Base.Saucepan","Base.GridlePan","Base.RollingPin",
 -- "Base.GuitarAcoustic","Base.GuitarElectricBlack","Base.GuitarElectricBassBlue","Base.Flute",		-- Far too slow animations
 
 -- "Base.GardenFork","Base.WoodenLance",
 "Base.SpearCrafted","Base.SpearCrafted","Base.SpearKnife","Base.SpearScissors","Base.SpearScrewdriver","Base.SpearHuntingKnife",		-- Spears freeze animation
 
-"Base.Axe","Base.HandAxe","Base.WoodAxe","Base.Pickaxe","Base.AxeStone","Base.HandScythe",
+"Base.Axe","Base.HandAxe","Base.WoodAxe","Base.PickAxe","Base.AxeStone","Base.HandScythe",
 -- "Base.Stake",
 "Base.KitchenKnife","Base.HuntingKnife","Base.Machete" --, "Base.Katana"
 }; -- RollingPin acts as a torch, setting target on fire

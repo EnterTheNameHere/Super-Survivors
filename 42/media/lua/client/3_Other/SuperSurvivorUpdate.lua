@@ -6,7 +6,7 @@ function SuperSurvivorPlayerInit(player)
 			player:getModData().hitByCharacter = false
 			player:getModData().ID = 0
 			player:setBlockMovement(false)
-			player:setNPC(false)	
+			player:setNpc(false)
 			print("initing player index " .. tostring(player:getPlayerNum()) )
 			
 			if(player:getPlayerNum()==0) then
@@ -108,15 +108,16 @@ function SuperSurvivorPlayerInit(player)
 					
 					--gun:setClip(mag)
 					if(isModEnabled("Silencer")) then
-						gun:setCanon(instanceItem("Silencer.Silencer"))
+						gun:attachWeaponPart(instanceItem("Silencer.Silencer"))
 					end
 					
 					if(wife) then
 						local pistol = wife:Get():getInventory():AddItem("Base.HuntingRifle");
-						wife:Get():getInventory():AddItem("Base.308Clip");
+						local magazineType = pistol:getMagazineType()
+						if magazineType then wife:Get():getInventory():AddItem(magazineType) end
 						
 						if(isModEnabled("Silencer")) then
-							pistol:setCanon(instanceItem("Silencer.Silencer"))
+							pistol:attachWeaponPart(instanceItem("Silencer.Silencer"))
 						end
 						wife:Get():setPrimaryHandItem(pistol)
 						wife:Get():setSecondaryHandItem(pistol)
@@ -164,11 +165,10 @@ function SuperSurvivorGlobalUpdate(player)
 	if(DebugOptions) and player:isLocalPlayer() then
 		--DoVision for debug - main player
 		
-		local spottedList = player:getCell():getObjectList()
+		local spottedList = player:getCell():getLuaObjectList()
 		if(spottedList ~= nil) then
 			--print("dovision " .. tostring(spottedList:size()))
-			for i=0, spottedList:size()-1 do
-				local character = spottedList:get(i);
+			for _, character in ipairs(spottedList) do
 				if(character ~= nil) and (character ~= player) and (instanceof(character,"IsoZombie") or instanceof(character,"IsoPlayer")) then
 					player:spotted(character,true)
 					character:setAlpha(1)
@@ -238,8 +238,8 @@ function SuperSurvivorPVPHandle(wielder, victim, weapon, damage)
 	local SSV = SSM:Get(victim:getModData().ID)
 	
 	if(wielder:isLocalPlayer() and SSV) then SSQM:update("AttackNPC",SSV:getName()) end
-	--if wielder ~= nil then print("PVP " .. tostring(wielder:getForname())) end
-	--if victim ~= nil then print("hit " .. tostring(victim:getForname())) end
+	--if wielder ~= nil then print("PVP " .. tostring(wielder:getDescriptor():getForename())) end
+	--if victim ~= nil then print("hit " .. tostring(victim:getDescriptor():getForename())) end
 	--if wielder ~= nil and instanceof(weilder, "IsoPlayer") then print("wpvp " .. tostring(wielder:getCoopPVP())) end
 	--if victim ~= nil and instanceof(victim, "IsoPlayer") then print("vpvp " .. tostring(victim:getCoopPVP())) end
 	
@@ -295,7 +295,7 @@ function SuperSurvivorPVPHandle(wielder, victim, weapon, damage)
 			
 			local aimingPerk = wielder:getPerkLevel(Perks.Aiming) 
 			local hitChanceBonus = 0
-			if wielder:HasTrait("Marksman") then hitChanceBonus = hitChanceBonus + 10 end
+			if wielder:hasTrait(CharacterTrait.MARKSMAN) then hitChanceBonus = hitChanceBonus + 10 end
 			if(objs) then
 				for i=1, objs:size()-1 do
 					if(objs:get(i)) then 
@@ -472,14 +472,14 @@ function SuperSurvivorPVPHandle(wielder, victim, weapon, damage)
 			bodydamage:AddDamage(bindex, n2);
 			local stats = victim:getStats();
 			if n == 0 then
-				stats:setPain(stats:getPain() + bodydamage:getInitialThumpPain() * BodyPartType.getPainModifyer(bindex));
+				stats:set(CharacterStat.PAIN, stats:get(CharacterStat.PAIN) + bodydamage:getInitialThumpPain() * BodyPartType.getPainModifyer(bindex));
 			elseif n == 1 then
-				stats:setPain(stats:getPain() + bodydamage:getInitialScratchPain() * BodyPartType.getPainModifyer(bindex));
+				stats:set(CharacterStat.PAIN, stats:get(CharacterStat.PAIN) + bodydamage:getInitialScratchPain() * BodyPartType.getPainModifyer(bindex));
 			elseif n == 2 then
-				stats:setPain(stats:getPain() + bodydamage:getInitialBitePain() * BodyPartType.getPainModifyer(bindex));
+				stats:set(CharacterStat.PAIN, stats:get(CharacterStat.PAIN) + bodydamage:getInitialBitePain() * BodyPartType.getPainModifyer(bindex));
 			end
-			if stats:getPain() > 100 then
-				stats:setPain(100)
+			if stats:get(CharacterStat.PAIN) > 100 then
+				stats:set(CharacterStat.PAIN, 100)
 			end
 
 			SSV:NPCcalculateWalkSpeed();

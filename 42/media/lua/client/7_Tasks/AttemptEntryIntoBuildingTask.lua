@@ -190,14 +190,14 @@ function AttemptEntryIntoBuildingTask:update()
 							else
 								self.parent:DebugSay("AttemptEntryIntoBuildingTask is about to trigger a StopWalk! (Path A) ")
 								self.parent:StopWalk()
-								ISTimedActionQueue.add(ISSmashWindow:new(self.parent.player, self.Window, 20))
+								ISTimedActionQueue.add(ISSmashWindow:new(self.parent.player, self.Window))
 							end
 							self.parent:Wait(3)
 						else
 							if (self.Window:isSmashed()) and (self.Window:isGlassRemoved() == false) and self.parent:hasWeapon() then
 								self.parent:DebugSay("AttemptEntryIntoBuildingTask is about to trigger a StopWalk! (Path B) ")
 								self.parent:StopWalk()
-								ISTimedActionQueue.add(ISRemoveBrokenGlass:new(self.parent.player, self.Window, 20))
+								ISTimedActionQueue.add(ISRemoveBrokenGlass:new(self.parent.player, self.Window))
 								
 								self.parent:Wait(1)
 							else 

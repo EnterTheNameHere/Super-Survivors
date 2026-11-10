@@ -57,9 +57,6 @@ function BarricadeBuildingTask:OnComplete()
 end
 
 function BarricadeBuildingTask:isComplete()
-	if(self.Complete) then
-		self:ForceComplete()
-	end
 	return self.Complete
 end
 

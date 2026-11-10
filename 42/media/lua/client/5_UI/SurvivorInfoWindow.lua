@@ -48,7 +48,6 @@ function SurvivorInfoWindow:createChildren()
 	self.MyCallButton:setEnable(true);
 	self.MyCallButton:initialise();
 	--MyCallButton.textureColor.r = 255;
-	self.MyCallButton:addToUIManager();
 	self:addChild(self.MyCallButton)
 	
 	self.MyCallButton:setVisible(true);
@@ -87,14 +86,14 @@ function SurvivorInfoWindow:Load(ASuperSurvivor)
 	
 	newText = newText .. "\n"
 	
-	newText = newText .. getText("Tooltip_food_Hunger")..": " .. tostring(math.floor((player:getStats():getHunger()*100)))  .. "\n"
-	newText = newText .. getText("Tooltip_food_Thirst")..": " .. tostring(math.floor((player:getStats():getThirst()*100)))  .. "\n"
-	newText = newText .. "Morale: " .. tostring(math.floor(player:getStats():getMorale()*100))  .. "\n"
-	newText = newText .. "Sanity: " .. tostring(math.floor(player:getStats():getSanity()*100))  .. "\n"
-	newText = newText .. getText("Tooltip_food_Boredom")..": " .. tostring(math.floor(player:getStats():getBoredom()*100))  .. "\n"
-	newText = newText .. "IdleBoredom: " .. tostring(math.floor(player:getStats():getIdleboredom()*100))  .. "\n"
-	newText = newText .. getText("Tooltip_food_Unhappiness")..": " .. tostring(math.floor(player:getBodyDamage():getUnhappynessLevel()*100))  .. "\n"
-	newText = newText .. getText("Tooltip_Wetness")..": " .. tostring(math.floor(player:getBodyDamage():getWetness()*100))  .. "\n"
+	newText = newText .. getText("Tooltip_food_Hunger")..": " .. tostring(math.floor((player:getStats():get(CharacterStat.HUNGER)*100)))  .. "\n"
+	newText = newText .. getText("Tooltip_food_Thirst")..": " .. tostring(math.floor((player:getStats():get(CharacterStat.THIRST)*100)))  .. "\n"
+	newText = newText .. "Morale: " .. tostring(math.floor(player:getStats():get(CharacterStat.MORALE)*100))  .. "\n"
+	newText = newText .. "Sanity: " .. tostring(math.floor(player:getStats():get(CharacterStat.SANITY)*100))  .. "\n"
+	newText = newText .. getText("Tooltip_food_Boredom")..": " .. tostring(math.floor(player:getStats():get(CharacterStat.BOREDOM)*100))  .. "\n"
+	newText = newText .. "IdleBoredom: " .. tostring(math.floor(player:getStats():get(CharacterStat.IDLENESS)*100))  .. "\n"
+	newText = newText .. getText("Tooltip_food_Unhappiness")..": " .. tostring(math.floor(player:getStats():get(CharacterStat.UNHAPPINESS)*100))  .. "\n"
+	newText = newText .. getText("Tooltip_Wetness")..": " .. tostring(math.floor(player:getStats():get(CharacterStat.WETNESS)*100))  .. "\n"
 	newText = newText .. getText("Tooltip_clothing_dirty")..": " .. tostring(math.floor(ASuperSurvivor:getFilth()*100))  .. "\n"
 	
 

@@ -45,10 +45,10 @@ function ChopWoodTask:update()
 		else
 		
 			local player = self.parent:Get()
-			--player:Say(tostring(player:getStats():getEndurance()))
-			if(player:getStats():getEndurance() < 0.50) then
+			--player:Say(tostring(player:getStats():get(CharacterStat.ENDURANCE)))
+			if(player:getStats():get(CharacterStat.ENDURANCE) < 0.50) then
 				if(self.parent.Reducer % 240 == 0) then self.parent:RoleplaySpeak(getActionText("Resting")) end
-				player:getStats():setEndurance(player:getStats():getEndurance() + 0.01)
+				player:getStats():set(CharacterStat.ENDURANCE, player:getStats():get(CharacterStat.ENDURANCE) + 0.01)
 				return 
 			end
 			
