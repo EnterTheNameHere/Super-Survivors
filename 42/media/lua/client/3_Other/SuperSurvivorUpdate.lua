@@ -66,7 +66,7 @@ function SuperSurvivorPlayerInit(player)
 					--if(ZombRand(100) < (ChanceToSpawnWithGun)) then 
 					--	wife:giveWeapon(getWeapon(RangeWeapons[ZombRand(1,#RangeWeapons)]),true) 				
 					--elseif(ZombRand(100) < (ChanceToSpawnWithWep)) then 
-					--	wife:giveWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)],true) 
+					--	wife:giveWeapon(MeleeWeapons[ZombRand(1,#MeleeWeapons)],true) 
 					--end
 					
 					GlobalWife = wife

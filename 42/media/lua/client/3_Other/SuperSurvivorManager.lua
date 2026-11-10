@@ -82,11 +82,11 @@ function SuperSurvivorManager:LoadSurvivor(ID, square)
 		self.SuperSurvivors[ID]:SaveSurvivor()
 		
 		
-		local melewep = self.SuperSurvivors[ID].player:getModData().meleWeapon
+		local meleewep = self.SuperSurvivors[ID].player:getModData().meleeWeapon
 		local gunwep = self.SuperSurvivors[ID].player:getModData().gunWeapon
-		if(melewep ~= nil) then 
-			self.SuperSurvivors[ID].LastMeleUsed = self.SuperSurvivors[ID].player:getInventory():FindAndReturn(melewep)
-			if not self.SuperSurvivors[ID].LastMeleUsed then self.SuperSurvivors[ID].LastMeleUsed = self.SuperSurvivors[ID]:getBag():FindAndReturn(melewep) end
+		if(meleewep ~= nil) then 
+			self.SuperSurvivors[ID].LastMeleeUsed = self.SuperSurvivors[ID].player:getInventory():FindAndReturn(meleewep)
+			if not self.SuperSurvivors[ID].LastMeleeUsed then self.SuperSurvivors[ID].LastMeleeUsed = self.SuperSurvivors[ID]:getBag():FindAndReturn(meleewep) end
 		end		
 		if(gunwep ~= nil) then 
 			self.SuperSurvivors[ID].LastGunUsed = self.SuperSurvivors[ID].player:getInventory():FindAndReturn(gunwep)

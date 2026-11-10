@@ -3,7 +3,7 @@ require "0_Utilities/SuperSurvivorWeaponsRegistry"
 -- TO DO Add Comments
 
 --weapon tables:
-MeleWeapons = {
+MeleeWeapons = {
 "Base.Hammer","Base.BallPeenHammer","Base.WoodenMallet","Base.Wrench","Base.PipeWrench",
 "Base.Shovel","Base.Shovel2","Base.Rake",
 "Base.Plank","Base.Plank","Base.Plank","Base.Plank","Base.PlankNail","Base.PlankNail","Base.PlankNail","Base.MetalPipe","Base.MetalBar",
@@ -27,30 +27,30 @@ MeleWeapons = {
 
 
 if isModEnabled("ChainSaw") then
-table.insert(MeleWeapons,"ChainSaw.ChainSaw");
+table.insert(MeleeWeapons,"ChainSaw.ChainSaw");
 end
 
 if isModEnabled("Hydrocraft") then
-table.insert(MeleWeapons,"Hydrocraft.HCAluminiumbat");                          
-table.insert(MeleWeapons,"Hydrocraft.HCBaseballbatbarbedwire");
-table.insert(MeleWeapons,"Hydrocraft.HCHatchetiron");
-table.insert(MeleWeapons,"Hydrocraft.HCKnifeiron");
-table.insert(MeleWeapons,"Hydrocraft.HCKatana");
-table.insert(MeleWeapons,"Hydrocraft.HCMachete");
-table.insert(MeleWeapons,"Hydrocraft.HCMonkeywrench");
-table.insert(MeleWeapons,"Hydrocraft.HCKnifesteel");
-table.insert(MeleWeapons,"Hydrocraft.HCHatchetsteel");
-table.insert(MeleWeapons,"Hydrocraft.HCSurvivalaxe");
-table.insert(MeleWeapons,"Hydrocraft.HCWrench");
-table.insert(MeleWeapons,"Hydrocraft.HCRake");
+table.insert(MeleeWeapons,"Hydrocraft.HCAluminiumbat");                          
+table.insert(MeleeWeapons,"Hydrocraft.HCBaseballbatbarbedwire");
+table.insert(MeleeWeapons,"Hydrocraft.HCHatchetiron");
+table.insert(MeleeWeapons,"Hydrocraft.HCKnifeiron");
+table.insert(MeleeWeapons,"Hydrocraft.HCKatana");
+table.insert(MeleeWeapons,"Hydrocraft.HCMachete");
+table.insert(MeleeWeapons,"Hydrocraft.HCMonkeywrench");
+table.insert(MeleeWeapons,"Hydrocraft.HCKnifesteel");
+table.insert(MeleeWeapons,"Hydrocraft.HCHatchetsteel");
+table.insert(MeleeWeapons,"Hydrocraft.HCSurvivalaxe");
+table.insert(MeleeWeapons,"Hydrocraft.HCWrench");
+table.insert(MeleeWeapons,"Hydrocraft.HCRake");
 end
 
 if isModEnabled("Brita") then
-	table.insert(MeleWeapons,"Brita.RamboKnife");
-	table.insert(MeleWeapons,"Brita.BGMachete");
-	table.insert(MeleWeapons,"Brita.DingDong");
-	table.insert(MeleWeapons,"Brita.Tactical_Axe");
-	table.insert(MeleWeapons,"Brita.Tactical_Sickle");
+	table.insert(MeleeWeapons,"Brita.RamboKnife");
+	table.insert(MeleeWeapons,"Brita.BGMachete");
+	table.insert(MeleeWeapons,"Brita.DingDong");
+	table.insert(MeleeWeapons,"Brita.Tactical_Axe");
+	table.insert(MeleeWeapons,"Brita.Tactical_Sickle");
 end
 
 RangeWeapons = {"Base.Pistol2","Base.Revolver_Short","Base.Revolver","Base.Pistol","Base.Revolver_Long","Base.VarmintRifle","Base.HuntingRifle","Base.Pistol","Base.Shotgun","Base.ShotgunSawnoff","Base.Pistol","Base.Shotgun"};

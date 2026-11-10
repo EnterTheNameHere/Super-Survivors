@@ -37,7 +37,7 @@ function SuperSurvivorGetOptionValue(option)
 	elseif(option == "HostileSpawnRate") then return (num - 1) 		-- then return (num * 5) - 5
 	elseif(option == "MaxHostileSpawnRate") then return (num - 1) 	-- then return (num * 5) - 5
 	
-	elseif(option == "InfinitAmmo") then return (num ~= 1)
+	elseif(option == "InfiniteAmmo") then return (num ~= 1)
 	elseif(option == "NoPreSetSpawn") then return (num ~= 1)
 	elseif(option == "NoIdleChatter") then return (num ~= 1)
 	elseif(option == "SafeBase") then return (num ~= 1)
@@ -167,7 +167,7 @@ end
 	if(not SuperSurvivorOptions["WepSpawnRate"]) then SuperSurvivorOptions["WepSpawnRate"] = 99 end
 	if(not SuperSurvivorOptions["HostileSpawnRate"]) then SuperSurvivorOptions["HostileSpawnRate"] = 1 end
 	if(not SuperSurvivorOptions["MaxHostileSpawnRate"]) then SuperSurvivorOptions["MaxHostileSpawnRate"] = 17 end
-	if(not SuperSurvivorOptions["InfinitAmmo"]) then SuperSurvivorOptions["InfinitAmmo"] = 2 end
+	if(not SuperSurvivorOptions["InfiniteAmmo"]) then SuperSurvivorOptions["InfiniteAmmo"] = 2 end
 	if(not SuperSurvivorOptions["NoPreSetSpawn"]) then SuperSurvivorOptions["NoPreSetSpawn"] = 2 end
 	if(not SuperSurvivorOptions["NoIdleChatter"]) then SuperSurvivorOptions["NoIdleChatter"] = 2 end
 	if(not SuperSurvivorOptions["SafeBase"]) then SuperSurvivorOptions["SafeBase"] = 2 end
@@ -377,7 +377,7 @@ if index then
             local label = keyTextElement.txt -- our ISLabel item is stored in keyTextElement.txt
             -- We need to do a few things here to prep the new entries.
             -- 1) We wont have a proper translation, and the translation will be set to
-            --    "UI_optionscreen_binding_Equip/Unequip Pistol", which will look funny on the 
+            --    "UI_OptionScreen_binding_Equip/Unequip Pistol", which will look funny on the 
             --    options screen, so we need to fix
             -- 2) the new translation doesn't properly adjust the x position and width, so we need to 
             --    manually adjust these
@@ -391,7 +391,7 @@ if index then
                 label:setX(label.x)
                 label:setWidth(label.width)
              elseif label.name == "Ask Closest Group Member to Follow" then 
-                label:setTranslation(getOptionText("AskClosestGroupMembertoFollow"))
+                label:setTranslation(getOptionText("AskClosestGroupMemberToFollow"))
                 label:setX(label.x)
                 label:setWidth(label.width)
              elseif label.name == "Spawn Wild Survivor" then 
@@ -545,7 +545,7 @@ if index then
 		self:addCustomCombo('WepSpawnRate',splitpoint,y,comboWidth,getOptionText("WepSpawnRate"),options,getOptionText("WepSpawnRateDesc"))
 
 		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('GunSpawnRate',splitpoint,y,comboWidth,getOptionText("ChancetoSpawnWithGun"),options,getOptionText("ChancetoSpawnWithGunDesc"))
+		self:addCustomCombo('GunSpawnRate',splitpoint,y,comboWidth,getOptionText("ChanceToSpawnWithGun"),options,getOptionText("ChanceToSpawnWithGunDesc"))
 
 
 	y = y + spacing4x
@@ -555,7 +555,7 @@ if index then
 		self:addCustomCombo('ForcePVP',splitpoint,y,comboWidth,getOptionText("PVPInfoBar"),options,getOptionText("PVPInfoBarDesc"))
 		
 		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('HostileSpawnRate',splitpoint,y,comboWidth,getOptionText("ChancetobeHostile"),options,getOptionText("ChancetobeHostileDesc"))
+		self:addCustomCombo('HostileSpawnRate',splitpoint,y,comboWidth,getOptionText("ChanceToBeHostile"),options,getOptionText("ChanceToBeHostileDesc"))
 		
 		
 		local options = NPC_Options_ZeroToOneHundred() -- Hostile Over Time Odds
@@ -603,7 +603,7 @@ if index then
 
 		local options = 
 		{
-			getOptionText("DesperateforHumanContact"), getOptionText("VeryFriendly"), 
+			getOptionText("DesperateForHumanContact"), getOptionText("VeryFriendly"), 
 			getOptionText("Friendly"), getOptionText("Normal"), 
 			getOptionText("Mean"), getOptionText("VeryMean")
 		}
@@ -628,7 +628,7 @@ if index then
 
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('InfinitAmmo',splitpoint,y,comboWidth,getOptionText("InfinitAmmo"),options,getOptionText("InfinitAmmoDesc"))
+		self:addCustomCombo('InfiniteAmmo',splitpoint,y,comboWidth,getOptionText("InfiniteAmmo"),options,getOptionText("InfiniteAmmoDesc"))
 		
 		local options = NPC_Options_OffOn()
 		self:addCustomCombo('FindWork',splitpoint,y,comboWidth,getOptionText("FindWork"),options,getOptionText("FindWorkDesc"))

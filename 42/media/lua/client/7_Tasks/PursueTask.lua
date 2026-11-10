@@ -10,7 +10,7 @@ function PursueTask:new(superSurvivor, target)
 	if(target ~= nil) then o.Target = target
 	else o.Target = self.LastEnemeySeen end 
 	
-	o.SwitchBackToMele = false
+	o.SwitchBackToMelee = false
 	o.Complete = false
 	o.parent = superSurvivor
 	o.Name = "Pursue"
@@ -25,7 +25,7 @@ function PursueTask:new(superSurvivor, target)
 	if(o.TargetSS:getBuilding()~= nil) then o.parent.TargetBuilding = o.TargetSS:getBuilding() end
 	
 	if(superSurvivor.LastGunUsed ~= nil) and (superSurvivor:Get():getPrimaryHandItem() ~= superSurvivor.LastGunUsed) then
-		o.SwitchBackToMele = true
+		o.SwitchBackToMelee = true
 		o.parent:reEquipGun()
 	end
 	
@@ -36,7 +36,7 @@ function PursueTask:new(superSurvivor, target)
 end
 
 function PursueTask:OnComplete()
-	if(self.SwitchBackToMele) then self.parent:reEquipMele() end
+	if(self.SwitchBackToMelee) then self.parent:reEquipMelee() end
 	
 	--if (self.parent.LastEnemeySeen ~= nil) and (self.parent.player ~= nil) then
 	--	local theDistance = getDistanceBetween(self.parent.LastEnemeySeen, self.parent.player)

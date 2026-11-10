@@ -179,15 +179,15 @@ function show_survivor_info(member_index)
     text_info = text_info..getText("Tooltip_Wetness")..": "..tostring(math.floor(player:getBodyDamage():getWetness()*100)).."\n"
     text_info = text_info..getText("Tooltip_clothing_dirty")..": "..tostring(math.floor(group_member:getFilth()*100)).."\n"
     text_info = text_info.."\n"
-    local melewepName = getText("Nothing")
+    local meleewepName = getText("Nothing")
     local gunwepName = getText("Nothing")
-    if group_member.LastMeleUsed ~= nil then melewepName = group_member.LastMeleUsed:getDisplayName() end
+    if group_member.LastMeleeUsed ~= nil then meleewepName = group_member.LastMeleeUsed:getDisplayName() end
     if group_member.LastGunUsed ~= nil then gunwepName = group_member.LastGunUsed:getDisplayName() end
     local phi
     if player:getPrimaryHandItem() ~= nil then phi = player:getPrimaryHandItem():getDisplayName()
     else phi = getText("Nothing") end
     text_info = text_info..getText("ContextMenu_SS_PrimaryHandItem")..": "..tostring(phi).."\n"
-    text_info = text_info..getText("ContextMenu_SS_MeleWeapon")..": "..tostring(melewepName).."\n"
+    text_info = text_info..getText("ContextMenu_SS_MeleeWeapon")..": "..tostring(meleewepName).."\n"
     text_info = text_info..getText("ContextMenu_SS_GunWeapon")..": "..tostring(gunwepName).."\n"
     text_info = text_info..getText("ContextMenu_SS_CurrentTask")..": "..tostring(group_member:getCurrentTask()).."\n"
     text_info = text_info.."\n"

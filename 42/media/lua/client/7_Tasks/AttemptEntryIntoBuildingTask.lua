@@ -154,11 +154,11 @@ function AttemptEntryIntoBuildingTask:update()
 				
 				if(not self.Window) then
 					
-					if(self.parent.LastMeleUsed ~= nil) then
+					if(self.parent.LastMeleeUsed ~= nil) then
 						self.TryWindow = nil
 						self.TryBreakDoor = true
-						if(self.parent.LastMeleUsed ~= self.parent.player:getPrimaryHandItem()) then self.ReEquipGunOnFinish = true end
-						self.parent:reEquipMele()
+						if(self.parent.LastMeleeUsed ~= self.parent.player:getPrimaryHandItem()) then self.ReEquipGunOnFinish = true end
+						self.parent:reEquipMelee()
 						return false
 					else
 						self:giveUpOnBuilding()
@@ -176,8 +176,8 @@ function AttemptEntryIntoBuildingTask:update()
 							
 							self.TryWindow = nil
 							self.TryBreakDoor = true
-							if(self.parent.LastMeleUsed ~= self.parent.player:getPrimaryHandItem()) then self.ReEquipGunOnFinish = true end
-							self.parent:reEquipMele()
+							if(self.parent.LastMeleeUsed ~= self.parent.player:getPrimaryHandItem()) then self.ReEquipGunOnFinish = true end
+							self.parent:reEquipMelee()
 							return false
 							
 						end

@@ -45,7 +45,7 @@ function SuperSurvivor:new(isFemale,square)
 	o.AmmoTypes = {}
 	o.AmmoBoxTypes = {}
 	o.LastGunUsed = nil
-	o.LastMeleUsed = nil
+	o.LastMeleeUsed = nil
 	o.roundChambered = nil
 	o.TicksSinceSpoke = 0
 	o.JustSpoke = false
@@ -185,7 +185,7 @@ function SuperSurvivor:newLoad(ID,square)
 	o.AmmoTypes = {}
 	o.AmmoBoxTypes = {}
 	o.LastGunUsed = nil
-	o.LastMeleUsed = nil
+	o.LastMeleeUsed = nil
 	o.roundChambered = nil
 	o.TicksSinceSpoke = 0
 	o.JustSpoke = false
@@ -252,7 +252,7 @@ function SuperSurvivor:newSet(player)
 	o.AmmoTypes = {}
 	o.AmmoBoxTypes = {}
 	o.LastGunUsed = nil
-	o.LastMeleUsed = nil
+	o.LastMeleeUsed = nil
 	o.roundChambered = nil
 	o.TriggerHeldDown = false
 	o.TicksSinceSpoke = 0
@@ -1227,7 +1227,7 @@ function SuperSurvivor:DebugSay(text)
 			print(self:getName().."self.AtkTicks					=	"..tostring(self.AtkTicks))
 			print(self:getName().."self.TriggerHeldDown				=	"..tostring(self.TriggerHeldDown))
 			print(self:getName().."self.LastGunUsed					=	"..tostring(self.LastGunUsed))
-			print(self:getName().."self.LastMeleUsed				=	"..tostring(self.LastMeleUsed))
+			print(self:getName().."self.LastMeleeUsed				=	"..tostring(self.LastMeleeUsed))
 			print(self:getName().."self.roundChambered				=	"..tostring(self.roundChambered))
 			print(self:getName().."self.TicksSinceSpoke				=	"..tostring(self.TicksSinceSpoke))
 			print(self:getName().."self.JustSpoke					=	"..tostring(self.JustSpoke))
@@ -3761,7 +3761,7 @@ function SuperSurvivor:giveWeapon(weaponType,equipIt )
 	if(weapon:isAimedFirearm()) then 
 		if(isModEnabled("ORGM")) then ORGM.setupGun(ORGM.getFirearmData(weapon), weapon) end
 		self:setGunWep(weapon)
-	else self:setMeleWep(weapon) end
+	else self:setMeleeWep(weapon) end
 	
 	if(weapon:getMagazineType()~=nil) then
 		self.player:getInventory():AddItem(weapon:getMagazineType());
@@ -3775,10 +3775,10 @@ function SuperSurvivor:giveWeapon(weaponType,equipIt )
 	local ammotypes = getAmmoBullets(weapon,true);
 	if(ammotypes) then 
 		
-		local bwep = self.player:getInventory():AddItem( MeleWeapons[ZombRand(1,#MeleWeapons)] ) -- give a beackup mele wepaon if using ammo gun
+		local bwep = self.player:getInventory():AddItem( MeleeWeapons[ZombRand(1,#MeleeWeapons)] ) -- give a beackup melee wepaon if using ammo gun
 		if(bwep) then 
-			self.player:getModData().weaponmele = bwep:getType() 
-			self:setMeleWep(bwep)
+			self.player:getModData().weaponmelee = bwep:getType() 
+			self:setMeleeWep(bwep)
 		end
 		
 		local ammo = ammotypes[1]
@@ -3964,12 +3964,12 @@ function SuperSurvivor:reEquipGun()
 	end
 
 end
-function SuperSurvivor:reEquipMele()
+function SuperSurvivor:reEquipMelee()
 	
-	if(self.LastMeleUsed == nil) then return false end
+	if(self.LastMeleeUsed == nil) then return false end
 	if(self.player:getPrimaryHandItem() ~= nil and self.player:getPrimaryHandItem():isTwoHandWeapon()) then self.player:setSecondaryHandItem(nil) end
-	self.player:setPrimaryHandItem(self.LastMeleUsed)
-	if(self.LastMeleUsed:isTwoHandWeapon()) then self.player:setSecondaryHandItem(self.LastMeleUsed) end
+	self.player:setPrimaryHandItem(self.LastMeleeUsed)
+	if(self.LastMeleeUsed:isTwoHandWeapon()) then self.player:setSecondaryHandItem(self.LastMeleeUsed) end
 	
 	return true
 	
@@ -3992,7 +3992,7 @@ function SuperSurvivor:reEquipLastWeapon()
 	if(self.player:getModData().lastWepWasGun) then
 		self:reEquipGun()
 	else
-		self:reEquipMele()
+		self:reEquipMelee()
 	end
 	
 	return true
@@ -4000,10 +4000,10 @@ function SuperSurvivor:reEquipLastWeapon()
 end
 
 
-function SuperSurvivor:setMeleWep(handWeapon)
+function SuperSurvivor:setMeleeWep(handWeapon)
 
-	self:Get():getModData().meleWeapon = handWeapon:getType()
-	self.LastMeleUsed = handWeapon
+	self:Get():getModData().meleeWeapon = handWeapon:getType()
+	self.LastMeleeUsed = handWeapon
 	
 	
 end

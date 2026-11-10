@@ -88,7 +88,7 @@ function CleanInvTask:update()
 								self.incldHandItems
 								or (
 									(item ~= self.parent.LastGunUsed)
-									and (item ~= self.parent.LastMeleUsed)
+									and (item ~= self.parent.LastMeleeUsed)
 									and (self.parent:isAmmoForMe(item:getType()) == false)
 									and (item ~= pweapon)
 									and (item ~= sweapon)))
@@ -172,7 +172,7 @@ function CleanInvTask:update()
 								and (armorModEnabled == false or (ArmorisArmorEquipped(self.parent.player,item) == false))
 								and (item ~= pweapon)
 								and (item ~= self.parent.LastGunUsed)
-								and (item ~= self.parent.LastMeleUsed)
+								and (item ~= self.parent.LastMeleeUsed)
 								and (self.parent:isAmmoForMe(item:getType()) == false)
 								and (item ~= sweapon)  --[[and (isItemWater(item) == false) and (item:getCategory() ~= "Food")]]
 							) then

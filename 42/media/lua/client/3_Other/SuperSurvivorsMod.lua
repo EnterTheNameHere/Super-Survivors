@@ -101,7 +101,7 @@ function SuperSurvivorSoldierSpawnMelee(square)
 	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
 	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
 
-	ASuperSurvivor:giveWeapon(getWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]),true) 
+	ASuperSurvivor:giveWeapon(getWeapon(MeleeWeapons[ZombRand(1,#MeleeWeapons)]),true) 
 	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
 	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
 	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
@@ -129,7 +129,7 @@ function SuperSurvivorSoldierSpawnMeleeHostile(square)
 	local ASuperSurvivor = SSM:spawnSurvivor(nil,square)
 	ASuperSurvivor:SuitUp("Preset_MarinesCamo")
 
-	ASuperSurvivor:giveWeapon(getWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]),true) 
+	ASuperSurvivor:giveWeapon(getWeapon(MeleeWeapons[ZombRand(1,#MeleeWeapons)]),true) 
 	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
 	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
 	ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
@@ -159,7 +159,7 @@ function SuperSurvivorRandomSpawn(square)
 			ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
 			ASuperSurvivor.player:LevelPerk(Perks.FromString("Aiming"));
 		elseif(ZombRand(100) < (ChanceToSpawnWithWep + math.floor(hoursSurvived/48))) then 
-			ASuperSurvivor:giveWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)],true) 
+			ASuperSurvivor:giveWeapon(MeleeWeapons[ZombRand(1,#MeleeWeapons)],true) 
 		end
 		if(ZombRand(100) < FinalChanceToBeHostile ) then ASuperSurvivor:setHostile(true) end
 	end
@@ -288,7 +288,7 @@ function SuperSurvivorsLoadGridsquare(square)
 						--	--mySS:DebugSay("Follow task in survivorsmod lua - Path b")
 						end						
 						
-						if(raider:hasWeapon() == false) then raider:giveWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]) end
+						if(raider:hasWeapon() == false) then raider:giveWeapon(MeleeWeapons[ZombRand(1,#MeleeWeapons)]) end
 					
 					end
 					ChanceToSpawnWithGun = oldGunSpawnChance
@@ -940,7 +940,7 @@ function SuperSurvivorsNewSurvivorManager()
 					-- raider:setName("Raider "..name)
 					raider:setName("Survivor "..name)
 					raider:getTaskManager():AddToTop(WanderTask:new(raider))
-					if(raider:hasWeapon() == false) then raider:giveWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]) end
+					if(raider:hasWeapon() == false) then raider:giveWeapon(MeleeWeapons[ZombRand(1,#MeleeWeapons)]) end
 				
 					local food, bag
 					bag = raider:getBag()
@@ -1216,7 +1216,7 @@ function SuperSurvivorsRaiderManager()
 				local name = raider:getName()
 				raider:setName("Raider "..name)
 				raider:getTaskManager():AddToTop(PursueTask:new(raider,mySS:Get()))
-				if(raider:hasWeapon() == false) then raider:giveWeapon(MeleWeapons[ZombRand(1,#MeleWeapons)]) end
+				if(raider:hasWeapon() == false) then raider:giveWeapon(MeleeWeapons[ZombRand(1,#MeleeWeapons)]) end
 			
 				local food, bag
 				bag = raider:getBag()

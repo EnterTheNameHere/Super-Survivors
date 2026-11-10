@@ -95,7 +95,7 @@ function AttackTask:update()
 				if(instanceof(self.parent.LastEnemeySeen,"IsoPlayer")) then self.parent:Wait(5) end -- nerf attack speed of player vs player attacking
 				
 			elseif(self.parent:usingGun()) then
-				if(self.parent:ReadyGun(weapon) == false) then self.parent:reEquipMele() end
+				if(self.parent:ReadyGun(weapon) == false) then self.parent:reEquipMelee() end
 				--print(self.parent:getName().. " trying to ready gun" )
 				self.parent:Wait(1)
 			end	

@@ -78,8 +78,8 @@ function InventoryRow:on_click_transfer(direction)
                 member:setGunWep(self.item)
                 member:reEquipGun()
             else
-                member:setMeleWep(self.item)
-                member:reEquipMele()
+                member:setMeleeWep(self.item)
+                member:reEquipMelee()
             end
         else
             if self.item:getBodyLocation() ~= "" then

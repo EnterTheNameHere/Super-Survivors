@@ -99,16 +99,16 @@ function SurvivorInfoWindow:Load(ASuperSurvivor)
 	
 
 	newText = newText .. "\n"
-	local melewepName = getActionText("Nothing")
+	local meleewepName = getActionText("Nothing")
 	local gunwepName = getActionText("Nothing")
-	if(ASuperSurvivor.LastMeleUsed ~= nil) then melewepName = ASuperSurvivor.LastMeleUsed:getDisplayName() end
+	if(ASuperSurvivor.LastMeleeUsed ~= nil) then meleewepName = ASuperSurvivor.LastMeleeUsed:getDisplayName() end
 	if(ASuperSurvivor.LastGunUsed ~= nil) then gunwepName = ASuperSurvivor.LastGunUsed:getDisplayName() end
 	local phi
 	if(player:getPrimaryHandItem() ~= nil) then phi = player:getPrimaryHandItem():getDisplayName()
 	else phi = getActionText("Nothing") end
 	
 	newText = newText .. getContextMenuText("PrimaryHandItem")..": " .. tostring(phi)  .. "\n"
-	newText = newText .. getContextMenuText("MeleWeapon")..": " .. tostring(melewepName)  .. "\n"
+	newText = newText .. getContextMenuText("MeleeWeapon")..": " .. tostring(meleewepName)  .. "\n"
 	newText = newText .. getContextMenuText("GunWeapon")..": " .. tostring(gunwepName)  .. "\n"
 	newText = newText .. getContextMenuText("CurrentTask")..": " .. tostring(ASuperSurvivor:getCurrentTask())  .. "\n"
 	newText = newText .. "\n"

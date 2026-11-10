@@ -33,7 +33,7 @@ function SuperSurvivorsRefreshSettings()
 			ChanceToBeHostileNPC = SuperSurvivorGetOptionValue("HostileSpawnRate")
 			MaxChanceToBeHostileNPC = SuperSurvivorGetOptionValue("MaxHostileSpawnRate") -- Fixed, it used to contain 'HostileSpawnRate', previously making MaxHostileSpawnRate a useless option
 			
-			SurvivorInfiniteAmmo = SuperSurvivorGetOptionValue("InfinitAmmo")
+			SurvivorInfiniteAmmo = SuperSurvivorGetOptionValue("InfiniteAmmo")
 			SurvivorHunger = SuperSurvivorGetOptionValue("SurvivorHunger")
 			SurvivorsFindWorkThemselves = SuperSurvivorGetOptionValue("FindWork")
 			

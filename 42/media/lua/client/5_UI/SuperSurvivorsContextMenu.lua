@@ -658,8 +658,8 @@ function SwapWeaponsSurvivor(test,SS, Type)
 		toPlayer = SS.LastGunUsed
 		SS:setGunWep(PP)
 	else 
-		toPlayer = SS.LastMeleUsed
-		SS:setMeleWep(PP)
+		toPlayer = SS.LastMeleeUsed
+		SS:setMeleeWep(PP)
 	end
 	
 	--player:setPrimaryHandItem(nil);
@@ -701,10 +701,10 @@ function SwapWeaponsSurvivor(test,SS, Type)
 
 end
 
-function ForceWeaponType(test,SS,useMele)
+function ForceWeaponType(test,SS,useMelee)
 	
-	if(not useMele) then
-		SS:reEquipMele()
+	if(not useMelee) then
+		SS:reEquipMelee()
 	else
 		SS:reEquipGun()
 	end
@@ -811,7 +811,7 @@ function survivorMenu(context,o)
 					local Label = ""
 					local SurvivorWeaponName = getActionText("Nothing") 
 					if(o:getPrimaryHandItem() ~= nil) then SurvivorWeaponName = o:getPrimaryHandItem():getDisplayName() end
-					if(not OfferWeapon:isAimedFirearm()) then Type = "Mele" end
+					if(not OfferWeapon:isAimedFirearm()) then Type = "Melee" end
 					local swapweaponsOption, tooltipText
 					if(Type == "Gun") then 
 						
@@ -826,14 +826,14 @@ function survivorMenu(context,o)
 					
 					else
 						
-						if SS.LastMeleUsed == nil then 
+						if SS.LastMeleeUsed == nil then 
 							Label = getContextMenuText("GiveWeapon")
-							--tooltipText = "Give your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName() .. " to this Survivor to be his Mele type Weapon"
+							--tooltipText = "Give your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName() .. " to this Survivor to be his Melee type Weapon"
 						else 
 							Label = getContextMenuText("SwapWeapons")
 							--tooltipText = "Trade your "..getSpecificPlayer(0):getPrimaryHandItem():getDisplayName().." with ".. o:getForname().."\'s ".. SurvivorWeaponName
 						end
-						swapweaponsOption = submenu:addOption(Label, nil, SwapWeaponsSurvivor, SS, "Mele");
+						swapweaponsOption = submenu:addOption(Label, nil, SwapWeaponsSurvivor, SS, "Melee");
 						
 					end
 					--local tooltip = makeToolTip(swapweaponsOption,Label,tooltipText);
@@ -842,17 +842,17 @@ function survivorMenu(context,o)
 				end
 								
 				
-				if (o:getPrimaryHandItem() ~= SS.LastMeleUsed) and (SS.LastMeleUsed ~= nil) then
+				if (o:getPrimaryHandItem() ~= SS.LastMeleeUsed) and (SS.LastMeleeUsed ~= nil) then
 				
-					local ForceMeleOption = submenu:addOption(getContextMenuText("UseMele"), nil, ForceWeaponType, SS, false)
+					local ForceMeleeOption = submenu:addOption(getContextMenuText("UseMelee"), nil, ForceWeaponType, SS, false)
 					
-					local tooltip = makeToolTip(ForceMeleOption,getContextMenuText("UseMele"),getContextMenuText("UseMeleDesc"))
+					local tooltip = makeToolTip(ForceMeleeOption,getContextMenuText("UseMelee"),getContextMenuText("UseMeleeDesc"))
 				end
 				if (o:getPrimaryHandItem() ~= SS.LastGunUsed) and (SS.LastGunUsed ~= nil) then
 				
-					local ForceMeleOption = submenu:addOption(getContextMenuText("UseGun"), nil, ForceWeaponType, SS, true)
+					local ForceMeleeOption = submenu:addOption(getContextMenuText("UseGun"), nil, ForceWeaponType, SS, true)
 					
-					local tooltip = makeToolTip(ForceMeleOption,getContextMenuText("UseGun"),getContextMenuText("UseGunDesc"))
+					local tooltip = makeToolTip(ForceMeleeOption,getContextMenuText("UseGun"),getContextMenuText("UseGunDesc"))
 				end
 						
 				local SetNameOption = submenu:addOption(getContextMenuText("SetName"), nil, SetName, SS, true)
@@ -1089,11 +1089,11 @@ function SurvivorsFillWorldObjectContextMenu(player, context, worldobjects, test
 	
 	submenu:addSubMenu(RulesOfEngagementOption, subsubmenu);
 	
-	local MeleOrGunOption = submenu:addOption(getContextMenuText("CallToArms"), worldobjects, nil);
+	local MeleeOrGunOption = submenu:addOption(getContextMenuText("CallToArms"), worldobjects, nil);
 	subsubmenu = submenu:getNew(submenu);
 	
-	makeToolTip(subsubmenu:addOption(getContextMenuText("UseMele"), nil, SetMeleOrGun, 'mele'),	getContextMenuText("UseMele"),getContextMenuText("UseMeleDesc"));
-	makeToolTip(subsubmenu:addOption(getContextMenuText("UseGun"), nil, SetMeleOrGun, 'gun'),		getContextMenuText("UseGun"),	getContextMenuText("UseGunDesc"));
+	makeToolTip(subsubmenu:addOption(getContextMenuText("UseMelee"), nil, SetMeleeOrGun, 'melee'),	getContextMenuText("UseMelee"),getContextMenuText("UseMeleeDesc"));
+	makeToolTip(subsubmenu:addOption(getContextMenuText("UseGun"), nil, SetMeleeOrGun, 'gun'),		getContextMenuText("UseGun"),	getContextMenuText("UseGunDesc"));
 
 	if (DebugOptions) then 
 		submenu:addOption(getContextMenuText("Debug_Spawn_Soldier"), nil, DebugSpawnSoldier)  -- debug spawn soldier
@@ -1104,7 +1104,7 @@ function SurvivorsFillWorldObjectContextMenu(player, context, worldobjects, test
 		
 		submenu:addOption(getContextMenuText("Debug_PlayerStats"), nil, ISPlayerStatsUI.OnOpenPanel)  --use debug mod to change player name
 	end	
-	submenu:addSubMenu(MeleOrGunOption, subsubmenu);
+	submenu:addSubMenu(MeleeOrGunOption, subsubmenu);
 	
 	context:addSubMenu(SurvivorOptions, submenu);  --Add ">"
 	
@@ -1121,7 +1121,7 @@ function SetRulesOfEngagement(test,value)
 	end
 end
 
-function SetMeleOrGun(test,value)
+function SetMeleeOrGun(test,value)
 	local mySS = SSM:Get(0)
 	if(mySS:getGroupID() ~= nil) then 
 	
@@ -1130,7 +1130,7 @@ function SetMeleOrGun(test,value)
 			if(value == "gun") then 
 				mySS:Get():Say(getContextMenuText("EveryOneUseGun"))
 			else
-				mySS:Get():Say(getContextMenuText("EveryOneUseMele"))
+				mySS:Get():Say(getContextMenuText("EveryOneUseMelee"))
 			end
 			myGroup:UseWeaponType(value) 
 		end
