@@ -172,7 +172,7 @@ end
 
 --- FOODS ---
 
-local FoodsToExlude = {"Bleach", "Cigarettes", "HCCigar", "Antibiotics", "Teabag2", "Salt", "Pepper", "EggCarton"}
+local FoodsToExlude = {"Bleach", "Cigarettes", "CigaretteSingle", "CigarettePack", "CigaretteRolled", "HCCigar", "Antibiotics", "Teabag2", "Salt", "Pepper", "EggCarton"}
 
 --- gets any kind of food that is not in 'FoodsToExlude' and not poisoned
 ---@param thisItemContainer any 
