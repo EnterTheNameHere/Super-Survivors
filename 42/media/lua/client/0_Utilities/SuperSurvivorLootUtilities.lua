@@ -57,7 +57,7 @@ end
 ---@param container any the container that the item will be searched
 ---@param category itemCategory the type of item that the item will be searched
 ---@param survivor any survivor searching for item (only in food searching)
----@return any returns the item insde of the container with the selected category or nil if not found
+---@return any returns the item inside of the container with the selected category or nil if not found
 function FindItemByCategory(container, category, survivor)
 
 	if(category == "Food") then 
@@ -172,9 +172,9 @@ end
 
 --- FOODS ---
 
-local FoodsToExlude = {"Bleach", "Cigarettes", "CigaretteSingle", "CigarettePack", "CigaretteRolled", "HCCigar", "Antibiotics", "Teabag2", "Salt", "Pepper", "EggCarton"}
+local FoodsToExclude = {"Bleach", "Cigarettes", "CigaretteSingle", "CigarettePack", "CigaretteRolled", "HCCigar", "Antibiotics", "Teabag2", "Salt", "Pepper", "EggCarton"}
 
---- gets any kind of food that is not in 'FoodsToExlude' and not poisoned
+--- gets any kind of food that is not in 'FoodsToExclude' and not poisoned
 ---@param thisItemContainer any 
 ---@return any returns the first found food inside the container
 function FindAndReturnFood(thisItemContainer)
@@ -192,7 +192,7 @@ function FindAndReturnFood(thisItemContainer)
 		for i=1, count-1 do
 			local item = items:get(i)
 			if(item ~= nil) and (item:getCategory() == "Food") then			
-				if not( item:getPoisonPower() > 1 ) and not (has_value(FoodsToExlude,item:getType())) then 
+				if not( item:getPoisonPower() > 1 ) and not (has_value(FoodsToExclude,item:getType())) then 
 					debugItem("food",item:getDisplayName(),"")
 					return item 
 				end
@@ -330,7 +330,7 @@ function FindAndReturnBestFoodOnFloor(sq, survivor)
 
 		for j=0, count-1 do
 			local item =items:get(j):getItem()
-			if (item ~= nil) and (item:getCategory() == "Food") and not (item:getPoisonPower() > 1) and (not has_value(FoodsToExlude, item:getType())) then
+			if (item ~= nil) and (item:getCategory() == "Food") and not (item:getPoisonPower() > 1) and (not has_value(FoodsToExclude, item:getType())) then
 				local Score = GetFoodScore(item)
 
 				if Score > bestScore then
@@ -379,7 +379,7 @@ function FindAndReturnBestFood(thisItemContainer, survivor)
 		debugItemsFound(count)
 		for i=1, count-1 do
 			local item = items:get(i)
-			if(item ~= nil) and (item:getCategory() == "Food") and not (item:getPoisonPower() > 1) and (not has_value(FoodsToExlude, item:getType())) then
+			if(item ~= nil) and (item:getCategory() == "Food") and not (item:getPoisonPower() > 1) and (not has_value(FoodsToExclude, item:getType())) then
 				local Score = GetFoodScore(item)
 
 				--ContainerItemsScore[i] = Score

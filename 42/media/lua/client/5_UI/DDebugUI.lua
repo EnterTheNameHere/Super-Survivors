@@ -3,7 +3,9 @@ local context_options = {}
 ddbugui = {}
 
 context_options.show_context_menu_file = function(debug_table)
-    local context_menu = ISContextMenu.get(0, getMouseX(), getMouseY(), 1, 1)
+    require "0_Utilities/SuperSurvivorPanelUtilities"
+    local context_menu = SuperSurvivorPanels.contextMenu(0, getMouseX(), getMouseY())
+    if not context_menu then return end
     for i, j in pairs(debug_table) do
         if i ~= "file" then
             context_menu:addOption(tostring(i), nil, function() j() end)

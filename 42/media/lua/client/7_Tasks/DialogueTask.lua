@@ -13,7 +13,6 @@ function DialogueTask:new(superSurvivor, TalkToMe, Dialogue,isYesOrNoQuestion,Tr
 	
 	superSurvivor:StopWalk()
 		
-	o.WasSelfInit = selfInitiated
 	o.Aite = TalkToMe
 	o.parent = superSurvivor
 	o.Name = "Direct Dialogue"

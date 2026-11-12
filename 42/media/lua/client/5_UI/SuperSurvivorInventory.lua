@@ -71,6 +71,7 @@ function InventoryRow:on_click_transfer(direction)
     local member = group:getMembers()[self.member_index]
     if type(member) ~= "table" or not member.player or member.player:isDead() then return end
     local player = getSpecificPlayer(0)
+    if not player then return end
     if getDistanceBetween(player, member.player) > 2 or player:getZ() ~= member.player:getZ() then return end
     local member_inventory = member.player:getInventory()
     local player_inventory = player:getInventory()
@@ -273,14 +274,17 @@ end
 --****************************************************
 PanelInventoryTransfer = ISPanel:derive("PanelInventoryTransfer")
 
-function create_panel_inventory_transfer(member_index)
+function create_panel_inventory_transfer(member_index, x, y)
     if panel_inventory_transfer then
         panel_inventory_transfer:removeFromUIManager()
         panel_inventory_transfer = nil
     end
-    panel_inventory_transfer = PanelInventoryTransfer:new(window_super_survivors.x, window_super_survivors.y+window_super_survivors.height+8, 475*2, (25*10)+(8*5), member_index)
+    require "0_Utilities/SuperSurvivorPanelUtilities"
+    x, y = SuperSurvivorPanels.position(475*2, (25*10)+(8*5), x, y)
+    panel_inventory_transfer = PanelInventoryTransfer:new(x, y, 475*2, (25*10)+(8*5), member_index)
     panel_inventory_transfer:addToUIManager()
     panel_inventory_transfer:setVisible(true)
+    return panel_inventory_transfer
 end
 
 function PanelInventoryTransfer:initialise()
@@ -304,7 +308,13 @@ function PanelInventoryTransfer:createChildren()
             tostring(member:getName()).."    ["..string.format("%.2f", member_inventory:getCapacityWeight()).." / "..string.format("%.2f", member_inventory:getContentsWeight()).."]",
             self
     )
-    local button_close = ISButton:new(0, self.height-25, self.width, 25, "close", nil, function() self:removeFromUIManager() end)
+    local survivorID = member:getID()
+    local button_equipment = ISButton:new(0, self.height-25, self.width/2, 25, getText("IGUI_SS_Panels_Equipment"), nil, function()
+        require "0_Utilities/SuperSurvivorPanelUtilities"
+        SuperSurvivorPanels.open("equipment", survivorID, self)
+    end)
+    local button_close = ISButton:new(self.width/2, self.height-25, self.width/2, 25, getText("IGUI_SS_Panels_Close"), nil, function() self:removeFromUIManager() end)
+    self:addChild(button_equipment)
     InventoryRow.member_index = self.member_index
     PanelOwnInventory.member_index = self.member_index
     PanelMemberInventory.member_index = self.member_index

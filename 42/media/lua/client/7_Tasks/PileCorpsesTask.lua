@@ -123,7 +123,7 @@ function PileCorpsesTask:update()
 					self.parent:walkTo(self.TargetSquare);
 				elseif self.TargetSquare:getDeadBody() then
 					
-					ISTimedActionQueue.add(ISGrabCorpseAction:new(self.parent:Get(),self.TargetSquare:getDeadBody(),30))
+					ISTimedActionQueue.add(ISGrabCorpseAction:new(self.parent:Get(),self.TargetSquare:getDeadBody()))
 					
 					
 					self.parent:RoleplaySpeak(getActionText("PickUpCorpse"))

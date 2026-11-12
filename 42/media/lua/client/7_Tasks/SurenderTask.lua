@@ -29,7 +29,7 @@ function SurenderTask:isComplete()
 	local facingResult = self.enemy.player:getDotWithForwardDirection(self.parent.player:getX(),self.parent.player:getY())
 	
 	local result = (not (self.enemy.player:isAiming() 
-	and (self.enemy:usingGun() or (not ASuperSurvivor:RealCanSee(self.enemy) and getDistanceBetween(self.enemy,self.parent.player) <=3 ) )
+	and (self.enemy:usingGun() or (not self.parent:RealCanSee(self.enemy.player) and getDistanceBetween(self.enemy.player,self.parent.player) <=3 ) )
 	and self.enemy.player:CanSee(self.parent.player) and facingResult > 0.95 and (self.parent:isEnemy(self.enemy.player) or ((not self.parent:isInGroup(self.enemy.player)) and self.enemy.player:isLocalPlayer() and IsoPlayer.getCoopPVP()))
 	and getDistanceBetween(self.parent.player,self.enemy.player) < 6 ) 
 	and (self.NowSafeTicks < 12) )

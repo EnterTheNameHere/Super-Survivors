@@ -1,0 +1,30 @@
+{
+    "Lua.runtime.version": "Lua 5.1",
+    "Lua.runtime.path": [
+        "?.lua",
+        "?/init.lua",
+        "42/media/lua/shared/?.lua",
+        "42/media/lua/client/?.lua",
+        "42/media/lua/server/?.lua"
+    ],
+    "Lua.workspace.library": [
+        "${workspaceFolder}/editor/pz-api",
+        "G:/Steam/steamapps/common/ProjectZomboid/media/lua/shared",
+        "G:/Steam/steamapps/common/ProjectZomboid/media/lua/client",
+        "G:/Steam/steamapps/common/ProjectZomboid/media/lua/server"
+    ],
+    "Lua.workspace.ignoreDir": [
+        ".vscode",
+        ".git",
+        ".venv",
+        "dist",
+        "reference",
+        "common",
+        "tests",
+        "tools"
+    ],
+    "Lua.diagnostics.libraryFiles": "Disable",
+    "Lua.diagnostics.disable": [
+        "lowercase-global"
+    ]
+}

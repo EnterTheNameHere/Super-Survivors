@@ -784,7 +784,7 @@ function SuperSurvivor:isTooScaredToFight() -- This function is an absolute mess
 	
 	if (self.EnemiesOnMe >= 3) then -- never fight with 3 or more zombies
 		return true
-	elseif ( ((self.dangerSeenCount > 0) and self:HasMultipleInjury()) or (not self:hasWeapon() and self.dangerSeenCount > 1) ) then  -- dont fight more than 1 with no weapon, or when injured
+	elseif ( ((self.dangerSeenCount > 0) and self:HasMultipleInjury()) or (not self:hasWeapon() and self.dangerSeenCount > 1) ) then  -- don't fight more than 1 with no weapon, or when injured
 		return true
 	else
 		local base = 2
@@ -893,7 +893,7 @@ function SuperSurvivor:needToFollow()
 end
 
 function SuperSurvivor:getNoFoodNearBy()
-	--print(self:getName() .. " nofood " .. tostring((self.Reducer - self.TicksAtLastDetectNoFood)))
+	--print(self:getName() .. " no food " .. tostring((self.Reducer - self.TicksAtLastDetectNoFood)))
 	if (self.NoFoodNear == true) then
 		if (self.TicksAtLastDetectNoFood ~= nil)
 			and ((self.Reducer - self.TicksAtLastDetectNoFood) > 12000)
@@ -999,18 +999,18 @@ end
 
 function SuperSurvivor:getFacingSquare()	
 	local square = self.player:getCurrentSquare()
-	local fsquare = square:getTileInDirection(self.player:getDir())
-	if(fsquare) then return fsquare 
+	local facingSquare = square:getTileInDirection(self.player:getDir())
+	if(facingSquare) then return facingSquare 
 	else return square end
 end
 
 function SuperSurvivor:isTargetBuildingClaimed(building)
 	if(SafeBase) then -- if safe base mode on survivors consider other claimed buildings already explored
-		local tempsquare = getRandomBuildingSquare(building)
-		if (tempsquare ~= nil) then
-			local tempgroup = SSGM:GetGroupIdFromSquare(tempsquare)
+		local tempSquare = getRandomBuildingSquare(building)
+		if (tempSquare ~= nil) then
+			local tempGroup = SSGM:GetGroupIdFromSquare(tempSquare)
 			--if self.DebugMode then print(tostring(tempgroup) .. " " .. self:getGroupID() end
-			if(tempgroup ~= -1 and tempgroup ~= self:getGroupID()) then return true end
+			if(tempGroup ~= -1 and tempGroup ~= self:getGroupID()) then return true end
 		end
 	end
 
@@ -1032,9 +1032,9 @@ end
 function SuperSurvivor:MarkCurrentSquareExplored_IFOD(building)
 	if (not self:inFrontOfLockedDoor()) or (not self:inFrontOfBarricadedWindowAlt()) then return false end
 	self:resetBuildingWalkToAttempts(building)
-	local bdef = building:getDef()	
-	for x=bdef:getX()-1,(bdef:getX() + bdef:getW()+1) do	
-		for y=bdef:getY()-1,(bdef:getY() + bdef:getH()+1) do
+	local buildingDef = building:getDef()	
+	for x=buildingDef:getX()-1,(buildingDef:getX() + buildingDef:getW()+1) do	
+		for y=buildingDef:getY()-1,(buildingDef:getY() + buildingDef:getH()+1) do
 			
 			local sq = getCell():getGridSquare(x,y,self.player:getZ())			
 			if(sq) then 
@@ -1047,9 +1047,9 @@ end
 function SuperSurvivor:MarkBuildingExplored(building)
 	if(not building) then return false end
 	self:resetBuildingWalkToAttempts(building)
-	local bdef = building:getDef()	
-	for x=bdef:getX()-1,(bdef:getX() + bdef:getW()+1) do	
-		for y=bdef:getY()-1,(bdef:getY() + bdef:getH()+1) do
+	local buildingDef = building:getDef()	
+	for x=buildingDef:getX()-1,(buildingDef:getX() + buildingDef:getW()+1) do	
+		for y=buildingDef:getY()-1,(buildingDef:getY() + buildingDef:getH()+1) do
 			
 			local sq = getCell():getGridSquare(x,y,self.player:getZ())			
 			if(sq) then 
@@ -1300,7 +1300,7 @@ function SuperSurvivor:RoleplaySpeak(text)
 
 	if(SuperSurvivorGetOptionValue("RoleplayMessage") == 1) then
 		
-		if(text:match('^\*(.*)\*$')) then -- checks if the string already have '*' (some localizations have it)
+		if(text:match('^%*(.*)%*$')) then -- checks if the string already have '*' (some localizations have it)
 			self.SayLine1 = text
 		else
 			self.SayLine1 = "*".. text .. "*"
@@ -1314,9 +1314,9 @@ end
 
 function SuperSurvivor:MarkAttemptedBuildingExplored(building)
 	if(building == nil) then return false end
-	local bdef = building:getDef()	
-	for x=bdef:getX(),(bdef:getX() + bdef:getW()) do	
-		for y=bdef:getY(),(bdef:getY() + bdef:getH()) do
+	local buildingDef = building:getDef()	
+	for x=buildingDef:getX(),(buildingDef:getX() + buildingDef:getW()) do	
+		for y=buildingDef:getY(),(buildingDef:getY() + buildingDef:getH()) do
 			
 			local sq = getCell():getGridSquare(x,y,self.player:getZ())			
 			if(sq) then 
@@ -1327,9 +1327,9 @@ function SuperSurvivor:MarkAttemptedBuildingExplored(building)
 end
 function SuperSurvivor:resetBuildingWalkToAttempts(building)
 	if(building == nil) then return false end
-	local bdef = building:getDef()	
-	for x=bdef:getX(),(bdef:getX() + bdef:getW()) do	
-		for y=bdef:getY(),(bdef:getY() + bdef:getH()) do
+	local buildingDef = building:getDef()	
+	for x=buildingDef:getX(),(buildingDef:getX() + buildingDef:getW()) do	
+		for y=buildingDef:getY(),(buildingDef:getY() + buildingDef:getH()) do
 			
 			local sq = getCell():getGridSquare(x,y,self.player:getZ())			
 			if(sq) then 
@@ -1477,9 +1477,9 @@ function SuperSurvivor:getUnBarricadedWindow(building)
 	local pcs = self.player:getCurrentSquare()
 	local WindowOut = nil
 	local closestSoFar = 100
-	local bdef = building:getDef()	
-	for x=bdef:getX()-1,(bdef:getX() + bdef:getW() + 1) do	
-		for y=bdef:getY()-1,(bdef:getY() + bdef:getH() + 1) do
+	local buildingDef = building:getDef()	
+	for x=buildingDef:getX()-1,(buildingDef:getX() + buildingDef:getW() + 1) do	
+		for y=buildingDef:getY()-1,(buildingDef:getY() + buildingDef:getH() + 1) do
 			
 			local sq = getCell():getGridSquare(x,y,self.player:getZ())			
 			if(sq) then 
@@ -1514,7 +1514,7 @@ function SuperSurvivor:isEnemy(character)
 		-- zombie is enemy to anyone
 		if character:isZombie() then return true 
 		elseif (self:isInGroup(character)) then return false
-		elseif (self.player:getModData().isHostile ~= true and self.player:getModData().surender == true) then return false -- so other npcs dont attack anyone surendering
+		elseif (self.player:getModData().isHostile ~= true and self.player:getModData().surender == true) then return false -- so other npcs don't attack anyone surrendering
 		elseif (self.player:getModData().hitByCharacter == true) and (character:getModData().semiHostile == true) then return true 
 		elseif (character:getModData().isHostile ~= self.player:getModData().isHostile) then 
 			--print(tostring(character:getDescriptor():getForename()).."("..tostring(character:getModData().Group)..") is enemy to "..self:getName().."("..tostring(self:getGroupID()))
@@ -1626,7 +1626,7 @@ function SuperSurvivor:isInSameBuilding(movingObj)
 	
 	return false 
 end
--- An easiser function to make InBuildingWithEntity returns
+-- An easier function to make InBuildingWithEntity returns
 function SuperSurvivor:isInSameBuildingWithEnemyAlt()
 	if (self.LastEnemeySeen ~= nil) then
 		if (self:isInSameBuilding(self.LastEnemeySeen)) then
@@ -1652,9 +1652,9 @@ function SuperSurvivor:RealCanSee(character)
 	
 	if(character:isZombie()) then return (self.player:CanSee(character)) end -- normal vision for zombies (they are not quiet or sneaky)
 	
-	local visioncone = SurvivorVisionCone
-	if(character:isSneaking()) then visioncone = visioncone - 0.15 end
-	return (self.player:CanSee(character) and (self.player:getDotWithForwardDirection(character:getX(),character:getY()) + visioncone) >= 1.0 ) 						
+	local visionCone = SurvivorVisionCone
+	if(character:isSneaking()) then visionCone = visionCone - 0.15 end
+	return (self.player:CanSee(character) and (self.player:getDotWithForwardDirection(character:getX(),character:getY()) + visionCone) >= 1.0 ) 						
 
 end
 
@@ -1675,40 +1675,40 @@ function SuperSurvivor:DoVision()
 	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
 	
 	local closestNumber = nil
-	local tempdistance = 1
+	local tempDistance = 1
 	
 	
 	if(spottedList ~= nil) then
-		--print("dovision " .. tostring(spottedList:size()))
+		--print("DoVision " .. tostring(spottedList:size()))
 		for i, character in ipairs(spottedList) do
 			if(character ~= nil) and (character ~= self.player) and (instanceof(character,"IsoZombie") or instanceof(character,"IsoPlayer")) then
 			
 				if (character:isDead() == false) then
-					tempdistance = tonumber(getDistanceBetween(character,self.player))
+					tempDistance = tonumber(getDistanceBetween(character,self.player))
 					
-					if( (tempdistance <= atLeastThisClose) and self:isEnemy(character) ) then	
+					if( (tempDistance <= atLeastThisClose) and self:isEnemy(character) ) then	
 					
 						local CanSee = self:RealCanSee(character)
 						
-						if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
+						if(tempDistance < 1) and (character:getZ() == self.player:getZ()) then 
 							self.EnemiesOnMe = self.EnemiesOnMe + 1 
 						end
-						if(tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
-							--if (character:CanSee(self.player)) and (self:isInSameRoom(character) or (tempdistance <= 1)) then 
+						if(tempDistance < dangerRange) and (character:getZ() == self.player:getZ()) then
+							--if (character:CanSee(self.player)) and (self:isInSameRoom(character) or (tempDistance <= 1)) then 
 								self.dangerSeenCount = self.dangerSeenCount + 1 
 							--end 
 						end
 						if(CanSee) then 
 							self.seenCount = self.seenCount + 1 
 						end
-						if( ( CanSee or (tempdistance < 0.5)) and (tempdistance < closestSoFar) ) then
-							closestSoFar = tempdistance ;
+						if( ( CanSee or (tempDistance < 0.5)) and (tempDistance < closestSoFar) ) then
+							closestSoFar = tempDistance ;
 							self.player:getModData().seenZombie = true;
 							closestNumber = i;							
 						end
 						
-					elseif( tempdistance < closestSurvivorSoFar ) and false then
-						closestSurvivorSoFar = tempdistance
+					elseif( tempDistance < closestSurvivorSoFar ) and false then
+						closestSurvivorSoFar = tempDistance
 						self.LastSurvivorSeen = character						
 					end
 				end
@@ -1718,10 +1718,10 @@ function SuperSurvivor:DoVision()
 	end
 	
 	-- if enememies near, increase the player update function refresh time for better fighting
-	if(self.dangerSeenCount > 0) and (self:getCurrentTask() == "Attack") then self.UpdateDelayTicks = 10 -- only do it when fighting so they dont follow or flee slowly when not fighting
+	if(self.dangerSeenCount > 0) and (self:getCurrentTask() == "Attack") then self.UpdateDelayTicks = 10 -- only do it when fighting so they don't follow or flee slowly when not fighting
 	else self.UpdateDelayTicks = 20 end
 		
-	if(closestNumber ~= nil) then 
+	if spottedList and closestNumber ~= nil then
 		self.LastEnemeySeen = spottedList[closestNumber]
 		
 		return self.LastEnemeySeen
@@ -1743,7 +1743,7 @@ function SuperSurvivor:isInAction()
 	--if(self.player:isPerformingAnAction()) then return true end
 	--print(self:getName().." " .. tostring(self.TicksSinceSquareChanged))
 	if((self.player:getModData().bWalking == true) and (self.TicksSinceSquareChanged <= 10)) then
-		--print(self:getName().." returing true1")
+		--print(self:getName().." returning true1")
 		return true 
 	end
 	
@@ -1753,7 +1753,7 @@ function SuperSurvivor:isInAction()
 	for k=1, #queue.queue do
 		local v = queue.queue[k]
         if v then 
-			--print(self:getName().." returing true2")
+			--print(self:getName().." returning true2")
 			return true 
 		end
     end
@@ -1798,7 +1798,6 @@ function SuperSurvivor:walkTo(square)
 	if adjacent ~= nil then
 		local door = self:inFrontOfDoor()
 		if (door ~= nil) and (door:isLocked() or door:isLockedByKey() or door:isBarricaded()) and (not door:isDestroyed()) then
-			local building = door:getOppositeSquare():getBuilding()
 				self:DebugSay("little pig, little pig")
 				self:NPC_ManageLockedDoors() -- This function will be sure ^ doesn't make the npc stuck in these cases
 	end
@@ -1964,8 +1963,8 @@ end
 function SuperSurvivor:inFrontOfWindow()
 
 	 local cs = self.player:getCurrentSquare()
-	 local fsquare = cs:getTileInDirection(self.player:getDir());
-	 if cs and fsquare then return cs:getWindowTo(fsquare)
+	 local facingSquare = cs:getTileInDirection(self.player:getDir());
+	 if cs and facingSquare then return cs:getWindowTo(facingSquare)
 	 else return nil end
 	
 end
@@ -2028,14 +2027,14 @@ function SuperSurvivor:NPC_inFrontOfUnBarricadedWindowOutside()
 	else 
 		return false
 	end
-	self:DebugSay("NPC In front of Unbarricaded Window Outside: Window is barricaded("..tostring(window:isBarricaded())..") and Is outside("..tostring(self.player:isOutside())..")")
+	self:DebugSay("NPC In front of un-barricaded Window Outside: Window is barricaded("..tostring(window:isBarricaded())..") and Is outside("..tostring(self.player:isOutside())..")")
 end
 
 
--- This function is still in testing. It's basically 'dovision' but re-functioned to find the closest hostile the npc can find, that is a human only.
+-- This function is still in testing. It's basically 'DoVision' but re-functioned to find the closest hostile the npc can find, that is a human only.
 -- DO *NOT* put this in update() function or anything similar. This is supposed to be exclusively to make dopursuealt work.
 -- And to attempt-fix a situation where the player can walk behind the NPC mid-attack and the npc suddenly forgetting about the player.
--- Update: BE VERY CAREFUL using this. It will overwrite Dovision. This is using for bandits to keep up with the main player.
+-- Update: BE VERY CAREFUL using this. It will overwrite DoVision. This is using for bandits to keep up with the main player.
 function SuperSurvivor:DoHumanEntityScan()
 
 	local atLeastThisClose = 5;
@@ -2051,37 +2050,37 @@ function SuperSurvivor:DoHumanEntityScan()
 	if self.AttackRange > dangerRange then dangerRange = self.AttackRange end
 	
 	local closestNumber = nil
-	local tempdistance = 1
+	local tempDistance = 1
 		
 	if(spottedList ~= nil) then
 		for i, character in ipairs(spottedList) do
 			if(character ~= nil) and (character ~= self.player) and (instanceof(character,"IsoPlayer")) and not (instanceof(character,"IsoZombie")) then
 			
 				if (character:isDead() == false) then
-					tempdistance = tonumber(getDistanceBetween(character,self.player))
+					tempDistance = tonumber(getDistanceBetween(character,self.player))
 					
-					if( (tempdistance <= atLeastThisClose) and self:isEnemy(character) ) then	
+					if( (tempDistance <= atLeastThisClose) and self:isEnemy(character) ) then	
 					
 						local CanSee = self:RealCanSee(character)
 						
-						--if(tempdistance < 1) and (character:getZ() == self.player:getZ()) then 
+						--if(tempDistance < 1) and (character:getZ() == self.player:getZ()) then 
 						--	self.EnemiesOnMe = self.EnemiesOnMe + 1 
 						--end
-						-- Removed: The sixth sense and dovision does this well enough. this would just stack numbers infinitely
-						--if(tempdistance < dangerRange) and (character:getZ() == self.player:getZ()) then
+						-- Removed: The sixth sense and DoVision does this well enough. this would just stack numbers infinitely
+						--if(tempDistance < dangerRange) and (character:getZ() == self.player:getZ()) then
 						--	self.dangerSeenCount = self.dangerSeenCount + 1 
 						--end
 						if(not CanSee) or (CanSee) then -- added 'not' to it so enemy can sense behind them for a moment
 							self.seenCount = self.seenCount + 1 
 						end
-						if( ( ((not CanSee) or (CanSee)) or (tempdistance < 3.5)) and (tempdistance < closestSoFar) ) then
-							closestSoFar = tempdistance ;
+						if( ( ((not CanSee) or (CanSee)) or (tempDistance < 3.5)) and (tempDistance < closestSoFar) ) then
+							closestSoFar = tempDistance ;
 							self.player:getModData().seenZombie = true;
 							closestNumber = i;							
 						end
 						
-					elseif( tempdistance < closestSurvivorSoFar ) and false then
-						closestSurvivorSoFar = tempdistance
+					elseif( tempDistance < closestSurvivorSoFar ) and false then
+						closestSurvivorSoFar = tempDistance
 						self.LastSurvivorSeen = character						
 					end
 				end
@@ -2091,7 +2090,7 @@ function SuperSurvivor:DoHumanEntityScan()
 	end
 	
 	-- This only tells the other function there's a enemy nearby as long as the npc isn't stuck in front of a blocked off door
-	if(closestNumber ~= nil) then 
+	if spottedList and closestNumber ~= nil then
 		self.LastEnemeySeen = spottedList[closestNumber]
 		
 		return self.LastEnemeySeen
@@ -2186,7 +2185,7 @@ function SuperSurvivor:Companion_DoSixthSenseScan()
 	end
 	
 	-- This only tells the other function there's a enemy nearby as long as the npc isn't stuck in front of a blocked off door
-	if(closestNumber ~= nil) then 
+	if spottedList and closestNumber ~= nil then
 		self.LastEnemeySeen = spottedList[closestNumber]
 		return self.LastEnemeySeen
 	end
@@ -2435,15 +2434,17 @@ end
 -- Pursue, as far as I've seen, is used any time the NPC needs to reach their target, either it be zombie or human.
 -- Todo: add self:RealCanSee(self.LastEnemeySeen) senses
 function SuperSurvivor:NPC_CheckPursueScore()
-	
+	local zRangeToPursue = 0
 	if (self.LastEnemeySeen ~= nil) then
-	local zRangeToPursue = 2
+		if self.player == nil then return 0 end
+		zRangeToPursue = 2
+		local Enemy_Is_a_Zombie = instanceof(self.LastEnemeySeen, "IsoZombie")
 
 		-- ------------------------------------  --
 		-- Keep pursue from happening when 	
 		-- lots of enemies the npc sees --		
 		-- ------------------------------------  --		
-		if (not self:getGroupRole() == "Companion") and ( ((self:getSeenCount() > 4) and (self:isEnemyInRange()) and (Enemy_Is_a_Zombie)) or (self:isTooScaredToFight()) ) then
+		if (self:getGroupRole() ~= "Companion") and ( ((self:getSeenCount() > 4) and (self:isEnemyInRange(self.LastEnemeySeen)) and (Enemy_Is_a_Zombie)) or (self:isTooScaredToFight()) ) then
 			zRangeToPursue = 0
 			self:zDebugSayPTSC(zRangeToPursue,"Fear_0")
 			return zRangeToPursue	
@@ -2462,7 +2463,6 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		end
 
 	
-		local Enemy_Is_a_Zombie = (instanceof(self.LastEnemeySeen,"IsoZombie")) 
 		local Enemy_Is_a_Human 	= (instanceof(self.LastEnemeySeen,"IsoPlayer")) 
 		local Weapon_HandGun   	= self.player:getPrimaryHandItem()
 		local NPCsDangerSeen   	= self:getDangerSeenCount()
@@ -2551,12 +2551,7 @@ function SuperSurvivor:NPC_CheckPursueScore()
 		end
 	end
 	
-	-- This should keep the NPC from returning 0 when the local variable at top is 0
-	if (self.LastEnemeySeen ~= nil) and (self.player ~= nil) and (zRangeToPursue == 0) then
-		self:zDebugSayPTSC(zRangeToPursue,"LE_144")
-		self.LastEnemeySeen = nil -- To force npc to stop pursuing the first target to re-scan
-		return zRangeToPursue
-	end
+	return zRangeToPursue
 
 end
 
@@ -2882,9 +2877,7 @@ function SuperSurvivor:NPCcalculateWalkSpeed()
 	end
 	local wmin = math.min(1.0, wmax);
 	local bodydamage = self.player:getBodyDamage()
-	if (bodydamage) then 
-		local thermo = bodydamage:getThermoregulator()
-	end
+	local thermo = bodydamage and bodydamage:getThermoregulator()
 	if (thermo) then
 		wmin = wmin * thermo:getMovementModifier();
 	end
@@ -2894,9 +2887,7 @@ function SuperSurvivor:NPCcalculateWalkSpeed()
 	end
 	if (self.player:isInTreesNoBush()) then
 		local cs = self.player:getCurrentSquare()
-		if (cs) and cs:HasTree() then
-			local tree = cs:getTree();
-		end
+		local tree = cs and cs:HasTree() and cs:getTree()
 		if tree then
 			wmin = wmin * tree:getSlowFactor(self.player);
 		end
@@ -3013,7 +3004,7 @@ function SuperSurvivor:update()
 	--else
 		--self.player:getStats():set(CharacterStat.THIRST, self.player:getStats():get(CharacterStat.THIRST) + 0.00005) -- survivor thirst does not move so manually incremnt it
 	elseif (not self:isInBase()) then
-		-- dont get hungry outside of base, to prevent infinite search loops
+		-- don't get hungry outside of base, to prevent infinite search loops
 		--self.player:getStats():set(CharacterStat.THIRST, 0.0)
 		--self.player:getStats():set(CharacterStat.HUNGER, 0.0)
 	end
@@ -3249,7 +3240,7 @@ function SuperSurvivor:PlayerUpdate()
 			end		
 		end
 		
-		self:WalkToUpdate(self.player)
+		self:WalkToUpdate()
 		
 	end
 	
@@ -3799,7 +3790,7 @@ function SuperSurvivor:giveWeapon(weaponType,equipIt )
 			end
 		end
 		ammotypes = getAmmoBullets(weapon,false);
-		self.player:getModData().ammoCount = self:FindAndReturnCount(ammotypes[1])
+		self.player:getModData().ammoCount = self:FindAndReturnCount(ammotypes and ammotypes[1])
 		
 	else
 		--print("no ammo types for weapon:"..weapon:getType())

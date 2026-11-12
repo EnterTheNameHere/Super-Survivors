@@ -68,6 +68,7 @@ function PursueTask:update()
 	
 	
 	if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'
+		local weapon = self.parent.player:getPrimaryHandItem()
 		if (self.parent:needToReadyGun(weapon)) then
 			self.parent:setRunning(false)
 			self.parent:ReadyGun(weapon)

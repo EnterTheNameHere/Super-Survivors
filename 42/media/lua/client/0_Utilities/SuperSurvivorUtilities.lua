@@ -43,13 +43,13 @@ Orders = {
 ---@param color color
 function getPresetColor(color)
 
-	if color 			== "White" 	then return ImmutableColor.new(0.75,0.74,0.72)
-	elseif color 	== "Grey" 	then return mmutableColor.new(0.48,0.47,0.44)
+	if color 		== "White" 	then return ImmutableColor.new(0.75,0.74,0.72)
+	elseif color 	== "Grey" 	then return ImmutableColor.new(0.48,0.47,0.44)
 	elseif color 	== "Blond" 	then return ImmutableColor.new(0.82,0.82,0.39)
 	elseif color 	== "Sand" 	then return ImmutableColor.new(0.86,0.78,0.66)
 	elseif color 	== "Hazel" 	then return ImmutableColor.new(0.61,0.50,0.34)
 	elseif color 	== "Brown" 	then return ImmutableColor.new(0.62,0.42,0.17)
-	elseif color 	== "Red" 		then return ImmutableColor.new(0.58,0.25,0.25)
+	elseif color 	== "Red" 	then return ImmutableColor.new(0.58,0.25,0.25)
 	elseif color 	== "Pink" 	then return ImmutableColor.new(0.59,0.39,0.55)
 	elseif color 	== "Purple" then return ImmutableColor.new(0.47,0.43,0.59)
 	elseif color 	== "Blue" 	then return ImmutableColor.new(0.39,0.47,0.59)
@@ -150,13 +150,13 @@ function getMouseSquare()
 	local sw = (128 / getCore():getZoom(0));
 	local sh = (64 / getCore():getZoom(0));
 
-	local mapx = getSpecificPlayer(0):getX();
-	local mapy = getSpecificPlayer(0):getY();
-	local mousex = ( (getMouseX() - (getCore():getScreenWidth() / 2)) ) ;
-	local mousey = ( (getMouseY() - (getCore():getScreenHeight() / 2)) ) ;
+	local mapX = getSpecificPlayer(0):getX();
+	local mapY = getSpecificPlayer(0):getY();
+	local mouseX = ( (getMouseX() - (getCore():getScreenWidth() / 2)) ) ;
+	local mouseY = ( (getMouseY() - (getCore():getScreenHeight() / 2)) ) ;
 
-	local sx = mapx + (mousex / (sw/2) + mousey / (sh/2)) /2;
-	local sy = mapy + (mousey / (sh/2) -(mousex / (sw/2))) /2;
+	local sx = mapX + (mouseX / (sw/2) + mouseY / (sh/2)) /2;
+	local sy = mapY + (mouseY / (sh/2) -(mouseX / (sw/2))) /2;
 
 	local sq = getCell():getGridSquare(sx,sy,getSpecificPlayer(0):getZ());
 	return sq;
@@ -168,12 +168,12 @@ function getMouseSquareY()
 	local sw = (128 / getCore():getZoom(0));
 	local sh = (64 / getCore():getZoom(0));
 
-	local mapx = getSpecificPlayer(0):getX();
-	local mapy = getSpecificPlayer(0):getY();
-	local mousex = ( (getMouseX() - (getCore():getScreenWidth() / 2)) ) ;
-	local mousey = ( (getMouseY() - (getCore():getScreenHeight() / 2)) ) ;
+	local mapX = getSpecificPlayer(0):getX();
+	local mapY = getSpecificPlayer(0):getY();
+	local mouseX = ( (getMouseX() - (getCore():getScreenWidth() / 2)) ) ;
+	local mouseY = ( (getMouseY() - (getCore():getScreenHeight() / 2)) ) ;
 
-	local sy = mapy + (mousey / (sh/2) -(mousex / (sw/2))) /2;
+	local sy = mapY + (mouseY / (sh/2) -(mouseX / (sw/2))) /2;
 
 	return sy
 end
@@ -184,12 +184,12 @@ function getMouseSquareX()
 	local sw = (128 / getCore():getZoom(0));
 	local sh = (64 / getCore():getZoom(0));
 
-	local mapx = getSpecificPlayer(0):getX();
-	local mapy = getSpecificPlayer(0):getY();
-	local mousex = ( (getMouseX() - (getCore():getScreenWidth() / 2)) ) ;
-	local mousey = ( (getMouseY() - (getCore():getScreenHeight() / 2)) ) ;
+	local mapX = getSpecificPlayer(0):getX();
+	local mapY = getSpecificPlayer(0):getY();
+	local mouseX = ( (getMouseX() - (getCore():getScreenWidth() / 2)) ) ;
+	local mouseY = ( (getMouseY() - (getCore():getScreenHeight() / 2)) ) ;
 
-	local sx = mapx + (mousex / (sw/2) + mousey / (sh/2)) /2;
+	local sx = mapX + (mouseX / (sw/2) + mouseY / (sh/2)) /2;
 
 	return sx
 end
@@ -198,9 +198,9 @@ function doesSquareHaveNPC(Square)
 
 		if(Square ~= nil) then
 		
-			local closeobjects = Square:getMovingObjects()
-			for i=0, closeobjects:size()-1 do
-				local obj = closeobjects:get(i)
+			local closeObjects = Square:getMovingObjects()
+			for i=0, closeObjects:size()-1 do
+				local obj = closeObjects:get(i)
 				if (obj ~= nil) then 
 					if (instanceof(obj,"IsoPlayer")) then
 						return true

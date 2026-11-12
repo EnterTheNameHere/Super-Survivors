@@ -229,6 +229,7 @@ function QuestManager:CheckTrigger(Trigger, EventTypeToCheck,Param1)
 		
 	elseif(Trigger.ConditionType=="DistanceToSquare") and (EventTypeToCheck == "DistanceToSquare") then
 			local player = getSpecificPlayer(0)
+			if not player then return false end
 			local x = player:getX()
 			local y = player:getY()
 			local dist = getDistanceBetweenPoints(x,y,Trigger.SquareX,Trigger.SquareY)
@@ -260,6 +261,7 @@ function QuestManager:CheckTrigger(Trigger, EventTypeToCheck,Param1)
 			end
 	elseif(Trigger.ConditionType=="DistanceToNPC") and (EventTypeToCheck == "DistanceToNPC")  then
 			local player = getSpecificPlayer(0)
+			if not player then return false end
 			local x = player:getX()
 			local y = player:getY()
 			local SS = SSM:GetSurvivorByName(Trigger.NPCName)
@@ -273,6 +275,7 @@ function QuestManager:CheckTrigger(Trigger, EventTypeToCheck,Param1)
 			end
 	elseif(Trigger.ConditionType=="FindItem") and (EventTypeToCheck == "FindItem") then
 			local player = getSpecificPlayer(0)
+			if not player then return false end
 			local inv = player:getInventory()
 			local item = inv:getItemFromTypeRecurse(Trigger.ItemType)
 			if(item) and Trigger.Enabled then 
@@ -401,7 +404,7 @@ function QuestManager:QuestionAnswered(triggername,answer, noresultactions,yesre
 	
 	local trigger = self:getQuestFromName(triggername)
 	if(not trigger) then
-		print("SSQM: warning failed to get quest/trigger from name: " .. tostring(getQuestFromName))		
+		print("SSQM: warning failed to get quest/trigger from name: " .. tostring(triggername))
 		return
 	end
 	

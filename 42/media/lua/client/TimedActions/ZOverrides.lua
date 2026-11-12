@@ -4,6 +4,8 @@ local SSIsInventoryTransferAction = {}
 SSIsInventoryTransferAction.ISInventoryTransferAction = {}
 
 SSIsInventoryTransferAction.ISInventoryTransferAction.perform = ISInventoryTransferAction.perform
+-- Intentional chained theft hook; action API/lifecycle compatibility is separate.
+---@diagnostic disable-next-line: duplicate-set-field
 function ISInventoryTransferAction:perform()
 
 		print("SSIsInventoryTransferAction perform");
@@ -32,6 +34,8 @@ local SSISGrabItemAction = {}
 SSISGrabItemAction.ISGrabItemAction = {}
 
 SSISGrabItemAction.ISGrabItemAction.perform = ISGrabItemAction.perform
+-- Intentional chained theft hook; action API/lifecycle compatibility is separate.
+---@diagnostic disable-next-line: duplicate-set-field
 function ISGrabItemAction:perform()
 	
 	print("SSISGrabItemAction perform");

@@ -47,7 +47,7 @@ function DialogueWindow:onUpdate()
 			if(self.speedticks > self.textspeed ) then
 				self.currentCharacter = self.currentCharacter + 1
 				
-				--getSoundManager():PlaySound("blip", false, 0.3);	-- playing sounds dont work when paused
+				--getSoundManager():PlaySound("blip", false, 0.3);	-- playing sounds don't work when paused
 				self:setText(cutstring)
 				self.speedticks = 0			
 				

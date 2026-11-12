@@ -23,7 +23,7 @@ function getRandomSurvivorSuit(SS)
 	if(roll == 1) then -- choose legendary suit
 		debugSuits("Legendary suit:")
 		tempTable = SurvivorRandomSuits["Legendary"]
-	elseif(roll <= 5) then -- choose veryrare suit
+	elseif(roll <= 5) then -- choose very rare suit
 		debugSuits("VeryRare suit:")
 		tempTable = SurvivorRandomSuits["VeryRare"]
 	elseif(roll <= 15) then -- choose rare suit

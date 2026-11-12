@@ -1,0 +1,2637 @@
+{
+  "scope": "Find Lua clone candidates without changing source files.\n\nExact tokens ignore comments, whitespace and optional semicolons. Structural\ntokens additionally mask bare identifiers (not fields/methods or function calls).\nStrings/numbers stay significant. Structural matches are NOT semantic equality.\n",
+  "mod_root": "42/media",
+  "mod_files": 112,
+  "vanilla_files": 1395,
+  "minimum_tokens": 100,
+  "minimum_lines": 8,
+  "limitations": "Heuristic seeds capped at 30 occurrences; no binding/type inference; no semantic proof.",
+  "identical_files": [
+    [
+      "lua/client/TimedActions/ISEnterVehicle.lua",
+      "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua"
+    ]
+  ],
+  "source_hashes": {
+    "lua/client/0_Utilities/SuperSurvivorContextUtilities.lua": "363f2c4c235346313cf247548fb9a8955acc31c2244da103b299499b46792a38",
+    "lua/client/0_Utilities/SuperSurvivorLootUtilities.lua": "590090aa27e336b7d6e855b6bfe8ad9edede08bb259430028ba228cb9a635eac",
+    "lua/client/0_Utilities/SuperSurvivorSpiralSearchUtilities.lua": "c06a2d7f07860aaccfa0f21bcca6898046b90d2199e517c146ca499e1e3c9b62",
+    "lua/client/0_Utilities/SuperSurvivorSuitsList.lua": "dbe43014b3696afc464cf6681429b09e5bc4226b359525290f6b3006dcc1732b",
+    "lua/client/0_Utilities/SuperSurvivorSuitsRegistry.lua": "08f48625e9d8c66e021fb568fc59a8f9b5f89da206802708aa048817efd720e0",
+    "lua/client/0_Utilities/SuperSurvivorSuitsUtilities.lua": "ee06de0049f0793ae363391b5998e4cdbc66b8ed38d514b29cc587138db3b4f9",
+    "lua/client/0_Utilities/SuperSurvivorTablesUtilities.lua": "3542b02366488e606023b935ebb90be5fd1e8921250fd3c2bc6e5d7b2ca72a73",
+    "lua/client/0_Utilities/SuperSurvivorTextUtilities.lua": "3cba0cce5c1bbaf0e6a2012e1f6b6cb6edfd87d2b73156f1b35d3d0ea36e2d46",
+    "lua/client/0_Utilities/SuperSurvivorTransferUtilities.lua": "a6832721c755590bd18fbd7f98203f10bbcc7baac1590993334dc529cd658faa",
+    "lua/client/0_Utilities/SuperSurvivorUtilities.lua": "7c3f8dc1f8b744476265a0211ef11e82a0f7347a63aaeecf825efc56b7303aac",
+    "lua/client/0_Utilities/SuperSurvivorWeaponsList.lua": "5b3eafe2ab59c1282f704fcb0b0fafa621c351d70ef8baf40b77707d2a796d2c",
+    "lua/client/0_Utilities/SuperSurvivorWeaponsRegistry.lua": "cc81added8d64157ff7ac2f9321ed4b603d88eb0c1186749154f13655fdd3e16",
+    "lua/client/0_Utilities/SuperSuvivorsCombatUtilities.lua": "f48bcd24ba41980a9d41406aac719170fd155b073b4bab436397f3df2bc78269",
+    "lua/client/1_Dialogue/SuperSurvivorDialogue.lua": "f27bce1380a82e80541684d53528c0f4d1e4a5fab96d5abe31fee895494113a3",
+    "lua/client/1_Dialogue/SuperSurvivorNames.lua": "0cd827e4580ab2c5fa560d77c2c45421f39e08ed74172ad4f15ea558e66819da",
+    "lua/client/1_Dialogue/SuperSurvivorOrders.lua": "695577d7ce20b317af81511ae753768f06dc27969ad5fa4b745f4b6ea1c0f8ae",
+    "lua/client/2_Group/SuperSurvivorGroup.lua": "727dd2ad4c81366adad3618ea56d9044318589145485c965c271466a026cf488",
+    "lua/client/2_Group/SuperSurvivorGroupManager.lua": "66e5d9b74115464cc1fafe9a566e7e11cffee18ec513d9d9434ea187ea49b5c8",
+    "lua/client/3_Other/SuperSurvivor.lua": "83ad68935d8e9c0eafc9a50a8d9c61fbcb70d731bcf97d762512028beafdbf53",
+    "lua/client/3_Other/SuperSurvivorDoctor.lua": "7f7e8484385ee6ed791c9ada8452f7be7add6a53466409ac0d392e21989ae95e",
+    "lua/client/3_Other/SuperSurvivorManager.lua": "0bfe6aedd0a37a0ecc71466ad1f059e044eba4c374c49ea52f414a01481c5c8a",
+    "lua/client/3_Other/SuperSurvivorPresetSpawns.lua": "58d7f322f1f9577eb1f7a5bba0777b0552085bba011d6850e3e3c4ef5bc57fc9",
+    "lua/client/3_Other/SuperSurvivorRender.lua": "b0b9592be629d71a4d2fd1fb079ad7dedd057e0591b586bf29a928554440a344",
+    "lua/client/3_Other/SuperSurvivorSettings.lua": "3f40f61adaf64a9fb0089971e3f64b95183c58218883d8e8f3495beed17366d0",
+    "lua/client/3_Other/SuperSurvivorsMod.lua": "320987dccec3bf37e469440eddf0107e21b46de1f3e5ea1c3f563c9cd3d1281e",
+    "lua/client/3_Other/SuperSurvivorSpeakConditions.lua": "75bdb4409586be5f8b67da6f64ed95c39ed409d109d4f910faa4886833274835",
+    "lua/client/3_Other/SuperSurvivorUndressing.lua": "2f4e5a7350aaadf086a912b01e632dd0db613adc59fff4e7d3996df186f7842b",
+    "lua/client/3_Other/SuperSurvivorUpdate.lua": "66b952b3e77cab12888330456bba777c37b5ad0f5bc2b5080021e3ab5b9b6960",
+    "lua/client/4_AI/AI-Manager.lua": "4c522ddf6def55baf2af2e0e4aa99ebf23f742eccb0014587c5e4ad3d5f175b5",
+    "lua/client/4_AI/AI-Manager_Companions.lua": "efcfd6bdfbe4d2212b32f92975f1d5d77b2f7a76db65bfbd86cd377b98d19cba",
+    "lua/client/4_AI/AI-Manager_GroupsBaseJobs.lua": "484ab32cb4d486284c8dc64925d4ffee25455f1f2125ffa986cde939204b1de6",
+    "lua/client/4_AI/AI-Manager_Hostile.lua": "f1bd578659ee4c07d037f12f8e85786e18f156f910fc151a8b52becd5d6d9704",
+    "lua/client/4_AI/AI-Manager_RandomSurvivor.lua": "6948bf57cf28667ad03ae7bb7b8e177dc059a5a51f10e5703659766548c8a6e0",
+    "lua/client/5_UI/DDebugUI.lua": "0fbdd17a188d998ccd9fa5e24b35a5ce1605f1d59da2a4ebeae13f4046dd3367",
+    "lua/client/5_UI/SSQuestManagerDialogue.lua": "494cdcdbc20631de95cce080453b79ab0c160e896dff589062b327ccb9e09d14",
+    "lua/client/5_UI/SSQuestManagerWindow.lua": "8a1d6eb9121a78b257f357312272619c2b638277b007b03031e113471a1b2e2f",
+    "lua/client/5_UI/SuperSurvivorBasePanel.lua": "bd50b2f79796657715dc2a2d6f4481d46a8fe533c9e4f04a8ab54e3030bedd8f",
+    "lua/client/5_UI/SuperSurvivorInfoPanel.lua": "cdac159f0f3c1345810d205345f60cf2bef4a6d7c7cf5b46c20faee611432080",
+    "lua/client/5_UI/SuperSurvivorInventory.lua": "4bfea67a68c8a626bde5b976388421c10139cd64f1b2373d74a3bda97e90a911",
+    "lua/client/5_UI/SuperSurvivorLoadout.lua": "cc75fe50e1462f85e3b34af7fb9a1f79cefdf2ffc66b11815e5b6bc88eb64f05",
+    "lua/client/5_UI/SuperSurvivorMyGroupWindow.lua": "f18156002d29a7df7a6b3dad640832f932a4f33b1796538b0e40960cadb173c7",
+    "lua/client/5_UI/SuperSurvivorOptions.lua": "31d3509dfdd3353ba77a2a874d848c91e6b7b8281f2429304422ad5e106dd6dd",
+    "lua/client/5_UI/SuperSurvivorPVPButton.lua": "743cea1477aaf65d04f6fe918f25a5ca26346f89d707126336aff9987231dc1c",
+    "lua/client/5_UI/SuperSurvivorsContextMenu.lua": "902e5ea91e0f3e4e0eecbf9b2bf64052b54923002ccc35a9cec1f384a9961974",
+    "lua/client/5_UI/SuperSurvivorWindow.lua": "c7994bd5bcad426b2a77d290c3c39e418737fa76b8d493b53dd4dc3f79479238",
+    "lua/client/5_UI/SurvivorInfoWindow.lua": "91b798123c0256e646a551f5998cc3e7639561a1a797dc466ebad2ca41f4c598",
+    "lua/client/5_UI/SurvivorLocator.lua": "0d443a49ad23545649c6340ee89f187da23b14b02a91fff99be7bbb396ed51c2",
+    "lua/client/5_UI/UIUtils.lua": "e8e37a5fda0b9f3368f79aae80f4e502c564ba8963d6874129f09e17ae2e6f38",
+    "lua/client/6_Options/SuperSurvivorsOptionsLoad.lua": "a52994b7567524e7137237a53945d3e982af38e8546bd68df2981b43db5c7b3e",
+    "lua/client/7_Tasks/AttackTask.lua": "8e4f490cb3dea8d0d4f83fff631b669082ee2d77e35b56676518c66d96f86a25",
+    "lua/client/7_Tasks/AttemptEntryIntoBuildingTask.lua": "df114ba900f7fe4744a223673faa8bf8df9a51e7448bdfdec4b3e1b8dd82b636",
+    "lua/client/7_Tasks/BarricadeBuildingTask.lua": "e7c777d62a95cd50872042b9605723369e2849d33c6dd7758ae78723c27684fb",
+    "lua/client/7_Tasks/ChopWoodTask.lua": "a8fdefb4b5f3ccdd523c164bcf705353ef6e71be34925e233a437353d6123fc9",
+    "lua/client/7_Tasks/CleanInvTask.lua": "6c8c7eafc11d11ff6fa4e0feb1a99f6fcc4a7d46f9225cd722f572738077b941",
+    "lua/client/7_Tasks/DialogueTask.lua": "db21bafb60e2df1ffe99aed19b4c19f15ebef29666ae4b8cc2728686b9820791",
+    "lua/client/7_Tasks/DoctorTask.lua": "4aec1caeccf566ebdabbec9c464524ba8b37e237f9cff12d8f3473c52cd477c9",
+    "lua/client/7_Tasks/EatFoodTask.lua": "30c9cf9893a178b933f72acecfe4cb8594a7f2bc18fd2860f2e03fbf82dea992",
+    "lua/client/7_Tasks/EquipWeaponTask.lua": "45c3d18f812dc97f9c38e29388985f3d4823719243c8a17889aed3b5ebf7a441",
+    "lua/client/7_Tasks/FarmingTask.lua": "64ba3a2704bd3e9d5515c805c79fb49480f13a2860ffae04f96462789124984a",
+    "lua/client/7_Tasks/FindBuilding.lua": "85ad53f2b6073017f9b351fb91ba693a4db30bad48e0dba9dacdefc761df75cb",
+    "lua/client/7_Tasks/FindThisTask.lua": "30f99d0fb07d969e4896ed96d2d390115cbe8595c03a18bebe7cb02e4f68b985",
+    "lua/client/7_Tasks/FindUnLootedBuildingTask.lua": "07b399b1a9d51a512dc75acfef509ada6f9c9ef619da2f9d9cae3672c8a8cf77",
+    "lua/client/7_Tasks/FirstAideTask.lua": "a7efd1a60eb855df51dc768627c7091752eddb6df0f1a368f2a7e014684981eb",
+    "lua/client/7_Tasks/FleeAwayFromHereTask.lua": "65092524e7a91a7ef5aa757402ae436c740aed869cd75d509228b2bafc0ee7c0",
+    "lua/client/7_Tasks/FleeTask.lua": "b358b0697b104dfaa708cd84a6e206a1f3ef09fba07c6a1ca9dd74550f3855d1",
+    "lua/client/7_Tasks/FollowRouteTask.lua": "759283b704d8d65564b714cb85b84d22489bc7d1b52f4f0dbcd510a41527291f",
+    "lua/client/7_Tasks/FollowTask.lua": "7d5cad6adab2c4ed45f5c273db6dac7846f429eae303d0ee9fc5cdfb5660ad5f",
+    "lua/client/7_Tasks/ForageTask.lua": "1156c24497cc98c809a0a5102081e8711fdd174504468243ef07437cf28c6b30",
+    "lua/client/7_Tasks/GatherWoodTask.lua": "9b67c3fc34672e17bff0d905f1dad82cbfb470c6449385c3392f060450a3134a",
+    "lua/client/7_Tasks/GiveRewardToPlayerTask.lua": "3194ec688fa5ae84b6e2274f557de59039c11e246c8a1f87e0deb4ddd76d005e",
+    "lua/client/7_Tasks/GoCheckItOutTask.lua": "92f3100a21ea428e18d052a86679d1eeeff5860f4b1c040adc6a61eebf75fe7b",
+    "lua/client/7_Tasks/GuardTask.lua": "50898d6e20ae25d1746a08ce64af1c83d394386c83b239171719143e3839a1a8",
+    "lua/client/7_Tasks/HoldStillTask.lua": "5c09408664ad6d27da61d2a41aa7fd55a9d33ac119d3698bbfbfbdcb19d279cf",
+    "lua/client/7_Tasks/ListenTask.lua": "7a4403c0ad4210e031a22d2be820e7ceb5d624664470000ee78f7da9cc0f597d",
+    "lua/client/7_Tasks/LockDoorsTask.lua": "fa96b7158e2d379eb85a82ec2b1224a41dc46f52e103eaf31f26084fede3b131",
+    "lua/client/7_Tasks/LootTask.lua": "2ad15c0b129b8782ac9d171c3d83546fcd2263b62bdb2b13581bb6b9e8344781",
+    "lua/client/7_Tasks/PatrolTask.lua": "64556b74b3a5c917e65c0bbadfabeb685e6324d6a8b43ea8d193b0556bdc98c1",
+    "lua/client/7_Tasks/PileCorpsesTask.lua": "4dd58ac3c044649a23f4d3549cfe90be36b8b9129cafbac4c09052401f592069",
+    "lua/client/7_Tasks/PursueTask.lua": "9f81eb736a74d2df9aac91a5f1aa3d004f425848a6634da965ecffe98a4df884",
+    "lua/client/7_Tasks/ReturnToBase.lua": "58ee4f2aea31b4eea5c69bce959b9014c2476a2a5f6f1de81c050b878ffc2192",
+    "lua/client/7_Tasks/SortLootTask.lua": "5c918d486d619e8219ac75711877f95253559203b4791e8c09f9990b0d049ab1",
+    "lua/client/7_Tasks/SpeakDialogueTask.lua": "e01b76b363c8590d8997b0fa338114bf808a4934bf7710ffad7adf349f06491f",
+    "lua/client/7_Tasks/SurenderTask.lua": "e28091b2379933b9c6c3f4764893a3d2433db875a851b0bdee488f670c1beb31",
+    "lua/client/7_Tasks/TakeGiftTask.lua": "8f6342705ab5adecc240297bffa9c8d06b77a5689cfefa3c4591de894eb70f2a",
+    "lua/client/7_Tasks/TaskManager.lua": "4bd80cdb679ba2809698dd7330a6555b284f10da473e818d25532b952dea56fc",
+    "lua/client/7_Tasks/ThreatenTask.lua": "662b09244345f59c73091a088772cd697a44a56837e796740e4592c95bad1fb5",
+    "lua/client/7_Tasks/WanderInAreaTask.lua": "63450a0aeb1e22dcf98ea94096f4d54ba25485c2ca1be7cca828b3b869a5231a",
+    "lua/client/7_Tasks/WanderInBaseTask.lua": "dccbefe4258918e765046cd6621bdcfeedb0777fb4cde4b18565c3ad17f0b60d",
+    "lua/client/7_Tasks/WanderInBuildingTask.lua": "181ff6401a20236779b8bfc42840e2019b3ed6a9329b41465f36db2107481cf9",
+    "lua/client/7_Tasks/WanderTask.lua": "0bd2e678a193a625ee7d4c77c8aa451e811c9d6e859edb266de2b54b0c1222bb",
+    "lua/client/7_Tasks/WashSelfTask.lua": "d80905415a4f60d9633f37f5a3019f6ca5e53ab0fbee52dc7ac4afbc7eba82f2",
+    "lua/client/8_QuestManager/QuestManager.lua": "e0fd79f4b411235422148973e99142ed0a90b2be56e4c743eaee753b41093a24",
+    "lua/client/9_QuestData/ExampleQuest.lua": "48b23818e8c3b284d5ef7b950da3f49f304e3c7840cf226a0ef7a9cc4b30aa00",
+    "lua/client/9_QuestData/HilltopRescueQuest.lua": "de61a90a610c0377bf77cccd66460a058b8517aecf3418536cdcd3ede501f04c",
+    "lua/client/Debug/SuperbSurvivorsDebug.lua": "34a4ff34e18fa2f9c5163f5a5e41e78148283b492334498a1cda69282bb4d248",
+    "lua/client/Debug/SuperbSurvivorsTests.lua": "c281c99cd621b6eb00af805dee67e2409b57430bd94d7404596fef485de5a5aa",
+    "lua/client/TimedActions/ISBarricadeAction.lua": "7309cbbbcf0910cc158a94834eac4dbcb58474fa825690ce0e547b4c8771d57e",
+    "lua/client/TimedActions/ISDropItemAction.lua": "ca9219536b6d4cc24b1b43714447fffe3e329ef366fe32efa8e7edeac2331675",
+    "lua/client/TimedActions/ISEatFoodAction.lua": "812a17d3a6438af567718ac8adad0e267c2d398711f0b45e60422335ff8ee63b",
+    "lua/client/TimedActions/ISEnterVehicle.lua": "a4517b9d72494c55e95bba1028394ea043d756593d95c1c85cac059162509598",
+    "lua/client/TimedActions/ISGetHitFromBehindAction.lua": "eb2530e2ab5c2b01bc1b3490588879d3fbfd29acd579adc69c6c51386dd75200",
+    "lua/client/TimedActions/ISGetHitFromFrontAction.lua": "bb641eeec905a6c9dd89d2ca433fbb4a46b89c94dd880ad5c2467dbc9268a9e7",
+    "lua/client/TimedActions/ISNPCScavengeAction.lua": "0b0da48c92376517560abd8e0a97bb7ba1dd80da15b7dcf4f690001cb6860aa3",
+    "lua/client/TimedActions/ISSurenderAction.lua": "70aceb31ecd24dfa29f990083d07bec7adaedca0b3bf862238825558c2bdb3db",
+    "lua/client/TimedActions/ZOverrides.lua": "f0df6050b38aaecd42fbbd78ed0a71a0b2b5019d558d91f14ab208452f509d99",
+    "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua": "a4517b9d72494c55e95bba1028394ea043d756593d95c1c85cac059162509598",
+    "lua/server/SuperSurvivorsLoading.lua": "66d8575b6439b88d1bf023fd01b4345769f75747922caaca034c8a33242caeee",
+    "lua/shared/Utilities.lua": "a5a20fa52b2d84e9864743a68f3c3fbb6242a7cfc3dee50c4f61ac0c856ca25b",
+    "maps/Hilltop Survivor Camp/spawnpoints.lua": "0a9a458c3866b0d72e695321256e8ad8ec6ef301930a71fd200fa028d888e89c",
+    "maps/Military Blockade/spawnpoints.lua": "70baeac1a098e7e1771fd5355dc58f30ebb047d2bd0c5887d68b0c5dbcd8087c",
+    "maps/Prison Escape/spawnpoints.lua": "a9bde30126c6e370439f2a4931ebae6ee9d3f764d8c8e0623e3fab06609a7186",
+    "maps/Woobury/spawnpoints.lua": "253a1e52394f7ab13f6a446471864ad88c82d6eee9b9537e9116853a2edd5c71"
+  },
+  "internal": [
+    {
+      "mode": "structural",
+      "tokens": 476,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 503,
+        "end": 528
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 540,
+        "end": 565
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 444,
+      "a": {
+        "file": "lua/client/7_Tasks/CleanInvTask.lua",
+        "start": 84,
+        "end": 160
+      },
+      "b": {
+        "file": "lua/client/7_Tasks/SortLootTask.lua",
+        "start": 94,
+        "end": 170
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 350,
+      "a": {
+        "file": "lua/client/TimedActions/ISEnterVehicle.lua",
+        "start": 5,
+        "end": 74
+      },
+      "b": {
+        "file": "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua",
+        "start": 5,
+        "end": 74
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 345,
+      "a": {
+        "file": "lua/client/3_Other/SuperSurvivor.lua",
+        "start": 26,
+        "end": 85
+      },
+      "b": {
+        "file": "lua/client/3_Other/SuperSurvivor.lua",
+        "start": 165,
+        "end": 225
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 341,
+      "a": {
+        "file": "lua/client/3_Other/SuperSurvivor.lua",
+        "start": 26,
+        "end": 85
+      },
+      "b": {
+        "file": "lua/client/3_Other/SuperSurvivor.lua",
+        "start": 165,
+        "end": 225
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 326,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+        "start": 168,
+        "end": 182
+      },
+      "b": {
+        "file": "lua/client/5_UI/SurvivorInfoWindow.lua",
+        "start": 83,
+        "end": 101
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 322,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 312,
+        "end": 378
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 336,
+        "end": 402
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 315,
+      "a": {
+        "file": "lua/client/3_Other/SuperSurvivorsMod.lua",
+        "start": 812,
+        "end": 861
+      },
+      "b": {
+        "file": "lua/client/3_Other/SuperSurvivorsMod.lua",
+        "start": 1099,
+        "end": 1148
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 288,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+        "start": 273,
+        "end": 328
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 316,
+        "end": 371
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 288,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+        "start": 273,
+        "end": 328
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 340,
+        "end": 395
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 283,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 150,
+        "end": 204
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+        "start": 274,
+        "end": 328
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 283,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 150,
+        "end": 204
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 317,
+        "end": 371
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 283,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 150,
+        "end": 204
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 341,
+        "end": 395
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 249,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 17,
+        "end": 70
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 4,
+        "end": 57
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 245,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 17,
+        "end": 70
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 4,
+        "end": 57
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 236,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 17,
+        "end": 65
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+        "start": 4,
+        "end": 52
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 236,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+        "start": 4,
+        "end": 52
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 4,
+        "end": 52
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 232,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 189,
+        "end": 221
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 237,
+        "end": 269
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 229,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 213,
+        "end": 246
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 264,
+        "end": 297
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 223,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 84,
+        "end": 125
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 92,
+        "end": 133
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 213,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 84,
+        "end": 125
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 92,
+        "end": 133
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 207,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 76,
+        "end": 106
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 205,
+        "end": 235
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 206,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 150,
+        "end": 197
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+        "start": 97,
+        "end": 144
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 206,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+        "start": 274,
+        "end": 321
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+        "start": 97,
+        "end": 144
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 206,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+        "start": 97,
+        "end": 144
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 317,
+        "end": 364
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 206,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+        "start": 97,
+        "end": 144
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 341,
+        "end": 388
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 203,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 201,
+        "end": 233
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 283,
+        "end": 315
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 182,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 17,
+        "end": 57
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 4,
+        "end": 44
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 182,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 4,
+        "end": 44
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 4,
+        "end": 44
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 182,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 198,
+        "end": 226
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 76,
+        "end": 104
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 182,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 198,
+        "end": 226
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 205,
+        "end": 233
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 179,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 17,
+        "end": 57
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 4,
+        "end": 44
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 179,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 4,
+        "end": 44
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 4,
+        "end": 44
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 179,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 98,
+        "end": 126
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 246,
+        "end": 274
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 179,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 76,
+        "end": 104
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 287,
+        "end": 315
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 178,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+        "start": 6,
+        "end": 46
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 4,
+        "end": 44
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 178,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 198,
+        "end": 226
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 287,
+        "end": 315
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 177,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 134,
+        "end": 143
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 149,
+        "end": 158
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 176,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 94,
+        "end": 117
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 219,
+        "end": 242
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 176,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 94,
+        "end": 117
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 270,
+        "end": 293
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 175,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 98,
+        "end": 121
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 205,
+        "end": 228
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 175,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 98,
+        "end": 121
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 287,
+        "end": 310
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 174,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 17,
+        "end": 57
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+        "start": 6,
+        "end": 46
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 174,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+        "start": 4,
+        "end": 44
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+        "start": 6,
+        "end": 46
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 174,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+        "start": 4,
+        "end": 44
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 4,
+        "end": 44
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 174,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+        "start": 6,
+        "end": 46
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 4,
+        "end": 44
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 174,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 98,
+        "end": 121
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 76,
+        "end": 99
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 173,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 98,
+        "end": 121
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 198,
+        "end": 221
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 173,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 246,
+        "end": 269
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 76,
+        "end": 99
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 173,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 246,
+        "end": 269
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 205,
+        "end": 228
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 173,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 246,
+        "end": 269
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 287,
+        "end": 310
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 170,
+      "a": {
+        "file": "lua/client/0_Utilities/SuperSurvivorContextUtilities.lua",
+        "start": 526,
+        "end": 542
+      },
+      "b": {
+        "file": "lua/client/0_Utilities/SuperSurvivorContextUtilities.lua",
+        "start": 562,
+        "end": 578
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 168,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 142,
+        "end": 151
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 160,
+        "end": 169
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 153,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 223,
+        "end": 242
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 205,
+        "end": 224
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 153,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 274,
+        "end": 293
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 205,
+        "end": 224
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 153,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 223,
+        "end": 242
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 287,
+        "end": 306
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 153,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 274,
+        "end": 293
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 287,
+        "end": 306
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 152,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 223,
+        "end": 242
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 76,
+        "end": 95
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 152,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 274,
+        "end": 293
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 76,
+        "end": 95
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 151,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 198,
+        "end": 217
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 223,
+        "end": 242
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 151,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 246,
+        "end": 265
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 223,
+        "end": 242
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 151,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 198,
+        "end": 217
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 274,
+        "end": 293
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 151,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 246,
+        "end": 265
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 274,
+        "end": 293
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 139,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 155,
+        "end": 177
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 178,
+        "end": 200
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 138,
+      "a": {
+        "file": "lua/client/7_Tasks/CleanInvTask.lua",
+        "start": 29,
+        "end": 57
+      },
+      "b": {
+        "file": "lua/client/7_Tasks/GiveRewardToPlayerTask.lua",
+        "start": 37,
+        "end": 65
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 137,
+      "a": {
+        "file": "lua/client/3_Other/SuperSurvivor.lua",
+        "start": 55,
+        "end": 80
+      },
+      "b": {
+        "file": "lua/client/3_Other/SuperSurvivor.lua",
+        "start": 268,
+        "end": 293
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 137,
+      "a": {
+        "file": "lua/client/3_Other/SuperSurvivor.lua",
+        "start": 195,
+        "end": 220
+      },
+      "b": {
+        "file": "lua/client/3_Other/SuperSurvivor.lua",
+        "start": 268,
+        "end": 293
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 135,
+      "a": {
+        "file": "lua/client/7_Tasks/CleanInvTask.lua",
+        "start": 59,
+        "end": 76
+      },
+      "b": {
+        "file": "lua/client/7_Tasks/SortLootTask.lua",
+        "start": 55,
+        "end": 72
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 132,
+      "a": {
+        "file": "lua/client/7_Tasks/FindThisTask.lua",
+        "start": 108,
+        "end": 127
+      },
+      "b": {
+        "file": "lua/client/7_Tasks/WashSelfTask.lua",
+        "start": 113,
+        "end": 131
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 128,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 145,
+        "end": 152
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 149,
+        "end": 156
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 122,
+      "a": {
+        "file": "lua/client/0_Utilities/SuperSurvivorUtilities.lua",
+        "start": 149,
+        "end": 158
+      },
+      "b": {
+        "file": "lua/client/0_Utilities/SuperSurvivorUtilities.lua",
+        "start": 183,
+        "end": 192
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 121,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+        "start": 103,
+        "end": 112
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+        "start": 225,
+        "end": 234
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 120,
+      "a": {
+        "file": "lua/client/7_Tasks/CleanInvTask.lua",
+        "start": 180,
+        "end": 195
+      },
+      "b": {
+        "file": "lua/client/7_Tasks/SortLootTask.lua",
+        "start": 204,
+        "end": 219
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 120,
+      "a": {
+        "file": "lua/client/7_Tasks/SortLootTask.lua",
+        "start": 74,
+        "end": 89
+      },
+      "b": {
+        "file": "lua/client/7_Tasks/SortLootTask.lua",
+        "start": 176,
+        "end": 191
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 116,
+      "a": {
+        "file": "lua/client/7_Tasks/SortLootTask.lua",
+        "start": 74,
+        "end": 89
+      },
+      "b": {
+        "file": "lua/client/7_Tasks/SortLootTask.lua",
+        "start": 176,
+        "end": 191
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 101,
+        "end": 111
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 201,
+        "end": 211
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 101,
+        "end": 111
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 249,
+        "end": 259
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 201,
+        "end": 211
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 249,
+        "end": 259
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 101,
+        "end": 111
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 226,
+        "end": 236
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 201,
+        "end": 211
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 226,
+        "end": 236
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 249,
+        "end": 259
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 226,
+        "end": 236
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 101,
+        "end": 111
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 277,
+        "end": 287
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 201,
+        "end": 211
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 277,
+        "end": 287
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 249,
+        "end": 259
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 277,
+        "end": 287
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 226,
+        "end": 236
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 277,
+        "end": 287
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 101,
+        "end": 111
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 79,
+        "end": 89
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 201,
+        "end": 211
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 79,
+        "end": 89
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 249,
+        "end": 259
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 79,
+        "end": 89
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 226,
+        "end": 236
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 79,
+        "end": 89
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 277,
+        "end": 287
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 79,
+        "end": 89
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 101,
+        "end": 111
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 208,
+        "end": 218
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 201,
+        "end": 211
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 208,
+        "end": 218
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 249,
+        "end": 259
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 208,
+        "end": 218
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 226,
+        "end": 236
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 208,
+        "end": 218
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 277,
+        "end": 287
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 208,
+        "end": 218
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 79,
+        "end": 89
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 208,
+        "end": 218
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/DDebugUI.lua",
+        "start": 101,
+        "end": 111
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 290,
+        "end": 300
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 201,
+        "end": 211
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 290,
+        "end": 300
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 249,
+        "end": 259
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 290,
+        "end": 300
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 226,
+        "end": 236
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 290,
+        "end": 300
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 277,
+        "end": 287
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 290,
+        "end": 300
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 79,
+        "end": 89
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 290,
+        "end": 300
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 208,
+        "end": 218
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 290,
+        "end": 300
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 114,
+      "a": {
+        "file": "lua/client/7_Tasks/CleanInvTask.lua",
+        "start": 24,
+        "end": 52
+      },
+      "b": {
+        "file": "lua/client/7_Tasks/SortLootTask.lua",
+        "start": 24,
+        "end": 52
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 112,
+      "a": {
+        "file": "lua/client/3_Other/SuperSurvivor.lua",
+        "start": 1033,
+        "end": 1047
+      },
+      "b": {
+        "file": "lua/client/3_Other/SuperSurvivor.lua",
+        "start": 1048,
+        "end": 1062
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 111,
+      "a": {
+        "file": "lua/client/0_Utilities/SuperSurvivorUtilities.lua",
+        "start": 149,
+        "end": 158
+      },
+      "b": {
+        "file": "lua/client/0_Utilities/SuperSurvivorUtilities.lua",
+        "start": 167,
+        "end": 176
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 111,
+      "a": {
+        "file": "lua/client/0_Utilities/SuperSurvivorUtilities.lua",
+        "start": 167,
+        "end": 176
+      },
+      "b": {
+        "file": "lua/client/0_Utilities/SuperSurvivorUtilities.lua",
+        "start": 183,
+        "end": 192
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 110,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 158,
+        "end": 177
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 181,
+        "end": 200
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 107,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 57,
+        "end": 64
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 266,
+        "end": 273
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 107,
+      "a": {
+        "file": "lua/client/7_Tasks/FindThisTask.lua",
+        "start": 49,
+        "end": 77
+      },
+      "b": {
+        "file": "lua/client/7_Tasks/WashSelfTask.lua",
+        "start": 79,
+        "end": 107
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 106,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 150,
+        "end": 158
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 171,
+        "end": 179
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 105,
+      "a": {
+        "file": "lua/client/7_Tasks/GiveRewardToPlayerTask.lua",
+        "start": 37,
+        "end": 60
+      },
+      "b": {
+        "file": "lua/client/7_Tasks/SortLootTask.lua",
+        "start": 29,
+        "end": 52
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 104,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 200,
+        "end": 212
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+        "start": 251,
+        "end": 263
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 102,
+      "a": {
+        "file": "lua/client/3_Other/SuperSurvivorsMod.lua",
+        "start": 114,
+        "end": 128
+      },
+      "b": {
+        "file": "lua/client/3_Other/SuperSurvivorsMod.lua",
+        "start": 128,
+        "end": 145
+      }
+    },
+    {
+      "mode": "structural",
+      "tokens": 102,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+        "start": 151,
+        "end": 161
+      },
+      "b": {
+        "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+        "start": 154,
+        "end": 164
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 101,
+      "a": {
+        "file": "lua/client/5_UI/UIUtils.lua",
+        "start": 47,
+        "end": 60
+      },
+      "b": {
+        "file": "lua/client/5_UI/UIUtils.lua",
+        "start": 64,
+        "end": 77
+      }
+    }
+  ],
+  "vanilla": [
+    {
+      "mode": "exact",
+      "tokens": 213,
+      "a": {
+        "file": "lua/client/TimedActions/ISBarricadeAction.lua",
+        "start": 41,
+        "end": 73
+      },
+      "b": {
+        "file": "shared/TimedActions/ISBarricadeAction.lua",
+        "start": 37,
+        "end": 69
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 195,
+      "a": {
+        "file": "lua/client/TimedActions/ISBarricadeAction.lua",
+        "start": 74,
+        "end": 101
+      },
+      "b": {
+        "file": "shared/TimedActions/ISBarricadeAction.lua",
+        "start": 69,
+        "end": 100
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 192,
+      "a": {
+        "file": "lua/client/TimedActions/ISEnterVehicle.lua",
+        "start": 32,
+        "end": 72
+      },
+      "b": {
+        "file": "client/Vehicles/TimedActions/ISEnterVehicle.lua",
+        "start": 63,
+        "end": 103
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 192,
+      "a": {
+        "file": "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua",
+        "start": 32,
+        "end": 72
+      },
+      "b": {
+        "file": "client/Vehicles/TimedActions/ISEnterVehicle.lua",
+        "start": 63,
+        "end": 103
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 165,
+      "a": {
+        "file": "lua/client/TimedActions/ISBarricadeAction.lua",
+        "start": 5,
+        "end": 35
+      },
+      "b": {
+        "file": "shared/TimedActions/ISBarricadeAction.lua",
+        "start": 1,
+        "end": 31
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 112,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorOptions.lua",
+        "start": 231,
+        "end": 255
+      },
+      "b": {
+        "file": "client/OptionScreens/GameOption.lua",
+        "start": 51,
+        "end": 75
+      }
+    },
+    {
+      "mode": "exact",
+      "tokens": 111,
+      "a": {
+        "file": "lua/client/5_UI/SuperSurvivorOptions.lua",
+        "start": 208,
+        "end": 229
+      },
+      "b": {
+        "file": "client/OptionScreens/GameOption.lua",
+        "start": 5,
+        "end": 26
+      }
+    }
+  ],
+  "identical_functions": [
+    {
+      "tokens": 120,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 87,
+          "end": 106
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 95,
+          "end": 114
+        }
+      ]
+    },
+    {
+      "tokens": 111,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 101,
+          "end": 109
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 201,
+          "end": 209
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 249,
+          "end": 257
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 226,
+          "end": 234
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 277,
+          "end": 285
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+          "start": 79,
+          "end": 87
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+          "start": 208,
+          "end": 216
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+          "start": 290,
+          "end": 298
+        }
+      ]
+    },
+    {
+      "tokens": 103,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 161,
+          "end": 172
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 184,
+          "end": 195
+        }
+      ]
+    },
+    {
+      "tokens": 91,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 364,
+          "end": 373
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 388,
+          "end": 397
+        }
+      ]
+    },
+    {
+      "tokens": 66,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 57,
+          "end": 65
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+          "start": 44,
+          "end": 52
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 44,
+          "end": 52
+        }
+      ]
+    },
+    {
+      "tokens": 62,
+      "locations": [
+        {
+          "file": "lua/client/TimedActions/ISEnterVehicle.lua",
+          "start": 62,
+          "end": 74
+        },
+        {
+          "file": "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua",
+          "start": 62,
+          "end": 74
+        }
+      ]
+    },
+    {
+      "tokens": 59,
+      "locations": [
+        {
+          "file": "lua/client/TimedActions/ISGetHitFromBehindAction.lua",
+          "start": 34,
+          "end": 48
+        },
+        {
+          "file": "lua/client/TimedActions/ISGetHitFromFrontAction.lua",
+          "start": 37,
+          "end": 51
+        }
+      ]
+    },
+    {
+      "tokens": 57,
+      "locations": [
+        {
+          "file": "lua/client/TimedActions/ISEnterVehicle.lua",
+          "start": 41,
+          "end": 52
+        },
+        {
+          "file": "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua",
+          "start": 41,
+          "end": 52
+        }
+      ]
+    },
+    {
+      "tokens": 52,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 113,
+          "end": 122
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 121,
+          "end": 130
+        }
+      ]
+    },
+    {
+      "tokens": 52,
+      "locations": [
+        {
+          "file": "lua/client/TimedActions/ISEnterVehicle.lua",
+          "start": 26,
+          "end": 32
+        },
+        {
+          "file": "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua",
+          "start": 26,
+          "end": 32
+        }
+      ]
+    },
+    {
+      "tokens": 47,
+      "locations": [
+        {
+          "file": "lua/client/0_Utilities/SuperSurvivorTablesUtilities.lua",
+          "start": 204,
+          "end": 206
+        },
+        {
+          "file": "lua/shared/Utilities.lua",
+          "start": 14,
+          "end": 16
+        }
+      ]
+    },
+    {
+      "tokens": 47,
+      "locations": [
+        {
+          "file": "lua/client/0_Utilities/SuperSurvivorUtilities.lua",
+          "start": 132,
+          "end": 145
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorPVPButton.lua",
+          "start": 5,
+          "end": 18
+        }
+      ]
+    },
+    {
+      "tokens": 46,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 47,
+          "end": 55
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+          "start": 34,
+          "end": 42
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+          "start": 36,
+          "end": 44
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 34,
+          "end": 42
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 34,
+          "end": 42
+        }
+      ]
+    },
+    {
+      "tokens": 46,
+      "locations": [
+        {
+          "file": "lua/client/TimedActions/ISEnterVehicle.lua",
+          "start": 9,
+          "end": 15
+        },
+        {
+          "file": "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua",
+          "start": 9,
+          "end": 15
+        }
+      ]
+    },
+    {
+      "tokens": 42,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 153,
+          "end": 160
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+          "start": 277,
+          "end": 284
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+          "start": 100,
+          "end": 107
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 320,
+          "end": 327
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 344,
+          "end": 351
+        }
+      ]
+    },
+    {
+      "tokens": 42,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 162,
+          "end": 169
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+          "start": 286,
+          "end": 293
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+          "start": 109,
+          "end": 116
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 329,
+          "end": 336
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 353,
+          "end": 360
+        }
+      ]
+    },
+    {
+      "tokens": 41,
+      "locations": [
+        {
+          "file": "lua/client/3_Other/SuperSurvivorPresetSpawns.lua",
+          "start": 5,
+          "end": 14
+        },
+        {
+          "file": "lua/server/SuperSurvivorsLoading.lua",
+          "start": 6,
+          "end": 15
+        },
+        {
+          "file": "lua/shared/Utilities.lua",
+          "start": 2,
+          "end": 11
+        }
+      ]
+    },
+    {
+      "tokens": 40,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 115,
+          "end": 121
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 215,
+          "end": 221
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 263,
+          "end": 269
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+          "start": 93,
+          "end": 99
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+          "start": 222,
+          "end": 228
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+          "start": 304,
+          "end": 310
+        }
+      ]
+    },
+    {
+      "tokens": 40,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 240,
+          "end": 246
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 291,
+          "end": 297
+        }
+      ]
+    },
+    {
+      "tokens": 36,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 187,
+          "end": 195
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+          "start": 311,
+          "end": 319
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+          "start": 134,
+          "end": 142
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 354,
+          "end": 362
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 378,
+          "end": 386
+        }
+      ]
+    },
+    {
+      "tokens": 36,
+      "locations": [
+        {
+          "file": "lua/client/TimedActions/ISEnterVehicle.lua",
+          "start": 17,
+          "end": 24
+        },
+        {
+          "file": "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua",
+          "start": 17,
+          "end": 24
+        }
+      ]
+    },
+    {
+      "tokens": 35,
+      "locations": [
+        {
+          "file": "lua/client/TimedActions/ISEnterVehicle.lua",
+          "start": 34,
+          "end": 39
+        },
+        {
+          "file": "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua",
+          "start": 34,
+          "end": 39
+        }
+      ]
+    },
+    {
+      "tokens": 30,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 31,
+          "end": 37
+        },
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 39,
+          "end": 45
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+          "start": 18,
+          "end": 24
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+          "start": 26,
+          "end": 32
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+          "start": 20,
+          "end": 26
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+          "start": 28,
+          "end": 34
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 18,
+          "end": 24
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 26,
+          "end": 32
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 18,
+          "end": 24
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 26,
+          "end": 32
+        }
+      ]
+    },
+    {
+      "tokens": 30,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SuperSurvivorsContextMenu.lua",
+          "start": 10,
+          "end": 16
+        },
+        {
+          "file": "lua/client/TimedActions/ISGetHitFromBehindAction.lua",
+          "start": 10,
+          "end": 16
+        },
+        {
+          "file": "lua/client/TimedActions/ISGetHitFromFrontAction.lua",
+          "start": 10,
+          "end": 16
+        }
+      ]
+    },
+    {
+      "tokens": 27,
+      "locations": [
+        {
+          "file": "lua/client/7_Tasks/CleanInvTask.lua",
+          "start": 28,
+          "end": 34
+        },
+        {
+          "file": "lua/client/7_Tasks/SortLootTask.lua",
+          "start": 28,
+          "end": 34
+        }
+      ]
+    },
+    {
+      "tokens": 27,
+      "locations": [
+        {
+          "file": "lua/client/7_Tasks/CleanInvTask.lua",
+          "start": 36,
+          "end": 39
+        },
+        {
+          "file": "lua/client/7_Tasks/GiveRewardToPlayerTask.lua",
+          "start": 44,
+          "end": 47
+        },
+        {
+          "file": "lua/client/7_Tasks/SortLootTask.lua",
+          "start": 36,
+          "end": 39
+        }
+      ]
+    },
+    {
+      "tokens": 26,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 171,
+          "end": 177
+        },
+        {
+          "file": "lua/client/5_UI/DDebugUI.lua",
+          "start": 179,
+          "end": 185
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+          "start": 295,
+          "end": 301
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorBasePanel.lua",
+          "start": 303,
+          "end": 309
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+          "start": 118,
+          "end": 124
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInfoPanel.lua",
+          "start": 126,
+          "end": 132
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 338,
+          "end": 344
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 346,
+          "end": 352
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 362,
+          "end": 368
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 370,
+          "end": 376
+        }
+      ]
+    },
+    {
+      "tokens": 24,
+      "locations": [
+        {
+          "file": "lua/client/TimedActions/ISEnterVehicle.lua",
+          "start": 54,
+          "end": 60
+        },
+        {
+          "file": "lua/client/Vehicles/TimedActions/ISEnterVehicle.lua",
+          "start": 54,
+          "end": 60
+        }
+      ]
+    },
+    {
+      "tokens": 21,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+          "start": 617,
+          "end": 622
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorWindow.lua",
+          "start": 624,
+          "end": 629
+        }
+      ]
+    },
+    {
+      "tokens": 20,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SuperSurvivorInventory.lua",
+          "start": 108,
+          "end": 111
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorLoadout.lua",
+          "start": 116,
+          "end": 119
+        }
+      ]
+    },
+    {
+      "tokens": 20,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SuperSurvivorsContextMenu.lua",
+          "start": 24,
+          "end": 27
+        },
+        {
+          "file": "lua/client/TimedActions/ISGetHitFromBehindAction.lua",
+          "start": 24,
+          "end": 27
+        }
+      ]
+    },
+    {
+      "tokens": 20,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SuperSurvivorsContextMenu.lua",
+          "start": 29,
+          "end": 32
+        },
+        {
+          "file": "lua/client/TimedActions/ISGetHitFromBehindAction.lua",
+          "start": 29,
+          "end": 32
+        },
+        {
+          "file": "lua/client/TimedActions/ISGetHitFromFrontAction.lua",
+          "start": 30,
+          "end": 35
+        }
+      ]
+    },
+    {
+      "tokens": 20,
+      "locations": [
+        {
+          "file": "lua/client/7_Tasks/DialogueTask.lua",
+          "start": 60,
+          "end": 63
+        },
+        {
+          "file": "lua/client/7_Tasks/SpeakDialogueTask.lua",
+          "start": 29,
+          "end": 32
+        }
+      ]
+    },
+    {
+      "tokens": 20,
+      "locations": [
+        {
+          "file": "lua/client/TimedActions/ISGetHitFromFrontAction.lua",
+          "start": 24,
+          "end": 28
+        },
+        {
+          "file": "lua/client/TimedActions/ISSurenderAction.lua",
+          "start": 25,
+          "end": 28
+        }
+      ]
+    },
+    {
+      "tokens": 18,
+      "locations": [
+        {
+          "file": "lua/client/3_Other/SuperSurvivorUndressing.lua",
+          "start": 8,
+          "end": 10
+        },
+        {
+          "file": "lua/client/TimedActions/ISDropItemAction.lua",
+          "start": 9,
+          "end": 11
+        }
+      ]
+    },
+    {
+      "tokens": 18,
+      "locations": [
+        {
+          "file": "lua/client/5_UI/SSQuestManagerDialogue.lua",
+          "start": 99,
+          "end": 102
+        },
+        {
+          "file": "lua/client/5_UI/SSQuestManagerWindow.lua",
+          "start": 21,
+          "end": 24
+        },
+        {
+          "file": "lua/client/5_UI/SuperSurvivorMyGroupWindow.lua",
+          "start": 33,
+          "end": 36
+        },
+        {
+          "file": "lua/client/5_UI/SurvivorInfoWindow.lua",
+          "start": 31,
+          "end": 34
+        }
+      ]
+    },
+    {
+      "tokens": 17,
+      "locations": [
+        {
+          "file": "lua/client/7_Tasks/DoctorTask.lua",
+          "start": 26,
+          "end": 29
+        },
+        {
+          "file": "lua/client/7_Tasks/ThreatenTask.lua",
+          "start": 42,
+          "end": 45
+        }
+      ]
+    }
+  ]
+}

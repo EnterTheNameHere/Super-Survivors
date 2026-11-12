@@ -63,7 +63,7 @@ end
 function ThreatenTask:dealComplete()
 	if self.StartedThreatening then
 	
-		if Demands == "Scram" then
+		if self.Demands == "Scram" then
 			if self.theDistance >= 20 and not self.parent.player:CanSee(self.Aite.player) then 
 				self.parent:DebugSay(self.parent:getName() .. " ThreatenTask complete")
 				return true 
@@ -77,6 +77,7 @@ end
 
 function ThreatenTask:update()
 	if(not self:isValid()) or (self:isComplete()) then return false end
+	local weapon = self.parent.player:getPrimaryHandItem()
 
 
 

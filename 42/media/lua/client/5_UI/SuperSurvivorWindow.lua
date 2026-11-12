@@ -389,7 +389,7 @@ function WindowSuperSurvivors:createChildren()
     self.headers_companions_name.onMouseDown = function() return  end
     self.headers_companions_task.onMouseDown = function() return  end
     self.headers_companions_command.onMouseDown = function() return  end
-    self.headers_base_modify.onMouseDown = function() return  end
+    self.headers_companions_call.onMouseDown = function() return  end
     self.headers_companions_name.backgroundColorMouseOver = self.headers_companions_name.backgroundColor
     self.headers_companions_task.backgroundColorMouseOver = self.headers_companions_task.backgroundColor
     self.headers_companions_command.backgroundColorMouseOver = self.headers_companions_command.backgroundColor
@@ -500,7 +500,9 @@ end
 
 context_options.show_context_menu_order = function(member_index)
     if member_index == 1 then return end
-    local context_menu = ISContextMenu.get(0, getMouseX(), getMouseY(), 1, 1)
+    require "0_Utilities/SuperSurvivorPanelUtilities"
+    local context_menu = SuperSurvivorPanels.contextMenu(0, getMouseX(), getMouseY())
+    if not context_menu then return end
     context_menu:addOption("Barricade", nil, function() give_order(1, member_index) end)
     context_menu:addOption("Chop Wood", nil, function() give_order(2, member_index) end)
     context_menu:addOption("Clean Up Inventory", nil, function() give_order(3, member_index) end)
@@ -534,7 +536,9 @@ context_options.show_context_menu_role = function(member_index)
     local group = SSGM:Get(group_id)
     local group_members = SSGM:Get(group_id):getMembers()
     local member = group_members[member_index]
-    local context_menu = ISContextMenu.get(0, getMouseX(), getMouseY(), 1, 1)
+    require "0_Utilities/SuperSurvivorPanelUtilities"
+    local context_menu = SuperSurvivorPanels.contextMenu(0, getMouseX(), getMouseY())
+    if not context_menu then return end
     context_menu:addOption("Call", nil, function() on_click_companion_call(member_index)  end)
     local order = context_menu:addOption("Order", nil, nil)
     local sub_order = context_menu:getNew(context_menu)
@@ -573,7 +577,9 @@ end
 context_options.show_context_menu_member = function(member_index)
     if member_index == 1 then return end
     local member = SSGM:Get(SSM:Get(0):getGroupID()):getMembers()[member_index]
-    local context_menu = ISContextMenu.get(0, getMouseX(), getMouseY(), 1, 1)
+    require "0_Utilities/SuperSurvivorPanelUtilities"
+    local context_menu = SuperSurvivorPanels.contextMenu(0, getMouseX(), getMouseY())
+    if not context_menu then return end
     context_menu:addOption("Information", nil, function() show_survivor_info(member_index)  end)
     context_menu:addOption("Inventory", nil, function() create_panel_inventory_transfer(member_index)  end)
     local use_weapon = context_menu:addOption("Use Weapon", nil, nil)

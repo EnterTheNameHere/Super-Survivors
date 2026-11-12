@@ -118,6 +118,7 @@ function AIManager_Companion(TMI)
 				and (NPC.player:getModData().isRobber) 
 				and (not NPC.player:getModData().hitByCharacter) 
 				and EnemyIsSurvivor 
+				and EnemySuperSurvivor ~= nil
 				and (not EnemySuperSurvivor.player:getModData().dealBreaker) 
 				then 
 					TMI:AddToTop(ThreatenTask:new(NPC,EnemySuperSurvivor,"Scram"))

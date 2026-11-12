@@ -1,4 +1,10 @@
 {
+    "IGUI_SS_Panels_Inventory": "Inventory",
+    "IGUI_SS_Panels_Equipment": "Equipment",
+    "IGUI_SS_Panels_Close": "Close",
+    "IGUI_SS_Clothing_Busy": "Finish or cancel the current clothing action first.",
+    "IGUI_SS_Clothing_Cancel": "Cancel",
+    "IGUI_SS_Clothing_Queued": "Queued",
     "IGUI_SS_Drinking": "Drinking..",
     "IGUI_SS_EatFood_Before": "Eats ",
     "IGUI_SS_EatFood_After": "",

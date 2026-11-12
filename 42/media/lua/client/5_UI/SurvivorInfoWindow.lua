@@ -98,17 +98,17 @@ function SurvivorInfoWindow:Load(ASuperSurvivor)
 	
 
 	newText = newText .. "\n"
-	local meleewepName = getActionText("Nothing")
-	local gunwepName = getActionText("Nothing")
-	if(ASuperSurvivor.LastMeleeUsed ~= nil) then meleewepName = ASuperSurvivor.LastMeleeUsed:getDisplayName() end
-	if(ASuperSurvivor.LastGunUsed ~= nil) then gunwepName = ASuperSurvivor.LastGunUsed:getDisplayName() end
+	local meleeWepName = getActionText("Nothing")
+	local gunWepName = getActionText("Nothing")
+	if(ASuperSurvivor.LastMeleeUsed ~= nil) then meleeWepName = ASuperSurvivor.LastMeleeUsed:getDisplayName() end
+	if(ASuperSurvivor.LastGunUsed ~= nil) then gunWepName = ASuperSurvivor.LastGunUsed:getDisplayName() end
 	local phi
 	if(player:getPrimaryHandItem() ~= nil) then phi = player:getPrimaryHandItem():getDisplayName()
 	else phi = getActionText("Nothing") end
 	
 	newText = newText .. getContextMenuText("PrimaryHandItem")..": " .. tostring(phi)  .. "\n"
-	newText = newText .. getContextMenuText("MeleeWeapon")..": " .. tostring(meleewepName)  .. "\n"
-	newText = newText .. getContextMenuText("GunWeapon")..": " .. tostring(gunwepName)  .. "\n"
+	newText = newText .. getContextMenuText("MeleeWeapon")..": " .. tostring(meleeWepName)  .. "\n"
+	newText = newText .. getContextMenuText("GunWeapon")..": " .. tostring(gunWepName)  .. "\n"
 	newText = newText .. getContextMenuText("CurrentTask")..": " .. tostring(ASuperSurvivor:getCurrentTask())  .. "\n"
 	newText = newText .. "\n"
 	newText = newText .. getContextMenuText("AmmoCount")..": " .. tostring(ASuperSurvivor.player:getModData().ammoCount) .. "\n"
@@ -153,7 +153,7 @@ function SurvivorInfoWindowCreate()
 	
 	-- build compatibility check---
 	local player = getSpecificPlayer(0)
-	if(player.setSceneCulled == nil) then -- this function only exists in build 41
+	if(player and player.setSceneCulled == nil) then -- this function only exists in build 41
 		local text = "\n\n\nWARNING!! WARNING!! ERROR!!\n\nSUBPAR SURVIVORS MOD INCOMPATIBLE WITH THIS BUILD! \n\n";
 		text = text .. "Please see the TIS forum or Discord to get help changng over to build 41."
 		mySurvivorInfoWindow:setVisible(true);

@@ -2,32 +2,32 @@ UI_CH = {
 	--[[structure]]--
 
 
-		UI_Option_SS_Title = "­Æ¦sªÌ",
+		UI_Option_SS_Title = "ï¿½Æ¦sï¿½ï¿½",
 	--[[END structure]]--
 
 	--[[global]]--
 
 
-		UI_Option_SS_Off = "Ãö",
-		UI_Option_SS_On = "¶}",
-		UI_Option_SS_VeryLow = "«D±`§C",
-		UI_Option_SS_Low = "§C",
-		UI_Option_SS_Normal = "´¶³q",
-		UI_Option_SS_High = "°ª",
-		UI_Option_SS_VeryHigh = "«D±`°ª",
+		UI_Option_SS_Off = "ï¿½ï¿½",
+		UI_Option_SS_On = "ï¿½}",
+		UI_Option_SS_VeryLow = "ï¿½Dï¿½`ï¿½C",
+		UI_Option_SS_Low = "ï¿½C",
+		UI_Option_SS_Normal = "ï¿½ï¿½ï¿½q",
+		UI_Option_SS_High = "ï¿½ï¿½",
+		UI_Option_SS_VeryHigh = "ï¿½Dï¿½`ï¿½ï¿½",
 	--[[END global]]--
 
 	--[[spawn]]--
 
 
-		UI_Option_SS_SurvivorSpawnRate = "­Æ¦sªÌ¨ê·s´X²v",
-		UI_Option_SS_SurvivorSpawnRateDesc = "¸Ó¿ï¶µ©w¸q¤F±N²£¥ÍªºÀH¾÷­Æ¦sªÌªº¼Æ¶q¡C",
-		UI_Option_SS_UltraLow = "³Ì§C",
-		UI_Option_SS_ExtremelyLow = "·¥§C",
-		UI_Option_SS_SlightlyLower = "²¤§C",
-		UI_Option_SS_SlightlyHigher = "²¤°ª",
-		UI_Option_SS_ExtremelyHigh = "·¥°ª",
-		UI_Option_SS_UltraHigh = "³Ì°ª",
+		UI_Option_SS_SurvivorSpawnRate = "ï¿½Æ¦sï¿½Ì¨ï¿½sï¿½Xï¿½v",
+		UI_Option_SS_SurvivorSpawnRateDesc = "ï¿½Ó¿ï¶µï¿½wï¿½qï¿½Fï¿½Nï¿½ï¿½ï¿½Íªï¿½ï¿½Hï¿½ï¿½ï¿½Æ¦sï¿½Ìªï¿½ï¿½Æ¶qï¿½C",
+		UI_Option_SS_UltraLow = "ï¿½Ì§C",
+		UI_Option_SS_ExtremelyLow = "ï¿½ï¿½ï¿½C",
+		UI_Option_SS_SlightlyLower = "ï¿½ï¿½ï¿½C",
+		UI_Option_SS_SlightlyHigher = "ï¿½ï¿½ï¿½ï¿½",
+		UI_Option_SS_ExtremelyHigh = "ï¿½ï¿½ï¿½ï¿½",
+		UI_Option_SS_UltraHigh = "ï¿½Ì°ï¿½",
 	--[[END spawn]]--
 
 	--[[alt spawn]]--
@@ -40,8 +40,8 @@ UI_CH = {
 	--[[preset spawn]]--
 
 
-		UI_Option_SS_NoPreSetSpawn = "¸T¤î¥þ³¡¹w¸m/°ß³üªº©¯¦sªÌ",
-		UI_Option_SS_NoPreSetSpawnDesc = "¸T¤î¥þ³¡¹w¸m/°ß³üªº©¯¦sªÌ",
+		UI_Option_SS_NoPreSetSpawn = "ï¿½Tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½m/ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½",
+		UI_Option_SS_NoPreSetSpawnDesc = "ï¿½Tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½m/ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½",
 	--[[END preset spawn]]--
 
 	--[[names]]--
@@ -52,117 +52,117 @@ UI_CH = {
 	--[[hostile]]--
 
 
-		UI_Option_SS_ChancetobeHostile = "ªì©l¨ê·s¼Ä¹ï·§²v",
-		UI_Option_SS_ChancetobeHostileDesc = "¦¹¿ï¶µ©w¸qÀH¾÷²£¥Íªº­Æ¦sªÌ¦b¨ê·sªº®É­Ô·|²£¥Í¼Ä¹ïªº¥i¯à©Ê¡C",
-		UI_Option_SS_MaxHostileSpawnRate = "®É¶¡±À²¾¼Ä¹ï·§²v",
-		UI_Option_SS_MaxHostileSpawnRateDesc = "ÀHµÛ®É¶¡ªº±À²¾¡A¼Ä¹ï¼W¥[ªº´X²v·|¼W¥[¡A¦ý¥¦·|­­¨î¦b³o­Ó¦Ê¤À¤ñ¡A¥Ã»·¤£·|¶W¹L³o­Ó¦Ê¤À¤ñ¡C",
+		UI_Option_SS_ChancetobeHostile = "ï¿½ï¿½lï¿½ï¿½sï¿½Ä¹ï·§ï¿½v",
+		UI_Option_SS_ChancetobeHostileDesc = "ï¿½ï¿½ï¿½ï¶µï¿½wï¿½qï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½Íªï¿½ï¿½Æ¦sï¿½Ì¦bï¿½ï¿½sï¿½ï¿½ï¿½É­Ô·|ï¿½ï¿½ï¿½Í¼Ä¹ïªºï¿½iï¿½ï¿½Ê¡C",
+		UI_Option_SS_MaxHostileSpawnRate = "ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¹ï·§ï¿½v",
+		UI_Option_SS_MaxHostileSpawnRateDesc = "ï¿½Hï¿½Û®É¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Ä¹ï¿½Wï¿½[ï¿½ï¿½ï¿½Xï¿½vï¿½|ï¿½Wï¿½[ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½bï¿½oï¿½Ó¦Ê¤ï¿½ï¿½ï¿½Aï¿½Ã»ï¿½ï¿½ï¿½ï¿½|ï¿½Wï¿½Lï¿½oï¿½Ó¦Ê¤ï¿½ï¿½ï¿½C",
 	--[[END hostile]]--
 
 	--[[raiders]]--
 
 
-		UI_Option_SS_RaidersChance = "ÀH¾÷±jµs¨ê·s´X²v",
-		UI_Option_SS_RaidersChanceDesc = "¸Ó¿ï¶µ¨M©w±jµs¬ðÅ§¨Æ¥ó¦b¶}©l¤é´Á¤§«áµo¥Íªº¥i¯à©Ê¡C",
-		UI_Option_SS_RaidersAfterHours = "¤J«IªÌÀH¾÷¨Æ¥ó¤Ñ¼Æ",
-		UI_Option_SS_StartImmediately = "¥ß§Y¶}©l",
-		UI_Option_SS_AfterDay1 = "1¤Ñ¤§«á",
-		UI_Option_SS_AfterDay5 = "5¤Ñ¤§«á",
-		UI_Option_SS_AfterDay10 = "10¤Ñ¤§«á",
-		UI_Option_SS_AfterDay15 = "15¤Ñ¤§«á",
-		UI_Option_SS_AfterDay20 = "20¤Ñ¤§«á",
-		UI_Option_SS_AfterDay25 = "25¤Ñ¤§«á",
-		UI_Option_SS_AfterDay30 = "30¤Ñ¤§«á",
-		UI_Option_SS_AfterDay35 = "35¤Ñ¤§«á",
-		UI_Option_SS_AfterDay40 = "40¤Ñ¤§«á",
-		UI_Option_SS_AfterDay45 = "45¤Ñ¤§«á",
-		UI_Option_SS_AfterDay50 = "50¤Ñ¤§«á",
-		UI_Option_SS_AfterDay55 = "55¤Ñ¤§«á",
-		UI_Option_SS_AfterDay60 = "60¤Ñ¤§«á",
-		UI_Option_SS_AfterDay65 = "65¤Ñ¤§«á",
-		UI_Option_SS_AfterDay70 = "70¤Ñ¤§«á",
-		UI_Option_SS_AfterDay75 = "75¤Ñ¤§«á",
-		UI_Option_SS_AfterDay80 = "80¤Ñ¤§«á",
-		UI_Option_SS_AfterDay85 = "85¤Ñ¤§«á",
-		UI_Option_SS_AfterDay90 = "90¤Ñ¤§«á",
-		UI_Option_SS_AfterDay95 = "95¤Ñ¤§«á",
-		UI_Option_SS_AfterDay100 = "100¤Ñ¤§«á",
-		UI_Option_SS_Never = "±q¤£",
-		UI_Option_SS_RaidersAfterHoursDesc = "¦b³o¬q®É¶¡¹L«á¡A±jµs¬ðÅ§¨Æ¥ó¥i¥H¶}©lÀH¾÷µo¥Í¡C¨Æ¥ó¤]®v­è­è¶}©l¡C",
-		UI_Option_SS_RaidersGuaranteed = "Å§À»¨Æ¥ó¨ê·s¶¡¹j",
-		UI_Option_SS_Every5Days = "¨C5¤Ñ",
-		UI_Option_SS_Every10Days = "¨C10¤Ñ",
-		UI_Option_SS_Every15Days = "¨C15¤Ñ",
-		UI_Option_SS_Every20Days = "¨C20¤Ñ",
-		UI_Option_SS_Every25Days = "¨C25¤Ñ",
-		UI_Option_SS_Every30Days = "¨C30¤Ñ",
-		UI_Option_SS_Every35Days = "¨C35¤Ñ",
-		UI_Option_SS_Every40Days = "¨C40¤Ñ",
-		UI_Option_SS_Every45Days = "¨C45¤Ñ",
-		UI_Option_SS_Every50Days = "¨C50¤Ñ",
-		UI_Option_SS_Every55Days = "¨C55¤Ñ",
-		UI_Option_SS_Every60Days = "¨C60¤Ñ",
-		UI_Option_SS_Every65Days = "¨C65¤Ñ",
-		UI_Option_SS_Every70Days = "¨C70¤Ñ",
-		UI_Option_SS_Every75Days = "¨C75¤Ñ",
-		UI_Option_SS_Every80Days = "¨C80¤Ñ",
-		UI_Option_SS_Every85Days = "¨C85¤Ñ",
-		UI_Option_SS_Every90Days = "¨C90¤Ñ",
-		UI_Option_SS_Every95Days = "¨C95¤Ñ",
-		UI_Option_SS_Every100Days = "¨C100 Days",
-		UI_Option_SS_EveryDay = "¨C¤Ñ!",
-		UI_Option_SS_EveryHour = "¨C¤p®É!",
-		UI_Option_SS_Every10Minutes = "¨C10¤ÀÄÁ!",
-		UI_Option_SS_RaidersGuaranteedDesc = "¦pªG¥¦¸g¹L¤F¬ðÅ§ªÌªº¶}©l¤é´Á¡A¨Ã¥B¬ðÅ§¨Æ¥ó¨S¦³µo¥Í¦b³o¬q®É¶¡¡C±°¹ÜªÌ·|¦b³o¬q®É¶¡¹L«á²£¥Í¡C",
+		UI_Option_SS_RaidersChance = "ï¿½Hï¿½ï¿½ï¿½jï¿½sï¿½ï¿½sï¿½Xï¿½v",
+		UI_Option_SS_RaidersChanceDesc = "ï¿½Ó¿ï¶µï¿½Mï¿½wï¿½jï¿½sï¿½ï¿½Å§ï¿½Æ¥ï¿½bï¿½}ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½Íªï¿½ï¿½iï¿½ï¿½Ê¡C",
+		UI_Option_SS_RaidersAfterHours = "ï¿½Jï¿½Iï¿½ï¿½ï¿½Hï¿½ï¿½ï¿½Æ¥ï¿½Ñ¼ï¿½",
+		UI_Option_SS_StartImmediately = "ï¿½ß§Yï¿½}ï¿½l",
+		UI_Option_SS_AfterDay1 = "1ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay5 = "5ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay10 = "10ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay15 = "15ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay20 = "20ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay25 = "25ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay30 = "30ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay35 = "35ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay40 = "40ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay45 = "45ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay50 = "50ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay55 = "55ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay60 = "60ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay65 = "65ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay70 = "70ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay75 = "75ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay80 = "80ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay85 = "85ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay90 = "90ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay95 = "95ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_AfterDay100 = "100ï¿½Ñ¤ï¿½ï¿½ï¿½",
+		UI_Option_SS_Never = "ï¿½qï¿½ï¿½",
+		UI_Option_SS_RaidersAfterHoursDesc = "ï¿½bï¿½oï¿½qï¿½É¶ï¿½ï¿½Lï¿½ï¿½Aï¿½jï¿½sï¿½ï¿½Å§ï¿½Æ¥ï¿½iï¿½Hï¿½}ï¿½lï¿½Hï¿½ï¿½ï¿½oï¿½Í¡Cï¿½Æ¥ï¿½]ï¿½vï¿½ï¿½ï¿½}ï¿½lï¿½C",
+		UI_Option_SS_RaidersGuaranteed = "Å§ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½sï¿½ï¿½ï¿½j",
+		UI_Option_SS_Every5Days = "ï¿½C5ï¿½ï¿½",
+		UI_Option_SS_Every10Days = "ï¿½C10ï¿½ï¿½",
+		UI_Option_SS_Every15Days = "ï¿½C15ï¿½ï¿½",
+		UI_Option_SS_Every20Days = "ï¿½C20ï¿½ï¿½",
+		UI_Option_SS_Every25Days = "ï¿½C25ï¿½ï¿½",
+		UI_Option_SS_Every30Days = "ï¿½C30ï¿½ï¿½",
+		UI_Option_SS_Every35Days = "ï¿½C35ï¿½ï¿½",
+		UI_Option_SS_Every40Days = "ï¿½C40ï¿½ï¿½",
+		UI_Option_SS_Every45Days = "ï¿½C45ï¿½ï¿½",
+		UI_Option_SS_Every50Days = "ï¿½C50ï¿½ï¿½",
+		UI_Option_SS_Every55Days = "ï¿½C55ï¿½ï¿½",
+		UI_Option_SS_Every60Days = "ï¿½C60ï¿½ï¿½",
+		UI_Option_SS_Every65Days = "ï¿½C65ï¿½ï¿½",
+		UI_Option_SS_Every70Days = "ï¿½C70ï¿½ï¿½",
+		UI_Option_SS_Every75Days = "ï¿½C75ï¿½ï¿½",
+		UI_Option_SS_Every80Days = "ï¿½C80ï¿½ï¿½",
+		UI_Option_SS_Every85Days = "ï¿½C85ï¿½ï¿½",
+		UI_Option_SS_Every90Days = "ï¿½C90ï¿½ï¿½",
+		UI_Option_SS_Every95Days = "ï¿½C95ï¿½ï¿½",
+		UI_Option_SS_Every100Days = "ï¿½C100 Days",
+		UI_Option_SS_EveryDay = "ï¿½Cï¿½ï¿½!",
+		UI_Option_SS_EveryHour = "ï¿½Cï¿½pï¿½ï¿½!",
+		UI_Option_SS_Every10Minutes = "ï¿½C10ï¿½ï¿½ï¿½ï¿½!",
+		UI_Option_SS_RaidersGuaranteedDesc = "ï¿½pï¿½Gï¿½ï¿½ï¿½gï¿½Lï¿½Fï¿½ï¿½Å§ï¿½Ìªï¿½ï¿½}ï¿½lï¿½ï¿½ï¿½ï¿½Aï¿½Ã¥Bï¿½ï¿½Å§ï¿½Æ¥ï¿½Sï¿½ï¿½ï¿½oï¿½Í¦bï¿½oï¿½qï¿½É¶ï¿½ï¿½Cï¿½ï¿½ï¿½ÜªÌ·|ï¿½bï¿½oï¿½qï¿½É¶ï¿½ï¿½Lï¿½á²£ï¿½Í¡C",
 	--[[END raiders]]--
 
 	--[[weapons]]--
 
 
-		UI_Option_SS_ChancetoSpawnWithGun = "»·µ{ºj±ñ¨ê·s´X²v",
-		UI_Option_SS_ChancetoSpawnWithGunDesc = "¸Ó¿ï¶µ©w¸q¤FÀH¾÷²£¥Íªº­Æ¦sªÌ«ù¦³»·ºÝºj±ñ¶}©lªº¥i¯à©Ê¡C",
-		UI_Option_SS_WepSpawnRate = "ªñ¾ÔªZ¾¹¨ê·s´X²v",
-		UI_Option_SS_WepSpawnRateDesc = "¸Ó¿ï¶µ©w¸q¤FÀH¾÷²£¥Íªº­Æ¦sªÌ«ù¦³ªñ¾ÔªZ¾¹¶}©lªº¥i¯à©Ê¡C",
+		UI_Option_SS_ChancetoSpawnWithGun = "ï¿½ï¿½ï¿½{ï¿½jï¿½ï¿½ï¿½sï¿½Xï¿½v",
+		UI_Option_SS_ChancetoSpawnWithGunDesc = "ï¿½Ó¿ï¶µï¿½wï¿½qï¿½Fï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½Íªï¿½ï¿½Æ¦sï¿½Ì«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýºjï¿½ï¿½}ï¿½lï¿½ï¿½ï¿½iï¿½ï¿½Ê¡C",
+		UI_Option_SS_WepSpawnRate = "ï¿½ï¿½ÔªZï¿½ï¿½ï¿½ï¿½sï¿½Xï¿½v",
+		UI_Option_SS_WepSpawnRateDesc = "ï¿½Ó¿ï¶µï¿½wï¿½qï¿½Fï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½Íªï¿½ï¿½Æ¦sï¿½Ì«ï¿½ï¿½ï¿½ï¿½ï¿½ÔªZï¿½ï¿½ï¿½}ï¿½lï¿½ï¿½ï¿½iï¿½ï¿½Ê¡C",
 	--[[END weapons]]--
 
 	--[[bravery]]--
 
 
-		UI_Option_SS_SurvivorBravery = "­Æ¦sªÌªº«i®ð",
-		UI_Option_SS_SurvivorBraveryDesc = "¨M©w¤F­Æ¦sªÌ¬O¦p¦ó¾Ô°«ªº¡A¦Ó¤£¬O°k¶]©Î¸úÁ×¡C",
-		UI_Option_SS_Cowardly = "À¶®z",
-		UI_Option_SS_Brave = "«i´±",
-		UI_Option_SS_VeryBrave = "­^«iµL¬È",
+		UI_Option_SS_SurvivorBravery = "ï¿½Æ¦sï¿½Ìªï¿½ï¿½iï¿½ï¿½",
+		UI_Option_SS_SurvivorBraveryDesc = "ï¿½Mï¿½wï¿½Fï¿½Æ¦sï¿½Ì¬Oï¿½pï¿½ï¿½Ô°ï¿½ï¿½ï¿½ï¿½Aï¿½Ó¤ï¿½ï¿½Oï¿½kï¿½]ï¿½Î¸ï¿½ï¿½×¡C",
+		UI_Option_SS_Cowardly = "ï¿½ï¿½ï¿½z",
+		UI_Option_SS_Brave = "ï¿½iï¿½ï¿½",
+		UI_Option_SS_VeryBrave = "ï¿½^ï¿½iï¿½Lï¿½ï¿½",
 	--[[END bravery]]--
 
 	--[[friendliness]]--
 
 
-		UI_Option_SS_SurvivorFriendliness = "­Æ¦sªÌ¤Í¦n",
-		UI_Option_SS_SurvivorFriendlinessDesc = "¦¹¤º®eÅý¤@­ÓÀH¾÷ªº­Æ¦sªÌ§ó®e©ö¥[¤J§Aªº¹Î¶¤¡C´£¨Ñµ¹­Æ¦sªÌ§ó¦hªºÂ§ª«Àò±o§ó°ªªº´X²v¡C¦ý¨C¦¸§Aµ¹¥L­ÌµoÁÜ½Ð¡A¥[¤Jªº´X²v¤]·|¤U­°¡C©Ò¥H¤£°±ªºµ¹­Æ¦sªÌ°e¨Ç©U§£ª««~¨Ã¨S¦³¤°»ò¦n³B¡C",
-		UI_Option_SS_DesperateforHumanContact = "·¥«×´÷±æªº»P¤HÁpµ¸",
-		UI_Option_SS_VeryFriendly = "«Ü¤Íµ½",
-		UI_Option_SS_Friendly = "¤Íµ½",
-		UI_Option_SS_Mean = "¨èÁ¡",
-		UI_Option_SS_VeryMean = "«Ü¨èÁ¡",
+		UI_Option_SS_SurvivorFriendliness = "ï¿½Æ¦sï¿½Ì¤Í¦n",
+		UI_Option_SS_SurvivorFriendlinessDesc = "ï¿½ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½@ï¿½ï¿½ï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½Æ¦sï¿½Ì§ï¿½eï¿½ï¿½ï¿½[ï¿½Jï¿½Aï¿½ï¿½ï¿½Î¶ï¿½ï¿½Cï¿½ï¿½ï¿½Ñµï¿½ï¿½Æ¦sï¿½Ì§ï¿½hï¿½ï¿½Â§ï¿½ï¿½ï¿½ï¿½oï¿½ó°ªªï¿½ï¿½Xï¿½vï¿½Cï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Lï¿½Ìµoï¿½Ü½Ð¡Aï¿½[ï¿½Jï¿½ï¿½ï¿½Xï¿½vï¿½]ï¿½|ï¿½Uï¿½ï¿½ï¿½Cï¿½Ò¥Hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¦sï¿½Ì°eï¿½Ç©Uï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½Ã¨Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½Bï¿½C",
+		UI_Option_SS_DesperateforHumanContact = "ï¿½ï¿½ï¿½×´ï¿½ï¿½æªºï¿½Pï¿½Hï¿½pï¿½ï¿½",
+		UI_Option_SS_VeryFriendly = "ï¿½Ü¤Íµï¿½",
+		UI_Option_SS_Friendly = "ï¿½Íµï¿½",
+		UI_Option_SS_Mean = "ï¿½ï¿½ï¿½ï¿½",
+		UI_Option_SS_VeryMean = "ï¿½Ü¨ï¿½ï¿½ï¿½",
 	--[[END friendliness]]--
 
 	--[[on/off options]]--
 
 
-		UI_Option_SS_LockNLoad = "·Ç³Æ§@¾Ô¼Ò¦¡",
-		UI_Option_SS_LockNLoadDesc = "§A©M§Aªº©d¤l/¤V¤Ò(¦pªG±Ò¥Î¤F)±N¦b¹CÀ¸¶}©l®ÉÄâ±aºj¤ä©M¼uÃÄ¡A¥H¤Î¸Ë¥Ò(¦pªG¦w¸Ë¸Ómod)¡C¦¹¼Ò¦¡·|´£°ª¾D¹J±jµsªº´X²v¡C",
-		UI_Option_SS_WifeSpawn = "¦ñ«Q¨ê·s",
-		UI_Option_SS_WifeSpawnDesc = "¦b¹CÀ¸¶}©l®É¡A¦b§Aªº¦¨­û²Õ¸Ì²K¥[¤@¦ì¤V¤Ò/©d¤l°µ¬°¨ê·s¦b¦P¤@¦ì¸mªºªì©l¦¨­û¡C",
-		UI_Option_SS_InfinitAmmo = "­Æ¦sªÌµL­­¼uÃÄ",
-		UI_Option_SS_InfinitAmmoDesc = "¦pªG¥´¶}¿ï¶µ­Æ¦sªÌ¤£»Ý­n®ø¯Ó¼uÃÄ¡C¦pªGÃö³¬¿ï¶µ¡A¥L­Ì»Ý­n®³¨ú¼uÃÄ©Î¼uÃÄ²°¤l¡Cª±®a¨¤¦â¤]¥i¥H³q¹L¥kÁä¥\¯àªíµ¹¤©­Æ¦sªÌ§ó¦hªº¼uÃÄ¡A­Æ¦sªÌ¼uÃÄ¯ÓºÉ®É¸Õ¹Ï¦bªþªñ§ä¨ì¼uÃÄ¡C",
-		UI_Option_SS_FindWork = "­Æ¦sªÌ°ò¦aªþªñ¦Û°Ê°õ¦æ¥ô°È",
-		UI_Option_SS_FindWorkDesc = "¦pªG¥´¶}¿ï¶µ¡A¦b°ò¦aªþªñ©Îªþªñªº­Æ¦sªÌ¦pªGµo²{¦Û¤vµL¨Æ¥i°µ¡A´N·|¦b°ò¦a©P³ò°µ¤@¨Ç°ò¥»ªº¤u§@¥ô°È¡C¦pªGÃö³¬¿ï¶µ¥L­Ì¥Ã»·¤£·|¨M©w¦Û¤v°µ¤°»ò¨Æ±¡¡C",
-		UI_Option_SS_SurvivorHunger = "­Æ¦sªÌÄÈ¾j»P¤f´÷",
-		UI_Option_SS_SurvivorHungerDesc = "¦pªGÃö³¬¿ï¶µ¡A­Æ¦sªÌ´N¥Ã»·¤£·|®Á¾j©Î¤f´÷¡C¦pªG¥´¶}¿ï¶µ¡A¥L­Ì´N·|§V¤O¥h´M§ä¥L­Ì¦Û¤v»Ý­nªºªF¦è¡C",
-		UI_Option_SS_SafeBase = "¦w¥þ«Î",
-		UI_Option_SS_SafeBaseDesc = "¦pªG¶}±Ò¡A³¥¥Í­Æ¦sªÌ¦b·j¨í®É·|»·Â÷§A¼Ð°Oªº°ò¦a¡C",
-		UI_Option_SS_SurvivorBases = "­Æ¦sªÌ°ò¦a",
-		UI_Option_SS_SurvivorBasesDesc = "¦pªG¶}±Ò¡A³¥¥Í­Æ¦sªÌ·|«Ø¥ß¥L­Ì¦Û¤vªº°ò¦a¡C",
+		UI_Option_SS_LockNLoad = "ï¿½Ç³Æ§@ï¿½Ô¼Ò¦ï¿½",
+		UI_Option_SS_LockNLoadDesc = "ï¿½Aï¿½Mï¿½Aï¿½ï¿½ï¿½dï¿½l/ï¿½Vï¿½ï¿½(ï¿½pï¿½Gï¿½Ò¥Î¤F)ï¿½Nï¿½bï¿½Cï¿½ï¿½ï¿½}ï¿½lï¿½ï¿½ï¿½ï¿½aï¿½jï¿½ï¿½Mï¿½uï¿½Ä¡Aï¿½Hï¿½Î¸Ë¥ï¿½(ï¿½pï¿½Gï¿½wï¿½Ë¸ï¿½mod)ï¿½Cï¿½ï¿½ï¿½Ò¦ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½ï¿½Dï¿½Jï¿½jï¿½sï¿½ï¿½ï¿½Xï¿½vï¿½C",
+		UI_Option_SS_WifeSpawn = "ï¿½ï¿½Qï¿½ï¿½s",
+		UI_Option_SS_WifeSpawnDesc = "ï¿½bï¿½Cï¿½ï¿½ï¿½}ï¿½lï¿½É¡Aï¿½bï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¸Ì²Kï¿½[ï¿½@ï¿½ï¿½Vï¿½ï¿½/ï¿½dï¿½lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½bï¿½Pï¿½@ï¿½ï¿½mï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½C",
+		UI_Option_SS_InfiniteAmmo = "ï¿½Æ¦sï¿½ÌµLï¿½ï¿½ï¿½uï¿½ï¿½",
+		UI_Option_SS_InfiniteAmmoDesc = "ï¿½pï¿½Gï¿½ï¿½ï¿½}ï¿½ï¶µï¿½Æ¦sï¿½Ì¤ï¿½ï¿½Ý­nï¿½ï¿½ï¿½Ó¼uï¿½Ä¡Cï¿½pï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½ï¶µï¿½Aï¿½Lï¿½Ì»Ý­nï¿½ï¿½ï¿½ï¿½ï¿½uï¿½Ä©Î¼uï¿½Ä²ï¿½ï¿½lï¿½Cï¿½ï¿½ï¿½aï¿½ï¿½ï¿½ï¿½]ï¿½iï¿½Hï¿½qï¿½Lï¿½kï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¦sï¿½Ì§ï¿½hï¿½ï¿½ï¿½uï¿½Ä¡Aï¿½Æ¦sï¿½Ì¼uï¿½Ä¯ÓºÉ®É¸Õ¹Ï¦bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½uï¿½Ä¡C",
+		UI_Option_SS_FindWork = "ï¿½Æ¦sï¿½Ì°ï¿½aï¿½ï¿½ï¿½ï¿½Û°Ê°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
+		UI_Option_SS_FindWorkDesc = "ï¿½pï¿½Gï¿½ï¿½ï¿½}ï¿½ï¶µï¿½Aï¿½bï¿½ï¿½aï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ñªº­Æ¦sï¿½Ì¦pï¿½Gï¿½oï¿½{ï¿½Û¤vï¿½Lï¿½Æ¥iï¿½ï¿½ï¿½Aï¿½Nï¿½|ï¿½bï¿½ï¿½aï¿½Pï¿½ò°µ¤@ï¿½Ç°ò¥»ªï¿½ï¿½uï¿½@ï¿½ï¿½ï¿½È¡Cï¿½pï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½ï¶µï¿½Lï¿½Ì¥Ã»ï¿½ï¿½ï¿½ï¿½|ï¿½Mï¿½wï¿½Û¤vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½C",
+		UI_Option_SS_SurvivorHunger = "ï¿½Æ¦sï¿½ï¿½ï¿½È¾jï¿½Pï¿½fï¿½ï¿½",
+		UI_Option_SS_SurvivorHungerDesc = "ï¿½pï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½ï¶µï¿½Aï¿½Æ¦sï¿½Ì´Nï¿½Ã»ï¿½ï¿½ï¿½ï¿½|ï¿½ï¿½ï¿½jï¿½Î¤fï¿½ï¿½ï¿½Cï¿½pï¿½Gï¿½ï¿½ï¿½}ï¿½ï¶µï¿½Aï¿½Lï¿½Ì´Nï¿½|ï¿½Vï¿½Oï¿½hï¿½Mï¿½ï¿½Lï¿½Ì¦Û¤vï¿½Ý­nï¿½ï¿½ï¿½Fï¿½ï¿½C",
+		UI_Option_SS_SafeBase = "ï¿½wï¿½ï¿½ï¿½ï¿½",
+		UI_Option_SS_SafeBaseDesc = "ï¿½pï¿½Gï¿½}ï¿½Ò¡Aï¿½ï¿½ï¿½Í­Æ¦sï¿½Ì¦bï¿½jï¿½ï¿½ï¿½É·|ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Ð°Oï¿½ï¿½ï¿½ï¿½aï¿½C",
+		UI_Option_SS_SurvivorBases = "ï¿½Æ¦sï¿½Ì°ï¿½a",
+		UI_Option_SS_SurvivorBasesDesc = "ï¿½pï¿½Gï¿½}ï¿½Ò¡Aï¿½ï¿½ï¿½Í­Æ¦sï¿½Ì·|ï¿½Ø¥ß¥Lï¿½Ì¦Û¤vï¿½ï¿½ï¿½ï¿½aï¿½C",
 	--[[END on/off options]]--
 
 	--[[perception]]--
@@ -173,40 +173,40 @@ UI_CH = {
 	--[[hotkeys]]--
 
 
-		UI_Option_SS_hotkey1 = "§Ö³tÁä 1 «ü¥O",
-		UI_Option_SS_hotkey2 = "§Ö³tÁä 2 «ü¥O",
-		UI_Option_SS_hotkey3 = "§Ö³tÁä 3 «ü¥O",
-		UI_Option_SS_hotkey4 = "§Ö³tÁä 4 «ü¥O",
+		UI_Option_SS_hotkey1 = "ï¿½Ö³tï¿½ï¿½ 1 ï¿½ï¿½ï¿½O",
+		UI_Option_SS_hotkey2 = "ï¿½Ö³tï¿½ï¿½ 2 ï¿½ï¿½ï¿½O",
+		UI_Option_SS_hotkey3 = "ï¿½Ö³tï¿½ï¿½ 3 ï¿½ï¿½ï¿½O",
+		UI_Option_SS_hotkey4 = "ï¿½Ö³tï¿½ï¿½ 4 ï¿½ï¿½ï¿½O",
 
-		UI_Option_SS_hotkeyDesc = "¡§¿ï¾Ü¤@­Ó·í§A«ö¤U³o­Ó¼öÁä®É·|µo¥Íªº°Ê§@¡C¡¨ ©R¥O©Ò¦³¦æ°Ê¼vÅT½d³ò¤ºªº¥ô¦ó¹Î¶¤¦¨­û¡C ¦Ó¨ä¥L«h¼vÅT¨º¨Ç¶È»P§A¥æ½ÍÅ¥§A»¡¸Üªº¤H(¨Ï¥ÎT¼öÁä)¡C",
+		UI_Option_SS_hotkeyDesc = "ï¿½ï¿½ï¿½ï¿½Ü¤@ï¿½Ó·ï¿½ï¿½Aï¿½ï¿½ï¿½Uï¿½oï¿½Ó¼ï¿½ï¿½ï¿½É·|ï¿½oï¿½Íªï¿½ï¿½Ê§@ï¿½Cï¿½ï¿½ ï¿½Rï¿½Oï¿½Ò¦ï¿½ï¿½ï¿½Ê¼vï¿½Tï¿½dï¿½ò¤ºªï¿½ï¿½ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½C ï¿½Ó¨ï¿½Lï¿½hï¿½vï¿½Tï¿½ï¿½ï¿½Ç¶È»Pï¿½Aï¿½ï¿½ï¿½Å¥ï¿½Aï¿½ï¿½ï¿½Üªï¿½ï¿½H(ï¿½Ï¥ï¿½Tï¿½ï¿½ï¿½ï¿½)ï¿½C",
 	--[[END hotkeys]]--
 
 	--[[bindings]]--
 
 
-		UI_optionscreen_binding_SS_optionscreen_binding_Call Closest Group Member = "¥l³êªþªñ¹Î¶¤¦¨­û",
-		UI_optionscreen_binding_SS_optionscreen_binding_Call Closest Non-Group Member = "¥l³êªþªñµL¹Î¶¤ªº­Æ¦sªÌ",
-		UI_optionscreen_binding_SS_optionscreen_binding_Ask Closest Group Member to Follow = "©R¥Oªþªñ¹Î¶¤¦¨­û¸òÀH",
-		UI_optionscreen_binding_SS_optionscreen_binding_Spawn Wild Survivor = "¨ê·s³¥¥~­Æ¦sªÌ",
-		UI_optionscreen_binding_SS_optionscreen_binding_Toggle Group Window = "¦¨­ûµ¡¤f¶}Ãö",
-		UI_optionscreen_binding_SS_optionscreen_binding_Lower Follow Distance = "´î¤Ö¸òÀH¶ZÂ÷",
-		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_1 = "§Ö±¶Áä 1 «ü¥O",
-		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_2 = "§Ö±¶Áä 2 «ü¥O",
-		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_3 = "§Ö±¶Áä 3 «ü¥O",
-		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_4 = "§Ö±¶Áä 4 «ü¥O",
+		UI_optionscreen_binding_SS_optionscreen_binding_Call Closest Group Member = "ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½",
+		UI_optionscreen_binding_SS_optionscreen_binding_Call Closest Non-Group Member = "ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½Î¶ï¿½ï¿½ï¿½ï¿½Æ¦sï¿½ï¿½",
+		UI_optionscreen_binding_SS_optionscreen_binding_Ask Closest Group Member to Follow = "ï¿½Rï¿½Oï¿½ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½H",
+		UI_optionscreen_binding_SS_optionscreen_binding_Spawn Wild Survivor = "ï¿½ï¿½sï¿½ï¿½ï¿½~ï¿½Æ¦sï¿½ï¿½",
+		UI_optionscreen_binding_SS_optionscreen_binding_Toggle Group Window = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½}ï¿½ï¿½",
+		UI_optionscreen_binding_SS_optionscreen_binding_Lower Follow Distance = "ï¿½ï¿½Ö¸ï¿½ï¿½Hï¿½Zï¿½ï¿½",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_1 = "ï¿½Ö±ï¿½ï¿½ï¿½ 1 ï¿½ï¿½ï¿½O",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_2 = "ï¿½Ö±ï¿½ï¿½ï¿½ 2 ï¿½ï¿½ï¿½O",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_3 = "ï¿½Ö±ï¿½ï¿½ï¿½ 3 ï¿½ï¿½ï¿½O",
+		UI_optionscreen_binding_SS_optionscreen_binding_Hotkey_4 = "ï¿½Ö±ï¿½ï¿½ï¿½ 4 ï¿½ï¿½ï¿½O",
 
 	--[[END bindings]]--
 
 	--[[debug]]--
 
 
-		UI_Option_SS_DebugOptions = "½Õ¸Õ¿ï¶µ",
-		UI_Option_SS_DebugOptionsDesc = "¶}±Ò­Æ¦sªÌªº¥kÁä½Õ¸Õ¿ï¶µ¡C",
-		UI_Option_SS_LowerFollowDistance = "´î¤Ö¸òÀH¶ZÂ÷",
-		UI_Option_SS_RaiseFollowDistance = "¼W¥[¸òÀH¶ZÂ÷",
-		UI_Option_SS_CallClosestGroupMember = "¥l³êªþªñ¹Î¶¤¦¨­û",
-		UI_Option_SS_CallClosestNonGroupMember = "¥l³êªþªñµL¹Î¶¤ªº­Æ¦sªÌ",
-		UI_Option_SS_AskClosestGroupMembertoFollow = "©R¥Oªþªñ¹Î¶¤¦¨­û¸òÀH",
+		UI_Option_SS_DebugOptions = "ï¿½Õ¸Õ¿ï¶µ",
+		UI_Option_SS_DebugOptionsDesc = "ï¿½}ï¿½Ò­Æ¦sï¿½Ìªï¿½ï¿½kï¿½ï¿½Õ¸Õ¿ï¶µï¿½C",
+		UI_Option_SS_LowerFollowDistance = "ï¿½ï¿½Ö¸ï¿½ï¿½Hï¿½Zï¿½ï¿½",
+		UI_Option_SS_RaiseFollowDistance = "ï¿½Wï¿½[ï¿½ï¿½ï¿½Hï¿½Zï¿½ï¿½",
+		UI_Option_SS_CallClosestGroupMember = "ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½",
+		UI_Option_SS_CallClosestNonGroupMember = "ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½Î¶ï¿½ï¿½ï¿½ï¿½Æ¦sï¿½ï¿½",
+		UI_Option_SS_AskClosestGroupMembertoFollow = "ï¿½Rï¿½Oï¿½ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½H",
 	--[[END debug]]--
 
 }

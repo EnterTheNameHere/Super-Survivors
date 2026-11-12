@@ -8,7 +8,6 @@ function HoldStillTask:new(superSurvivor, playerInitiated)
 	self.__index = self
 		
 	o.wasplayerInitiated = playerInitiated
-	o.Aite = TalkToMe
 	o.parent = superSurvivor
 	o.Name = "Hold Still"
 	o.OnGoing = true

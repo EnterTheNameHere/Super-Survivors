@@ -45,7 +45,7 @@ local function getFileFullPath(fileName)
 	return getWorld():getWorld()..getFileSeparator()..fileName
 end
 
---- Checks if a file of a savegame exists
+--- Checks if a file of a save game exists
 ---@param fileName string file to be searched
 ---@return boolean returns true if the current file exists
 function doesFileExist( fileName )
@@ -76,7 +76,7 @@ end
 
 --- loads a table from a .lua file
 ---@param fileName string the filename that the table will be loaded
----@return table a table with all data from filename or nil if not found
+---@return table|nil a table with all data from filename or nil if not found
 function table.load( fileName )
 	debugMethodName("table.load")
 	debugMethodAction("loading file", fileName)
@@ -117,8 +117,8 @@ function table.save( tbl,fileName )
 
 	debugMethodName("table.save")
 	debugMethodAction("saving file", fileName)
-	local thepath = getFileFullPath(fileName .. ".lua")
-	local writeFile = openSaveWriter(thepath)
+	local thePath = getFileFullPath(fileName .. ".lua")
+	local writeFile = openSaveWriter(thePath)
 	
 		for i = 1,#tbl do
 			debugMethodAction("writing line", tostring(i))
@@ -173,7 +173,7 @@ function kvtableload( fileName )
 end
 
 --- saves a table into a file
----@param tbl table a table with data
+---@param fileTable table a table with data
 ---@param fileName string the name of the file to be created
 function kvtablesave( fileTable, fileName )
 

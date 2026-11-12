@@ -49,6 +49,7 @@ function AttackTask:update()
 
 		-- Controls the Range of how far / close the NPC should be
 		if self.parent:hasGun() then 					-- Despite the name, it means 'has gun in the npc's hand'
+			local weapon = self.parent.player:getPrimaryHandItem()
 			if (self.parent:needToReadyGun(weapon)) then
 				self.parent:ReadyGun(weapon)
 			else

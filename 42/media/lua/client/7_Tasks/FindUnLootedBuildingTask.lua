@@ -150,7 +150,7 @@ function FindUnlootedBuildingTask:update()
 					self.parent:DebugSay("Find Unlooted Building Task - trying to get to square inside x" .. tostring(attempts))
 					--self.parent:WalkToAttempt(self.TargetSquare)
 
-					self.parent:walkTo(self.parent:FindClosestOutsideSquare(Square))
+					self.parent:walkTo(self.parent:FindClosestOutsideSquare(self.TargetSquare))
 					--self.parent:WalkToAttempt(self.parent:FindClosestOutsideSquare(Square))
 					if(self.TargetSquare:getRoom() ~= nil) then self.parent.TargetBuilding = self.TargetSquare:getRoom():getBuilding() end
 					

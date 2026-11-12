@@ -233,6 +233,7 @@ function AIManager(TaskMangerIn)
 				and (ASuperSurvivor.player:getModData().isRobber) 
 				and (not ASuperSurvivor.player:getModData().hitByCharacter) 
 				and EnemyIsSurvivor 
+				and EnemySuperSurvivor ~= nil
 				and (not EnemySuperSurvivor.player:getModData().dealBreaker) 
 				then 
 					TaskMangerIn:AddToTop(ThreatenTask:new(ASuperSurvivor,EnemySuperSurvivor,"Scram"))
@@ -389,6 +390,7 @@ function AIManager(TaskMangerIn)
 				and (ASuperSurvivor.player:getModData().isRobber) 
 				and (not ASuperSurvivor.player:getModData().hitByCharacter) 
 				and EnemyIsSurvivor 
+				and EnemySuperSurvivor ~= nil
 				and (not EnemySuperSurvivor.player:getModData().dealBreaker) 
 				then 
 					TaskMangerIn:AddToTop(ThreatenTask:new(ASuperSurvivor,EnemySuperSurvivor,"Scram"))
@@ -657,7 +659,7 @@ end
 	-- ----------------------------- --
 	-- 	Equip Weapon Task            -- 
 	-- ----------------------------- --
-	if not (AiNPC_Job_Is(NPC,"Companion"))  then -- removed and (ASuperSurvivor:getNeedAmmo() == false) condition as I dont remember what that is for
+	if not (AiNPC_Job_Is(NPC,"Companion"))  then -- removed and (ASuperSurvivor:getNeedAmmo() == false) condition as I don't remember what that is for
 		if(IsInAction == false)  and ASuperSurvivor:usingGun() and (ASuperSurvivor:getDangerSeenCount() == 0) and ((ASuperSurvivor:needToReload()) or (ASuperSurvivor:needToReadyGun(weapon))) and (NPC:NPC_FleeWhileReadyingGun()) then			
 			--print(ASuperSurvivor:getName() .. " AI detected need to ready gun")
 			ASuperSurvivor:ReadyGun(weapon)		

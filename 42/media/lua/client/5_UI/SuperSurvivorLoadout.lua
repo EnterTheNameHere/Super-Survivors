@@ -57,6 +57,13 @@ end
 local InventoryRow = ISPanel:derive("InventoryRow")
 local panels = {}
 
+local function selectedMember(index)
+    local main = SSM and SSM:Get(0)
+    local group = main and SSGM:Get(main:getGroupID())
+    local member = group and group:getMembers()[index]
+    if type(member) == "table" and member.player and not member.player:isDead() then return member end
+end
+
 function InventoryRow:initialize()
     ISCollapsableWindow.initialise(self)
 end
@@ -64,16 +71,14 @@ end
 function InventoryRow:on_click_transfer(direction)
     -- v unequip
     -- ^ equip
-    local member = SSGM:Get(SSM:Get(0):getGroupID()):getMembers()[self.member_index]
-    if direction == "v" then
-        if self.item:isEquipped() then
-            ISTimedActionQueue.add(ISUnequipAction:new(member.player, self.item, 1))
-        end
-    else
-        if instanceof(self.item, "InventoryContainer") and self.item:canBeEquipped() ~= "" then
-            member.player:setClothingItem_Back(self.item)
-            getPlayerData(member.player:getPlayerNum()).playerInventory:refreshBackpacks()
-        elseif self.item:getCategory() == "Weapon" then
+    local member = self.member
+    if not member or not member.player or member.player:isDead() then return end
+    require "0_Utilities/SuperSurvivorClothingUtilities"
+    if SuperSurvivorClothing.pending(member.player, self.item) then
+        SuperSurvivorClothing.cancel(member.player)
+        return
+    end
+    if direction ~= "v" and self.item:getCategory() == "Weapon" then
             if self.item:getAmmoType() ~= nil then
                 member:setGunWep(self.item)
                 member:reEquipGun()
@@ -81,15 +86,24 @@ function InventoryRow:on_click_transfer(direction)
                 member:setMeleeWep(self.item)
                 member:reEquipMelee()
             end
-        else
-            if self.item:getBodyLocation() ~= "" then
-                member.player:setWornItem(self.item:getBodyLocation(), nil)
-                member.player:setWornItem(self.item:getBodyLocation(), self.item)
-            end
-        end
+    else
+        member:StopWalk()
+        local action, reason = SuperSurvivorClothing.queue(member.player, self.item, direction ~= "v")
+        if not action and reason then getSpecificPlayer(0):Say(reason) end
     end
-    panels[1]:dupdate()
-    panels[2]:dupdate()
+end
+
+function InventoryRow:update()
+    if not self.actionButton or not self.member or not self.member.player then return end
+    require "0_Utilities/SuperSurvivorClothingUtilities"
+    local action = SuperSurvivorClothing.pending(self.member.player, self.item)
+    if action then
+        local progress = math.floor(math.max(0, math.min(1, self.item:getJobDelta())) * 100)
+        local label = action.action and (tostring(progress) .. "%") or getText("IGUI_SS_Clothing_Queued")
+        self.actionButton:setTitle(label .. " / " .. getText("IGUI_SS_Clothing_Cancel"))
+    else
+        self.actionButton:setTitle(self.direction == "v" and getText("ContextMenu_Unequip") or getText("ContextMenu_Wear"))
+    end
 end
 
 function InventoryRow:update_tooltip()
@@ -137,6 +151,7 @@ function InventoryRow:createChildren()
     local cat_item_name = ISLabel:new(10, 0, 25, tostring(self.item:getName()), 1, 1, 1, 1, nil, true)
     cat_item:addChild(cat_item_name)
     local cat_transfer = ISButton:new(cat_item.x+cat_item.width, 0, 102, 25, self.direction == "v" and "unequip" or "equip", nil, function() self:on_click_transfer(self.direction) end)
+    self.actionButton = cat_transfer
     local spacer2 = ISButton:new(self.width-10, 0, 25, 25, "", nil, nil)
     cat_icon:setImage(self.item:getTex())
     cat_icon:forceImageSize(25, 25)
@@ -181,7 +196,7 @@ function InventoryRow:createChildren()
     self:addChild(spacer2)
 end
 
-function InventoryRow:new(y, width, height, item, direction, switch)
+function InventoryRow:new(y, width, height, item, direction, switch, member)
     local o = {}
     o = ISPanel:new(0, y, width, height)
     setmetatable(o, self)
@@ -191,6 +206,7 @@ function InventoryRow:new(y, width, height, item, direction, switch)
     o.switch = switch
     o.item = item
     o.direction = direction
+    o.member = member
     return o
 end
 
@@ -204,13 +220,14 @@ function PanelEquipableItems:dupdate()
     self:clearChildren()
     local dy = 0
     local switch = 0
-    local member = SSGM:Get(SSM:Get(0):getGroupID()):getMembers()[self.member_index]
+    local member = selectedMember(self.member_index)
+    if not member then return end
     local items = member.player:getInventory():getItems()
     local scroll_height = 0
     for i=0, items:size()-1 do
         local item = items:get(i)
-        if not item:isEquipped() and (item:getCategory() == "Clothing" or instanceof(item, "InventoryContainer") or item:getCategory() == "Weapon") then
-            local inventory_row = InventoryRow:new(dy, self.width, 25, item, "^", switch)
+        if not item:isHidden() and not item:isEquipped() and (item:getCategory() == "Clothing" or instanceof(item, "InventoryContainer") or item:getCategory() == "Weapon") then
+            local inventory_row = InventoryRow:new(dy, self.width, 25, item, "^", switch, member)
             switch = (switch == 0) and 1 or 0
             self:addChild(inventory_row)
             dy = dy+25
@@ -255,13 +272,14 @@ function PanelEquippedItems:dupdate()
     self:clearChildren()
     local dy = 0
     local switch = 0
-    local member = SSGM:Get(SSM:Get(0):getGroupID()):getMembers()[self.member_index]
+    local member = selectedMember(self.member_index)
+    if not member then return end
     local items = member.player:getInventory():getItems()
     local scroll_height = 0
     for i=0, items:size()-1 do
         local item = items:get(i)
-        if item:isEquipped() then
-            local inventory_row = InventoryRow:new(dy, self.width, 25, item, "v", switch)
+        if not item:isHidden() and item:isEquipped() then
+            local inventory_row = InventoryRow:new(dy, self.width, 25, item, "v", switch, member)
             switch = (switch == 0) and 1 or 0
             self:addChild(inventory_row)
             dy = dy+25
@@ -301,27 +319,61 @@ end
 --****************************************************
 PanelLoadout = ISPanel:derive("PanelLoadout")
 
-function create_panel_loadout(member_index)
+function create_panel_loadout(member_index, x, y)
     if panel_loadout then
         panel_loadout:removeFromUIManager()
         panel_loadout = nil
     end
-    panel_loadout = PanelLoadout:new(window_super_survivors.x+window_super_survivors.width+8, window_super_survivors.y, 426, 25*15+(3*2), member_index)
+    require "0_Utilities/SuperSurvivorPanelUtilities"
+    x, y = SuperSurvivorPanels.position(426, 25*15+(3*2), x, y)
+    panel_loadout = PanelLoadout:new(x, y, 426, 25*15+(3*2), member_index)
     panel_loadout:addToUIManager()
     panel_loadout:setVisible(true)
+    return panel_loadout
 end
 
 function PanelLoadout:initialise()
     ISPanel.initialise(self)
 end
 
+function PanelLoadout:update()
+    -- Refresh when native completion changes the actual equipment, not at click
+    -- time. Cancellation leaves equipment unchanged and row polling clears progress.
+    local now = getTimestampMs()
+    if self.lastEquipmentPoll and now - self.lastEquipmentPoll < 250 then return end
+    self.lastEquipmentPoll = now
+    local member = selectedMember(self.member_index)
+    if not member then return end
+    local items = member.player:getInventory():getItems()
+    local state = {}
+    for i = 0, items:size() - 1 do
+        local item = items:get(i)
+        if not item:isHidden() then
+            state[#state + 1] = tostring(item:getID()) .. ":" .. tostring(item:isEquipped())
+        end
+    end
+    local signature = table.concat(state, ",")
+    if self.equipmentSignature ~= signature then
+        self.equipmentSignature = signature
+        PanelEquippedItems:dupdate()
+        PanelEquipableItems:dupdate()
+    end
+end
+
 function PanelLoadout:createChildren()
     self:clearChildren()
-    local member = SSGM:Get(SSM:Get(0):getGroupID()):getMembers()[self.member_index]
+    local member = selectedMember(self.member_index)
+    if not member then return end
     self.header_member = TitleBar:new(tostring(member:getName()), self)
     local equipped_items = ISButton:new(0, 25, self.width, 25, "Equipped Items", nil, nil)
     local equipable_items = ISButton:new(0, (25*2)+(2+(275/2)+2), self.width, 25, "Equipable Items", nil, nil)
-    local button_close = ISButton:new(0, self.height-25, self.width, 25, "close", nil, function() self:removeFromUIManager() end)
+    local survivorID = member:getID()
+    local button_inventory = ISButton:new(0, self.height-25, self.width/2, 25, getText("IGUI_SS_Panels_Inventory"), nil, function()
+        require "0_Utilities/SuperSurvivorPanelUtilities"
+        SuperSurvivorPanels.open("inventory", survivorID, self)
+    end)
+    local button_close = ISButton:new(self.width/2, self.height-25, self.width/2, 25, getText("IGUI_SS_Panels_Close"), nil, function() self:removeFromUIManager() end)
+    self:addChild(button_inventory)
     equipped_items.onMouseDown = function() return  end
     equipable_items.onMouseDown = function() return  end
     equipped_items.backgroundColorMouseOver = equipped_items.backgroundColor

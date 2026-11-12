@@ -53,7 +53,7 @@ function LootCategoryTask:ForceFinish()
 		end
 
 		if ( instanceof(current,"HandWeapon") and (current:getMaxDamage() >= weapon:getMaxDamage()) ) then  
-			-- current weapon better than best one found so dont switch
+			-- current weapon better than best one found so don't switch
 			return
 		end
 		

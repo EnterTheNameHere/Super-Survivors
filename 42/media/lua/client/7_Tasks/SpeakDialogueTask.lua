@@ -1,3 +1,5 @@
+require "1_Dialogue/SuperSurvivorDialogue"
+
 SpeakDialogueTask = {}
 SpeakDialogueTask.__index = SpeakDialogueTask
 
@@ -7,13 +9,12 @@ function SpeakDialogueTask:new(superSurvivor, TalkToMe, DialogueID)
 	setmetatable(o, self)
 	self.__index = self
 		
-	o.WasSelfInit = selfInitiated
 	o.Aite = TalkToMe
 	o.parent = superSurvivor
 	o.Name = "Speak Dialogue"
 	
 	o.Current = 1
-	o.Dialogue = SurvivorDialogue[DialogueID]
+	o.Dialogue = SuperDialogue[DialogueID]
 	
 	if(not o.Dialogue) then return nil end
 	
@@ -41,7 +42,7 @@ function SpeakDialogueTask:update()
 		local distance = getDistanceBetween(self.parent.player,self.Aite)
 		if (distance > 1.8) then
 			self.parent:walkTo(self.Aite:getCurrentSquare()) 				 		
-		elseif(self:isSpeaking() == false) then
+		elseif(self.parent:isSpeaking() == false) then
 			self.parent:DebugSay("SpeakDialogueTask is about to trigger a StopWalk! ")
 			self.parent:StopWalk()
 			self.parent.player:faceThisObject(self.Aite)

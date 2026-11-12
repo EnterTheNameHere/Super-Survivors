@@ -1,4 +1,6 @@
 {
+    "ContextMenu_SS_Inventory": "Inventory",
+    "ContextMenu_SS_Equipment": "Equipment",
     "ContextMenu_SS_OrderAll": "Order All ",
     "ContextMenu_SS_BaseArea": "Base Area",
     "ContextMenu_SS_ChopTreeArea": "Chop Trees Area",
@@ -91,8 +93,6 @@
     "ContextMenu_SS_AidCheck": "Medical / First Aid Check",
     "ContextMenu_SS_AidCheckDesc": "Walk to this survivor and medical check him. If they move the process can be interrupted",
     "ContextMenu_SS_SetName": "Change Name",
-    "ContextMenu_SS_AddClothing": "'s Clothing",
-    "ContextMenu_SS_RemoveClothing": "Remove Clothing",
 
     "ContextMenu_SS_SetAreaConfirm": "Set",
     "ContextMenu_SS_SetAreaCancel": "Cancel",

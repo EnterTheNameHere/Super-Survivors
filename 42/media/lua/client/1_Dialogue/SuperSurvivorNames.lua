@@ -1,4 +1,4 @@
----  Below is hundreds of girl names and boy names. you dont need to translate them if you don't want to. translate as in, replace them with common names in area of language or change to your phonetic alphabeht. if you do. know that there does not need to be this many. you could just do like 50 of each.
+---  Below is hundreds of girl names and boy names. you don't need to translate them if you don't want to. translate as in, replace them with common names in area of language or change to your phonetic alphabeht. if you do. know that there does not need to be this many. you could just do like 50 of each.
  
 local function getGirlNames()
   local girlNamesCount = 500

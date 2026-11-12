@@ -42,6 +42,8 @@ end
 Events.OnGameStart.Add(create_button_show_locators)
 
 local worldmap_render = ISWorldMap.render
+-- Intentional chained override: retain vanilla drawing before survivor markers.
+---@diagnostic disable-next-line: duplicate-set-field
 ISWorldMap.render = function(self)
     worldmap_render(self)
     if flag_show then

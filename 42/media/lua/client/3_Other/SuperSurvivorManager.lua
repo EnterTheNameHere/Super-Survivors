@@ -82,15 +82,15 @@ function SuperSurvivorManager:LoadSurvivor(ID, square)
 		self.SuperSurvivors[ID]:SaveSurvivor()
 		
 		
-		local meleewep = self.SuperSurvivors[ID].player:getModData().meleeWeapon
-		local gunwep = self.SuperSurvivors[ID].player:getModData().gunWeapon
-		if(meleewep ~= nil) then 
-			self.SuperSurvivors[ID].LastMeleeUsed = self.SuperSurvivors[ID].player:getInventory():FindAndReturn(meleewep)
-			if not self.SuperSurvivors[ID].LastMeleeUsed then self.SuperSurvivors[ID].LastMeleeUsed = self.SuperSurvivors[ID]:getBag():FindAndReturn(meleewep) end
+		local meleeWep = self.SuperSurvivors[ID].player:getModData().meleeWeapon
+		local gunWep = self.SuperSurvivors[ID].player:getModData().gunWeapon
+		if(meleeWep ~= nil) then 
+			self.SuperSurvivors[ID].LastMeleeUsed = self.SuperSurvivors[ID].player:getInventory():FindAndReturn(meleeWep)
+			if not self.SuperSurvivors[ID].LastMeleeUsed then self.SuperSurvivors[ID].LastMeleeUsed = self.SuperSurvivors[ID]:getBag():FindAndReturn(meleeWep) end
 		end		
-		if(gunwep ~= nil) then 
-			self.SuperSurvivors[ID].LastGunUsed = self.SuperSurvivors[ID].player:getInventory():FindAndReturn(gunwep)
-			if not self.SuperSurvivors[ID].LastGunUsed then self.SuperSurvivors[ID].LastGunUsed = self.SuperSurvivors[ID]:getBag():FindAndReturn(gunwep) end
+		if(gunWep ~= nil) then 
+			self.SuperSurvivors[ID].LastGunUsed = self.SuperSurvivors[ID].player:getInventory():FindAndReturn(gunWep)
+			if not self.SuperSurvivors[ID].LastGunUsed then self.SuperSurvivors[ID].LastGunUsed = self.SuperSurvivors[ID]:getBag():FindAndReturn(gunWep) end
 		end
 		
 		
@@ -208,12 +208,12 @@ function SuperSurvivorManager:AsleepHealAll()
 
 end
 function SuperSurvivorManager:PublicExecution(SSW,SSV)
-	local maxdistance = 20
+	local maxDistance = 20
 	
 	for i=1, self.SurvivorCount+1 do
 		if(self.SuperSurvivors[i] ~= nil) and (self.SuperSurvivors[i]:isInCell()) then 
 			local distance = getDistanceBetween(self.SuperSurvivors[i]:Get(),getSpecificPlayer(0))
-			if(distance < maxdistance) and (self.SuperSurvivors[i]:Get():CanSee(SSV:Get())) then
+			if(distance < maxDistance) and (self.SuperSurvivors[i]:Get():CanSee(SSV:Get())) then
 				
 				if(not self.SuperSurvivors[i]:isInGroup(SSW:Get()) and not self.SuperSurvivors[i]:isInGroup(SSV:Get())) then
 					
@@ -225,7 +225,7 @@ function SuperSurvivorManager:PublicExecution(SSW,SSV)
 					else
 						-- flee from the crazy murderer
 						print(self.SuperSurvivors[i]:getName() .. " fleeing from the crazy murderer")
-						--print("FLEEFROM1 " .. self.SuperSurvivors[i]:getName())
+						--print("FLEEING FROM1 " .. self.SuperSurvivors[i]:getName())
 						self.SuperSurvivors[i]:getTaskManager():AddToTop(FleeFromHereTask:new(self.SuperSurvivors[i],SSW:Get():getCurrentSquare()))
 					end
 					self.SuperSurvivors[i]:SpokeTo(SSW:Get():getModData().ID)
@@ -241,7 +241,7 @@ function SuperSurvivorManager:PublicExecution(SSW,SSV)
 end
 
 function SuperSurvivorManager:GunShotHandle(SSW)
-	local maxdistance = 20
+	local maxDistance = 20
 	local weapon = getSpecificPlayer(0):getPrimaryHandItem()
 	if not weapon then return false end
 	
@@ -252,10 +252,10 @@ function SuperSurvivorManager:GunShotHandle(SSW)
 			
 				
 				
-				if(self.SuperSurvivors[i].player:getModData().surender) and (distance < maxdistance) and self.SuperSurvivors[i]:Get():CanSee(SSW:Get()) and self.SuperSurvivors[i].player:CanSee(getSpecificPlayer(0)) then
+				if(self.SuperSurvivors[i].player:getModData().surender) and (distance < maxDistance) and self.SuperSurvivors[i]:Get():CanSee(SSW:Get()) and self.SuperSurvivors[i].player:CanSee(getSpecificPlayer(0)) then
 					-- flee from the crazy murderer
 					print(self.SuperSurvivors[i]:getName() .. " fleeing from the crazy murderer")
-					--print("FLEEFROM2 " .. self.SuperSurvivors[i]:GetName())
+					--print("FLEEING FROM2 " .. self.SuperSurvivors[i]:GetName())
 					self.SuperSurvivors[i]:getTaskManager():AddToTop(FleeFromHereTask:new(self.SuperSurvivors[i],SSW:Get():getCurrentSquare()))
 					self.SuperSurvivors[i]:SpokeTo(SSW:Get():getModData().ID)
 				end
@@ -273,15 +273,15 @@ function SuperSurvivorManager:GunShotHandle(SSW)
 
 end
 
-function SuperSurvivorManager:GetSurvivorByName(thisname)
+function SuperSurvivorManager:GetSurvivorByName(thisName)
 	local closestSoFar = 999
 	local closestID = 0
 	for i=1, self.SurvivorCount+1 do
 		if(self.SuperSurvivors[i] ~= nil) and (self.SuperSurvivors[i]:isInCell()) then 
 			local distance = getDistanceBetween(self.SuperSurvivors[i]:Get(),getSpecificPlayer(0))
 			
-			if(distance < closestSoFar) and (thisname == self.SuperSurvivors[i]:getName()) then
-			--print("survivor found ".. tostring(self.SuperSurvivors[i]:getName()) .. " = " .. tostring(thisname) .. " !")
+			if(distance < closestSoFar) and (thisName == self.SuperSurvivors[i]:getName()) then
+			--print("survivor found ".. tostring(self.SuperSurvivors[i]:getName()) .. " = " .. tostring(thisName) .. " !")
 				closestID = i
 				closestSoFar = distance
 			end
@@ -290,7 +290,7 @@ function SuperSurvivorManager:GetSurvivorByName(thisname)
 	
 	if(closestID ~= 0) then return self.SuperSurvivors[closestID]
 	else
-		--print("could not find survivor by this name" .. tostring(thisname))
+		--print("could not find survivor by this name" .. tostring(thisName))
 		return nil 
 	end
 

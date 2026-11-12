@@ -117,7 +117,7 @@ function getOutsideSquare(square,building)
 end
 
 -- TODO: remove this function and use getFleeSquareAlt
---- gets a random square awyas from the 'attackGuy'
+--- gets a random square away from the 'attackGuy'
 ---@param fleeGuy any 
 ---@param attackGuy any 
 ---@return any returns a random square away from attackGuy
@@ -132,56 +132,56 @@ end
 ---@return any returns a random square in a distance away from attackGuy
 function getFleeSquareAlt(fleeGuy,attackGuy,distanceToFlee)
 	local distance = distanceToFlee
-	local tempx = (fleeGuy:getX() - attackGuy:getX());
-	local tempy = (fleeGuy:getY() - attackGuy:getY());
+	local tempX = (fleeGuy:getX() - attackGuy:getX());
+	local tempY = (fleeGuy:getY() - attackGuy:getY());
 
-	if (tempx < 0) then 
-		tempx = -distance;
+	if (tempX < 0) then 
+		tempX = -distance;
 	else 
-		tempx = distance; 
+		tempX = distance; 
 	end
-	if (tempy < 0) then 
-		tempy = -distance
+	if (tempY < 0) then 
+		tempY = -distance
 	else 
-		tempy = distance
+		tempY = distance
 	end
 
-	local fleex = fleeGuy:getX() + tempx + ZombRand(-5,5)
-	local fleey = fleeGuy:getY() + tempy + ZombRand(-5,5)
+	local fleeX = fleeGuy:getX() + tempX + ZombRand(-5,5)
+	local fleeY = fleeGuy:getY() + tempY + ZombRand(-5,5)
 
-	return fleeGuy:getCell():getGridSquare(fleex,fleey,fleeGuy:getZ());
+	return fleeGuy:getCell():getGridSquare(fleeX,fleeY,fleeGuy:getZ());
 end
 
---- gets a square torwards a direction in a fixed distance (15)
----@param moveguy any
+--- gets a square towards a direction in a fixed distance (15)
+---@param moveGuy any
 ---@param x number
 ---@param y number
 ---@param z number
-function getTowardsSquare(moveguy,x,y,z)
+function getTowardsSquare(moveGuy,x,y,z)
 	local distance = 15
-	local tempx = (moveguy:getX() - x);
-	local tempy = (moveguy:getY() - y);
+	local tempX = (moveGuy:getX() - x);
+	local tempY = (moveGuy:getY() - y);
 
-	if (tempx > 0) and (tempx >= distance) then 
-		tempx = -distance;
-	elseif (tempx < -distance) then 
-		tempx = distance
+	if (tempX > 0) and (tempX >= distance) then 
+		tempX = -distance;
+	elseif (tempX < -distance) then 
+		tempX = distance
 	else 
-		tempx = -tempx 
+		tempX = -tempX 
 	end
 
-	if (tempy > 0) and (tempy >= distance) then 
-		tempy = -distance
-	elseif (tempy < -distance) then 
-		tempy = distance;
+	if (tempY > 0) and (tempY >= distance) then 
+		tempY = -distance
+	elseif (tempY < -distance) then 
+		tempY = distance;
 	else 
-		tempy = -tempy 
+		tempY = -tempY 
 	end
 
-	local movex = moveguy:getX()+tempx+ZombRand(-2,2)
-	local movey = moveguy:getY()+tempy+ZombRand(-2,2)
+	local moveX = moveGuy:getX()+tempX+ZombRand(-2,2)
+	local moveY = moveGuy:getY()+tempY+ZombRand(-2,2)
 
-	return moveguy:getCell():getGridSquare(movex,movey,moveguy:getZ());
+	return moveGuy:getCell():getGridSquare(moveX,moveY,moveGuy:getZ());
 end
 
 --- END SQUARES ---
@@ -285,10 +285,10 @@ end
 ---@return any the center square given the coordinates
 function getCenterSquareFromArea(x1,x2,y1,y2,z)
 
-	local xdiff = x2 - x1
-	local ydiff = y2 - y1
+	local xDiff = x2 - x1
+	local yDiff = y2 - y1
 
-	local result = getCell():getGridSquare(x1+math.floor(xdiff/2),y1+math.floor(ydiff/2),z)
+	local result = getCell():getGridSquare(x1+math.floor(xDiff/2),y1+math.floor(yDiff/2),z)
 
 	return result
 
@@ -304,10 +304,10 @@ function getRandomAreaSquare(area)
 	local y2 = area[4]
 	--print(tostring(x1)..","..tostring(y1).." : " .. tostring(x2)..","..tostring(y2))
 	if(x1 ~= nil) then
-		local xrand = ZombRand(x1,x2)
-		local yrand = ZombRand(y1,y2)
+		local xRand = ZombRand(x1,x2)
+		local yRand = ZombRand(y1,y2)
 
-		local result = getCell():getGridSquare(xrand,yrand,area[5])
+		local result = getCell():getGridSquare(xRand,yRand,area[5])
 
 		return result
 	end
@@ -322,23 +322,23 @@ end
 ---@param objectName string object name to be searched
 ---@return table returns a list with every object found inside the building
 function getAllObjectsFromBuilding(building,objectName)
-	local bdef = building:getDef()
+	local buildingDef = building:getDef()
 
-	local bdefX = bdef:getX()
-	local bdefY = bdef:getY()
-	local bdefZ = bdef:getZ()
+	local buildingDefX = buildingDef:getX()
+	local buildingDefY = buildingDef:getY()
+	local buildingDefZ = buildingDef:getZ()
 
-	local bdWidth = bdefX + bdef:getW() + 1
-	local bdHeight = bdefY + bdef:getH() + 1
+	local bdWidth = buildingDefX + buildingDef:getW() + 1
+	local bdHeight = buildingDefY + buildingDef:getH() + 1
 
 	local objects = {}
 	local objectCount = 0
 
 	debugContext(" ----- getAllObjectsFromBuilding ----- ")
 
-	for 	x=bdefX-1, bdWidth  do
-		for y=bdefY-1, bdHeight do
-			local sq = getCell():getGridSquare(x,y,bdefZ)
+	for 	x=buildingDefX-1, bdWidth  do
+		for y=buildingDefY-1, bdHeight do
+			local sq = getCell():getGridSquare(x,y,buildingDefZ)
 			if(sq) then
 				local Objs = sq:getObjects();
 				for j=0, Objs:size()-1 do
@@ -412,16 +412,16 @@ function getCloseWindow(building,character)
 
 	local WindowOut = nil
 	local closestSoFar = 100
-	local bdef = building:getDef()
+	local buildingDef = building:getDef()
 
-	local bdefX = bdef:getX()
-	local bdefY = bdef:getY()
+	local buildingDefX = buildingDef:getX()
+	local buildingDefY = buildingDef:getY()
 
-	local bdWidth = bdefX + bdef:getW() + 1
-	local bdHeight = bdefY + bdef:getH() + 1
+	local bdWidth = buildingDefX + buildingDef:getW() + 1
+	local bdHeight = buildingDefY + buildingDef:getH() + 1
 
-	for x=	bdefX-1, bdWidth do
-		for y=bdefY-1, bdHeight do
+	for x=	buildingDefX-1, bdWidth do
+		for y=buildingDefY-1, bdHeight do
 
 			local sq = getCell():getGridSquare(x,y,character:getZ())
 			if(sq) then
@@ -448,7 +448,7 @@ function getCloseWindow(building,character)
 	return WindowOut
 end
 
---- checks if the window is barricated from both sides
+--- checks if the window is barricaded from both sides
 ---@param window any
 ---@param character any
 function windowHasBarricade(window,character)
@@ -527,10 +527,10 @@ function getUnlockedDoor(building,character)
 
 	local DoorOut = nil
 	local closestSoFar = 100
-	local bdef = building:getDef()
+	local buildingDef = building:getDef()
 
-	for x=bdef:getX()-1,(bdef:getX() + bdef:getW() + 1) do
-		for y=bdef:getY()-1,(bdef:getY() + bdef:getH() + 1) do
+	for x=buildingDef:getX()-1,(buildingDef:getX() + buildingDef:getW() + 1) do
+		for y=buildingDef:getY()-1,(buildingDef:getY() + buildingDef:getH() + 1) do
 
 			local sq = getCell():getGridSquare(x,y,character:getZ())
 			if(sq) then
@@ -563,10 +563,10 @@ function getDoor(building,character)
 	
 	local DoorOut = nil
 	local closestSoFar = 100
-	local bdef = building:getDef()
+	local buildingDef = building:getDef()
 
-	for x=bdef:getX()-1,(bdef:getX() + bdef:getW() + 1) do
-		for y=bdef:getY()-1,(bdef:getY() + bdef:getH() + 1) do
+	for x=buildingDef:getX()-1,(buildingDef:getX() + buildingDef:getW() + 1) do
+		for y=buildingDef:getY()-1,(buildingDef:getY() + buildingDef:getH() + 1) do
 
 			local sq = getCell():getGridSquare(x,y,character:getZ())
 			if(sq) then
@@ -600,22 +600,22 @@ end
 function NumberOfZombiesInOrAroundBuilding(building)
 	local count = 0
 	local padding = 10
-	local bdef = building:getDef()
+	local buildingDef = building:getDef()
 
-	local bdefX = bdef:getX() 
-	local bdefY = bdef:getY() 
+	local buildingDefX = buildingDef:getX() 
+	local buildingDefY = buildingDef:getY() 
 
-	local bdWidth = bdefX + bdef:getW() + padding
-	local bdHeight = bdefY + bdef:getH() + padding
+	local bdWidth = buildingDefX + buildingDef:getW() + padding
+	local bdHeight = buildingDefY + buildingDef:getH() + padding
 
-	for x=	(bdefX - padding),bdWidth do
-		for y=(bdefY - padding),bdHeight do
+	for x=	(buildingDefX - padding),bdWidth do
+		for y=(buildingDefY - padding),bdHeight do
 
 			local sq = getCell():getGridSquare(x,y,0)
 			if(sq) then
-				local Objs = sq:getMovingObjects();
-				for j=0, Objs:size()-1 do
-					local Object = Objs:get(j)
+				local objs = sq:getMovingObjects();
+				for j=0, objs:size()-1 do
+					local Object = objs:get(j)
 					if(Object ~= nil) and (instanceof(Object,"IsoZombie")) then
 						count = count + 1
 					end
@@ -634,9 +634,9 @@ end
 ---@return any returns a random square inside of the building
 function getRandomBuildingSquare(building)
 
-	local bdef = building:getDef()
-	local x = ZombRand(bdef:getX(), (bdef:getX() + bdef:getW()))
-	local y = ZombRand(bdef:getY(), (bdef:getY() + bdef:getH()))
+	local buildingDef = building:getDef()
+	local x = ZombRand(buildingDef:getX(), (buildingDef:getX() + buildingDef:getW()))
+	local y = ZombRand(buildingDef:getY(), (buildingDef:getY() + buildingDef:getH()))
 
 	local sq = getCell():getGridSquare(x,y,0)
 	if(sq) then
@@ -655,12 +655,12 @@ function getRandomFreeBuildingSquare(building)
 		return nil 
 	end
 
-	local bdef = building:getDef()
+	local buildingDef = building:getDef()
 
 	for i=0,100 do
 
-		local x = ZombRand(bdef:getX(), (bdef:getX() + bdef:getW()))
-		local y = ZombRand(bdef:getY(), (bdef:getY() + bdef:getH()))
+		local x = ZombRand(buildingDef:getX(), (buildingDef:getX() + buildingDef:getW()))
+		local y = ZombRand(buildingDef:getY(), (buildingDef:getY() + buildingDef:getH()))
 
 		local sq = getCell():getGridSquare(x,y,0)
 		if(sq) and sq:isFree(false) and (sq:getRoom() ~= nil) and (sq:getRoom():getBuilding() == building) then

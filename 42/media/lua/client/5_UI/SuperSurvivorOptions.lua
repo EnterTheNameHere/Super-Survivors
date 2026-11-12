@@ -1,3 +1,14 @@
+require "OptionScreens/GameOption"
+
+local optionsFileName = "SurvivorOptions.txt"
+local legacyOptionsFileName = "SurvivorOptions.lua"
+
+local function openOptionsReader()
+	local reader = getFileReader(optionsFileName, false)
+	if reader then return reader, optionsFileName end
+	return getFileReader(legacyOptionsFileName, false), legacyOptionsFileName
+end
+
 -- thanks and some credit to Fenris_Wolf from ORGM mod for creating this hotkeys file!  I just tweaked it to use my own key bindings! and added support for settings too ~Nolan
 
 function SuperSurvivorGetOption(option)
@@ -106,15 +117,23 @@ function SuperSurvivorGetOptionValue(option)
 
 end
 function SuperSurvivorSetOption(option,ToValue)
-
+	local previous = SuperSurvivorOptions[option]
 	SuperSurvivorOptions[option] = ToValue
-	SaveSurvivorOptions()
+	local saved, reason = SaveSurvivorOptions()
+	if not saved then
+		SuperSurvivorOptions[option] = previous
+		error(reason)
+	end
+	return true
 
 end
 
- function SaveSurvivorOptions()
-	--local destFile = "SurvivorOptions.lua"
-	local writeFile = getFileWriter("SurvivorOptions.lua", true, false)
+function SaveSurvivorOptions()
+	-- B42's getFileWriter rejects executable extensions such as .lua.
+	local writeFile = getFileWriter(optionsFileName, true, false)
+	if not writeFile then
+		return false, "[SuperbSurvivors] Cannot open " .. optionsFileName .. " for writing; options were not saved."
+	end
 
 	for index,value in pairs(SuperSurvivorOptions) do
 	
@@ -122,44 +141,40 @@ end
 	
 	end
 	writeFile:close();
+	return true
 end
 
 function LoadSurvivorOptions( )
 	
-	if(doesOptionsFileExist() == false) then 
+	local readFile, fileName = openOptionsReader()
+	if not readFile then
 		print("could not load survivor options file")
 		return nil 
 	end
 
 	local fileTable = {}
-	local readFile = getFileReader("SurvivorOptions.lua", false)
 	local scanLine = readFile:readLine()
 	while scanLine do
-	
-		local values = {}
-		for input in scanLine:gmatch("%S+") do table.insert(values,input) end
-		--print("loading line: "..values[1] .. " " .. values[2])
-		if(fileTable[values[1]] == nil) then fileTable[values[1]] = {} end
-			fileTable[values[1]]=tonumber(values[2])
+		local key, value = scanLine:match("^(%S+)%s+(%S+)")
+		local number = tonumber(value)
+		if key and number then fileTable[key] = number end
 		scanLine = readFile:readLine()
 		if not scanLine then break end
 	end
 	readFile:close()
-	print("Loaded survivor options file")
+	print("Loaded survivor options file: " .. fileName)
 	return fileTable
 end
 
 function doesOptionsFileExist(  )
-	local fileTable = {}
-	local readFile = getFileReader("SurvivorOptions.lua", false)
-	
-	if(readFile) then return true
-	else return false end
+	local readFile = openOptionsReader()
+	if not readFile then return false end
+	readFile:close()
+	return true
 end
 
 
-	SuperSurvivorOptions = LoadSurvivorOptions()
-	if(not SuperSurvivorOptions) then SuperSurvivorOptions = {} end
+	SuperSurvivorOptions = LoadSurvivorOptions() or {}
 	if(not SuperSurvivorOptions["SpawnRate"]) then SuperSurvivorOptions["SpawnRate"] = 7 end
 	if(not SuperSurvivorOptions["WifeSpawn"]) then SuperSurvivorOptions["WifeSpawn"] = 1 end
 	if(not SuperSurvivorOptions["LockNLoad"]) then SuperSurvivorOptions["LockNLoad"] = 1 end
@@ -204,74 +219,6 @@ end
 	if(not SuperSurvivorOptions["SSHotkey4"]) then SuperSurvivorOptions["SSHotkey4"] = 42 end
 	
 
-local GameOption = ISBaseObject:derive("GameOption")
-local GameOptions = ISBaseObject:derive("GameOptions")
-
-function GameOption:new(name, control, arg1, arg2)
-	local o = {}
-	setmetatable(o, self)
-	self.__index = self
-	o.name = name
-	o.control = control
-	o.arg1 = arg1
-	o.arg2 = arg2
-	if control.isCombobox then
-		control.onChange = self.onChangeComboBox
-		control.target = o
-	end
-	if control.isTickBox then
-		control.changeOptionMethod = self.onChangeTickBox
-		control.changeOptionTarget = o
-	end
-	if control.isSlider then
-		control.targetFunc = self.onChangeVolumeControl
-		control.target = o
-	end
-	return o
-end
-
-function GameOption:toUI()
-	print('ERROR: option "'..self.name..'" missing toUI()')
-end
-
-function GameOption:apply()
-	print('ERROR: option "'..self.name..'" missing apply()')
-end
-
-function GameOption:resetLua()
-	MainOptions.instance.resetLua = true
-end
-
-function GameOption:restartRequired(oldValue, newValue)
-	if getCore():getOptionOnStartup(self.name) == nil then
-		getCore():setOptionOnStartup(self.name, oldValue)
-	end
-	if getCore():getOptionOnStartup(self.name) == newValue then
-		return
-	end
-	MainOptions.instance.restartRequired = true
-end
-
-function GameOption:onChangeComboBox(box)
-	self.gameOptions:onChange(self)
-	if self.onChange then
-		self:onChange(box)
-	end
-end
-
-function GameOption:onChangeTickBox(index, selected)
-	self.gameOptions:onChange(self)
-	if self.onChange then
-		self:onChange(index, selected)
-	end
-end
-
-function GameOption:onChangeVolumeControl(control, volume)
-	self.gameOptions:onChange(self)
-	if self.onChange then
-		self:onChange(control, volume)
-	end
-end
 -- -- -- -- --
 
 --[[
@@ -316,13 +263,13 @@ if index then
 -- Options Menu controller --
 -- ----------------------- --
 --TODO: separate UI into sections (spawn , raiders , hotkeys)
-	function MainOptions:addCustomCombo(id,splitpoint, y, comboWidth,label ,options, description)
-		local spawnrateCombo = self:addCombo(splitpoint, y, comboWidth, 20,label, options, 1)
+	function MainOptions:addCustomCombo(id,splitPoint, y, comboWidth,label ,options, description)
+		local spawnRateCombo = self:addCombo(splitPoint, y, comboWidth, 20,label, options, 1)
 		if description then
-			spawnrateCombo:setToolTipMap({defaultTooltip = description});
+			spawnRateCombo:setToolTipMap({defaultTooltip = description});
 		end
 		
-		gameOption = GameOption:new(id, spawnrateCombo)
+		local gameOption = GameOption:new(id, spawnRateCombo)
 		function gameOption.toUI(self)
 			local box = self.control
 			box.selected = SuperSurvivorGetOption(id)
@@ -367,6 +314,8 @@ if index then
     local oldCreate = MainOptions.create
 
     -- overwrite it
+    -- Intentional wrapper: retain vanilla creation before adding the survivor page.
+    ---@diagnostic disable-next-line: duplicate-set-field
     function MainOptions:create()
         oldCreate(self)
         for _, keyTextElement in pairs(MainOptions.keyText) do repeat
@@ -447,7 +396,7 @@ if index then
 		local label
 		local y = 5
 		local comboWidth = 300
-		local splitpoint = self:getWidth() / 3;
+		local splitPoint = self:getWidth() / 3;
 		-------------------------------------------
 
 
@@ -469,7 +418,7 @@ if index then
 			getOptionText("ExtremelyHigh"),
 			getOptionText("UltraHigh")
 		}
-		self:addCustomCombo('SpawnRate',splitpoint,y,comboWidth,getOptionText("SurvivorSpawnRate"),options,getOptionText("SurvivorSpawnRateDesc"))
+		self:addCustomCombo('SpawnRate',splitPoint,y,comboWidth,getOptionText("SurvivorSpawnRate"),options,getOptionText("SurvivorSpawnRateDesc"))
 
 
 	y = y + spacing4x
@@ -482,10 +431,10 @@ if index then
 			getOptionText("UpTo3"),getOptionText("UpTo4"),
 			getOptionText("UpTo5"),getOptionText("UpTo6")
 		}
-		self:addCustomCombo('AltSpawn',splitpoint,y,comboWidth,getOptionText("AltSpawn"),options,getOptionText("AltSpawnDesc"))
+		self:addCustomCombo('AltSpawn',splitPoint,y,comboWidth,getOptionText("AltSpawn"),options,getOptionText("AltSpawnDesc"))
 
 		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('AltSpawnPercent',splitpoint,y,comboWidth,getOptionText("AltSpawnPercent"),options,getOptionText("AltSpawnPercentDesc"))
+		self:addCustomCombo('AltSpawnPercent',splitPoint,y,comboWidth,getOptionText("AltSpawnPercent"),options,getOptionText("AltSpawnPercentDesc"))
 		
 		local options = 
 		{
@@ -496,7 +445,7 @@ if index then
 			getOptionText("AltSpawnAmount_5"),
 			getOptionText("AltSpawnAmount_6")
 		}
-		self:addCustomCombo('AltSpawnAmount',splitpoint,y,comboWidth,getOptionText("AltSpawnAmount"),options,getOptionText("AltSpawnAmountDesc"))
+		self:addCustomCombo('AltSpawnAmount',splitPoint,y,comboWidth,getOptionText("AltSpawnAmount"),options,getOptionText("AltSpawnAmountDesc"))
 
 
 	y = y + spacing4x
@@ -511,7 +460,7 @@ if index then
 			getOptionText("Every85Days"), getOptionText("Every90Days"), getOptionText("Every95Days"), getOptionText("Every100Days"),
 			getOptionText("EveryDay"), 		getOptionText("EveryHour"), 	getOptionText("Every10Minutes")
 		}
-		self:addCustomCombo('RaidersAtLeastHours',splitpoint,y,comboWidth,getOptionText("RaidersGuaranteed"),options,getOptionText("RaidersGuaranteedDesc"))
+		self:addCustomCombo('RaidersAtLeastHours',splitPoint,y,comboWidth,getOptionText("RaidersGuaranteed"),options,getOptionText("RaidersGuaranteedDesc"))
 
 		local options = 
 		{
@@ -527,7 +476,7 @@ if index then
 			getOptionText("AfterDay85"), 				getOptionText("AfterDay90"), 
 			getOptionText("AfterDay95"),				getOptionText("Never")
 		}
-		self:addCustomCombo('RaidersAfterHours',splitpoint,y,comboWidth,getOptionText("RaidersAfterHours"),options,getOptionText("RaidersAfterHoursDesc"))
+		self:addCustomCombo('RaidersAfterHours',splitPoint,y,comboWidth,getOptionText("RaidersAfterHours"),options,getOptionText("RaidersAfterHoursDesc"))
 		
 		local options = 
 		{
@@ -535,67 +484,67 @@ if index then
 			getOptionText("Normal"),
 			getOptionText("Low"),getOptionText("VeryLow")
 		}
-		self:addCustomCombo('RaidersChance',splitpoint,y,comboWidth,getOptionText("RaidersChance"),options,getOptionText("RaidersChanceDesc"))
+		self:addCustomCombo('RaidersChance',splitPoint,y,comboWidth,getOptionText("RaidersChance"),options,getOptionText("RaidersChanceDesc"))
 
 
 	y = y + spacing4x
 
 
 		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('WepSpawnRate',splitpoint,y,comboWidth,getOptionText("WepSpawnRate"),options,getOptionText("WepSpawnRateDesc"))
+		self:addCustomCombo('WepSpawnRate',splitPoint,y,comboWidth,getOptionText("WepSpawnRate"),options,getOptionText("WepSpawnRateDesc"))
 
 		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('GunSpawnRate',splitpoint,y,comboWidth,getOptionText("ChanceToSpawnWithGun"),options,getOptionText("ChanceToSpawnWithGunDesc"))
+		self:addCustomCombo('GunSpawnRate',splitPoint,y,comboWidth,getOptionText("ChanceToSpawnWithGun"),options,getOptionText("ChanceToSpawnWithGunDesc"))
 
 
 	y = y + spacing4x
 
 
 		local options = {getOptionText("Off"),getOptionText("On")}
-		self:addCustomCombo('ForcePVP',splitpoint,y,comboWidth,getOptionText("PVPInfoBar"),options,getOptionText("PVPInfoBarDesc"))
+		self:addCustomCombo('ForcePVP',splitPoint,y,comboWidth,getOptionText("PVPInfoBar"),options,getOptionText("PVPInfoBarDesc"))
 		
 		local options = NPC_Options_ZeroToOneHundred()
-		self:addCustomCombo('HostileSpawnRate',splitpoint,y,comboWidth,getOptionText("ChanceToBeHostile"),options,getOptionText("ChanceToBeHostileDesc"))
+		self:addCustomCombo('HostileSpawnRate',splitPoint,y,comboWidth,getOptionText("ChanceToBeHostile"),options,getOptionText("ChanceToBeHostileDesc"))
 		
 		
 		local options = NPC_Options_ZeroToOneHundred() -- Hostile Over Time Odds
-		self:addCustomCombo('MaxHostileSpawnRate',splitpoint,y,comboWidth,getOptionText("MaxHostileSpawnRate"),options,getOptionText("MaxHostileSpawnRateDesc"))
+		self:addCustomCombo('MaxHostileSpawnRate',splitPoint,y,comboWidth,getOptionText("MaxHostileSpawnRate"),options,getOptionText("MaxHostileSpawnRateDesc"))
 
 
 	y = y + spacing4x
 
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_Display_Survivor_Names',splitpoint,y,comboWidth,getOptionText("Display_Survivor_Names"),options,getOptionText("Display_Survivor_NamesDesc"))
+		self:addCustomCombo('Option_Display_Survivor_Names',splitPoint,y,comboWidth,getOptionText("Display_Survivor_Names"),options,getOptionText("Display_Survivor_NamesDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Option_Display_Hostile_Color',splitpoint,y,comboWidth,getOptionText("Display_Hostile_Color"),options,getOptionText("Display_Hostile_ColorDesc"))
+		self:addCustomCombo('Option_Display_Hostile_Color',splitPoint,y,comboWidth,getOptionText("Display_Hostile_Color"),options,getOptionText("Display_Hostile_ColorDesc"))
 			
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('RoleplayMessage',splitpoint,y,comboWidth,getOptionText("RoleplayMessage"),options,getOptionText("RoleplayMessageDesc"))
+		self:addCustomCombo('RoleplayMessage',splitPoint,y,comboWidth,getOptionText("RoleplayMessage"),options,getOptionText("RoleplayMessageDesc"))
 
 
 	y = y + spacing4x
 
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('WifeSpawn',splitpoint,y,comboWidth,getOptionText("WifeSpawn"),options,getOptionText("WifeSpawnDesc"))
+		self:addCustomCombo('WifeSpawn',splitPoint,y,comboWidth,getOptionText("WifeSpawn"),options,getOptionText("WifeSpawnDesc"))
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('LockNLoad',splitpoint,y,comboWidth,getOptionText("LockNLoad"),options,getOptionText("LockNLoadDesc"))
+		self:addCustomCombo('LockNLoad',splitPoint,y,comboWidth,getOptionText("LockNLoad"),options,getOptionText("LockNLoadDesc"))
 
 
 	y = y + spacing4x
 
 
 		local options = {"3","4","5","6","7","8","9","10"}
-		self:addCustomCombo('FollowDistance',splitpoint,y,comboWidth,getOptionText("FollowGlobalRange"),options,getOptionText("FollowGlobalRangeDesc"))
+		self:addCustomCombo('FollowDistance',splitPoint,y,comboWidth,getOptionText("FollowGlobalRange"),options,getOptionText("FollowGlobalRangeDesc"))
 			
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('Perception_Bonus',splitpoint,y,comboWidth,getOptionText("PerceptionBonus"),options,getOptionText("PerceptionBonusDesc"))
+		self:addCustomCombo('Perception_Bonus',splitPoint,y,comboWidth,getOptionText("PerceptionBonus"),options,getOptionText("PerceptionBonusDesc"))
 		
 		local options = NPC_Options_ZeroToOneHundredAbsolute()
-		self:addCustomCombo('Panic_Distance',splitpoint,y,comboWidth,getOptionText("Panic_Distance"),options,getOptionText("Panic_DistanceDesc"))
+		self:addCustomCombo('Panic_Distance',splitPoint,y,comboWidth,getOptionText("Panic_Distance"),options,getOptionText("Panic_DistanceDesc"))
 
 
 	y = y + spacing4x
@@ -607,7 +556,7 @@ if index then
 			getOptionText("Friendly"), getOptionText("Normal"), 
 			getOptionText("Mean"), getOptionText("VeryMean")
 		}
-		self:addCustomCombo('SurvivorFriendliness',splitpoint,y,comboWidth,getOptionText("SurvivorFriendliness"),options,getOptionText("SurvivorFriendlinessDesc"))
+		self:addCustomCombo('SurvivorFriendliness',splitPoint,y,comboWidth,getOptionText("SurvivorFriendliness"),options,getOptionText("SurvivorFriendlinessDesc"))
 			
 		local options = 
 		{
@@ -615,64 +564,64 @@ if index then
 			getOptionText("Brave"), getOptionText("VeryBrave"),
 			"RAMBO!","Suicidal!"			
 		}
-		self:addCustomCombo('Bravery',splitpoint,y,comboWidth,getOptionText("SurvivorBravery"),options,getOptionText("SurvivorBraveryDesc"))
+		self:addCustomCombo('Bravery',splitPoint,y,comboWidth,getOptionText("SurvivorBravery"),options,getOptionText("SurvivorBraveryDesc"))
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('NoPreSetSpawn',splitpoint,y,comboWidth,getOptionText("NoPreSetSpawn"),options,getOptionText("NoPreSetSpawnDesc"))
+		self:addCustomCombo('NoPreSetSpawn',splitPoint,y,comboWidth,getOptionText("NoPreSetSpawn"),options,getOptionText("NoPreSetSpawnDesc"))
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('NoIdleChatter',splitpoint,y,comboWidth,"No Idle Chatter",options,"Prevent NPCs from randomly chattering on about things while they follow you among other times.")
+		self:addCustomCombo('NoIdleChatter',splitPoint,y,comboWidth,"No Idle Chatter",options,"Prevent NPCs from randomly chattering on about things while they follow you among other times.")
 
 
 	y = y + spacing4x
 
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('InfiniteAmmo',splitpoint,y,comboWidth,getOptionText("InfiniteAmmo"),options,getOptionText("InfiniteAmmoDesc"))
+		self:addCustomCombo('InfiniteAmmo',splitPoint,y,comboWidth,getOptionText("InfiniteAmmo"),options,getOptionText("InfiniteAmmoDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('FindWork',splitpoint,y,comboWidth,getOptionText("FindWork"),options,getOptionText("FindWorkDesc"))
+		self:addCustomCombo('FindWork',splitPoint,y,comboWidth,getOptionText("FindWork"),options,getOptionText("FindWorkDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('SurvivorHunger',splitpoint,y,comboWidth,getOptionText("SurvivorHunger"),options,getOptionText("SurvivorHungerDesc"))
+		self:addCustomCombo('SurvivorHunger',splitPoint,y,comboWidth,getOptionText("SurvivorHunger"),options,getOptionText("SurvivorHungerDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('SafeBase',splitpoint,y,comboWidth,getOptionText("SafeBase"),options,getOptionText("SafeBaseDesc"))
+		self:addCustomCombo('SafeBase',splitPoint,y,comboWidth,getOptionText("SafeBase"),options,getOptionText("SafeBaseDesc"))
 		
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('SurvivorBases',splitpoint,y,comboWidth,getOptionText("SurvivorBases"),options,getOptionText("SurvivorBasesDesc"))		
+		self:addCustomCombo('SurvivorBases',splitPoint,y,comboWidth,getOptionText("SurvivorBases"),options,getOptionText("SurvivorBasesDesc"))		
 
 
 	y = y + spacing4x
 
 
 		local options = SSHotKeyOptions
-		self:addCustomCombo('SSHotkey1',splitpoint,y,comboWidth,getOptionText("hotkey1"),options,getOptionText("hotkeyDesc"))					
+		self:addCustomCombo('SSHotkey1',splitPoint,y,comboWidth,getOptionText("hotkey1"),options,getOptionText("hotkeyDesc"))					
 	
 		local options = SSHotKeyOptions
-		self:addCustomCombo('SSHotkey2',splitpoint,y,comboWidth,getOptionText("hotkey2"),options,getOptionText("hotkeyDesc"))					
+		self:addCustomCombo('SSHotkey2',splitPoint,y,comboWidth,getOptionText("hotkey2"),options,getOptionText("hotkeyDesc"))					
 	
 		local options = SSHotKeyOptions
-		self:addCustomCombo('SSHotkey3',splitpoint,y,comboWidth,getOptionText("hotkey3"),options,getOptionText("hotkeyDesc"))					
+		self:addCustomCombo('SSHotkey3',splitPoint,y,comboWidth,getOptionText("hotkey3"),options,getOptionText("hotkeyDesc"))					
 
 		local options = SSHotKeyOptions
-		self:addCustomCombo('SSHotkey4',splitpoint,y,comboWidth,getOptionText("hotkey4"),options,getOptionText("hotkeyDesc"))		
+		self:addCustomCombo('SSHotkey4',splitPoint,y,comboWidth,getOptionText("hotkey4"),options,getOptionText("hotkeyDesc"))		
 		
 
 	y = y + spacing4x
 
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('DebugOptions',splitpoint,y,comboWidth,getOptionText("DebugOptions"),options,getOptionText("DebugOptionsDesc"))		
+		self:addCustomCombo('DebugOptions',splitPoint,y,comboWidth,getOptionText("DebugOptions"),options,getOptionText("DebugOptionsDesc"))		
 	
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('DebugSay',splitpoint,y,comboWidth,getOptionText("DebugSay"),options,getOptionText("DebugSayDesc"))		
+		self:addCustomCombo('DebugSay',splitPoint,y,comboWidth,getOptionText("DebugSay"),options,getOptionText("DebugSayDesc"))		
 
 		local options = NPC_Options_ZeroToOneHundredAbsolute()
-		self:addCustomCombo('DebugSay_Distance',splitpoint,y,comboWidth,getOptionText("DebugSay_Distance"),options,getOptionText("DebugSay_DistanceDesc"))		
+		self:addCustomCombo('DebugSay_Distance',splitPoint,y,comboWidth,getOptionText("DebugSay_Distance"),options,getOptionText("DebugSay_DistanceDesc"))		
 
 		local options = NPC_Options_OffOn()
-		self:addCustomCombo('WarningMSG',splitpoint,y,comboWidth,getOptionText("WarningMSG"),options,getOptionText("WarningMSGDesc"))		
+		self:addCustomCombo('WarningMSG',splitPoint,y,comboWidth,getOptionText("WarningMSG"),options,getOptionText("WarningMSGDesc"))		
 
 
 

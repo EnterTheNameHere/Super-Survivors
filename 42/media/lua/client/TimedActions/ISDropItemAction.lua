@@ -7,7 +7,8 @@ require "TimedActions/ISBaseTimedAction"
 ISDropItemAction = ISBaseTimedAction:derive("ISDropItemAction");
 
 function ISDropItemAction:isValid()
-	return self.character:getInventory():contains(self.item);
+	return self.item ~= nil and self.character:getCurrentSquare() ~= nil
+		and self.character:getInventory():contains(self.item);
 end
 
 function ISDropItemAction:update()
@@ -26,11 +27,19 @@ function ISDropItemAction:stop()
 end
 
 function ISDropItemAction:perform()
+    -- The square/item can disappear while this action is queued. Always advance
+    -- the queue without moving an invalid item or leaving an action stuck.
+    if not self:isValid() then
+        if self.item then self.item:setJobDelta(0.0) end
+        ISBaseTimedAction.perform(self)
+        return
+    end
     self.item:getContainer():setDrawDirty(true);
     self.item:setJobDelta(0.0);
 
 	local square = self.character:getCurrentSquare()
-	local dropX,dropY,dropZ = ISInventoryTransferAction.GetDropItemOffset(self.character, square, self.item)
+	require "TimedActions/ISTransferAction"
+	local dropX,dropY,dropZ = ISTransferAction.GetDropItemOffset(self.character, square, self.item)
 	if(dropX == nil)  then dropX = 0.0 end
 	if(dropY == nil)  then dropY = 0.0 end
 	if(dropZ == nil)  then dropZ = 0.0 end

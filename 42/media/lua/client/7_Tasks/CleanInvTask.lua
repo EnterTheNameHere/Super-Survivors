@@ -67,12 +67,12 @@ function CleanInvTask:update()
 			local square = self.parent:getFacingSquare()
 			local inv = self.parent.player:getInventory()
 			local bag = self.parent:getBag()
-			local pweapon = self.parent.player:getPrimaryHandItem()
-			if(pweapon == nil) then pweapon = 0 end
-			local sweapon = self.parent.player:getSecondaryHandItem()
-			if(sweapon == nil) then sweapon = 0 end
+			local primaryWeapon = self.parent.player:getPrimaryHandItem()
+			if(primaryWeapon == nil) then primaryWeapon = 0 end
+			local secondaryWeapon = self.parent.player:getSecondaryHandItem()
+			if(secondaryWeapon == nil) then secondaryWeapon = 0 end
 			
-			-- exlude ammo types and ammo box types
+			-- exclude ammo types and ammo box types
 			self.parent:DebugSay("CleanInvTask is about to trigger a StopWalk! (Path B) ")
 			self.parent:StopWalk()
 			local items = inv:getItems() ;
@@ -90,8 +90,8 @@ function CleanInvTask:update()
 									(item ~= self.parent.LastGunUsed)
 									and (item ~= self.parent.LastMeleeUsed)
 									and (self.parent:isAmmoForMe(item:getType()) == false)
-									and (item ~= pweapon)
-									and (item ~= sweapon)))
+									and (item ~= primaryWeapon)
+									and (item ~= secondaryWeapon)))
 						) then   --and (isItemWater(item) == false) and (item:getCategory() ~= "Food")
 							--self.parent.player:Say("Here i am 1")
 							local container
@@ -170,11 +170,11 @@ function CleanInvTask:update()
 							if (item:isBroken()) or (
 								(not item:isEquipped())
 								and (armorModEnabled == false or (ArmorisArmorEquipped(self.parent.player,item) == false))
-								and (item ~= pweapon)
+								and (item ~= primaryWeapon)
 								and (item ~= self.parent.LastGunUsed)
 								and (item ~= self.parent.LastMeleeUsed)
 								and (self.parent:isAmmoForMe(item:getType()) == false)
-								and (item ~= sweapon)  --[[and (isItemWater(item) == false) and (item:getCategory() ~= "Food")]]
+								and (item ~= secondaryWeapon)  --[[and (isItemWater(item) == false) and (item:getCategory() ~= "Food")]]
 							) then
 								--print("drop bag " .. tostring(item:getDisplayName()) .. " " .. tostring(item:isEquipped()) .. " " .. tostring(self.parent.player:isEquipped(item)))
 								if(self.TheDropContainer ~= nil) and (self.TheDropContainer.getContainer ~= nil) and (self.TheDropContainer:getContainer():hasRoomFor(self.parent.player,item)) then

@@ -84,7 +84,7 @@ UI_PT = {
 		UI_Option_SS_AfterDay95 = "Depois do dia 95",
 		UI_Option_SS_AfterDay100 = "Apos o dia 100",
 		UI_Option_SS_Never = "Nunca",
-		UI_Option_SS_RaidersAfterHoursDesc = "O evento Invasor pode comecar aleatoriamente apos esse periodo de tempo. O evento Invasor garantido também so comeca a ser calculado apos esse tempo ter passado.",
+		UI_Option_SS_RaidersAfterHoursDesc = "O evento Invasor pode comecar aleatoriamente apos esse periodo de tempo. O evento Invasor garantido tambï¿½m so comeca a ser calculado apos esse tempo ter passado.",
 		UI_Option_SS_RaidersGuaranteed = "Evento de invasores Garantido a cada tantos dias",
 		UI_Option_SS_Every5Days = "A cada 5 dias",
 		UI_Option_SS_Every10Days = "A cada 10 dias",
@@ -109,7 +109,7 @@ UI_PT = {
 		UI_Option_SS_EveryDay = "Todos os dias!",
 		UI_Option_SS_EveryHour = "Toda Hora!",
 		UI_Option_SS_Every10Minutes = "A cada 10 minutos!",
-		UI_Option_SS_RaidersGuaranteedDesc = "Se ja passou da data de inicio dos Invasores, e o evento Invasores não aconteceu por esse periodo de tempo. Os Invasores serao gerados apos esse periodo de tempo passar.",
+		UI_Option_SS_RaidersGuaranteedDesc = "Se ja passou da data de inicio dos Invasores, e o evento Invasores nï¿½o aconteceu por esse periodo de tempo. Os Invasores serao gerados apos esse periodo de tempo passar.",
 	--[[END raiders]]--
 
 	--[[weapons]]--
@@ -135,7 +135,7 @@ UI_PT = {
 
 
 		UI_Option_SS_SurvivorFriendliness = "Amizade com Sobrevivente",
-		UI_Option_SS_SurvivorFriendlinessDesc = "Isso define como e facil conseguir um sobrevivente aleatorio para se juntar a sua equipe.Oferecer mais presentes aumenta a chance de aceitação de convites para grupos de sobreviventes, mas a cada vez que você os incomodar com um convite, a chance de aceitação também diminui. Então, os convites de spam não sao muito bons. ",
+		UI_Option_SS_SurvivorFriendlinessDesc = "Isso define como e facil conseguir um sobrevivente aleatorio para se juntar a sua equipe.Oferecer mais presentes aumenta a chance de aceitaï¿½ï¿½o de convites para grupos de sobreviventes, mas a cada vez que vocï¿½ os incomodar com um convite, a chance de aceitaï¿½ï¿½o tambï¿½m diminui. Entï¿½o, os convites de spam nï¿½o sao muito bons. ",
 		UI_Option_SS_DesperateforHumanContact = "Desesperado por contato humano",
 		UI_Option_SS_VeryFriendly = "Muito amigavel",
 		UI_Option_SS_Friendly = "Amigavel",
@@ -147,13 +147,13 @@ UI_PT = {
 
 
 		UI_Option_SS_LockNLoad = "Pronto para o modo de batalha",
-		UI_Option_SS_LockNLoadDesc = "Você e sua Esposa (se ativados) aparecerao com armas e munição, e Armadura (se habilitado para armadura) no inicio do jogo. otimo modo de usar se você planeja testar com Invasores em uma alta taxa de spawn. ",
+		UI_Option_SS_LockNLoadDesc = "Vocï¿½ e sua Esposa (se ativados) aparecerao com armas e muniï¿½ï¿½o, e Armadura (se habilitado para armadura) no inicio do jogo. otimo modo de usar se vocï¿½ planeja testar com Invasores em uma alta taxa de spawn. ",
 		UI_Option_SS_WifeSpawn = "Iniciar com Esposa/Marido",
 		UI_Option_SS_WifeSpawnDesc = "Ira iniciar o jogo com uma esposa ou marido que ja esteja no seu grupo no inicio do jogo",
-		UI_Option_SS_InfinitAmmo = "Sobreviventes com Munição Infinita",
-		UI_Option_SS_InfinitAmmoDesc = "Se Ativado, os sobreviventes não precisarão de munição para usar armas e nunca ficarão sem munição. Se Desativado, os sobreviventes precisarão de munição e caixas em seu inventario para usar armas de fogo. E podem receber mais munição atraves do menu do botao direito, também tentarao encontrar munição por perto quando ficar sem. ",
+		UI_Option_SS_InfiniteAmmo = "Sobreviventes com Muniï¿½ï¿½o Infinita",
+		UI_Option_SS_InfiniteAmmoDesc = "Se Ativado, os sobreviventes nï¿½o precisarï¿½o de muniï¿½ï¿½o para usar armas e nunca ficarï¿½o sem muniï¿½ï¿½o. Se Desativado, os sobreviventes precisarï¿½o de muniï¿½ï¿½o e caixas em seu inventario para usar armas de fogo. E podem receber mais muniï¿½ï¿½o atraves do menu do botao direito, tambï¿½m tentarao encontrar muniï¿½ï¿½o por perto quando ficar sem. ",
 		UI_Option_SS_FindWork = "Tarefas Base Automaticas de Sobreviventes",
-		UI_Option_SS_FindWorkDesc = "Se ativado, os sobreviventes dentro ou perto da base vão realizar algumas tarefas automáticas em torno da base caso não encontrem nada para fazer. Se Desativado, nunca decidirao executar tarefas por conta própria.",
+		UI_Option_SS_FindWorkDesc = "Se ativado, os sobreviventes dentro ou perto da base vï¿½o realizar algumas tarefas automï¿½ticas em torno da base caso nï¿½o encontrem nada para fazer. Se Desativado, nunca decidirao executar tarefas por conta prï¿½pria.",
 		UI_Option_SS_SurvivorHunger = "Survivor Hunger & Thirst",
 		UI_Option_SS_SurvivorHungerDesc = "Se Ativado, os sobreviventes farao tentativas de encontrar o que precisam com o proprio caminho. Se desativado, nunca ficarao com fome ou com sede.",
 	--[[END on/off options]]--
@@ -166,12 +166,12 @@ UI_PT = {
 	--[[hotkeys]]--
 
 
-		UI_Option_SS_hotkey1 = "Hotkey 1  Ação",
-		UI_Option_SS_hotkey2 = "Hotkey 2  Ação",
-		UI_Option_SS_hotkey3 = "Hotkey 3  Ação",
-		UI_Option_SS_hotkey4 = "Hotkey 4  Ação",
+		UI_Option_SS_hotkey1 = "Hotkey 1  Aï¿½ï¿½o",
+		UI_Option_SS_hotkey2 = "Hotkey 2  Aï¿½ï¿½o",
+		UI_Option_SS_hotkey3 = "Hotkey 3  Aï¿½ï¿½o",
+		UI_Option_SS_hotkey4 = "Hotkey 4  Aï¿½ï¿½o",
 
-		UI_Option_SS_hotkeyDesc = "Escolha uma ação que acontecerá quando você pressionar esta tecla de atalho. Ordenar todas as ações efetuam quaisquer membros dentro do alcance. Enquanto os outros afetam apenas aqueles que estão ouvindo você (Use t como atalho).",
+		UI_Option_SS_hotkeyDesc = "Escolha uma aï¿½ï¿½o que acontecerï¿½ quando vocï¿½ pressionar esta tecla de atalho. Ordenar todas as aï¿½ï¿½es efetuam quaisquer membros dentro do alcance. Enquanto os outros afetam apenas aqueles que estï¿½o ouvindo vocï¿½ (Use t como atalho).",
 	--[[END hotkeys]]--
 
 	--[[bindings]]--
@@ -193,11 +193,11 @@ UI_PT = {
 	--[[debug]]--
 
 
-		UI_Option_SS_LowerFollowDistance = "Distância mais Baixa",
+		UI_Option_SS_LowerFollowDistance = "Distï¿½ncia mais Baixa",
 		UI_Option_SS_RaiseFollowDistance = "Distancia mais Alta",
 		UI_Option_SS_CallClosestGroupMember = "Fala para o membro do grupo mais proximo",
-		UI_Option_SS_CallClosestNonGroupMember = "Falar para o membro mais próximo não pertencente ao grupo",
-		UI_Option_SS_AskClosestGroupMembertoFollow = "Pedir para Membro do Grupo Mais Próximo para Seguir",
+		UI_Option_SS_CallClosestNonGroupMember = "Falar para o membro mais prï¿½ximo nï¿½o pertencente ao grupo",
+		UI_Option_SS_AskClosestGroupMembertoFollow = "Pedir para Membro do Grupo Mais Prï¿½ximo para Seguir",
 	--[[END debug]]--
 
 }

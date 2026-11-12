@@ -228,7 +228,8 @@ function FollowTask:update()
 						ISTimedActionQueue.add(ISWalkToTimedAction:new(self.parent:Get(),doorsquare))						
 						else
 						self.parent:StopWalk()
-						ISTimedActionQueue.add(ISEnterVehicle:new(self.parent:Get(), self.FollowChar:getVehicle(), 1))
+							require "Vehicles/TimedActions/ISEnterVehicle"
+							ISTimedActionQueue.add(ISEnterVehicle:new(self.parent:Get(), self.FollowChar:getVehicle(), 1))
 						if(self.MySeat ~= 1) then ISTimedActionQueue.add(ISSwitchVehicleSeat:new(self.parent:Get(), self.MySeat)) end
 						end
 						--ISTimedActionQueue.add(ISEnterVehicle:new(self.parent:Get(), self.FollowChar:getVehicle(), doorseat))

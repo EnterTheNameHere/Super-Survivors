@@ -77,7 +77,7 @@ function ISEatFoodAction:stop()
     self.item:setJobDelta(0.0);
 	local applyEat = true;
 	if self.item and self.item:getFullType()=="Base.Cigarettes" then
-		applyEat = false; -- dont apply cigarette effects when action cancelled.
+		applyEat = false; -- don't apply cigarette effects when action cancelled.
 	end
     if applyEat and self.character:getInventory():contains(self.item) then
 		self:eat(self.item, self:getJobDelta());
@@ -115,7 +115,7 @@ function ISEatFoodAction:getRequiredItem()
 end
 
 function ISEatFoodAction:eat(food, percentage)
-    -- calcul the percentage ate
+    -- calculate the percentage eaten
     if percentage > 0.95 then
         percentage = 1.0;
     end

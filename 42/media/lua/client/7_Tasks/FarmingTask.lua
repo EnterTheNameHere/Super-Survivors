@@ -53,13 +53,13 @@ end
 
 function FarmingTask:getSomeSeeds()
 
-	local typeofseedindex = ZombRand(1,#self.Seeds)
-	local typeofseed = self.Seeds[typeofseedindex]
-	--self.parent:Speak("seed type chosen is:" .. tostring(typeofseed))
+	local typeOfSeedIndex = ZombRand(1,#self.Seeds)
+	local typeOfSeed = self.Seeds[typeOfSeedIndex]
+	--self.parent:Speak("seed type chosen is:" .. tostring(typeOfSeed))
 	local seeds = {}
 
 	for i=1,12 do
-		seeds[i] = self.parent:Get():getInventory():AddItem(typeofseed)
+		seeds[i] = self.parent:Get():getInventory():AddItem(typeOfSeed)
 	end
 	return seeds
 	
@@ -266,11 +266,11 @@ function FarmingTask:update()
 	
 		if(self.JustHarvested) then -- go store crops
 			--self.parent:Speak("going to harvested goods")
-			local storagecontainer = self.group:getGroupAreaContainer("FoodStorageArea")
+			local storageContainer = self.group:getGroupAreaContainer("FoodStorageArea")
 			local dest 
-			if(storagecontainer) then
+			if(storageContainer) then
 				print("Harvest - Found food storage container")
-				dest = storagecontainer
+				dest = storageContainer
 			else
 				dest = self.group:getGroupAreaCenterSquare("FoodStorageArea")
 				if dest ~= nil then
@@ -325,10 +325,10 @@ function FarmingTask:update()
 				self.parent:StopWalk()
 				print("harvest " .. plantType)
 				ISTimedActionQueue.add(ISHarvestPlantAction:new(self.parent:Get(), self.Plant, 50))
-				-- then replow
+				-- then re-plow
 				print("plow")		
 				self.TargetSquare = self.Plant:getSquare()
-				ISTimedActionQueue.add(ISPlowAction:new (self.parent:Get(), self.TargetSquare, self:getShovel(), 50))
+				ISTimedActionQueue.add(ISPlowAction:new (self.parent:Get(), self.TargetSquare, self:getShovel()))
 				-- TODO: then replant same plant
 				print("plant")
 				local typeOfSeed = "PotatoSeed"
@@ -358,7 +358,7 @@ function FarmingTask:update()
 				--self.parent:Speak("plowing square")
 				self.parent:DebugSay("FarmingTask is about to trigger a StopWalk! (Path B) ")
 				self.parent:StopWalk()
-				ISTimedActionQueue.add(ISPlowAction:new (self.parent:Get(), self.TargetSquare, self:getShovel(), 150))
+				ISTimedActionQueue.add(ISPlowAction:new (self.parent:Get(), self.TargetSquare, self:getShovel()))
 				self:ClearVars()
 			end
 			return true

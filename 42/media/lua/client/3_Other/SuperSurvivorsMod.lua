@@ -165,10 +165,10 @@ function SuperSurvivorRandomSpawn(square)
 	end
 
 	-- clear the immediate area
-	local zlist = getCell():getZombieList();
-	if(zlist ~= nil) then
-		for i=zlist:size()-1, 0, -1 do
-			z = zlist:get(i);
+	local zList = getCell():getZombieList();
+	if(zList ~= nil) then
+		for i=zList:size()-1, 0, -1 do
+			z = zList:get(i);
 			if z ~= nil and (math.abs(z:getX() - square:getX()) < 2) and (math.abs(z:getY() - square:getY()) < 2) and (z:getZ() == square:getZ()) then
 				print("delete zombie " .. z:getX() .. " " .. square:getX() .. " " .. z:getY() .. " " .. square:getY())
 				z:removeFromWorld();
@@ -181,7 +181,7 @@ end
 
 function SuperSurvivorsLoadGridsquare(square)
 	
-	--print("LOADGRIDSQUARE!")
+	--print("SuperSurvivorsLoadGridsquare")
 
 	if(square ~= nil) then
 		local x = square:getX()
@@ -195,10 +195,10 @@ function SuperSurvivorsLoadGridsquare(square)
 			RPresetSpawns = {};
 			while PresetSpawns[sc] do
 				if PresetSpawns[sc].Z == nil then PresetSpawns[sc].Z = 0 end
-				local pindex = PresetSpawns[sc].X .. PresetSpawns[sc].Y .. PresetSpawns[sc].Z;
-				--print("pindex:"..pindex.." for index: "..sc);
-				RPresetSpawns[pindex] = PresetSpawns[sc];
-				RPresetSpawns[pindex].ID = sc;
+				local pIndex = PresetSpawns[sc].X .. PresetSpawns[sc].Y .. PresetSpawns[sc].Z;
+				--print("pIndex:"..pIndex.." for index: "..sc);
+				RPresetSpawns[pIndex] = PresetSpawns[sc];
+				RPresetSpawns[pIndex].ID = sc;
 				sc = sc + 1;
 			end
 			--print(tostring(sc).." preset survivors set into RPresetSpawns");
@@ -314,8 +314,10 @@ end
 Events.OnCreateLivingCharacter.Add(SuperSurvivorOnCreateLivingChar)
 
 function SuperSurvivorsInit()
+	local player = getSpecificPlayer(0)
+	if not player then return end
 
-	print("GAMESTART!")
+	print("SuperSurvivorsInit, GAME START!")
 
 	GroupWindowCreate()
 	
@@ -331,33 +333,39 @@ function SuperSurvivorsInit()
 	if(IsoPlayer.getCoopPVP() == true) then SurvivorTogglePVP() end
 	if(Option_ForcePVP == 1) then SurvivorTogglePVP() end
 	
-	local player = getSpecificPlayer(0)
 	player:getModData().isHostile = false
 	player:getModData().ID = 0
 
-	--print("prizon")
+	--print("prison")
 	--print(player:getX())
 	--print(player:getY())
-	--if(player:getX() >= 7590 and player:getX() < 7780) and (player:getY() <= 11978 and player:getY() > 11766) then -- if spawn in prizon
-	if(player:getX() >= 7679 and player:getX() <= 7680) and (player:getY() >= 11937 and player:getY() <= 11938) then -- if spawn in prizon
-		local keyid = player:getBuilding():getDef():getKeyId();
+	--if(player:getX() >= 7590 and player:getX() < 7780) and (player:getY() <= 11978 and player:getY() > 11766) then -- if spawn in prison
+	if(player:getX() >= 7679 and player:getX() <= 7680) and (player:getY() >= 11937 and player:getY() <= 11938) then -- if spawn in prison
+		local building = player:getBuilding()
+		local definition = building and building:getDef()
+		local square = player:getCurrentSquare()
+		local dropSquare = square and square:getE()
+		local keyId = definition and definition:getKeyId()
 		
-		if(keyid) then
+		if keyId and dropSquare then
 		local key = player:getInventory():AddItem("Base.Key1");
-		key:setKeyId(keyid) ;
-		player:getCurrentSquare():getE():AddWorldInventoryItem(key,0.5,0.5, 0);
-		player:getInventory():Remove(key);
+		if key then
+			key:setKeyId(keyId)
+			if dropSquare:AddWorldInventoryItem(key,0.5,0.5,0) then
+				player:getInventory():Remove(key)
+			end
+		end
 		end
 		
-		--local zlist = getCell():getZombieList() ;
-		--if(zlist ~= nil) then
-		--	for i=0, zlist:size()-1 do
-		--		zlist:get(i):removeFromWorld();
+		--local zList = getCell():getZombieList() ;
+		--if(zList ~= nil) then
+		--	for i=0, zList:size()-1 do
+		--		zList:get(i):removeFromWorld();
 		--	end
 		--end
 		
 		--PVPDefault = true 	-- true or false : should pvp be on or off at game start true=on false=off
-		--ChanceToSpawnWithGun = 100 	-- choose from 0 to 100 (this is a % but dont put a % after the number)
+		--ChanceToSpawnWithGun = 100 	-- choose from 0 to 100 (this is a % but don't put a % after the number)
 		--ChanceToBeHostileNPC = 100
 		
 		local DeadGuardSquare = getCell():getGridSquare(7685,11937,1);
@@ -420,7 +428,7 @@ end
 --Events.OnLoad.Add(SuperSurvivorsOnLoad)
 
 
-function SuperSurvivorsOnCharacterCollide(playerOne,PlayerTwo)
+function SuperSurvivorsOnCharacterCollide(playerOne,playerTwo)
 	if(playerOne ~= nil) then
 		if(playerOne:isNpc()) then
 			print("trying to cancel collision p1")
@@ -479,9 +487,9 @@ end
 local ZNoSpawnAreas = {
 {1,2,4,5}
 }
-function SuperSurvivorDeSpawnZombies(thissquare)
+function SuperSurvivorDeSpawnZombies(thisSquare)
 
-	if(thissquare)
+	if(thisSquare)
 
 end]]
 function supersurvivortemp(keyNum)
@@ -562,11 +570,10 @@ function supersurvivortemp(keyNum)
 		elseif( keyNum == 0) then
 		
 			local attacker = getSpecificPlayer(0)
-			local victim = getSpecificPlayer(0)
+			if not attacker then return end
+			local victim = attacker
 			local weapon = attacker:getPrimaryHandItem()
-			local angle = getSpecificPlayer(0):getAngle()
-			local dir = IsoDirections.fromAngle(angle)
-			dir = IsoDirections.reverse(dir)
+			local dir = attacker:getDir():Rot180()
 			getSpecificPlayer(0):Say("reverse facing dir is: " ..tostring(dir))
 			 
 			local victimSquare1 = getSpecificPlayer(0):getCurrentSquare()
@@ -668,7 +675,7 @@ function supersurvivortemp(keyNum)
 			SSM:SaveAll()
 			SSGM:Save()
 			saveSurvivorMap()
-		-- The 'key' in markouts are the default keys befor a player changes them
+		-- The 'key' in markouts are the default keys before a player changes them
 		elseif( keyNum == getCore():getKey("SSHotkey_1")) then -- Up key
 			local index = SuperSurvivorGetOption("SSHotkey1")
 			SuperSurvivorsHotKeyOrder(index)			
@@ -685,18 +692,18 @@ function supersurvivortemp(keyNum)
 			local SS = SSM:Get(0);
 			local Group = SS:getGroup();
 			
-			local storagecontainer = Group:getGroupAreaContainer("FoodStorageArea")
+			local storageContainer = Group:getGroupAreaContainer("FoodStorageArea")
 			local dest 
-			if(storagecontainer) then
-				dest = storagecontainer
+			if(storageContainer) then
+				dest = storageContainer
 			else
 				dest = Group:getGroupAreaCenterSquare("FoodStorageArea")
 			end
 			if(not dest) then dest = self.parent.player:getCurrentSquare() end
 			
 			
-			if(storagecontainer) then
-				getSpecificPlayer(0):Say(tostring(storagecontainer));
+			if(storageContainer) then
+				getSpecificPlayer(0):Say(tostring(storageContainer));
 				GTask = CleanInvTask:new(SS,dest,false);
 			else
 				
@@ -724,11 +731,11 @@ function SuperSurvivorsOnEquipPrimary(player,weapon)
 			SS.AttackRange = ((player:getPrimaryHandItem():getMaxRange() + player:getPrimaryHandItem():getMinRange())*0.60)	
 			
 			if (weapon:isAimedFirearm()) then
-				local ammotypes = getAmmoBullets(weapon,false);			
+				local ammoTypes = getAmmoBullets(weapon,false);			
 				
-				if(ammotypes ~= nil) and (ID ~= nil) then 
+				if(ammoTypes ~= nil) and (ID ~= nil) then 
 					
-					SS.AmmoTypes = ammotypes
+					SS.AmmoTypes = ammoTypes
 					player:getModData().ammotype = ""
 					player:getModData().ammoBoxtype = ""
 					for i=1, #SS.AmmoTypes do
@@ -822,29 +829,29 @@ function SuperSurvivorsNewSurvivorManager()
 			
 			local success = false
 			local range = 45
-			local drange = range*2
+			local doubleRange = range*2
 			
 			for i=1,10 do		
 				
 				local spawnLocation = ZombRand(4)
 				if(spawnLocation ==0) then
 					--mySS:Speak("spawn from north")
-					x = center:getX() + (ZombRand(drange) - range);
+					x = center:getX() + (ZombRand(doubleRange) - range);
 					y = center:getY() - range;
 					
 				elseif(spawnLocation ==1) then 
 					--mySS:Speak("spawn from east")
 					x = center:getX() + range;
-					y = center:getY() + (ZombRand(drange) - range);	
+					y = center:getY() + (ZombRand(doubleRange) - range);	
 				elseif(spawnLocation ==2) then 
 					--mySS:Speak("spawn from south")
-					x = center:getX() + (ZombRand(drange) - range);
+					x = center:getX() + (ZombRand(doubleRange) - range);
 					y = center:getY() + range;
 				
 				elseif(spawnLocation ==3) then 
 					--mySS:Speak("spawn from west")
 					x = center:getX() - range;
-					y = center:getY() + (ZombRand(drange) - range);	
+					y = center:getY() + (ZombRand(doubleRange) - range);	
 			
 				end
 			
@@ -1020,12 +1027,12 @@ function SuperSurvivorDoRandomSpawns()
 				print("")
 				print("")
 				print("")
-				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 2) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFivePercent() 	(==true==)") 	SuperSurSurvivorSpawnGenFivePercent() 	else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFivePercent() 		(=false=)") end
-				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 3) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTenPercent() 		(==true==)") 	SuperSurSurvivorSpawnGenTenPercent() 	else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTenPercent() 		(=false=)")	end
-				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 4) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTwentyPercent() 	(==true==)") 	SuperSurSurvivorSpawnGenTwentyPercent() else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTwentyPercent() 	(=false=)")	end
-				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 5) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenThirtyPercent() 	(==true==)") 	SuperSurSurvivorSpawnGenThirtyPercent() else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenThirtyPercent() 	(=false=)")	end
-				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 6) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFourtyPercent() 	(==true==)") 	SuperSurSurvivorSpawnGenFourtyPercent() else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFourtyPercent() 	(=false=)") end			
-				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 7) then  print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFiftyPercent()	(==true==)") 	SuperSurSurvivorSpawnGenFiftyPercent()	else print(tostring(AltSpawnPercent).." - altspawnpercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFiftyPercent()		(=false=)") end			
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 2) then  print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFivePercent() 	(==true==)") 	SuperSurSurvivorSpawnGenFivePercent() 	else print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFivePercent() 		(=false=)") end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 3) then  print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTenPercent() 		(==true==)") 	SuperSurSurvivorSpawnGenTenPercent() 	else print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTenPercent() 		(=false=)")	end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 4) then  print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTwentyPercent() 	(==true==)") 	SuperSurSurvivorSpawnGenTwentyPercent() else print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenTwentyPercent() 	(=false=)")	end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 5) then  print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenThirtyPercent() 	(==true==)") 	SuperSurSurvivorSpawnGenThirtyPercent() else print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenThirtyPercent() 	(=false=)")	end
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 6) then  print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFourtyPercent() 	(==true==)") 	SuperSurSurvivorSpawnGenFourtyPercent() else print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFourtyPercent() 	(=false=)") end			
+				if (AltSpawnPercent > ZombRand(100)) and (AlternativeSpawning == 7) then  print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFiftyPercent()	(==true==)") 	SuperSurSurvivorSpawnGenFiftyPercent()	else print(tostring(AltSpawnPercent).." - AltSpawnPercent, i = "..tostring(i).." SuperSurSurvivorSpawnGenFiftyPercent()		(=false=)") end			
 				print("")
 				print("")
 				print("")
@@ -1071,11 +1078,11 @@ function SuperSurvivorsRaiderManager()
 	if(getSpecificPlayer(0):getModData().LastRaidTime == nil) then getSpecificPlayer(0):getModData().LastRaidTime = (RaidsStartAfterThisManyHours + 2) end
 	local LastRaidTime = getSpecificPlayer(0):getModData().LastRaidTime
 	
-	--rediculous amount of raiders ---
+	--ridiculous amount of raiders ---
 	--RaidsAtLeastEveryThisManyHours = 1
 	--RaidsStartAfterThisManyHours = 0
 	--RaidChanceForEveryTenMinutes = 4
-	--rediculous amount of raiders ---	END
+	--ridiculous amount of raiders ---	END
 	
 	local mySS = SSM:Get(0)
 	local hours = math.floor(getGameTime():getWorldAgeHours())
@@ -1109,29 +1116,29 @@ function SuperSurvivorsRaiderManager()
 		
 		local success = false
 		local range = 45
-		local drange = range*2
+		local doubleRange = range*2
 		
 		for i=1,10 do		
 			
 			local spawnLocation = ZombRand(4)
 			if(spawnLocation ==0) then
 				--mySS:Speak("spawn from north")
-				x = center:getX() + (ZombRand(drange) - range);
+				x = center:getX() + (ZombRand(doubleRange) - range);
 				y = center:getY() - range;
 				
 			elseif(spawnLocation ==1) then 
 				--mySS:Speak("spawn from east")
 				x = center:getX() + range;
-				y = center:getY() + (ZombRand(drange) - range);	
+				y = center:getY() + (ZombRand(doubleRange) - range);	
 			elseif(spawnLocation ==2) then 
 				--mySS:Speak("spawn from south")
-				x = center:getX() + (ZombRand(drange) - range);
+				x = center:getX() + (ZombRand(doubleRange) - range);
 				y = center:getY() + range;
 			
 			elseif(spawnLocation ==3) then 
 				--mySS:Speak("spawn from west")
 				x = center:getX() - range;
-				y = center:getY() + (ZombRand(drange) - range);	
+				y = center:getY() + (ZombRand(doubleRange) - range);	
 		
 			end
 		
@@ -1203,18 +1210,21 @@ end
 Events.EveryTenMinutes.Add(SuperSurvivorsRaiderManager);
 NumberOfLocalPlayers = 0
 
-function SSCreatePlayerHandle(newplayerID)
+function SSCreatePlayerHandle(newPlayerId)
 		
-	local newplayer = getSpecificPlayer(newplayerID)
-	print("OnCreatePlayer event triggered in Super Survivors ID:"..tostring(newplayerID))
-	local MD = newplayer:getModData()
-	if(not MD.ID) and (newplayer:isLocalPlayer())  then
-		SuperSurvivorPlayerInit(newplayer)
-		if(getSpecificPlayer(0) and (not getSpecificPlayer(0):isDead()) and (getSpecificPlayer(0)~= newplayer)) then
+	local newPlayer = getSpecificPlayer(newPlayerId)
+	if not newPlayer then return end
+	print("OnCreatePlayer event triggered in Super Survivors ID:"..tostring(newPlayerId))
+	local MD = newPlayer:getModData()
+	if(not MD.ID) and (newPlayer:isLocalPlayer())  then
+		SuperSurvivorPlayerInit(newPlayer)
+		local mainPlayer = getSpecificPlayer(0)
+		if mainPlayer and not mainPlayer:isDead() and mainPlayer ~= newPlayer then
 			local MainSS = SSM:Get(0);
-			local MainSSGroup = MainSS:getGroup()
+			local MainSSGroup = MainSS and MainSS:getGroup()
+			if not MainSSGroup then return end
 			NumberOfLocalPlayers = 	NumberOfLocalPlayers + 1
-			local newSS = SSM:setPlayer(newplayer,NumberOfLocalPlayers)
+			local newSS = SSM:setPlayer(newPlayer,NumberOfLocalPlayers)
 			newSS:setID(NumberOfLocalPlayers)
 			print("new survivor ID is "..tostring( newSS:getID()))
 			MainSSGroup:addMember(newSS, "Guard");		

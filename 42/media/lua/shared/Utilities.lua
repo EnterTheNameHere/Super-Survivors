@@ -1,9 +1,9 @@
 
 function isModEnabled(modname)
 
-	local actmods = getActivatedMods();
-	for i=0, actmods:size()-1, 1 do
-		if actmods:get(i) == modname then
+	local activatedMods = getActivatedMods();
+	for i=0, activatedMods:size()-1, 1 do
+		if activatedMods:get(i) == modname then
 			return true;
 		end
 	end
