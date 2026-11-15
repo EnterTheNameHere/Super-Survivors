@@ -182,3 +182,55 @@ two same-session passes, staging and resumed pass after user-confirmed restart.
 Coordinates/marker restored; currentSquare stayed at constructor tile. Human
 guards/cleanup passed. See [findings](NATIVE_POSITION_R1.md) and its captured
 evidence. Earlier NOT RUN statements describe the initial delivery state.
+
+
+## Test 2: cell-only constructor, raw load and explicit placement
+
+SSR-TEST-02 is a NEW fourth entry, independent of the earlier three restart
+phases. Exact selector title: **Native IsoPlayer - cell-only construction and
+placement** (`native-cell-only`). It does not use or replace the restart manifest.
+
+1. Restart the game to load the updated diagnostic. Use the disposable B42.22.2
+   single-player world, one living local player, normal saves and zero offsets.
+2. Enable Superb Survivors -> Debug Options -> On, right-click -> SS Tests... .
+3. Select **Native IsoPlayer - cell-only construction and placement**. Read its
+   warning/requirements, check acknowledgment, then Run selected test.
+4. It runs once in a native safe-to-add callback and logs four rows: conventional
+   saved source; cell-only before load; immediately after RAW load; after explicit
+   registration. No coordinate setters or normal test-actor updates are used.
+5. Report the final status. The implementation can read console.txt and archived
+   DebugLog files for the actual values; `[SS Tests][native-cell-only]` is the prefix.
+   No additional restart phase is requested by this test.
+
+PASS requires saved position and marker restored, final correct current square,
+moving-object containment, object-list membership without add/remove remnants,
+NPC state, unchanged position through registration, and unchanged human identity,
+position, singleton, save filename and all four local-player slots. Cleanup must
+also succeed; otherwise final outcome becomes INCONCLUSIVE and further tests
+are blocked for the session. This does not certify long-term AI, animation,
+streaming, death, or production SSR persistence.
+
+The cell-only constructor is full initialization at origin, not an empty shell.
+Expected source behavior is centered X/Y=0.5, Z=0, no cell object-list registration
+from its zero-coordinate constructor, and currentSquare nil when origin is not
+loaded. The probe MEASURES these fields and does not assume origin is unloaded
+or that third-party creation hooks leave registration untouched. Constructor
+observations are after explicitly setting NPC/block-movement flags, which do not
+perform world placement in inspected native code. All actor phases and cleanup
+occur before this callback returns; no test actor intentionally survives to a
+normal world update.
+
+Registration after verified load uses `setCurrentSquare(savedTile)`, then
+`setMovingSquareNow()`, then `cell:addMovingObject(actor)` only when absent.
+Each has a separate installed native contract. It never calls IsoCell.LoadPlayer,
+player databases, coop/controller setup, generic file factories or singleton/slot
+setters. Snapshot files remain in the world with unique test names, as before.
+Constructor events can affect other mods; use a disposable world. A constructor
+throwing before a handle is returned makes cleanup unverifiable: INCONCLUSIVE,
+block new runs, restart. The probe does not search for or delete unfamiliar actors.
+
+Automated evidence: 185 tests passed (including six new mocked cell-only cases
+and an installed-JAR constructor/registration check); 112 Lua syntax checks pass.
+LuaLS: 88 legacy diagnostics across 13 files, none in the test modules. These
+checks do not execute native actor construction or establish in-game PASS.
+**USER IN-GAME NOT RUN for SSR-TEST-02 at delivery.**

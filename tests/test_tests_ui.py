@@ -44,7 +44,7 @@ class TestsUiChecks(unittest.TestCase):
                 if not squares[key] then
                     local s={getX=function() return x end,getY=function() return y end,getZ=function() return z end,
                         getFloor=function() return not noFloor and {} or nil end,isFree=function() return not blocked end}
-                    s.getMovingObjects=function() return {contains=function(_,a) return a.current==s and a.inWorld end} end
+                    s.getMovingObjects=function() return {contains=function(_,a) return a.moving==s end} end
                     squares[key]=s
                 end
                 return squares[key]
@@ -53,7 +53,8 @@ class TestsUiChecks(unittest.TestCase):
                 getObjectList=function() return collection('inWorld') end,
                 getAddList=function() return collection('inAdd') end,
                 getRemoveList=function() return collection('inRemove') end,
-                isSafeToAdd=function() return safe end}
+                isSafeToAdd=function() return safe end,
+                addMovingObject=function(_,a) assert(safe and not a.human);a.inWorld=true;a.registerCalls=(a.registerCalls or 0)+1 end}
             getCell=function() return cell end
             getWorld=function() return {getWorld=function() return 'Disposable' end} end
             IsoWorld={saveoffsetx=0,saveoffsety=0}
@@ -68,6 +69,7 @@ class TestsUiChecks(unittest.TestCase):
             function actor(x,y,z,localPlayer)
                 local a={x=x+0.5,y=y+0.5,z=z,current=square(x,y,z),md={},inWorld=true,
                     human=localPlayer,saveFileName=localPlayer and 'human.db' or nil}
+                a.moving=a.current
                 a.getX=function() return a.x end;a.getY=function() return a.y end;a.getZ=function() return a.z end
                 a.getCurrentSquare=function() return a.current end
                 a.getModData=function() return a.md end
@@ -80,7 +82,15 @@ class TestsUiChecks(unittest.TestCase):
                 a.setX=function() error('manual setX forbidden') end
                 a.setY=function() error('manual setY forbidden') end
                 a.setZ=function() error('manual setZ forbidden') end
-                a.setCurrentSquare=function() error('manual square correction forbidden') end
+                a.setCurrentSquare=function(_,s)
+                    assert(a.cellOnly and not a.human,'square correction permitted only in explicit cell-only phase')
+                    if failPlacement then error('placement failed') end
+                    a.current=s
+                end
+                a.setMovingSquareNow=function()
+                    assert(a.cellOnly and not a.human)
+                    if not failMovingRegistration then a.moving=a.current end
+                end
                 a.save=function(_,path)
                     assert(not a.human and path:sub(1,6)=='world/')
                     local file=path:sub(7)
@@ -100,21 +110,33 @@ class TestsUiChecks(unittest.TestCase):
                     a.saveFileName=path
                     if not failPosition then a.x,a.y,a.z=data.x,data.y,data.z end
                     a.md=copy(data.md)
+                    if slotChangedByLoad then slots[1]=a end
                     -- Installed source restores XYZ without assigning currentSquare.
                 end
                 a.removeFromWorld=function()
                     assert(not a.human);a.inWorld=false;a.inAdd=false;a.inRemove=false
                 end
-                a.removeFromSquare=function() assert(not a.human);a.current=nil end
+                a.removeFromSquare=function() assert(not a.human);a.current=nil;a.moving=nil end
                 if not localPlayer then actors[#actors+1]=a end
                 return a
             end
             human=actor(100,100,0,true);singleton=human
-            getSpecificPlayer=function() return human end
+            slots={[0]=human};getSpecificPlayer=function(index) return slots[index] end
             IsoPlayer={getInstance=function() return singleton end,
-                new=function(_,_,x,y,z)
+                new=function(...)
+                    local argc=select('#',...)
+                    local _,_,x,y,z=...
+                    local cellOnly=argc==1
+                    if cellOnly then x,y,z=0,0,0 else assert(argc==5) end
                     if failConstructor then actor(x,y,z,false);error('constructor failed after registration') end
-                    return returnHuman and human or actor(x,y,z,false)
+                    if returnHuman then return human end
+                    local a=actor(x,y,z,false)
+                    if cellOnly then
+                        a.cellOnly=true;a.inWorld=implicitCellRegistration or false
+                        a.current=originLoaded and square(0,0,0) or nil;a.moving=a.current
+                        if failCellOnlyConstructor then error('cell-only constructor failed before return') end
+                    end
+                    return a
                 end}
             SurvivorFactory={CreateSurvivor=function() return {setForename=function() end} end}
             -- Minimal widget contracts; this is not an engine render/layout test.
@@ -156,7 +178,7 @@ class TestsUiChecks(unittest.TestCase):
                 return SSRTests.results[id]
             end
             function assertClean()
-                for _,a in ipairs(actors) do assert(not a.inWorld and a.current==nil) end
+                for _,a in ipairs(actors) do assert(not a.inWorld and a.current==nil and a.moving==nil) end
                 assert(human.inWorld and human.current~=nil and human.saveFileName=='human.db' and singleton==human)
             end
         ''')
@@ -279,6 +301,64 @@ class TestsUiChecks(unittest.TestCase):
             end
             IsoWorld.saveoffsety=nil;assert(not SSRTests.availability(definition))
             assert(#actors==0 and next(files)==nil)
+        ''')
+
+    def test_cell_only_load_and_three_part_registration_without_coordinate_setters(self):
+        self.lua.execute('''
+            local result=run('native-cell-only');local o=result.observations
+            assert(result.status=='PASSED' and o.positionRestored and o.markerRestored)
+            assert(o.before.position.x==0.5 and o.before.position.y==0.5 and not o.before.inWorld)
+            assert(o.before.squarePosition==nil and o.after.squarePosition==nil and not o.after.inWorld)
+            assert(o.registered.squareMatchesPosition and o.registered.squareContains and o.registered.npc)
+            assert(o.registrationValid and o.positionUnchangedByPlacement and o.humanUnchanged)
+            assert(actors[2].registerCalls==1 and actors[2].cellOnly)
+            assert(not SSRTests.active);assertClean()
+        ''')
+
+    def test_cell_only_observes_implicit_constructor_membership_without_duplicate_add(self):
+        self.lua.execute('''
+            implicitCellRegistration=true;originLoaded=true
+            local result=run('native-cell-only');local o=result.observations
+            assert(result.status=='PASSED' and o.before.inWorld and o.before.squareContains)
+            assert(o.after.squarePosition.x==0 and not o.after.squareMatchesPosition)
+            assert(o.registered.squareMatchesPosition and not actors[2].registerCalls)
+            assertClean()
+        ''')
+
+    def test_cell_only_load_failure_skips_registration_and_cleans_both_actors(self):
+        self.lua.execute('''
+            failPosition=true
+            local result=run('native-cell-only')
+            assert(result.status=='FAILED' and not actors[2].registerCalls)
+            assertClean()
+        ''')
+
+    def test_cell_only_registration_exception_and_missing_moving_membership_cannot_pass(self):
+        self.lua.execute('''
+            failPlacement=true
+            local first=run('native-cell-only');assert(first.status=='FAILED');assertClean()
+            failPlacement=false;failMovingRegistration=true
+            local second=run('native-cell-only')
+            assert(second.status=='FAILED' and not second.observations.registrationValid)
+            assertClean()
+        ''')
+
+    def test_cell_only_constructor_handle_gap_blocks_more_runs(self):
+        self.lua.execute('''
+            failCellOnlyConstructor=true
+            local result=run('native-cell-only')
+            assert(result.status=='INCONCLUSIVE' and SSRTests.cleanupFailure)
+            assert(not SSRTests.start('native-cell-only',true))
+            assert(not actors[1].inWorld and human.inWorld and singleton==human)
+        ''')
+
+    def test_cell_only_guard_detects_nonzero_local_slot_changes(self):
+        self.lua.execute('''
+            slotChangedByLoad=true
+            local result=run('native-cell-only')
+            assert(result.status=='INCONCLUSIVE' and SSRTests.cleanupFailure)
+            assert(not actors[2].registerCalls and slots[1]==actors[2])
+            assert(human.inWorld and singleton==human)
         ''')
 
     def test_constructor_exception_before_return_blocks_further_mutating_runs(self):

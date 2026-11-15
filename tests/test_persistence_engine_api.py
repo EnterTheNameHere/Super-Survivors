@@ -57,6 +57,19 @@ class InstalledPersistenceApiChecks(unittest.TestCase):
         for name in ('get', 'getOrCreate'):
             self.assertIn((name, '(Ljava/lang/String;)Lse/krka/kahlua/vm/KahluaTable;'), public)
 
+    def test_cell_only_constructor_and_separate_public_registration_contracts(self):
+        entries, player = self.metadata('zombie/characters/IsoPlayer')
+        self.assertIn(('method', 1, '<init>', '(Lzombie/iso/IsoCell;)V'), entries)
+        self.calls(player, '<init>(Lzombie/iso/IsoCell;)V', 'zombie/characters/IsoPlayer', '<init>')
+        entries, moving = self.metadata('zombie/iso/IsoMovingObject')
+        public = {(n, d) for kind, flags, n, d in entries if kind == 'method' and flags & 1}
+        self.assertIn(('setCurrentSquare', '(Lzombie/iso/IsoGridSquare;)V'), public)
+        self.assertIn(('setMovingSquareNow', '()V'), public)
+        self.calls(moving, 'setCurrentSquare(Lzombie/iso/IsoGridSquare;)V', 'zombie/iso/IsoMovingObject', 'setCurrent')
+        self.calls(moving, 'setMovingSquareNow()V', 'zombie/iso/IsoMovingObject', 'setMovingSquare')
+        _, cell = self.metadata('zombie/iso/IsoCell')
+        self.calls(cell, 'addMovingObject(Lzombie/iso/IsoMovingObject;)V', 'zombie/iso/IsoCell', 'isSafeToAdd')
+
     def test_build_version_api_includes_suffix_separately_from_game_version(self):
         entries, data = self.metadata('zombie/core/Core')
         public = {(n, d) for kind, flags, n, d in entries if kind == 'method' and flags & 1}

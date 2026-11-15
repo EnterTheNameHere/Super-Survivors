@@ -2,6 +2,18 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## SSR-TEST-02 prepared (15 November 2026)
+
+User resumed Test 2. Cell-only constructor and registration primitives verified
+in installed 42.22.2. New fourth Tests entry: Native IsoPlayer - cell-only
+construction and placement (native-cell-only). Source, cell-only before load,
+raw load and explicit square/moving-square/cell registration measured in one
+safe callback, cleanup before normal update. Human guard includes all four
+local slots; no human factory/load/control calls, coordinate setters or production
+persistence edits. See TESTS_UI.md and NATIVE_POSITION_R1.md for findings and
+factory supplement. 185 tests, 112 syntax checks; LuaLS 88 legacy diagnostics,
+none test modules. USER IN-GAME NOT RUN. Restart required before using new entry.
+
 ## IsoSurvivor comparison closed (15 November 2026)
 
 User requested ONLY SSR-ANALYSIS-01 and then asked to finish the proposed switch

@@ -22,7 +22,7 @@ local function capture(actor)
             and square:getY()==math.floor(pos.y) and square:getZ()==math.floor(pos.z),
         squareContains=square ~= nil and square:getMovingObjects():contains(actor),
         inWorld=cell:getObjectList():contains(actor), inAdd=cell:getAddList():contains(actor),
-        inRemove=cell:getRemoveList():contains(actor), safeToAdd=cell:isSafeToAdd()}
+        inRemove=cell:getRemoveList():contains(actor), safeToAdd=cell:isSafeToAdd(), npc=actor:isNpc()}
 end
 local function record(context,label,observation)
     context:log(label .. ": actor=" .. observation.actor .. "; XYZ=" .. xyz(observation.position))
@@ -30,7 +30,7 @@ local function record(context,label,observation)
         .. "; matches position=" .. tostring(observation.squareMatchesPosition)
         .. "; contains actor=" .. tostring(observation.squareContains))
     context:log("  world/add/remove=" .. tostring(observation.inWorld) .. "/" .. tostring(observation.inAdd)
-        .. "/" .. tostring(observation.inRemove) .. "; safeToAdd=" .. tostring(observation.safeToAdd))
+        .. "/" .. tostring(observation.inRemove) .. "; safeToAdd=" .. tostring(observation.safeToAdd).."; NPC="..tostring(observation.npc))
 end
 local function prerequisites()
     if version()~="42.22.2" then return false,"Probe reviewed for installed B42.22.2 only; detected "..tostring(version())..". Reinspect this engine build before running." end
@@ -83,6 +83,15 @@ local function safeContext(context, operation)
         self:log("Native world save offsets X/Y="..tostring(IsoWorld.saveoffsetx).."/"..tostring(IsoWorld.saveoffsety))
         local human = assert(getSpecificPlayer(0),"The human player is no longer available")
         local humanBefore, instanceBefore, saveBefore = coords(human), IsoPlayer.getInstance(), human.saveFileName
+        local slotsBefore={}
+        for index=0,3 do slotsBefore[index]=getSpecificPlayer(index) end
+        local function humanUnchanged()
+            for index=0,3 do
+                if getSpecificPlayer(index)~=slotsBefore[index] then return false end
+            end
+            return getSpecificPlayer(0)==human and IsoPlayer.getInstance()==instanceBefore
+                and samePosition(coords(human),humanBefore) and human.saveFileName==saveBefore
+        end
         local actors, constructing = {}, false
         self.cleanup = function(ctx)
             if getCell() ~= ctx.cell then
@@ -105,18 +114,22 @@ local function safeContext(context, operation)
                 if ok then actors[i] = nil else failures[#failures+1]=tostring(failure) end
             end
             assert(#failures == 0, table.concat(failures,"; "))
-            assert(not constructing,"Constructor failed before returning its registered actor; cleanup cannot be verified. Restart the game.")
-            assert(getSpecificPlayer(0)==human and IsoPlayer.getInstance()==instanceBefore
-                and samePosition(coords(human),humanBefore) and human.saveFileName==saveBefore,
-                "Human guard changed during cleanup; no restoration attempted")
+            assert(not constructing,"Constructor failed before returning its actor handle; cleanup cannot be verified. Restart the game.")
+            assert(humanUnchanged(),
+                "Human/local-slot guard changed during cleanup; no restoration attempted")
             ctx:log("Cleanup: isolated actors detached; test snapshot files retained.")
         end
-        local function create(square)
+        local function create(square,cellOnly)
             assert(self.cell:isSafeToAdd(),"Cell staging changed during probe")
-            local desc = SurvivorFactory.CreateSurvivor()
-            desc:setForename("SSR Position Probe")
+            local desc
+            if not cellOnly then
+                desc=SurvivorFactory.CreateSurvivor()
+                desc:setForename("SSR Position Probe")
+            end
             constructing = true
-            local actor = IsoPlayer.new(self.cell,desc,square:getX(),square:getY(),square:getZ())
+            local actor
+            if cellOnly then actor=IsoPlayer.new(self.cell)
+            else actor=IsoPlayer.new(self.cell,desc,square:getX(),square:getY(),square:getZ()) end
             assert(actor,"Native constructor returned no actor")
             actors[#actors+1] = actor -- Own the returned actor before further calls can fail.
             constructing = false
@@ -124,13 +137,12 @@ local function safeContext(context, operation)
             actor:setNpc(true)
             actor:setBlockMovement(true)
             local initial=capture(actor)
-            assert(initial.inWorld and not initial.inAdd and not initial.inRemove and initial.squareMatchesPosition,
-                "Native constructor did not establish the expected safe world/square registration")
+            if not cellOnly then
+                assert(initial.inWorld and not initial.inAdd and not initial.inRemove and initial.squareMatchesPosition,
+                    "Native constructor did not establish the expected safe world/square registration")
+            end
+            assert(humanUnchanged(),"Human/local-slot guard changed during construction")
             return actor
-        end
-        local function humanUnchanged()
-            return getSpecificPlayer(0)==human and IsoPlayer.getInstance()==instanceBefore
-                and samePosition(coords(human),humanBefore) and human.saveFileName==saveBefore
         end
         operation(self,targets,create,humanUnchanged)
     end
@@ -256,5 +268,85 @@ T.register({id="native-position-resume",order=30,title="Native IsoPlayer positio
             local manifest=ModData.get(KEY).manifest
             ctx:log("Explicit restart-phase resume; source boot/session="..manifest.bootToken)
             roundtrip(ctx,targets,create,guard,manifest)
+        end)
+    end})
+
+
+T.register({id="native-cell-only",order=40,title="Native IsoPlayer - cell-only construction and placement",
+    description="Test 2: save a conventional isolated NPC, construct another using only IsoPlayer.new(cell), log constructor state, RAW load and explicit square/moving-square/cell registration. No coordinate setters, human loading API or normal actor update. PASS requires restored position/marker, correct final membership, unchanged human/local slots and verified cleanup. This is not a persistence implementation change or a restart test.",
+    requirements=REQUIREMENTS,risk=RISK,available=prerequisites,
+    run=function(context)
+        safeContext(context,function(ctx,targets,create,guard)
+            local file,token=uniqueFile()
+            local source=create(targets[1])
+            source:getModData().SSRNativePositionToken=token
+            local original=capture(source)
+            record(ctx,"Conventional constructor / saved source",original)
+            ctx:log("Allocated isolated cell-only probe snapshot: "..file)
+            source:save(getSaveDir()..file)
+            assert(checkSaveFileExists(file),"Cell-only probe snapshot was not written")
+
+            local destination=create(nil,true)
+            local before=capture(destination)
+            record(ctx,"Cell-only constructor BEFORE load",before)
+            if samePosition(before.position,original.position) then
+                ctx:finish("SETUP ERROR","Cell-only constructor position does not distinguish the saved position.");return
+            end
+            local ok,failure=pcall(function() destination:load(getSaveDir()..file) end)
+            if not ok then ctx:finish("FAILED","Cell-only native load threw: "..tostring(failure));return end
+            local after=capture(destination)
+            record(ctx,"Cell-only immediately after RAW load / NO placement",after)
+            local restored=samePosition(after.position,original.position)
+            local marker=destination:getModData().SSRNativePositionToken==token
+            ctx.observations={source=original,before=before,after=after,
+                positionRestored=restored,markerRestored=marker}
+            ctx:log("RAW load: position restored="..tostring(restored).."; marker restored="..tostring(marker))
+            if not restored or not marker or not guard() then
+                ctx:finish("FAILED","Cell-only native load or human/local-slot guard failed; no placement attempted.");return
+            end
+            local expected=ctx.cell:getGridSquare(math.floor(after.position.x),math.floor(after.position.y),math.floor(after.position.z))
+            if not expected or not expected:getFloor() then
+                ctx:finish("INCONCLUSIVE","Saved tile is no longer loaded with a floor; no placement attempted.");return
+            end
+            if after.inAdd or after.inRemove then
+                ctx:finish("INCONCLUSIVE","Unexpected pending cell lists after raw load; no placement attempted.");return
+            end
+            -- These are three separate native contracts, all checked in installed B42.
+            -- setCurrentSquare only assigns current; setMovingSquareNow reconciles movingSq.
+            -- addMovingObject registers with objectList while safeToAdd. No setX/Y/Z.
+            ctx:log("Explicit placement: setCurrentSquare(saved tile), setMovingSquareNow(), addMovingObject if absent.")
+            local placed,placementError=pcall(function()
+                assert(ctx.cell:isSafeToAdd(),"Cell no longer safe for explicit placement")
+                destination:setNpc(true)
+                destination:setBlockMovement(true)
+                destination:setCurrentSquare(expected)
+                destination:setMovingSquareNow()
+                if not ctx.cell:getObjectList():contains(destination) then ctx.cell:addMovingObject(destination) end
+            end)
+            if not placed then ctx:finish("FAILED","Explicit registration threw: "..tostring(placementError));return end
+            local registered=capture(destination)
+            record(ctx,"Cell-only AFTER explicit placement",registered)
+            local finalMarker=destination:getModData().SSRNativePositionToken==token
+            local humanOK=guard()
+            local membership=registered.squareMatchesPosition and registered.squareContains
+                and registered.inWorld and not registered.inAdd and not registered.inRemove
+                and destination:getCurrentSquare()==expected
+            local unchanged=samePosition(registered.position,after.position)
+            ctx.observations.registered=registered
+            ctx.observations.humanUnchanged=humanOK
+            ctx.observations.registrationValid=membership
+            ctx.observations.positionUnchangedByPlacement=unchanged
+            ctx:log("Phase | XYZ | square XYZ | square contains | world/add/remove")
+            for _,row in ipairs({{"Conventional",original},{"Cell-only before",before},{"RAW load",after},{"Explicit registration",registered}}) do
+                local o=row[2]
+                ctx:log(row[1].." | "..xyz(o.position).." | "..xyz(o.squarePosition).." | "..tostring(o.squareContains)
+                    .." | "..tostring(o.inWorld).."/"..tostring(o.inAdd).."/"..tostring(o.inRemove))
+            end
+            ctx:log("Human identity/position/singleton/save filename and all four local slots unchanged="..tostring(humanOK))
+            if membership and unchanged and finalMarker and registered.npc and humanOK then
+                ctx:finish("PASSED","Cell-only native load and explicit world registration succeeded; actor removed before a normal update. No long-term AI/streaming or SSR persistence certification.")
+            else
+                ctx:finish("FAILED","Explicit registration/position/marker/NPC/human-slot invariant failed; see observations.")
+            end
         end)
     end})

@@ -192,3 +192,85 @@ streaming, death handling, prolonged AI behavior or all UI interactions. No
 persistence scan/unload/loader rewrite or acceptance follows automatically.
 Review actual loader square reconciliation next; manual XYZ setters alone do
 not establish or repair square membership. No restart required for these records.
+
+
+## SSR-TEST-02 installed-source findings and proposed runtime measurement
+
+15 November 2026. User explicitly resumed this assignment after source-only
+IsoSurvivor analysis. IsoSurvivor migration remains rejected; actors remain
+IsoPlayer. No production SSR loader/scan/unload code changes in this assignment.
+
+Verified public constructor: `IsoPlayer(IsoCell)` delegates to
+`IsoPlayer(IsoCell, SurvivorDesc, int, int, int)` with null descriptor and 0/0/0.
+The main constructor supplies a new descriptor if null, health/visual/XP/clothing,
+player state/action setup and creation hooks. It does not assign local slots or
+the singleton. LuaManager.Exposer includes IsoPlayer and public constructor
+exposure; the one-argument Lua invocation remains to be measured in-game.
+
+In IsoGameCharacter(IsoCell,float,float,float), object-list registration occurs
+only when an input coordinate is nonzero. Coordinates become centered X/Y=0.5,
+Z=0. If cell is supplied it queries getGridSquare(0,0,0) and calls
+setMovingSquareNow; currentSquare may therefore be nil or an origin tile even
+without cell object-list membership. This is why the test captures both square
+and cell lists, not just whether an actor object was returned.
+
+Raw native load has the previously established coordinate/square split. The
+inspected registration primitives are public and exposed through the normal
+Java methods:
+
+| Installed method | Contract used in this test |
+| --- | --- |
+| IsoMovingObject.setCurrentSquare(IsoGridSquare) | Calls setCurrent, which assigns current only; does not change coordinates or movingSq. |
+| IsoMovingObject.setMovingSquareNow() | Calls setMovingSquare(current), removes membership from old movingSq when different, and adds to the new square if absent. |
+| IsoCell.addMovingObject(IsoMovingObject) | Adds to objectList if safeToAdd; otherwise addList. The probe requires and rechecks safeToAdd. |
+| IsoMovingObject.removeFromWorld/removeFromSquare | Detaches from cell/square structures; use only returned owned nonlocal actors and verify cleanup. |
+
+The chosen explicit experiment sets current to the exact loaded saved tile,
+reconciles moving-square membership, then adds cell membership only if missing.
+It does not call an actor update or setX/Y/Z, nor rely on
+setCurrentSquareFromPosition's fallback-to-lower-floor behavior. Snapshot load
+and all registrations/cleanup occur in the same safe callback. The normal
+automatic AI/update path never sees an intentionally unplaced probe actor.
+
+### Factory / engine-managed loading supplement
+
+A 23,692-class JAR constructor/factory-reference scan from SSR-ANALYSIS-01, plus
+method-body follow-up here, identified the following distinct mechanisms. The
+same JAR SHA256 is in the report header; this is not a search of every possible
+reflective/plugin creation mechanism.
+
+| Exact entry point | Return/exposure | Meaning and side effects |
+| --- | --- | --- |
+| SurvivorFactory.CreateSurvivor overloads | SurvivorDesc; public static, exposed class | Descriptor factory, no IsoPlayer actor. |
+| SurvivorFactory.InstansiateInCell(desc,cell,x,y,z) | IsoSurvivor; public static | Wrong actor class for SSR; invokes Survivor constructor/descriptor linkage. |
+| IsoObject.factoryFromFileInput(IsoCell,byte) / (IsoCell,ByteBuffer) | IsoObject; public static; exposed class | Serialized-object selector. ID 1 instantiates IsoPlayer(cell); ByteBuffer overload consumes header/class bytes, does not perform complete actor load/placement. Not a fully registered NPC factory. |
+| IsoCell.LoadPlayer(int worldVersion) | boolean; public | Human save import: map_p data, singleton/slot 0 creation if absent, chunk-map coordinates, player DB save/upload and file deletion. Never called by probe. |
+| IsoWorld.init() | void; engine world initialization | Human player constructor followed by players[0], singleton and camera wiring, then traits/world startup. Not an isolated actor helper. |
+| LuaManager.GlobalObject.setPlayerJoypad(int,int,IsoPlayer,String,boolean) / setPlayerMouse(IsoPlayer) | void; Lua-facing globals | May construct a player then assign usernames/control/world integration via private addPlayerToWorld(int,IsoPlayer,boolean); not a separate NPC-returning API. Never called by probe. |
+| PlayerDB.loadLocalPlayer(int), ClientPlayerDB.loadNetworkPlayer(), packet/server player-loading paths | Player-record workflows | Constructor consumers for human/local/network records; not SSR registry/native snapshot factories. |
+
+Relevant inspected callers also include PlayerDB.uploadLocalPlayers2DB,
+getAllLocalPlayers lambda, ClientPlayerDB.getAllNetworkPlayers,
+ServerPlayerDB.serverLoadNetworkCharacter, CreatePlayerPacket.parse/processServer,
+ConnectedPacket.parse and IsoAnimal constructors. Static constructor references
+were inventoried; not all networking/database workflows were executed or fully
+reconstructed. No dedicated fully prepared arbitrary-NPC IsoPlayer factory was
+found in this scope. Generic construction/serialized-object factories exist,
+so the conclusion is not that the game has no factories at all.
+
+Direct cell-only construction remains the most bounded measurement of the
+requested question: it bypasses human loading/control paths while exposing
+constructor versus load versus explicit placement effects. Native PlayerDB and
+IsoCell use this constructor, supporting its role as an initialization route;
+this is evidence for designing the experiment, not proof of arbitrary NPC
+safety over time. Native events/other mods and a throw before a handle returns
+remain limits, handled by best-effort owned cleanup, inconclusive outcome and
+blocking subsequent runs when unverifiable.
+
+Six focused mock cases cover nil-square cell-only success, implicit constructor
+membership, failed position restore, registration failure/missing moving-square
+membership, constructor handle gaps, and nonzero local-slot changes. Installed
+JAR tests verify constructor/primitives' public signatures/delegation. Tests:
+185 passed, 112 Lua syntax checks; LuaLS 88 legacy diagnostics, none test modules.
+**USER IN-GAME NOT RUN for SSR-TEST-02.** User steps and exact new selector title
+are in [TESTS_UI.md](TESTS_UI.md). No restart roundtrip is added for this test.
