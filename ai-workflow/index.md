@@ -79,7 +79,7 @@ next bounded assignment. See mail/orchestrator/inbox/2026-11-15-return-to-orches
 - Source: `codex/persistence-b42`, observed head `090f424`. No production merge.
 
 ## Delivered for review: SSR-TEST-02 — cell-only IsoPlayer construction (2026-11-15)
-User requested experiment before more persistence work. Verify installed B42.22.2 IsoPlayer.new(cell) availability/side effects and, only if safe, add opt-in Tests UI experiment for raw :load() and explicit world registration. Assignment: `assignments/test-cell-only-isoplayer-02.md`; inbox: `mail/implementer/archive/2026-11-15-test-02-cell-only.md`. NOT ACKNOWLEDGED; no implementation or live test yet. Preserve existing SSR-PERSIST-01 code and no automatic merge.
+User requested experiment before more persistence work. Verify installed B42.22.2 IsoPlayer.new(cell) availability/side effects and, only if safe, add opt-in Tests UI experiment for raw :load() and explicit world registration. Assignment: `assignments/test-cell-only-isoplayer-02.md`; inbox: `mail/implementer/archive/2026-11-15-test-02-cell-only.md`. DELIVERED FOR REVIEW; focused probe implemented, user live test pending. SSR-PERSIST-01 code preserved; no automatic merge.
 
 
 ## Completed source analysis: SSR-ANALYSIS-01
