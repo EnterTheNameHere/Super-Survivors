@@ -170,7 +170,7 @@
     "UI_OptionScreen_binding_SS_OptionScreen_binding_Hotkey_4": "SSHotkey 4 Directive",
 
     "UI_Option_SS_DebugOptions": "Debug Options",
-    "UI_Option_SS_DebugOptionsDesc": "Turns on debug right click survivor options",
+    "UI_Option_SS_DebugOptionsDesc": "Turns on debug right-click survivor options and the opt-in SS Tests window. Tests can alter the world.",
     "UI_Option_SS_DebugSay": "SuperDebug() Mode - LAG WARNING: ",
     "UI_Option_SS_DebugSayDesc": "You need to turn on Debug mode along with superdebug() for NPCs to tell you SuperDebug information. This will enable the function DebugSay to NPCs, which is a custom function that will give precise detail of what the NPC is up to. You will need to be at least 6 blocks away from the NPC to receive their SuperDebug information to the console / in game chat. ",
     "UI_Option_SS_DebugSay_Distance": "SuperDebug() - Distance: ",
@@ -188,6 +188,11 @@
     "UI_Option_SS_SShotkey2": "Hotkey for Action 2",
     "UI_Option_SS_SShotkey3": "Hotkey for Action 3",
     "UI_Option_SS_SShotkey4": "Hotkey for Action 4",
-    "UI_Option_SS_SpawnWildSurvivor": "Spawn Random Wild Survivor"
+    "UI_Option_SS_SpawnWildSurvivor": "Spawn Random Wild Survivor",
+    "UI_SS_Tests_Title": "Super Survivors Tests",
+    "UI_SS_Tests_Consent": "I accept the warning for this run.",
+    "UI_SS_Tests_Run": "Run selected test",
+    "UI_SS_Tests_Cancel": "Cancel active test",
+    "UI_SS_Tests_None": "No registered tests"
 }
 

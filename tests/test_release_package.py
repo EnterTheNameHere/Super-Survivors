@@ -15,6 +15,9 @@ class ReleaseChecks(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             keep = ['42/mod.info', '42/media/lua/client/3_Other/main.lua',
+                    '42/media/lua/client/Testing/SSRTests.lua',
+                    '42/media/lua/client/Testing/SSRNativePositionTest.lua',
+                    '42/media/lua/client/5_UI/SSRTestsWindow.lua',
                     '42/media/maps/Hilltop Survivor Camp/spawnpoints.lua',
                     'common/media/textures/PVPOn.png']
             omit = ['42/media/lua/client/Debug/SuperbSurvivorsTests.lua',

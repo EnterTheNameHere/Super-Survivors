@@ -234,7 +234,7 @@ UI_EN = {
 
 
 		UI_Option_SS_DebugOptions = "Debug Options",
-		UI_Option_SS_DebugOptionsDesc = "Turns on debug right click survivor options",
+		UI_Option_SS_DebugOptionsDesc = "Turns on debug right-click survivor options and the opt-in SS Tests window. Tests can alter the world.",
 		UI_Option_SS_DebugSay = "SuperDebug() Mode - LAG WARNING: ",
 		UI_Option_SS_DebugSayDesc = "You need to turn on Debug mode along with superdebug() for NPCs to tell you SuperDebug information. This will enable the function DebugSay to NPCs, which is a custom function that will give precise detail of what the NPC is up to. You will need to be at least 6 blocks away from the NPC to recieve their SuperDebug information to the console / in game chat. ",
 		UI_Option_SS_DebugSay_Distance = "SuperDebug() - Distance: ",

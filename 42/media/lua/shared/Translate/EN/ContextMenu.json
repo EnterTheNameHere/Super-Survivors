@@ -177,6 +177,7 @@
 	"ContextMenu_SD_DoctorGlass": "*Removing Glass...*",
 	"ContextMenu_SD_DoctorBullet": "*Removing Bullet...*",
 	"ContextMenu_SD_DoctorBandage": "*Applying Bandage...*",
-	"ContextMenu_SD_HoldStill": "Hold still please..."
+	"ContextMenu_SD_HoldStill": "Hold still please...",
+    "ContextMenu_SS_Tests": "SS Tests..."
 }
 

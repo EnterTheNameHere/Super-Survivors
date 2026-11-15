@@ -57,6 +57,16 @@ class InstalledPersistenceApiChecks(unittest.TestCase):
         for name in ('get', 'getOrCreate'):
             self.assertIn((name, '(Ljava/lang/String;)Lse/krka/kahlua/vm/KahluaTable;'), public)
 
+    def test_moving_object_native_position_fields_are_saved_and_restored(self):
+        _, data = self.metadata('zombie/iso/IsoMovingObject')
+        for axis in ('X', 'Y', 'Z'):
+            self.calls(data, 'save(Ljava/nio/ByteBuffer;Z)V', 'zombie/iso/IsoMovingObject', 'get'+axis)
+            self.calls(data, 'load(Ljava/nio/ByteBuffer;IZ)V', 'zombie/iso/IsoMovingObject', 'set'+axis)
+        self.calls(data, 'save(Ljava/nio/ByteBuffer;Z)V', 'java/nio/ByteBuffer', 'putFloat')
+        # Source review also follows the setters and observes that they do not
+        # update currentSquare. This check alone does not execute a native load.
+        self.calls(data, 'load(Ljava/nio/ByteBuffer;IZ)V', 'java/nio/ByteBuffer', 'getFloat')
+
 
 if __name__ == '__main__':
     unittest.main()

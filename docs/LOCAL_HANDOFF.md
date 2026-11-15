@@ -2,6 +2,26 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Tests UI and R1 investigation (15 November 2026)
+
+User reported updated inbox; read canonical B42 through 02a23f1 and acknowledged
+SSR-TEST-01 plus the authoritative PERSIST-01 R1 clarification. Same exclusive
+codex/persistence-b42 checkout, starting d585676. Acknowledgment is published on
+B42 at d59792b. Preserve user .vscode/settings.json edits and common/ save output.
+
+R1 is an engine investigation, NOT a mandatory tick-scan optimization. Production
+persistence scan/unload code is unchanged in this follow-up. See
+[NATIVE_POSITION_R1.md](NATIVE_POSITION_R1.md) for installed 42.22.2 source facts,
+remaining lifecycle questions and proposals. Native save/load already encodes
+coordinates; current-square/moving-square association is separate.
+
+[TESTS_UI.md](TESTS_UI.md) documents the approved minimal, option-gated Tests UI,
+per-run warning/consent, independent registry, raw native diagnostic, and explicit
+stage/restart/resume. No native -debug requirement, AI manager or full debug hub.
+Restart, enter a fresh disposable world, enable Debug Options on the Superb
+Survivors options page and right-click SS Tests. Actual game results remain
+unobserved; code/mocks are not engine acceptance.
+
 ## Persistence implementation assignment (15 November 2026)
 
 The user explicitly resumed implementation for **SSR-PERSIST-01 only**, following

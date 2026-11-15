@@ -65,7 +65,7 @@ CLASSES = {
     'zombie/characters/CharacterStat': {'getById', 'getId', 'getMinimumValue', 'getMaximumValue', 'getDefaultValue'},
     'zombie/characters/skills/PerkFactory$Perks': {'FromString', 'fromIndex', 'getMaxIndex'},
     'zombie/iso/objects/RainManager': {'isRaining', 'getRainIntensity', 'startRaining', 'stopRaining'},
-    'zombie/characters/IsoPlayer': {'getInstance', 'getPlayerNum', 'isLocalPlayer', 'getUsername', 'getInventory', 'getStats', 'getBodyDamage', 'getCurrentSquare', 'getX', 'getY', 'getZ', 'isDead', 'isFemale', 'getDisplayName', 'getPerkLevel', 'getModData', 'getDir', 'setDir'},
+    'zombie/characters/IsoPlayer': {'saveFileName', 'getInstance', 'getPlayerNum', 'isLocalPlayer', 'getUsername', 'getInventory', 'getStats', 'getBodyDamage', 'getCurrentSquare', 'getX', 'getY', 'getZ', 'isDead', 'isFemale', 'getDisplayName', 'getPerkLevel', 'getModData', 'getDir', 'setDir'},
     'zombie/ui/UIFont': {'FromString'},
     'zombie/iso/IsoDirections': {'fromString', 'fromIndex', 'RotLeft', 'RotRight', 'Rot180', 'dx', 'dy'},
     'zombie/GameTime': {'getInstance', 'getWorldAgeHours', 'getMultiplier', 'getTimeOfDay', 'getHour', 'getMinutes', 'getDay', 'getMonth', 'getYear', 'getNightsSurvived'},
@@ -236,8 +236,11 @@ def generate(jar_path):
                 suffix = ': ' + name(parent)
             lines += [f'---{coverage} of {path.replace("/", ".")}.', f'---@class {owner}{suffix}']
             for kind, flags, field, descriptor in entries:
-                if kind == 'field' and flags & 1 and (flags & 8 or '*' in allowed) and re.fullmatch(r'[A-Za-z_]\w*', field):
-                    lines.append(f'---@field {field} {type_of(descriptor)}')
+                if kind == 'field' and flags & 1 and (flags & 8 or '*' in allowed or field in allowed) and re.fullmatch(r'[A-Za-z_]\w*', field):
+                    field_type = type_of(descriptor)
+                    if owner == 'IsoPlayer' and field == 'saveFileName':
+                        field_type += '|nil' # Native public field is null before assigning a snapshot.
+                    lines.append(f'---@field {field} {field_type}')
             lines += [f'{owner} = {{}}', '']
             found = {}
             parent_path = path
