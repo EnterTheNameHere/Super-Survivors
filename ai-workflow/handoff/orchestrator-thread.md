@@ -160,3 +160,24 @@ User returned control to orchestration after runtime checks. Latest restart log
 errors; crafting itself untested. Native probe passed, full SSR persistence
 review/lifecycle acceptance pending. Next actor: orchestrator; implementer awaits
 next bounded assignment. See mail/orchestrator/inbox/2026-11-15-return-to-orchestration.md.
+
+
+## SSR-TEST-01 real runtime review (2026-11-15)
+Tests UI was implemented and exercised in real B42.22.2. User ran two native
+same-session probes and staged/resumed across a genuine game restart. Log:
+docs/evidence/NATIVE_POSITION_2026-11-15.log on codex/persistence-b42.
+Native load independently restored X/Y and identity marker; currentSquare
+and square membership remained at intentionally different constructor location.
+The human was unaffected, isolated actors were detached, and missing-file
+load was silent. Z was unchanged and not independently proven by runtime probe.
+Do not infer a bug in current SSR loader solely from deliberate mismatched
+constructor diagnostic: SSR creates actor at saved square. Do not add speculative
+square repairs or remove manual coordinate setters without separate evidence.
+Test UI/probe scope is satisfied; SSR-PERSIST-01 still requires true survivor
+and group lifecycle testing. Orchestrator review is recorded at
+ai-workflow/mail/implementer/inbox/2026-11-15-test-01-orchestrator-review.md
+on B42. Codex reports 178 tests, 112 syntax checks; not independently rerun.
+Recent startup translation/recipe error fixes verified by absence of prior
+startup errors after restart, but actual crafting untested. Production source
+branch remains codex/persistence-b42; no merge. Next user-led gate:
+docs/PERSISTENCE_B42.md's real save/reload/unload/death tests.
