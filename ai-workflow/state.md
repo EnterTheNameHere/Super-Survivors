@@ -4,8 +4,11 @@ Reconciled: 2026-11-15
 Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
-Implementer: NONE ACKNOWLEDGED
-Execution: REQUESTED, NOT CONFIRMED RUNNING
+Implementer: Local Codex; acknowledged 2026-11-15
+Execution: IMPLEMENTING on codex/persistence-b42; exclusive existing checkout
+Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
+Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
+Coordination updates here are on implementation ref pending orchestrator review/reconciliation onto B42.
 Task: SSR-PERSIST-01 (assignments/persistence-b42.md)
 Outgoing mail: mail/implementer/inbox/2026-11-15-persist-01.md
 
@@ -19,6 +22,6 @@ Legacy B42 static findings:
 
 Current objective: new-world native B42 persistence; dynamic stable survivor/group registry; no legacy loaders or compatibility; world-owned state; loaded/unloaded/dead handling; report engine-backed verification.
 
-Next actor: local Codex starts explicitly, confirms branch ownership, acknowledges task via orchestrator inbox, then implements. Orchestrator reviews exact delivery. User validates using disposable PZ world.
+Next actor: local Codex verifies installed engine APIs and implements the assignment; orchestrator reviews exact delivery. User validates using disposable PZ world.
 
 Not assigned: debug hub / individual inspector; future AI manager; in-game scenario runner.
