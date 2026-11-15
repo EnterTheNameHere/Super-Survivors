@@ -78,3 +78,8 @@ Full SSR persistence lifecycle/acceptance still pending orchestrator review.
 Report: mail/orchestrator/inbox/2026-11-15-test-01-runtime-results.md.
 Next actor: orchestrator reviews concrete engine results and loader placement
 implications; no automatic source merge or speculative rewrite.
+
+
+Direct user-requested startup fixes delivered at 29bebd0 (percent descriptions,
+B42 grave craft recipes), 178 tests/112 Lua syntax; restart/load validation
+pending. Report: mail/orchestrator/inbox/2026-11-15-startup-error-fixes.md. No persistence acceptance or production merge.
