@@ -37,7 +37,11 @@ local function prerequisites()
     if getCore():isNoSave() then return false, "Use a normal save-enabled disposable world." end
     local human=getSpecificPlayer(0)
     if not human or human:isDead() or human:isNpc() then return false, "A living local human player is required." end
-    if IsoWorld.saveoffsetx~=0 or IsoWorld.saveoffsety~=0 then
+    -- Static Java fields are exposed as boxed Integer values, not Lua numbers.
+    -- Convert their numeric representation; nil/unreadable values stay unknown.
+    local offsetX=tonumber(tostring(IsoWorld.saveoffsetx))
+    local offsetY=tonumber(tostring(IsoWorld.saveoffsety))
+    if offsetX~=0 or offsetY~=0 then
         return false,"Requires known zero native world save offsets; X/Y="..tostring(IsoWorld.saveoffsetx)
             .."/"..tostring(IsoWorld.saveoffsety)..". Use a fresh unconverted world."
     end

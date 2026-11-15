@@ -267,6 +267,20 @@ class TestsUiChecks(unittest.TestCase):
             assert(#actors==0 and next(files)==nil)
         ''')
 
+    def test_boxed_java_offsets_accept_zero_but_reject_unknown_and_nonzero(self):
+        self.lua.execute('''
+            local definition=SSRTests.definitions['native-position']
+            local function boxed(value) return setmetatable({}, {__tostring=function() return value end}) end
+            IsoWorld.saveoffsetx=boxed('0');IsoWorld.saveoffsety=boxed('0')
+            assert(IsoWorld.saveoffsetx~=0 and SSRTests.availability(definition))
+            for _,value in ipairs({'1','-1','nil','<private>','not a number'}) do
+                IsoWorld.saveoffsety=boxed(value)
+                assert(not SSRTests.availability(definition))
+            end
+            IsoWorld.saveoffsety=nil;assert(not SSRTests.availability(definition))
+            assert(#actors==0 and next(files)==nil)
+        ''')
+
     def test_constructor_exception_before_return_blocks_further_mutating_runs(self):
         self.lua.execute('''
             failConstructor=true

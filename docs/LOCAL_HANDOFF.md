@@ -2,6 +2,14 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Tests UI boxed-offset follow-up (15 November 2026)
+
+After fixing the version gate, user reports offset prerequisite rejects X/Y=0/0.
+Installed LuaJavaClassExposer.exposeStatics directly stores Field.get(clazz)
+without numeric conversion, exposing boxed Integer values. Probe now parses
+numeric representations before comparison; unreadable/nil and nonzero values
+remain blocked. No world mutation or native roundtrip observed yet.
+
 ## Tests UI runtime follow-up (15 November 2026)
 
 User opened SS Tests; ticking consent left Run disabled with the version warning.
