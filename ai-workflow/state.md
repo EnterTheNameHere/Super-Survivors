@@ -107,3 +107,6 @@ ai-workflow/mail/implementer/inbox/2026-11-15-test-01-orchestrator-review.md.
 No source merge. Latest observed implementation branch head 090f424.
 Codex reports 178 automated tests/112 Lua syntax checks; orchestrator has
 not independently rerun those checks.
+
+## SSR-TEST-02 new request (2026-11-15)
+User explicitly chose to test possible IsoPlayer.new(cell) / native load construction before broader SSR lifecycle. Assignment on B42: ai-workflow/assignments/test-cell-only-isoplayer-02.md; Codex inbox: ai-workflow/mail/implementer/inbox/2026-11-15-test-02-cell-only.md. First verify installed B42 constructor overload and safe registration/cleanup, then (if safe) implement a user-run Tests UI probe, observing position/currentSquare/moving-square/world lists before load, after load and after explicit placement. The alternative constructor is an UNVERIFIED hypothesis; not a design decision. Status: REQUESTED, NOT ACKNOWLEDGED. No production persistence rewrite or acceptance. Existing exclusive codex/persistence-b42 worktree owner only.
