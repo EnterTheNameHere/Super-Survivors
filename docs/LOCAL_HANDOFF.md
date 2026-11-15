@@ -2,6 +2,18 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## IsoSurvivor comparison closed (15 November 2026)
+
+User requested ONLY SSR-ANALYSIS-01 and then asked to finish the proposed switch
+as rejected. Read-only installed-engine comparison is in
+[ISOSURVIVOR_VS_ISOPLAYER_B42.md](ISOSURVIVOR_VS_ISOPLAYER_B42.md).
+Reject IsoSurvivor migration: inherited visual getter throws, primary bodyDamage,
+moodles and XP are absent, current attack state casts to IsoPlayer, filename
+save/control methods differ. Keep IsoPlayer; no runtime edits or experiments.
+SSR-TEST-02 and factory supplement remain pending separately. Source scan covered
+23,692 JAR classes plus bundled Lua; source evidence is not an IsoSurvivor runtime
+test. Existing uncommitted source/settings/save edits preserved.
+
 ## Returned to orchestration (15 November 2026)
 
 User restarted after startup fixes; log at 14:31:11 has no prior option-format
