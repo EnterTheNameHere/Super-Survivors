@@ -88,7 +88,7 @@ deciding whether an optimization is required. Don't assume a cached grid-square
 reference remains valid across chunk unload/recycling.
 
 The already published R1 mail,
-ai-workflow/mail/implementer/inbox/2026-11-15-persist-01-r1-review.md,
+ai-workflow/mail/implementer/archive/2026-11-15-persist-01-r1-review.md,
 calls this a mandatory correction. The orchestrator acknowledged that wording
 is stronger than the evidence supports. User explicitly requested thinking
 through the question BEFORE changing that assignment. This handoff records
@@ -110,4 +110,29 @@ User approved introducing a reusable in-game Tests UI immediately, accessible vi
 
 First test: the native IsoPlayer save/load and position/world-registration diagnostic already discussed in the SSR-PERSIST-01 R1 investigation. Codex to independently inspect installed B42, implement a safe isolated test NPC/snapshot and log original vs restored X/Y/Z without forcing coordinates, then provide instructions for user to execute in a fresh disposable world. Distinguish same-session probe from restart roundtrip; do not modify human player data. No actual runtime evidence exists yet.
 
-Canonical assignment: ai-workflow/assignments/tests-ui-01.md; addressed mail: ai-workflow/mail/implementer/inbox/2026-11-15-test-01.md on B42. Status REQUESTED/NOT ACKNOWLEDGED. Coordinate with existing exclusive local Codex branch codex/persistence-b42; no second implementer, no automatic merge to B42. Previous R1 mandatory tick optimization remains superseded by engine investigation; no speculative rewrite requested.
+Canonical assignment: ai-workflow/assignments/tests-ui-01.md; addressed mail: ai-workflow/mail/implementer/archive/2026-11-15-test-01.md on B42. Status DELIVERED FOR REVIEW (see delivery below). Coordinate with existing exclusive local Codex branch codex/persistence-b42; no second implementer, no automatic merge to B42. Previous R1 mandatory tick optimization remains superseded by engine investigation; no speculative rewrite requested.
+
+
+## SSR-TEST-01 / R1 delivery (2026-11-15)
+
+Source 594e65bc6af92927d8ec2c4b20c5c36806bf31a3, parent c1dea17a8f052a8e861635a86eec1619e791035e, on exclusive
+codex/persistence-b42 checkout. Addressed report: mail/orchestrator/inbox/2026-11-15-test-01-r1-delivery.md.
+All three R1/test requests processed and archived; clarification supersedes
+the original mandatory-optimization request. No persistence scan/unload/loader
+rewrite for this follow-up. No source merge into B42 or acceptance.
+
+Minimal opt-in Tests UI uses existing Debug Options, no -debug requirement,
+per-run warning consent, independent registry and one active test. Native
+position probe is restricted to inspected 42.22.2 and disposable single-player
+worlds; raw distinct actors, unique retained snapshots, native-safe cleanup and
+explicit stage/restart/resume. Human player slots/save are never replaced.
+
+Installed source establishes XYZ serialization/restoration but separate square
+registration. Actual runtime observations remain NOT RUN. Same-floor Z is not
+independently distinguished; session-token change is not proof of process restart.
+Read docs/NATIVE_POSITION_R1.md and docs/TESTS_UI.md on implementation ref.
+174 automated tests, 112 Lua syntax checks; LuaLS 88 legacy diagnostics, none
+in new modules. Mocks do not establish native rendering or engine correctness.
+
+Next actor: orchestrator reviews exact delivery and user runs a NEW disposable
+world probe after game restart. Full debug hub/inspector and AI remain unassigned.
