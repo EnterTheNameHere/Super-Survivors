@@ -110,3 +110,7 @@ not independently rerun those checks.
 
 ## SSR-TEST-02 new request (2026-11-15)
 User explicitly chose to test possible IsoPlayer.new(cell) / native load construction before broader SSR lifecycle. Assignment on B42: ai-workflow/assignments/test-cell-only-isoplayer-02.md; Codex inbox: ai-workflow/mail/implementer/inbox/2026-11-15-test-02-cell-only.md. First verify installed B42 constructor overload and safe registration/cleanup, then (if safe) implement a user-run Tests UI probe, observing position/currentSquare/moving-square/world lists before load, after load and after explicit placement. The alternative constructor is an UNVERIFIED hypothesis; not a design decision. Status: REQUESTED, NOT ACKNOWLEDGED. No production persistence rewrite or acceptance. Existing exclusive codex/persistence-b42 worktree owner only.
+
+
+## SSR-ANALYSIS-01 source-only investigation requested (2026-11-15)
+User explicitly narrowed IsoSurvivor vs IsoPlayer comparison to installed B42 Java/Lua FIRST, before in-game testing. Compare inheritance/constructors/factories, real engine use, native persistence, world lifecycle and gameplay APIs, plus potential SSR migration implications; report actual evidence and remaining uncertainties. Do not implement code, tests, or class migration. Assignment: ai-workflow/assignments/isosurvivor-vs-isoplayer-analysis.md; inbox: ai-workflow/mail/implementer/inbox/2026-11-15-isosurvivor-analysis.md. REQUESTED, NOT ACKNOWLEDGED; existing Codex worktree only, coordinate with SSR-TEST-02.
