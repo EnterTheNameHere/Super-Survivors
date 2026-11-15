@@ -11,9 +11,14 @@ Date: 2026-11-15
 
 **Active request:** SSR-PERSIST-01 — B42 native world-save persistence and stable survivor/group registry.
 - Task: `assignments/persistence-b42.md`
-- Mail: `mail/implementer/inbox/2026-11-15-persist-01.md`
-- Current status: REQUESTED, NOT ACKNOWLEDGED. No Codex session or implementation is claimed.
-- Next actor: local Codex, to verify workspace ownership, acknowledge and execute.
+- Processed mail: `mail/implementer/archive/2026-11-15-persist-01.md`
+- Current status: IMPLEMENTATION DELIVERED FOR REVIEW; automated checks pass; in-game validation pending.
+- Implementation ref: `codex/persistence-b42`, base `3a087ee8c4aceb151443848e19bbc3a999a129f5`.
+- Acknowledgment: `mail/orchestrator/inbox/2026-11-15-persist-01-ack.md`.
+- Delivery: `mail/orchestrator/inbox/2026-11-15-persist-01-delivery.md`.
+- Source commit: `dc4dde25d612d33650c1ed5ef4ad0401c02394b5`; parent `792a129d6561d5e35fb8ace4c03eb4fd2558f8cd`.
+- Canonical B42 carries coordination only; production implementation remains on its review branch. No acceptance or implementation merge is implied.
+- Next actor: orchestrator reviews the exact delivery, then user-led disposable-world checks.
 
 **Next (not yet assigned):** SS Debug hub and inspector, then new survivor AI Manager and scenarios.
 
