@@ -12,24 +12,27 @@ Date: 2026-11-15
 **Active request:** SSR-PERSIST-01 — B42 native world-save persistence and stable survivor/group registry.
 - Task: `assignments/persistence-b42.md`
 - Processed mail: `mail/implementer/archive/2026-11-15-persist-01.md`
-- Current status: REVIEW IN PROGRESS / R1 ENGINE INVESTIGATION + OPT-IN RUNTIME PROBE ASSIGNED; no gameplay validation.
+- Current status: REVIEW IN PROGRESS / R1 FINDINGS + OPT-IN TESTS UI DELIVERED; in-game validation pending.
 - Implementation ref: `codex/persistence-b42`, base `3a087ee8c4aceb151443848e19bbc3a999a129f5`.
 - Acknowledgment: `mail/orchestrator/inbox/2026-11-15-persist-01-ack.md`.
 - Delivery: `mail/orchestrator/inbox/2026-11-15-persist-01-delivery.md`.
 - Source commit: `dc4dde25d612d33650c1ed5ef4ad0401c02394b5`; parent `792a129d6561d5e35fb8ace4c03eb4fd2558f8cd`.
 - Canonical B42 carries coordination only; production implementation remains on its review branch. No acceptance or implementation merge is implied.
-- Authoritative R1 clarification: `mail/implementer/inbox/2026-11-15-persist-01-r1-clarification.md` on B42. It supersedes the earlier mandatory-optimization request.\n- Next actor: local Codex investigates installed engine, produces safe opt-in runtime probe and reports findings; user executes probe in fresh disposable world. No code rewrite required before evidence.
+- Authoritative R1 clarification: `mail/implementer/archive/2026-11-15-persist-01-r1-clarification.md` on B42. It supersedes the earlier mandatory-optimization request.
+- Next actor: orchestrator reviews the delivery; user executes the opt-in probe in a fresh disposable world. No speculative persistence rewrite.
 
 **Next (not yet assigned):** SS Debug hub and inspector, then new survivor AI Manager and scenarios.
 
 Do not work on `master` or merge/publish without review and authorization.
 
 
-## Newly assigned: SSR-TEST-01 (2026-11-15)
+## Delivered for review: SSR-TEST-01 (2026-11-15)
 - User approved a reusable minimal in-game Tests UI via context menu, destructive-world warning with affirmative acknowledgment, independent Lua registry, and IsoPlayer native save/load position probe as first test.
 - Task: `assignments/tests-ui-01.md`
-- Outstanding inbox: `mail/implementer/inbox/2026-11-15-test-01.md`
-- Status: ACKNOWLEDGED / local Codex investigating and implementing on existing exclusive branch.
+- Processed request: `mail/implementer/archive/2026-11-15-test-01.md`
+- Status: DELIVERED FOR REVIEW; actual engine/UI validation NOT RUN.
 - Acknowledgment: `mail/orchestrator/inbox/2026-11-15-test-01-r1-ack.md`.
 - Related: SSR-PERSIST-01 R1 engine investigation; no mandatory OnTick rewrite.
-- Next: same local Codex implementer claims/acknowledges within existing exclusive branch/worktree; report exact evidence. Do not merge automatically.
+- Delivery: `mail/orchestrator/inbox/2026-11-15-test-01-r1-delivery.md`.
+- Source: `594e65bc6af92927d8ec2c4b20c5c36806bf31a3`, parent `c1dea17a8f052a8e861635a86eec1619e791035e` on `codex/persistence-b42`.
+- Next: orchestrator review and user-led in-game checks; no automatic merge.
