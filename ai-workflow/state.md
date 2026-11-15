@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: IMPLEMENTATION DELIVERED FOR REVIEW; automated checks pass; in-game validation pending
+Execution: SSR-TEST-01 AND PERSIST-01 R1 ACKNOWLEDGED / INVESTIGATION + TEST UI IMPLEMENTATION IN PROGRESS; no gameplay validation
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -34,6 +34,19 @@ Legacy B42 static findings:
 
 Current objective: new-world native B42 persistence; dynamic stable survivor/group registry; no legacy loaders or compatibility; world-owned state; loaded/unloaded/dead handling; report engine-backed verification.
 
-Next actor: orchestrator reviews exact delivery/source commit; user validates in disposable new B42 world. Corrections require new addressed mail. No acceptance or next assignment inferred.
+Review clarification (authoritative): ai-workflow/mail/implementer/inbox/2026-11-15-persist-01-r1-clarification.md (B42), supersedes older mandatory-optimization mail. Study installed B42 IsoPlayer save/load position and world registration; prepare SAFE opt-in diagnostic for user in fresh world; inspect streaming/add/remove and per-tick scan necessity. No automatic persistence rewrite. Report findings first. B42 coordination and codex source branches diverged; do not force-update.
+
+Next actor: local Codex acknowledges clarification, investigates and delivers diagnostic; user then executes in-game probe. Orchestrator reviews observed results before deciding fixes or acceptance.
 
 Not assigned: debug hub / individual inspector; future AI manager; in-game scenario runner.
+
+
+## SSR-TEST-01 (approved, acknowledged)
+User on 2026-11-15 approved adding a minimal, independently reusable Tests UI now.
+Entry: dev/testing-gated right-click menu (without -debug); UI shows destructive-world warning, explicit consent, registered tests, outcomes and observed values. First test = native IsoPlayer position save/load diagnostic tied to existing SSR-PERSIST-01 engine investigation. No full SS Debug hub, broad runner, AI or speculative persistence rewrite.
+Assignment: ai-workflow/assignments/tests-ui-01.md
+Outgoing mail: ai-workflow/mail/implementer/inbox/2026-11-15-test-01.md
+Owner: existing local Codex implementer once acknowledged; no parallel worktree ownership.
+State: ACKNOWLEDGED by existing local Codex, same exclusive source checkout; no in-game results.
+Acknowledgment: mail/orchestrator/inbox/2026-11-15-test-01-r1-ack.md
+Next: Codex reports implementation/engine findings and probe instructions; user runs in fresh disposable world.

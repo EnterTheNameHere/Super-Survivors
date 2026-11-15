@@ -46,3 +46,68 @@ disposable-world save/reload/unload/death/copy checks with the user. Request any
 corrections as new addressed mail. Acceptance/merge remain explicit decisions.
 SS Debug hub/inspector and AI work remain unassigned; do not start them merely
 because a persistence delivery exists.
+
+
+## Engine-first investigation and runtime-test option (user decision, 2026-11-15)
+The old Super Survivors B40/B41 code is approximately three years old. Its
+save/load sequence must NOT be treated as evidence of what B42 requires.
+Likewise, current port code shows what it attempts, not the engine contract.
+Verify with the installed B42 Java/Lua implementation and, wherever practical,
+with an actual runtime experiment. Separate established facts, concerns, design
+preferences, and experimental hypotheses.
+
+Open question: IsoPlayer has world X/Y/Z and save(String)/load(String).
+Independently determine whether native save serializes world position; whether
+native load assigns X/Y/Z; and whether character creation or world registration
+requires additional placement even if X/Y/Z is restored. The current
+SuperSurvivor:loadPlayer explicitly sets X/Y/Z after load, but that DOES NOT
+establish the step is necessary. Registry location still may be useful for
+deciding which unloaded survivor to instantiate and when.
+
+User offered a live empirical route: they will create a NEW disposable B42
+world, create a player character, and enter gameplay; then a focused runtime
+test can be executed. Codex can inspect engine source AND/OR prepare a small
+diagnostic test harness for the user to run in that world. Design the probe
+before invoking unsafe engine operations: never overwrite the real player's
+save, don't disrupt their live character, and use a uniquely named test
+character/snapshot if native actor construction is required. Candidate test:
+record actual actor X/Y/Z and current square, save a test NPC, instantiate a
+different NPC at distinguishable coordinates, invoke native load without
+manual coordinate restoration, then inspect X/Y/Z, current square and world
+registration. Test actual save/restart/reload separately from an in-session
+round trip. Report concrete before/after values and observed errors, not
+merely an asserted pass. These are proposed test ideas, NOT yet assigned
+or verified safe in the installed B42 runtime.
+
+Related R1 concern: SSPersistence.tick scans every indexed saved location and
+calls getGridSquare every tick. This is a demonstrated scaling property of
+the code, not a measured bottleneck. It may compensate for loaded-square events
+that occurred before registry/player initialization. Investigate engine event
+timing, potential one-time catch-up, chunk-based indices or safe caching before
+deciding whether an optimization is required. Don't assume a cached grid-square
+reference remains valid across chunk unload/recycling.
+
+The already published R1 mail,
+ai-workflow/mail/implementer/inbox/2026-11-15-persist-01-r1-review.md,
+calls this a mandatory correction. The orchestrator acknowledged that wording
+is stronger than the evidence supports. User explicitly requested thinking
+through the question BEFORE changing that assignment. This handoff records
+the revised reasoning but does NOT revise, supersede or dispatch a new Codex
+assignment. Any follow-up needs explicit coordination.
+
+## Continuation after this discussion
+First resolve native B42 position/serializer behavior via installed source or
+a carefully scoped user-run world probe. Then revisit the per-tick scan's
+necessity and actual performance using evidence. Clarify the outstanding R1
+mail before the implementer acts on its optimization instruction. Source branch
+codex/persistence-b42 and canonical B42 have diverged; don't force-update
+either. Persistence acceptance still requires live disposable-world verification.
+SS Debug hub/inspector and AI work remain unassigned.
+
+
+## SSR-TEST-01 decision (2026-11-15)
+User approved introducing a reusable in-game Tests UI immediately, accessible via a development/testing-gated right-click context-menu entry (without requiring vanilla -debug). UI should explicitly warn that tests can irreversibly change the world and require affirmative acknowledgement before each destructive run. A small test registry decouples test definitions from UI; tests can be added/replaced/removed. Result reporting includes concrete observations, errors, inconclusive/setup error, and optional multi-tick execution. One world-mutating test at a time initially. No full SS Debug hub or generalized DSL/runner.
+
+First test: the native IsoPlayer save/load and position/world-registration diagnostic already discussed in the SSR-PERSIST-01 R1 investigation. Codex to independently inspect installed B42, implement a safe isolated test NPC/snapshot and log original vs restored X/Y/Z without forcing coordinates, then provide instructions for user to execute in a fresh disposable world. Distinguish same-session probe from restart roundtrip; do not modify human player data. No actual runtime evidence exists yet.
+
+Canonical assignment: ai-workflow/assignments/tests-ui-01.md; addressed mail: ai-workflow/mail/implementer/inbox/2026-11-15-test-01.md on B42. Status REQUESTED/NOT ACKNOWLEDGED. Coordinate with existing exclusive local Codex branch codex/persistence-b42; no second implementer, no automatic merge to B42. Previous R1 mandatory tick optimization remains superseded by engine investigation; no speculative rewrite requested.
