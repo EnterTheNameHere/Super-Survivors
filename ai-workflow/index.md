@@ -85,3 +85,8 @@ User requested experiment before more persistence work. Verify installed B42.22.
 ## New requested source analysis: SSR-ANALYSIS-01
 - Compare IsoSurvivor and IsoPlayer in installed B42 Java/Lua, source-only, before any in-game experiment. Assignment: `assignments/isosurvivor-vs-isoplayer-analysis.md`; inbox: `mail/implementer/inbox/2026-11-15-isosurvivor-analysis.md`.
 - Status: REQUESTED, NOT ACKNOWLEDGED. No change to SSR actor implementation. Separate from SSR-TEST-02; same local implementer must sequence work.
+
+
+SSR-ANALYSIS-01 acknowledged by existing exclusive local Codex, source-only
+research. Latest user instruction restricts this turn to analysis; SSR-TEST-02
+and supplement remain pending. Ack: mail/orchestrator/inbox/2026-11-15-analysis-01-ack.md.

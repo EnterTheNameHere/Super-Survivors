@@ -114,3 +114,8 @@ User explicitly chose to test possible IsoPlayer.new(cell) / native load constru
 
 ## SSR-ANALYSIS-01 source-only investigation requested (2026-11-15)
 User explicitly narrowed IsoSurvivor vs IsoPlayer comparison to installed B42 Java/Lua FIRST, before in-game testing. Compare inheritance/constructors/factories, real engine use, native persistence, world lifecycle and gameplay APIs, plus potential SSR migration implications; report actual evidence and remaining uncertainties. Do not implement code, tests, or class migration. Assignment: ai-workflow/assignments/isosurvivor-vs-isoplayer-analysis.md; inbox: ai-workflow/mail/implementer/inbox/2026-11-15-isosurvivor-analysis.md. REQUESTED, NOT ACKNOWLEDGED; existing Codex worktree only, coordinate with SSR-TEST-02.
+
+
+SSR-ANALYSIS-01 acknowledged by existing exclusive local Codex, source-only
+research. Latest user instruction restricts this turn to analysis; SSR-TEST-02
+and supplement remain pending. Ack: mail/orchestrator/inbox/2026-11-15-analysis-01-ack.md.
