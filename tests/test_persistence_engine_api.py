@@ -57,6 +57,14 @@ class InstalledPersistenceApiChecks(unittest.TestCase):
         for name in ('get', 'getOrCreate'):
             self.assertIn((name, '(Ljava/lang/String;)Lse/krka/kahlua/vm/KahluaTable;'), public)
 
+    def test_build_version_api_includes_suffix_separately_from_game_version(self):
+        entries, data = self.metadata('zombie/core/Core')
+        public = {(n, d) for kind, flags, n, d in entries if kind == 'method' and flags & 1}
+        self.assertIn(('getGameAndBuildVersion', '()Ljava/lang/String;'), public)
+        self.assertIn(('getGameVersion', '()Lzombie/core/GameVersion;'), public)
+        # Installed source confirms getGameAndBuildVersion appends .2 to 42.22.
+        self.assertIn('getGameAndBuildVersion()Ljava/lang/String;', data['bytecode'])
+
     def test_moving_object_native_position_fields_are_saved_and_restored(self):
         _, data = self.metadata('zombie/iso/IsoMovingObject')
         for axis in ('X', 'Y', 'Z'):

@@ -96,7 +96,7 @@ CLASSES = {
 # Verified additions from the undefined-field review. Keep these explicit rather
 # than accepting arbitrary members on native objects.
 for path, names in {
-    'zombie/core/Core': 'getZoom getKey getGameVersion isDisplayPlayerModel',
+    'zombie/core/Core': 'getZoom getKey getGameVersion getGameAndBuildVersion isDisplayPlayerModel',
     'zombie/characters/IsoPlayer': (
         'new getCoopPVP setCoopPVP Say setInstance setLocalPlayer initSpritePartsEmpty '
         'getPrimaryHandItem getSecondaryHandItem setPrimaryHandItem setSecondaryHandItem '

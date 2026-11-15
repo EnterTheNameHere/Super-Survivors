@@ -12,6 +12,9 @@ Installed `G:\Steam\steamapps\common\ProjectZomboid`, version **42.22.2**, revis
 3d39148846. projectzomboid.jar SHA-256:
 `3c4a7c5f149d784758c6fb5f8fa85f3a21d572e38bc081400e89035f8120d287`.
 
+Version API follow-up: Core.getGameVersion() omits the build suffix (42.22);
+Core.getGameAndBuildVersion() supplies 42.22.2 and is used by the probe gate.
+
 Read-only CFR inspection and bytecode/member inspection of the installed classes.
 Decompiled files are ignored under .venv/persistence-decompiled,
 .venv/test-decompiled and .venv/camera-decompiled; none are shipped or committed.

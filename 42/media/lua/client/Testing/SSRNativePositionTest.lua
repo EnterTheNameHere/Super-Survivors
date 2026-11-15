@@ -4,7 +4,8 @@ local KEY = "SSR.Tests.NativePosition"
 local REQUIREMENTS = "Living player; normal single-player save; two loaded, free floor tiles nearby; prefer only this mod. Raw NPC construction emits other mods' character events."
 local RISK = "Creates isolated test NPCs and uniquely named native snapshot files. Removes test actors best effort; snapshot files remain. Never targets the human player or SSR survivor registry."
 
-local function version() return getCore():getGameVersion():toString() end
+-- GameVersion omits the build suffix (42.22); this API includes it (42.22.2).
+local function version() return getCore():getGameAndBuildVersion() end
 local function near(a,b) return math.abs(a-b) < 0.001 end
 local function samePosition(a,b) return near(a.x,b.x) and near(a.y,b.y) and near(a.z,b.z) end
 local function coords(object)
@@ -32,7 +33,7 @@ local function record(context,label,observation)
         .. "/" .. tostring(observation.inRemove) .. "; safeToAdd=" .. tostring(observation.safeToAdd))
 end
 local function prerequisites()
-    if version()~="42.22.2" then return false,"Probe reviewed for installed B42.22.2 only; reinspect this engine build before running." end
+    if version()~="42.22.2" then return false,"Probe reviewed for installed B42.22.2 only; detected "..tostring(version())..". Reinspect this engine build before running." end
     if getCore():isNoSave() then return false, "Use a normal save-enabled disposable world." end
     local human=getSpecificPlayer(0)
     if not human or human:isDead() or human:isNpc() then return false, "A living local human player is required." end

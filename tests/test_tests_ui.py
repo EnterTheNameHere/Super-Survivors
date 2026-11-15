@@ -60,7 +60,8 @@ class TestsUiChecks(unittest.TestCase):
             getSaveDir=function() return 'world/' end
             checkSaveFileExists=function(file) return files[file]~=nil end
             getCore=function() return {isNoSave=function() return noSave or false end,
-                getGameVersion=function() return {toString=function() return '42.22.2' end} end,
+                getGameVersion=function() return {toString=function() return '42.22' end} end,
+                getGameAndBuildVersion=function() return buildVersion or '42.22.2' end,
                 getScreenWidth=function() return 1920 end,getScreenHeight=function() return 1080 end} end
             ModData={get=function(key) return worldData[key] end,
                 getOrCreate=function(key) worldData[key]=worldData[key] or {};return worldData[key] end}
@@ -171,7 +172,7 @@ class TestsUiChecks(unittest.TestCase):
             multiplayer=true;SSRTests.menuEntryCallback(0,context,{},false);assert(count==1)
         ''')
 
-    def test_consent_resets_on_run_switch_and_reopen_and_no_duplicate_run(self):
+    def test_consent_survives_selection_but_resets_on_run_and_reopen(self):
         self.lua.execute('''
             local window=SSRTests.openWindow();window:update()
             assert(window.warning.text:find('Warning — World Modifications',1,true))
@@ -181,10 +182,22 @@ class TestsUiChecks(unittest.TestCase):
             assert(not SSRTests.start('native-position',true))
             SSRTests.cancel('test cancelled before execution')
             window.consent:setSelected(1,true);window.selector.selected=2;window:onSelection()
-            assert(not window.consent:isSelected(1))
+            assert(window.consent:isSelected(1))
+            window:refreshRegistry();assert(window.consent:isSelected(1))
             window.consent:setSelected(1,true);SSRTests.openWindow()
             assert(not window.consent:isSelected(1))
             window:close();assert(not window.visible);assertClean()
+        ''')
+
+    def test_disabled_run_shows_the_prerequisite_even_after_consent(self):
+        self.lua.execute('''
+            local window=SSRTests.openWindow();window.consent:setSelected(1,true)
+            noSave=true;window:update()
+            assert(not window.runButton.enabled)
+            assert(window.runButton.tooltip:find('save-enabled',1,true))
+            assert(window.output.text:find('Run disabled:',1,true))
+            noSave=false;window:update();assert(window.runButton.enabled)
+            assert(window.runButton.tooltip==nil)
         ''')
 
     def test_same_session_probe_reports_raw_square_mismatch_without_correcting_it(self):
@@ -233,6 +246,16 @@ class TestsUiChecks(unittest.TestCase):
             enabled=false;fire('OnTick');assert(not SSRTests.active and #actors==0)
             enabled=true;safe=true;blocked=true
             assert(run('native-position').status=='SETUP ERROR' and #actors==0)
+        ''')
+
+    def test_version_gate_uses_build_suffix_and_reports_other_builds(self):
+        self.lua.execute('''
+            assert(getCore():getGameVersion():toString()=='42.22')
+            local definition=SSRTests.definitions['native-position']
+            assert(SSRTests.availability(definition))
+            buildVersion='42.22.3'
+            local ok,reason=SSRTests.availability(definition)
+            assert(not ok and reason:find('42.22.3',1,true))
         ''')
 
     def test_no_save_and_nonzero_world_offsets_are_unavailable(self):

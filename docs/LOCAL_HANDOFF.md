@@ -2,6 +2,16 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Tests UI runtime follow-up (15 November 2026)
+
+User opened SS Tests; ticking consent left Run disabled with the version warning.
+Installed Core.getGameVersion():toString() yields 42.22; getGameAndBuildVersion()
+yields 42.22.2. JAR hash/revision unchanged. Probe now checks the latter and
+includes the detected version on mismatch. At the user's explicit request,
+switching definitions preserves the checkbox; run attempts/reopening still clear
+it. Disabled Run reports its reason in output and tooltip. 177 automated tests
+and 112 syntax checks pass; native roundtrip execution is still pending.
+
 ## Tests UI and R1 investigation (15 November 2026)
 
 User reported updated inbox; read canonical B42 through 02a23f1 and acknowledged

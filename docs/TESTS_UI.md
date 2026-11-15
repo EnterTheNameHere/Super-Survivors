@@ -34,9 +34,10 @@ The window displays the approved warning before any execution:
 > objects and zombies. Use a disposable world. Restoration is not guaranteed.
 
 Tick the acknowledgment checkbox, then choose **Run selected test**. Every run
-consumes consent immediately. Switching tests or reopening the window clears
-it. Registering/removing definitions refreshes the selection without preserving
-consent. There is no automatic test execution on startup, window open or restart.
+consumes consent immediately. Switching tests or refreshing the registry preserves
+the checkbox. Reopening the window clears it. There is no automatic test execution
+on startup, window open or restart. A disabled Run button shows its blocking reason
+in the output panel and its tooltip, even after acknowledgment.
 
 Only one test runs at a time. Run is disabled while active. Cancel or closing
 the window stops a pending/multi-tick run and attempts its cleanup. Disabling
@@ -168,3 +169,9 @@ No blanket field suppression or user VS Code settings change was made.
 Local ignored logs: .venv/test01-delivery-suite.txt and
 .venv/luals-test01-delivery-result.txt. Mock widgets do not establish actual
 engine rendering/layout, and mock native IO does not establish an engine roundtrip.
+
+Checkbox/version follow-up: 177 automated tests and 112 Lua syntax checks pass.
+Selection changes preserve acknowledgment at the user’s request; each run still
+consumes it. The reported blocker was a version API mismatch: GameVersion yields 42.22,
+while getGameAndBuildVersion yields the inspected 42.22.2. The probe now uses
+the latter and reports the detected build when it differs.

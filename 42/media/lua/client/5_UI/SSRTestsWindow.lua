@@ -75,7 +75,7 @@ function Window:refreshRegistry()
     self:onSelection()
 end
 function Window:onSelection()
-    self:resetConsent()
+    self.notice=nil
     self.seenRevision=nil
 end
 function Window:onConsent() self.seenRevision=nil end
@@ -102,18 +102,24 @@ function Window:update()
     if self.seenDefinitions~=T.definitionRevision then self:refreshRegistry() end
     local definition=self.tests[self.selector.selected]
     local available,reason=T.availability(definition)
-    self.runButton:setEnable(available and self.consent:isSelected(1) and not T.active and not T.cleanupFailure)
+    local blocked
+    if T.cleanupFailure then blocked="Cleanup failed: restart the game before further tests."
+    elseif T.active then blocked="Another test is already running."
+    elseif not available then blocked=reason
+    elseif not self.consent:isSelected(1) then blocked="Acknowledge the warning to enable Run." end
+    self.runButton:setEnable(blocked==nil)
+    self.runButton.tooltip=blocked
     self.cancelButton:setEnable(T.active~=nil)
-    if self.seenRevision==T.revision and self.seenReason==reason then return end
-    self.seenRevision,self.seenReason=T.revision,reason
+    if self.seenRevision==T.revision and self.seenReason==reason and self.seenBlocked==blocked then return end
+    self.seenRevision,self.seenReason,self.seenBlocked=T.revision,reason,blocked
     local text=definition and (definition.description.."\nRequirements: "..(definition.requirements or "None stated")
         .."\nMay modify: "..(definition.risk or "World state").."\nAvailability: "..reason) or reason
     self.details:setText(rich(text));self.details:paginate()
     local result=definition and T.results[definition.id]
-    local output=self.notice or "No run yet. Acknowledge the warning to enable Run."
+    local output=self.notice or "No run yet."
     if result then output=result.status.."\n"..table.concat(result.lines,"\n") end
     if self.notice and result then output=self.notice.."\n"..output end
-    if T.cleanupFailure then output=output.."\nCleanup failed: restart the game before further tests." end
+    if blocked then output="Run disabled: "..blocked.."\n"..output end
     self.output:setText(rich(output));self.output:paginate()
 end
 
