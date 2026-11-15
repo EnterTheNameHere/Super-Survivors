@@ -175,7 +175,7 @@ constructor diagnostic: SSR creates actor at saved square. Do not add speculativ
 square repairs or remove manual coordinate setters without separate evidence.
 Test UI/probe scope is satisfied; SSR-PERSIST-01 still requires true survivor
 and group lifecycle testing. Orchestrator review is recorded at
-ai-workflow/mail/implementer/inbox/2026-11-15-test-01-orchestrator-review.md
+ai-workflow/mail/implementer/archive/2026-11-15-test-01-orchestrator-review.md
 on B42. Codex reports 178 tests, 112 syntax checks; not independently rerun.
 Recent startup translation/recipe error fixes verified by absence of prior
 startup errors after restart, but actual crafting untested. Production source
@@ -187,4 +187,16 @@ User wants to verify whether a cell-only IsoPlayer construction followed by nati
 
 
 ## New source-only IsoSurvivor comparison (2026-11-15)
-User requested read-only analysis of IsoSurvivor vs IsoPlayer from installed B42.22.2 Java/Lua before in-game testing. Compare concrete class/engine use, native save/load, character lifecycle, gameplay hooks and SSR migration costs, without altering production implementation or Tests UI. Codex request: ai-workflow/assignments/isosurvivor-vs-isoplayer-analysis.md; inbox ai-workflow/mail/implementer/inbox/2026-11-15-isosurvivor-analysis.md. Pending acknowledgment; separate from active SSR-TEST-02.
+User requested read-only analysis of IsoSurvivor vs IsoPlayer from installed B42.22.2 Java/Lua before in-game testing. Compare concrete class/engine use, native save/load, character lifecycle, gameplay hooks and SSR migration costs, without altering production implementation or Tests UI. Codex request: ai-workflow/assignments/isosurvivor-vs-isoplayer-analysis.md; inbox ai-workflow/mail/implementer/archive/2026-11-15-isosurvivor-analysis.md. Pending acknowledgment; separate from active SSR-TEST-02.
+
+
+## SSR-ANALYSIS-01 final disposition (15 November 2026)
+Analysis complete; user requested the proposed IsoSurvivor migration be REJECTED.
+Keep IsoPlayer. Installed-source blockers: inherited getVisual throws, primary
+BodyDamage/Moodles/XP absent, shared attack state requires IsoPlayer, filename
+save/control/update contracts differ. Documentation a4c523b35cc5e1cfac5958a75d41bd0548c3802a
+(parent 6234ff63df16dcd67dbed56f7836aad4ab254420) on codex/persistence-b42;
+report docs/ISOSURVIVOR_VS_ISOPLAYER_B42.md. No runtime code/test/experiment or
+Java changes. SSR-TEST-02 and factory supplement remain pending, explicitly not
+executed under user's analysis-only instruction. Next actor: orchestrator.
+Delivery: mail/orchestrator/inbox/2026-11-15-analysis-01-delivery.md.
