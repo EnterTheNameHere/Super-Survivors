@@ -90,3 +90,32 @@ User returned control to orchestration after runtime checks. Latest restart log
 errors; crafting itself untested. Native probe passed, full SSR persistence
 review/lifecycle acceptance pending. Next actor: orchestrator; implementer awaits
 next bounded assignment. See mail/orchestrator/inbox/2026-11-15-return-to-orchestration.md.
+
+
+## Orchestrator scoped review, 2026-11-15
+SSR-TEST-01 Tests UI and native position probe were exercised in real B42.22.2,
+including two same-session runs and a user-confirmed full restart/resume.
+Evidence: docs/evidence/NATIVE_POSITION_2026-11-15.log and
+docs/NATIVE_POSITION_R1.md on codex/persistence-b42. Native load restored
+X/Y without manual setters, but currentSquare stayed associated with
+constructor tile; Z was not independently varied. Human state guards and
+owned-actor cleanup passed. These observations do not show a defect in the
+normal SSR loader, which constructs at saved location. Scoped test objective
+met; full SSR-PERSIST-01 acceptance remains pending live survivor/group
+save/reload/streaming/death checks. Review to implementer inbox:
+ai-workflow/mail/implementer/inbox/2026-11-15-test-01-orchestrator-review.md.
+No source merge. Latest observed implementation branch head 090f424.
+Codex reports 178 automated tests/112 Lua syntax checks; orchestrator has
+not independently rerun those checks.
+
+## SSR-TEST-02 new request (2026-11-15)
+User explicitly chose to test possible IsoPlayer.new(cell) / native load construction before broader SSR lifecycle. Assignment on B42: ai-workflow/assignments/test-cell-only-isoplayer-02.md; Codex inbox: ai-workflow/mail/implementer/inbox/2026-11-15-test-02-cell-only.md. First verify installed B42 constructor overload and safe registration/cleanup, then (if safe) implement a user-run Tests UI probe, observing position/currentSquare/moving-square/world lists before load, after load and after explicit placement. The alternative constructor is an UNVERIFIED hypothesis; not a design decision. Status: REQUESTED, NOT ACKNOWLEDGED. No production persistence rewrite or acceptance. Existing exclusive codex/persistence-b42 worktree owner only.
+
+
+## SSR-ANALYSIS-01 source-only investigation requested (2026-11-15)
+User explicitly narrowed IsoSurvivor vs IsoPlayer comparison to installed B42 Java/Lua FIRST, before in-game testing. Compare inheritance/constructors/factories, real engine use, native persistence, world lifecycle and gameplay APIs, plus potential SSR migration implications; report actual evidence and remaining uncertainties. Do not implement code, tests, or class migration. Assignment: ai-workflow/assignments/isosurvivor-vs-isoplayer-analysis.md; inbox: ai-workflow/mail/implementer/inbox/2026-11-15-isosurvivor-analysis.md. REQUESTED, NOT ACKNOWLEDGED; existing Codex worktree only, coordinate with SSR-TEST-02.
+
+
+SSR-ANALYSIS-01 acknowledged by existing exclusive local Codex, source-only
+research. Latest user instruction restricts this turn to analysis; SSR-TEST-02
+and supplement remain pending. Ack: mail/orchestrator/inbox/2026-11-15-analysis-01-ack.md.
