@@ -39,3 +39,13 @@ Review clarification (authoritative): ai-workflow/mail/implementer/inbox/2026-11
 Next actor: local Codex acknowledges clarification, investigates and delivers diagnostic; user then executes in-game probe. Orchestrator reviews observed results before deciding fixes or acceptance.
 
 Not assigned: debug hub / individual inspector; future AI manager; in-game scenario runner.
+
+
+## SSR-TEST-01 (approved, requested, not acknowledged)
+User on 2026-11-15 approved adding a minimal, independently reusable Tests UI now.
+Entry: dev/testing-gated right-click menu (without -debug); UI shows destructive-world warning, explicit consent, registered tests, outcomes and observed values. First test = native IsoPlayer position save/load diagnostic tied to existing SSR-PERSIST-01 engine investigation. No full SS Debug hub, broad runner, AI or speculative persistence rewrite.
+Assignment: ai-workflow/assignments/tests-ui-01.md
+Outgoing mail: ai-workflow/mail/implementer/inbox/2026-11-15-test-01.md
+Owner: existing local Codex implementer once acknowledged; no parallel worktree ownership.
+State: REQUESTED, no implementation or in-game results yet.
+Next: Codex acknowledges and reports implementation/engine findings; user runs in fresh disposable world.
