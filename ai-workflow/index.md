@@ -12,7 +12,7 @@ Date: 2026-11-15
 **Active request:** SSR-PERSIST-01 — B42 native world-save persistence and stable survivor/group registry.
 - Task: `assignments/persistence-b42.md`
 - Processed mail: `mail/implementer/archive/2026-11-15-persist-01.md`
-- Current status: REVIEW IN PROGRESS / R1 FINDINGS + OPT-IN TESTS UI DELIVERED; in-game validation pending.
+- Current status: REVIEW IN PROGRESS / R1 PROBE PASSED IN-GAME; full SSR lifecycle review/validation pending.
 - Implementation ref: `codex/persistence-b42`, base `3a087ee8c4aceb151443848e19bbc3a999a129f5`.
 - Acknowledgment: `mail/orchestrator/inbox/2026-11-15-persist-01-ack.md`.
 - Delivery: `mail/orchestrator/inbox/2026-11-15-persist-01-delivery.md`.
@@ -30,7 +30,7 @@ Do not work on `master` or merge/publish without review and authorization.
 - User approved a reusable minimal in-game Tests UI via context menu, destructive-world warning with affirmative acknowledgment, independent Lua registry, and IsoPlayer native save/load position probe as first test.
 - Task: `assignments/tests-ui-01.md`
 - Processed request: `mail/implementer/archive/2026-11-15-test-01.md`
-- Status: DELIVERED FOR REVIEW; actual engine/UI validation NOT RUN.
+- Status: DELIVERED FOR REVIEW; native roundtrip passed in-game, full SSR lifecycle unvalidated.
 - Acknowledgment: `mail/orchestrator/inbox/2026-11-15-test-01-r1-ack.md`.
 - Related: SSR-PERSIST-01 R1 engine investigation; no mandatory OnTick rewrite.
 - Delivery: `mail/orchestrator/inbox/2026-11-15-test-01-r1-delivery.md`.
@@ -49,3 +49,13 @@ Offset gate follow-up: a7222ebbf247313ea1738e008b2cec4e0d46184b normalizes
 boxed Java static save offsets (user reported rejection of 0/0). 178 tests and
 112 syntax checks pass; native roundtrip still pending. Report:
 mail/orchestrator/inbox/2026-11-15-test-01-offset-fix.md.
+
+
+Latest runtime evidence (15 November 2026): user completed all three probe
+phases with game restart; logs confirm two same-session passes and resumed
+pass. Native X/Y/marker restored; currentSquare remains constructor square.
+Human guards and isolated cleanup passed. Z not independently differentiated.
+Full SSR persistence lifecycle/acceptance still pending orchestrator review.
+Report: mail/orchestrator/inbox/2026-11-15-test-01-runtime-results.md.
+Next actor: orchestrator reviews concrete engine results and loader placement
+implications; no automatic source merge or speculative rewrite.

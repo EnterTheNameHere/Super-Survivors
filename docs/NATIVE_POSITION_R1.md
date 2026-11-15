@@ -152,8 +152,43 @@ Constructor axes that differ from the snapshot are reported individually. The
 default same-floor experiment does not independently test Z restoration if Z
 was unchanged; the installed source/bytecode establishes Z encoding separately.
 
-**Actual engine observations: NOT RUN.** Mock tests deliberately emulate the
+**At initial delivery, engine observations were NOT RUN; see the subsequent
+in-game evidence below.** Mock tests deliberately emulate the
 inspected native coordinate/square distinction and verify guardrails/UI control
 flow. Installed-JAR tests verify coordinate read/write call sites. Neither is a
 substitute for the user's disposable-world results, which must be reported as
 new evidence before deciding persistence corrections or acceptance.
+
+
+## Actual engine observations (15 November 2026)
+
+User reports successful same-session test, staging, full game restart, world
+reload and successful resume. Archived session log independently contains two
+same-session PASSED results, successful staging, and next-session PASSED resume.
+Filtered evidence: [NATIVE_POSITION_2026-11-15.log](evidence/NATIVE_POSITION_2026-11-15.log).
+Runtime code includes offset fix a7222eb; engine remains 42.22.2, zero offsets.
+
+| Run | Saved XYZ | Constructor XYZ | Immediately after raw native load |
+| --- | --- | --- | --- |
+| Same session, first | 9885.5, 12812.5, 0 | 9883.5, 12814.5, 0 | 9885.5, 12812.5, 0 |
+| Same session, repeated | 9877.5, 12805.5, 0 | 9875.5, 12807.5, 0 | 9877.5, 12805.5, 0 |
+| After restart | 9870.5, 12799.5, 0 | 9868.5, 12801.5, 0 | 9870.5, 12799.5, 0 |
+
+In all loads currentSquare remained the constructor square, its moving-object
+collection still contained the actor, and the cell object list contained it;
+add/remove lists were empty. This establishes the coordinate/square-registration
+split in actual execution. Snapshot marker restored, missing-file load returned
+without exception/change, and human identity/position/singleton/save filename
+checks passed. Cleanup detached owned actors from world/add/remove lists and
+cleared currentSquare. Snapshot files intentionally remain.
+
+Staged source session was 1794747913356_802487; resume session was
+1794748044287_495694. User confirms restarting the game; session tokens alone
+would establish only a new Lua session. Z stayed zero in every phase: this
+experiment independently demonstrates X/Y restoration, not distinct-Z restoration.
+
+This validates the focused native snapshot probe, not complete SSR persistence,
+streaming, death handling, prolonged AI behavior or all UI interactions. No
+persistence scan/unload/loader rewrite or acceptance follows automatically.
+Review actual loader square reconciliation next; manual XYZ setters alone do
+not establish or repair square membership. No restart required for these records.

@@ -143,3 +143,13 @@ Fix delivered at 4164ad7bead8d6dd2d7db3c6e514e7c9acb52a42 (parent
 5f215b056cf00908a6c84a95dfa4dde89348fef2): compare full build API; preserve
 checkbox on selection at user request; show disabled-run reason. 177 tests and
 112 syntax checks pass. Actual native roundtrip still NOT RUN. Report: mail/orchestrator/inbox/2026-11-15-test-01-runtime-fix.md.
+
+
+Latest runtime evidence (15 November 2026): user completed all three probe
+phases with game restart; logs confirm two same-session passes and resumed
+pass. Native X/Y/marker restored; currentSquare remains constructor square.
+Human guards and isolated cleanup passed. Z not independently differentiated.
+Full SSR persistence lifecycle/acceptance still pending orchestrator review.
+Report: mail/orchestrator/inbox/2026-11-15-test-01-runtime-results.md.
+Next actor: orchestrator reviews concrete engine results and loader placement
+implications; no automatic source merge or speculative rewrite.

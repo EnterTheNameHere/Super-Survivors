@@ -2,6 +2,15 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Native position runtime results (15 November 2026)
+
+User completed same-session test, staging, game restart/world reload and resume.
+Logs verify two same-session PASSED runs plus PASSED resume. Native load restores
+X/Y and marker but leaves currentSquare/moving-square membership at constructor
+location. Human invariants and actor cleanup passed. Z remained zero; complete
+SSR lifecycle remains unvalidated. See NATIVE_POSITION_R1.md and filtered
+ evidence/NATIVE_POSITION_2026-11-15.log. No gameplay code changed on this report.
+
 ## Tests UI boxed-offset follow-up (15 November 2026)
 
 After fixing the version gate, user reports offset prerequisite rejects X/Y=0/0.

@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: SSR-TEST-01 AND PERSIST-01 R1 DELIVERED FOR REVIEW; actual engine/UI validation NOT RUN
+Execution: SSR-TEST-01 native probe executed successfully in-game; full SSR persistence review/validation pending
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -68,3 +68,13 @@ Offset gate follow-up: a7222ebbf247313ea1738e008b2cec4e0d46184b normalizes
 boxed Java static save offsets (user reported rejection of 0/0). 178 tests and
 112 syntax checks pass; native roundtrip still pending. Report:
 mail/orchestrator/inbox/2026-11-15-test-01-offset-fix.md.
+
+
+Latest runtime evidence (15 November 2026): user completed all three probe
+phases with game restart; logs confirm two same-session passes and resumed
+pass. Native X/Y/marker restored; currentSquare remains constructor square.
+Human guards and isolated cleanup passed. Z not independently differentiated.
+Full SSR persistence lifecycle/acceptance still pending orchestrator review.
+Report: mail/orchestrator/inbox/2026-11-15-test-01-runtime-results.md.
+Next actor: orchestrator reviews concrete engine results and loader placement
+implications; no automatic source merge or speculative rewrite.

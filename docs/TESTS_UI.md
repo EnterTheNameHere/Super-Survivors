@@ -175,3 +175,10 @@ Selection changes preserve acknowledgment at the user’s request; each run stil
 consumes it. The reported blocker was a version API mismatch: GameVersion yields 42.22,
 while getGameAndBuildVersion yields the inspected 42.22.2. The probe now uses
 the latter and reports the detected build when it differs.
+
+
+Runtime update (15 November 2026): user completed all three phases. Logs confirm
+two same-session passes, staging and resumed pass after user-confirmed restart.
+Coordinates/marker restored; currentSquare stayed at constructor tile. Human
+guards/cleanup passed. See [findings](NATIVE_POSITION_R1.md) and its captured
+evidence. Earlier NOT RUN statements describe the initial delivery state.

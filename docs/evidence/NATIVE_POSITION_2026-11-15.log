@@ -1,0 +1,86 @@
+Filtered native probe evidence; unrelated log entries excluded.
+Runtime code: a7222ebbf247313ea1738e008b2cec4e0d46184b; branch codex/persistence-b42.
+
+Source: C:\Users\Enter\Zomboid\Logs\logs_2026-11-15_14-04\2026-11-15_14-04_DebugLog.txt
+SHA256 at capture: 6685c234fc388ab7d6f548ecfb00a063984dd85715ae608a3afa070ad4097577
+[15-11-26 14:05:13.356] LOG  : Lua          f:1000> [SS Tests][native-position] RUNNING: Native IsoPlayer position - same session (user consent received).
+[15-11-26 14:05:13.368] LOG  : Lua          f:1002> [SS Tests][native-position] Installed engine: 42.22.2; boot/session=1794747913356_802487.
+[15-11-26 14:05:13.368] LOG  : Lua          f:1002> [SS Tests][native-position] Native world save offsets X/Y=0/0.
+[15-11-26 14:05:13.371] LOG  : Lua          f:1002> [SS Tests][native-position] Source before native save: actor=IsoPlayer{  Name:null,  ID:165 }; XYZ=9885.500,12812.500,0.000.
+[15-11-26 14:05:13.371] LOG  : Lua          f:1002> [SS Tests][native-position]   currentSquare=zombie.iso.IsoGridSquare@3d9c2d90; square XYZ=9885.000,12812.000,0.000; matches position=true; contains actor=true.
+[15-11-26 14:05:13.371] LOG  : Lua          f:1002> [SS Tests][native-position]   world/add/remove=true/false/false; safeToAdd=true.
+[15-11-26 14:05:13.371] LOG  : Lua          f:1002> [SS Tests][native-position] Allocated isolated native snapshot: SSR_Test_NativePosition_1794747913368_444841_1.bin.
+[15-11-26 14:05:13.372] LOG  : Lua          f:1002> [SS Tests][native-position] Unique native snapshot: SSR_Test_NativePosition_1794747913368_444841_1.bin.
+[15-11-26 14:05:13.373] LOG  : Lua          f:1002> [SS Tests][native-position] Destination constructed before load: actor=IsoPlayer{  Name:null,  ID:166 }; XYZ=9883.500,12814.500,0.000.
+[15-11-26 14:05:13.373] LOG  : Lua          f:1002> [SS Tests][native-position]   currentSquare=zombie.iso.IsoGridSquare@5f8538b9; square XYZ=9883.000,12814.000,0.000; matches position=true; contains actor=true.
+[15-11-26 14:05:13.373] LOG  : Lua          f:1002> [SS Tests][native-position]   world/add/remove=true/false/false; safeToAdd=true.
+[15-11-26 14:05:13.375] LOG  : Lua          f:1002> [SS Tests][native-position] Destination immediately after RAW native load: actor=IsoPlayer{  Name:null,  ID:166 }; XYZ=9885.500,12812.500,0.000.
+[15-11-26 14:05:13.375] LOG  : Lua          f:1002> [SS Tests][native-position]   currentSquare=zombie.iso.IsoGridSquare@5f8538b9; square XYZ=9883.000,12814.000,0.000; matches position=false; contains actor=true.
+[15-11-26 14:05:13.375] LOG  : Lua          f:1002> [SS Tests][native-position]   world/add/remove=true/false/false; safeToAdd=true.
+[15-11-26 14:05:13.375] LOG  : Lua          f:1002> [SS Tests][native-position] Current-square reference unchanged by load=true.
+[15-11-26 14:05:13.375] LOG  : Lua          f:1002> [SS Tests][native-position] Differentiated constructor axes X/Y/Z=true/true/false. Unchanged axes are not independent restoration evidence..
+[15-11-26 14:05:13.375] LOG  : Lua          f:1002> [SS Tests][native-position] XYZ restored=true; snapshot marker restored=true.
+[15-11-26 14:05:13.375] LOG  : Lua          f:1002> [SS Tests][native-position] Missing-file load returned=true; error=nil; position unchanged=true; marker unchanged=true.
+[15-11-26 14:05:13.375] LOG  : Lua          f:1002> [SS Tests][native-position] Human identity, position, singleton and save filename unchanged=true.
+[15-11-26 14:05:13.376] LOG  : Lua          f:1002> [SS Tests][native-position] Cleanup actor=IsoPlayer{  Name:null,  ID:166 }; world/add/remove=false/false/false; currentSquare=nil.
+[15-11-26 14:05:13.376] LOG  : Lua          f:1002> [SS Tests][native-position] Cleanup actor=IsoPlayer{  Name:null,  ID:165 }; world/add/remove=false/false/false; currentSquare=nil.
+[15-11-26 14:05:13.376] LOG  : Lua          f:1002> [SS Tests][native-position] Cleanup: isolated actors detached; test snapshot files retained..
+[15-11-26 14:05:13.376] LOG  : Lua          f:1002> [SS Tests][native-position] PASSED: Native position/identity roundtrip succeeded. Inspect the differentiated axes and separate square-registration observations; this does not certify SSR persistence..
+[15-11-26 14:05:55.659] LOG  : Lua          f:7007> [SS Tests][native-position] RUNNING: Native IsoPlayer position - same session (user consent received).
+[15-11-26 14:05:55.669] LOG  : Lua          f:7009> [SS Tests][native-position] Installed engine: 42.22.2; boot/session=1794747913356_802487.
+[15-11-26 14:05:55.669] LOG  : Lua          f:7009> [SS Tests][native-position] Native world save offsets X/Y=0/0.
+[15-11-26 14:05:55.670] LOG  : Lua          f:7009> [SS Tests][native-position] Source before native save: actor=IsoPlayer{  Name:null,  ID:167 }; XYZ=9877.500,12805.500,0.000.
+[15-11-26 14:05:55.671] LOG  : Lua          f:7009> [SS Tests][native-position]   currentSquare=zombie.iso.IsoGridSquare@a9d8a; square XYZ=9877.000,12805.000,0.000; matches position=true; contains actor=true.
+[15-11-26 14:05:55.671] LOG  : Lua          f:7009> [SS Tests][native-position]   world/add/remove=true/false/false; safeToAdd=true.
+[15-11-26 14:05:55.671] LOG  : Lua          f:7009> [SS Tests][native-position] Allocated isolated native snapshot: SSR_Test_NativePosition_1794747955669_565622_1.bin.
+[15-11-26 14:05:55.671] LOG  : Lua          f:7009> [SS Tests][native-position] Unique native snapshot: SSR_Test_NativePosition_1794747955669_565622_1.bin.
+[15-11-26 14:05:55.672] LOG  : Lua          f:7009> [SS Tests][native-position] Destination constructed before load: actor=IsoPlayer{  Name:null,  ID:168 }; XYZ=9875.500,12807.500,0.000.
+[15-11-26 14:05:55.672] LOG  : Lua          f:7009> [SS Tests][native-position]   currentSquare=zombie.iso.IsoGridSquare@1ae3fcf1; square XYZ=9875.000,12807.000,0.000; matches position=true; contains actor=true.
+[15-11-26 14:05:55.672] LOG  : Lua          f:7009> [SS Tests][native-position]   world/add/remove=true/false/false; safeToAdd=true.
+[15-11-26 14:05:55.673] LOG  : Lua          f:7009> [SS Tests][native-position] Destination immediately after RAW native load: actor=IsoPlayer{  Name:null,  ID:168 }; XYZ=9877.500,12805.500,0.000.
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position]   currentSquare=zombie.iso.IsoGridSquare@1ae3fcf1; square XYZ=9875.000,12807.000,0.000; matches position=false; contains actor=true.
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position]   world/add/remove=true/false/false; safeToAdd=true.
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position] Current-square reference unchanged by load=true.
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position] Differentiated constructor axes X/Y/Z=true/true/false. Unchanged axes are not independent restoration evidence..
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position] XYZ restored=true; snapshot marker restored=true.
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position] Missing-file load returned=true; error=nil; position unchanged=true; marker unchanged=true.
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position] Human identity, position, singleton and save filename unchanged=true.
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position] Cleanup actor=IsoPlayer{  Name:null,  ID:168 }; world/add/remove=false/false/false; currentSquare=nil.
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position] Cleanup actor=IsoPlayer{  Name:null,  ID:167 }; world/add/remove=false/false/false; currentSquare=nil.
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position] Cleanup: isolated actors detached; test snapshot files retained..
+[15-11-26 14:05:55.674] LOG  : Lua          f:7009> [SS Tests][native-position] PASSED: Native position/identity roundtrip succeeded. Inspect the differentiated axes and separate square-registration observations; this does not certify SSR persistence..
+[15-11-26 14:06:11.034] LOG  : Lua          f:9189> [SS Tests][native-position-stage] RUNNING: Native IsoPlayer position - stage restart probe (user consent received).
+[15-11-26 14:06:11.046] LOG  : Lua          f:9191> [SS Tests][native-position-stage] Installed engine: 42.22.2; boot/session=1794747913356_802487.
+[15-11-26 14:06:11.046] LOG  : Lua          f:9191> [SS Tests][native-position-stage] Native world save offsets X/Y=0/0.
+[15-11-26 14:06:11.047] LOG  : Lua          f:9191> [SS Tests][native-position-stage] Source staged for later session: actor=IsoPlayer{  Name:null,  ID:169 }; XYZ=9870.500,12799.500,0.000.
+[15-11-26 14:06:11.047] LOG  : Lua          f:9191> [SS Tests][native-position-stage]   currentSquare=zombie.iso.IsoGridSquare@2a72691a; square XYZ=9870.000,12799.000,0.000; matches position=true; contains actor=true.
+[15-11-26 14:06:11.047] LOG  : Lua          f:9191> [SS Tests][native-position-stage]   world/add/remove=true/false/false; safeToAdd=true.
+[15-11-26 14:06:11.047] LOG  : Lua          f:9191> [SS Tests][native-position-stage] Allocated isolated staged snapshot: SSR_Test_NativePosition_1794747971046_14028_1.bin.
+[15-11-26 14:06:11.048] LOG  : Lua          f:9191> [SS Tests][native-position-stage] Staged file=SSR_Test_NativePosition_1794747971046_14028_1.bin; original boot/session=1794747913356_802487.
+[15-11-26 14:06:11.048] LOG  : Lua          f:9191> [SS Tests][native-position-stage] Cleanup actor=IsoPlayer{  Name:null,  ID:169 }; world/add/remove=false/false/false; currentSquare=nil.
+[15-11-26 14:06:11.048] LOG  : Lua          f:9191> [SS Tests][native-position-stage] Cleanup: isolated actors detached; test snapshot files retained..
+[15-11-26 14:06:11.048] LOG  : Lua          f:9191> [SS Tests][native-position-stage] INCONCLUSIVE: Snapshot staged only. Save/exit normally, close the game, restart and explicitly select the resume test. No automatic resume..
+
+Source: C:\Users\Enter\Zomboid\Logs\2026-11-15_14-06_DebugLog.txt
+SHA256 at capture: 9555fb3546210225a4e9450adf1b8c20ebbf515f658f135cfbd7ac7e1ce7fab4
+[15-11-26 14:07:24.288] LOG  : Lua          f:1184> [SS Tests][native-position-resume] RUNNING: Native IsoPlayer position - resume after restart (user consent received).
+[15-11-26 14:07:24.296] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Installed engine: 42.22.2; boot/session=1794748044287_495694.
+[15-11-26 14:07:24.296] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Native world save offsets X/Y=0/0.
+[15-11-26 14:07:24.297] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Explicit restart-phase resume; source boot/session=1794747913356_802487.
+[15-11-26 14:07:24.297] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Source recorded in earlier session: actor=IsoPlayer{  Name:null,  ID:169 }; XYZ=9870.500,12799.500,0.000.
+[15-11-26 14:07:24.297] LOG  : Lua          f:1186> [SS Tests][native-position-resume]   currentSquare=zombie.iso.IsoGridSquare@2a72691a; square XYZ=9870.000,12799.000,0.000; matches position=true; contains actor=true.
+[15-11-26 14:07:24.297] LOG  : Lua          f:1186> [SS Tests][native-position-resume]   world/add/remove=true/false/false; safeToAdd=true.
+[15-11-26 14:07:24.299] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Destination constructed before load: actor=IsoPlayer{  Name:null,  ID:148 }; XYZ=9868.500,12801.500,0.000.
+[15-11-26 14:07:24.299] LOG  : Lua          f:1186> [SS Tests][native-position-resume]   currentSquare=zombie.iso.IsoGridSquare@7337c75f; square XYZ=9868.000,12801.000,0.000; matches position=true; contains actor=true.
+[15-11-26 14:07:24.299] LOG  : Lua          f:1186> [SS Tests][native-position-resume]   world/add/remove=true/false/false; safeToAdd=true.
+[15-11-26 14:07:24.301] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Destination immediately after RAW native load: actor=IsoPlayer{  Name:null,  ID:148 }; XYZ=9870.500,12799.500,0.000.
+[15-11-26 14:07:24.301] LOG  : Lua          f:1186> [SS Tests][native-position-resume]   currentSquare=zombie.iso.IsoGridSquare@7337c75f; square XYZ=9868.000,12801.000,0.000; matches position=false; contains actor=true.
+[15-11-26 14:07:24.302] LOG  : Lua          f:1186> [SS Tests][native-position-resume]   world/add/remove=true/false/false; safeToAdd=true.
+[15-11-26 14:07:24.302] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Current-square reference unchanged by load=true.
+[15-11-26 14:07:24.302] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Differentiated constructor axes X/Y/Z=true/true/false. Unchanged axes are not independent restoration evidence..
+[15-11-26 14:07:24.302] LOG  : Lua          f:1186> [SS Tests][native-position-resume] XYZ restored=true; snapshot marker restored=true.
+[15-11-26 14:07:24.302] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Missing-file load returned=true; error=nil; position unchanged=true; marker unchanged=true.
+[15-11-26 14:07:24.302] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Human identity, position, singleton and save filename unchanged=true.
+[15-11-26 14:07:24.302] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Cleanup actor=IsoPlayer{  Name:null,  ID:148 }; world/add/remove=false/false/false; currentSquare=nil.
+[15-11-26 14:07:24.302] LOG  : Lua          f:1186> [SS Tests][native-position-resume] Cleanup: isolated actors detached; test snapshot files retained..
+[15-11-26 14:07:24.303] LOG  : Lua          f:1186> [SS Tests][native-position-resume] PASSED: Native position/identity roundtrip succeeded. Inspect the differentiated axes and separate square-registration observations; this does not certify SSR persistence..
