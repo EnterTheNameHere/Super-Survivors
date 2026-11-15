@@ -94,11 +94,10 @@ function get_member_info(member_index)
         name = member:getName()
         local coords = getCoordsFromID(member:getID())
         if coords == 0 then
-            SSM:LoadSurvivor(member:getID(), getSpecificPlayer(0):getCurrentSquare())
             coords = "0"
         end
         role = coords
-    elseif not checkSaveFileExists("Survivor"..tostring(member)) then
+    elseif SSPersistence.getState(member) == "dead" then
         name = getContextMenuText("MIASurvivor").."["..tostring(member).."]"
         role = getText("IGUI_health_Deceased")
         group:removeMember(member)
@@ -106,7 +105,6 @@ function get_member_info(member_index)
         name = getContextMenuText("MIASurvivor").."["..tostring(member).."]"
         local coords = getCoordsFromID(member)
         if coords == 0 then
-            SSM:LoadSurvivor(member, getSpecificPlayer(0):getCurrentSquare())
             coords = "0"
         end
         role = tostring(coords)

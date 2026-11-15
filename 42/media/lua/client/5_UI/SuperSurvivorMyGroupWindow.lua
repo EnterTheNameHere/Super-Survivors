@@ -117,13 +117,12 @@ function GroupWindow:Update()
 				name = value:getName()
 				local coords = getCoordsFromID(value:getID())
 				if(coords == 0) then
-					print("re-loading survivor who has no loc on survivor map")
-					SSM:LoadSurvivor(value:getID(),getSpecificPlayer(0):getCurrentSquare())
-					coords = "re-loaded!"
+					print("No recorded location for survivor")
+					coords = "Unknown location"
 				end
 				role = " ("..tostring(coords)..")"
 			
-			elseif (not checkSaveFileExists("Survivor"..tostring(value))) then
+			elseif (SSPersistence.getState(value) == "dead") then
 				name = getContextMenuText("MIASurvivor").."["..tostring(value).."]"
 				role = " ("..getText("IGUI_health_Deceased")..")"
 				Group:Print()
@@ -136,9 +135,8 @@ function GroupWindow:Update()
 				name = getContextMenuText("MIASurvivor").."["..tostring(value).."]"
 				local coords = getCoordsFromID(value)
 				if(coords == 0) then
-					print("re-loading survivor who has no loc on survivor map")
-					SSM:LoadSurvivor(value,getSpecificPlayer(0):getCurrentSquare())
-					coords = "re-loaded!"
+					print("No recorded location for survivor")
+					coords = "Unknown location"
 				end
 				role = " ("..tostring(coords)..")"
 			end

@@ -12,7 +12,8 @@ end
 
 
 function getSaveDir()
-	return Core.getMyDocumentFolder()..getFileSeparator().."Saves"..getFileSeparator().. getWorld():getGameMode():toString() .. getFileSeparator() .. getWorld():getWorld().. getFileSeparator();
+	local relative = getWorld():getGameMode():toString() .. getFileSeparator() .. getWorld():getWorld()
+	return getAbsoluteSaveFolderName(relative) .. getFileSeparator()
 end
 
 function getSourceSquareOfItem(item,character)

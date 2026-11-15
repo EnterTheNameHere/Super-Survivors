@@ -24,6 +24,7 @@ FUNCTIONS = {
     'getTextManager': ('Returns the text rendering and measurement manager.', []),
     'getText': ('Looks up a translation key and substitutes optional arguments.', ['key']),
     'checkSaveFileExists': ('Checks whether the named file exists in the current save.', ['filename']),
+    'getAbsoluteSaveFolderName': ('Resolves a path relative to the engine save root.', ['relativePath']),
     'getTimestampMs': ('Returns the system timestamp in milliseconds.', []),
     'setGameSpeed': ('Sets the game speed code.', ['speed']),
     'getCore': ('Returns the core game settings and display manager.', []),
@@ -55,6 +56,7 @@ FUNCTIONS = {
 # Empty sets mean constants only; '*' includes public fields and methods.
 # Java visibility alone does not establish Lua exposure; see the generated header.
 CLASSES = {
+    'zombie/world/moddata/ModData': {'get', 'getOrCreate'},
     'zombie/iso/IsoGridSquare': {'*'},
     'zombie/iso/areas/IsoRoom': {'*'},
     'zombie/core/GameMode': {'toString'},
@@ -191,7 +193,7 @@ def generate(jar_path):
             out.append(f'---@overload fun({", ".join(args)}): {result}')
         names, types, result = params(overloads[0])
         out += [f'---@param {n} {t}' for n, t in zip(names, types)]
-        if method in ('getPlayer', 'getSpecificPlayer', 'getFileReader', 'getFileWriter') or (owner == 'IsoCamera' and method == 'getCameraCharacter'):
+        if method in ('getPlayer', 'getSpecificPlayer', 'getFileReader', 'getFileWriter') or (owner == 'IsoCamera' and method == 'getCameraCharacter') or (owner == 'ModData' and method == 'get'):
             result += '|nil'
         if result != 'nil':
             out.append(f'---@return {result}')
@@ -331,7 +333,7 @@ def main():
     args = parser.parse_args()
     result = generate(args.jar)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(result, encoding='utf-8')
+    args.output.write_text(result, encoding='utf-8', newline='\n')
     print(f'Wrote {len(result.splitlines())} lines to {args.output}')
 
 

@@ -479,47 +479,37 @@ function SuperSurvivor:getSpokeTo(playerID)
 end
 
 function SuperSurvivor:reload()
-	local cs = self.player:getCurrentSquare()
-	local id = self:getID()
-	self:delete()
-	self.player = self:spawnPlayer(cs,nil)
-	self:loadPlayer(cs,id)
+    local square, id = self.player:getCurrentSquare(), self:getID()
+    SSPersistence.unload(id)
+    return SSM:LoadSurvivor(id, square)
 end
 
 function SuperSurvivor:loadPlayer(square, ID)
-	-- load from file if save file exists
-	
-	if (ID ~= nil) and (checkSaveFileExists("Survivor"..tostring(ID))) then
-		
-		local BuddyDesc = SurvivorFactory.CreateSurvivor();
-		--local realplayer = getSpecificPlayer(0);
-		local Buddy = IsoPlayer.new(getWorld():getCell(),BuddyDesc,square:getX(),square:getY(),square:getZ());
-		--IsoPlayer.setInstance(Buddy);
-		--Buddy:update();
-		--IsoPlayer.setInstance(realplayer);
-		Buddy:getInventory():emptyIt();
-		local filename = getSaveDir() .. "Survivor"..tostring(ID);
-		Buddy:load( filename );
-		
-		Buddy:setX(square:getX())
-		Buddy:setY(square:getY())
-		Buddy:setZ(square:getZ())
-		Buddy:getModData().ID = ID
-		Buddy:setNpc(true);
-		Buddy:setBlockMovement(true)
-		Buddy:setSceneCulled(false)
-		--Buddy:dressInRandomOutfit()
-		--Buddy:dressInNamedOutfit(Buddy:getRandomDefaultOutfit())
-		
-		
-		
-		--print("loading survivor " .. tostring(ID) .. " from file")
-		return Buddy
-	else
-		--print("save file for survivor " .. tostring(ID) .. " does not exist")
-	end
-	
-
+    local record = SSPersistence.getRecord(ID)
+    assert(record and record.state ~= "dead" and record.saved, "No live registry snapshot for survivor")
+    assert(checkSaveFileExists(record.saved.file), "Missing native survivor snapshot")
+    local desc = SurvivorFactory.CreateSurvivor()
+    local actor = IsoPlayer.new(getWorld():getCell(), desc, square:getX(), square:getY(), square:getZ())
+    actor:setNpc(true)
+    local ok, reason = pcall(function()
+        actor:load(getSaveDir() .. record.saved.file)
+        local md = actor:getModData()
+        assert(md.ID == ID and md.SSRIdentity == ID and md.SSRSnapshot == record.saved.generation,
+            "Native snapshot identity/generation mismatch")
+        assert(not actor:isDead(), "Native character is dead but registry is alive")
+        -- Use the matching saved position, never a newer last-observed position.
+        local pos = record.saved.position
+        actor:setX(pos.x); actor:setY(pos.y); actor:setZ(pos.z)
+        actor:setNpc(true)
+        actor:setBlockMovement(true)
+        actor:setSceneCulled(false)
+    end)
+    if not ok then
+        actor:removeFromWorld(); actor:removeFromSquare()
+        error(reason)
+    end
+    SSPersistence.loading[ID] = actor
+    return actor
 end
 
 function SuperSurvivor:WearThis(ClothingItemName) -- should already be in inventory
@@ -949,7 +939,10 @@ function SuperSurvivor:isDead()
 	return (self.player:isDead()) 	
 end
 function SuperSurvivor:saveFileExists()
-	return (checkSaveFileExists("Survivor"..tostring(self:getID())))	
+	local record = SSPersistence.getRecord(self:getID())
+    return record ~= nil and record.state ~= "dead" and
+        (SSPersistence.getState(self:getID()) == "loaded" or
+         (record.saved ~= nil and checkSaveFileExists(record.saved.file)))
 end
 
 function SuperSurvivor:getRelationshipWP()
@@ -3068,7 +3061,7 @@ function SuperSurvivor:update()
 		
 		local group = self:getGroup()
 		if(group) then group:checkMember(self:getID()) end
-		self:SaveSurvivor()
+
 		if(self:Get():getPrimaryHandItem() ~= nil) and (((self:Get():getPrimaryHandItem():getDisplayName()=="Corpse") and (self:getCurrentTask() ~= "Pile Corpses")) or (self:Get():getPrimaryHandItem():isBroken()) ) then
 			
 			ISTimedActionQueue.add(ISDropItemAction:new(self:Get(),self:Get():getPrimaryHandItem(),30))
@@ -3084,7 +3077,7 @@ function SuperSurvivor:update()
 		self.player:getModData().felldown = nil	
 		self.UpdateDelayTicks = 20
 		
-	else self:SaveSurvivorOnMap() end
+	end
 	
 	if( self.GoFindThisCounter > 0 ) then self.GoFindThisCounter = self.GoFindThisCounter -1 end
 
@@ -3198,25 +3191,16 @@ end
 function SuperSurvivor:OnDeath()
 	print(self:getName() .. " has died")
 
-	-- Cannibal support
+    local ID = self:getID()
+    SSM:OnDeath(ID)
+    -- Cannibal support
 	if not self.player:getBodyDamage():isInfected() then
 		for i=1, ZombRand(1,10) do
 			self.player:getInventory():AddItem("Subpar.StrangeMeat")
 		end
 	end
 
-	local ID = self:getID()
-	SSM:OnDeath(ID)
-	
-	SurvivorLocX[ID] = nil
-	SurvivorLocY[ID] = nil
-	SurvivorLocZ[ID] = nil
-	if(self.player:getModData().LastSquareSaveX ~= nil) then
-		local lastkey = self.player:getModData().LastSquareSaveX .. self.player:getModData().LastSquareSaveY .. self.player:getModData().LastSquareSaveZ
-		if(lastkey) and ( SurvivorMap[lastkey] ~= nil ) then
-			table.remove(SurvivorMap[lastkey] , ID)
-		end 
-	end
+
 end
 
 function SuperSurvivor:PlayerUpdate()
@@ -3392,88 +3376,16 @@ function SuperSurvivor:setID(id)
 end
 
 function SuperSurvivor:delete()
-
-	self.player:getInventory():emptyIt();
-	self.player:setPrimaryHandItem(nil);
-	self.player:setSecondaryHandItem(nil);
-	self.player:getModData().ID = 0;
-	local filename = getSaveDir() .. "SurvivorTemp";
-	self.player:save(filename);
-	self.player:removeFromWorld()
-	self.player:removeFromSquare()
-	--self.player:setX(9303);
-	--self.player:setY(5709);
-	--self.player:Despawn();
-	self.player = nil;
-	--self.o = nil;
-	--self.TaskManager = nil
-	
+    -- Explicit despawn is an unload, not death or destruction of inventory.
+    return SSPersistence.unload(self:getID())
 end
 
 function SuperSurvivor:SaveSurvivorOnMap()
-
-	if self.player:getModData().RealPlayer == true then return false end
-	local ID = self.player:getModData().ID;
-	
-	if (ID ~= nil) then
-	
-		local x = math.floor(self.player:getX())
-		local y = math.floor(self.player:getY())
-		local z = math.floor(self.player:getZ())
-		local key = x .. y .. z
-		
-		if(not SurvivorMap[key]) then SurvivorMap[key] = {} end
-		
-		SurvivorLocX[ID] = x
-		SurvivorLocY[ID] = y
-		SurvivorLocZ[ID] = z
-		
-		if (has_value(SurvivorMap[key],ID) == false) then
-			
-			local removeFailed = false;
-			if(self.player:getModData().LastSquareSaveX ~= nil) then
-				local lastkey = self.player:getModData().LastSquareSaveX .. self.player:getModData().LastSquareSaveY .. self.player:getModData().LastSquareSaveZ
-				if(lastkey) and ( SurvivorMap[lastkey] ~= nil ) then
-					table.remove(SurvivorMap[lastkey] , ID);
-				else 
-					removeFailed = true;
-				end
-			end
-			
-			if(removeFailed == false) then
-				--print("saving survivor "..tostring(ID).." to key " .. tostring(key))
-				table.insert(SurvivorMap[key], ID);			
-				self.player:getModData().LastSquareSaveX = x;
-				self.player:getModData().LastSquareSaveY = y;
-				self.player:getModData().LastSquareSaveZ = z;
-			end
-		
-		end
-	
-	end
+    if self.player and SSPersistence.data then return SSPersistence.observe(self) end
 end
-
 function SuperSurvivor:SaveSurvivor()
-	if self.player:getModData().RealPlayer == true then return false end
-	local ID = self.player:getModData().ID;
-	if(ID ~= nil) then
-		--local filename = getWorld():getGameMode() .. "-" .. getWorld():getWorld() .. "-" .. "Survivor"..tostring(ID);
-		local filename = getSaveDir() .. "Survivor"..tostring(ID);
-		self.player:save(filename);
-		--print("saved survivor "..tostring(ID))
-		if(self.player ~= nil and self.player:isDead() == false ) then
-			self:SaveSurvivorOnMap()		
-		else			
-			local group = self:getGroup()
-			if(group) then 
-				--print("remove member "..self:getName().." from group because he died.")
-				group:removeMember(self) 
-			end
-		end
-		
-	end
+    return SSPersistence.saveCharacter(self)
 end
-
 
 function SuperSurvivor:FindClosestOutsideSquare(thisBuildingSquare)
 

@@ -9,6 +9,8 @@ CLIENT = Path(__file__).resolve().parents[1] / '42/media/lua/client'
 class IsolationChecks(unittest.TestCase):
     def setUp(self):
         self.lua = LuaRuntime(unpack_returned_tuples=True)
+        self.lua.globals().clientRoot = str(CLIENT).replace('\\', '/')
+        self.lua.execute("package.path = clientRoot .. '/?.lua;' .. package.path")
 
     def test_automatic_random_and_raid_paths_return_before_spawning(self):
         self.lua.execute('''

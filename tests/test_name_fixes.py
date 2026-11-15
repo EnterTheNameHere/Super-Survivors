@@ -71,10 +71,10 @@ class NameFixChecks(unittest.TestCase):
             assert(task:isComplete() == true)
         """)
 
-    def test_unloaded_member_without_coordinates_attempts_reload(self):
+    def test_unloaded_member_without_coordinates_does_not_invent_a_reload_position(self):
         self.lua.execute("""
             require '5_UI/UIUtils'
-            coord = 999 -- An unrelated global must not suppress the reload.
+            coord = 999 -- An unrelated global must not supply a position.
             local member = {
                 getName = function() return 'Emma' end,
                 getID = function() return 12 end,
@@ -100,10 +100,10 @@ class NameFixChecks(unittest.TestCase):
             getSpecificPlayer = function() return {getCurrentSquare = function() return square end} end
             getCoordsFromID = function(id) assert(id == 12); return 0 end
             local name, role = get_member_info(1)
-            assert(name == 'Emma' and role == '0' and reloads == 1)
+            assert(name == 'Emma' and role == '0' and reloads == 0)
             getCoordsFromID = function() return '10,20' end
             name, role = get_member_info(1)
-            assert(role == '10,20' and reloads == 1)
+            assert(role == '10,20' and reloads == 0)
         """)
 
 

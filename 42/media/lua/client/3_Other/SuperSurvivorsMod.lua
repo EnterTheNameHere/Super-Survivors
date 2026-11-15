@@ -1,3 +1,4 @@
+require "0_Utilities/SuperSurvivorPersistence"
 require "0_Utilities/SuperSurvivorWeaponsList"
 
 -- To-Do: Change OnTickTicks to NPC_SSM_OnTicks , reason is , I don't know if other mods may try to call that variable.
@@ -72,11 +73,7 @@ function SuperSurvivorsOnTick()
 	if  SSM ~= nil and getGameSpeed() ~= 0 then 
 		SSM:update() 
 		OnTickTicks = OnTickTicks + 1
-		if(OnTickTicks%1000==0) then 
-			--print("saving survivor map...")
-			SSGM:Save() 
-			saveSurvivorMap()
-		end
+
 	end
 	
 	
@@ -187,77 +184,29 @@ function SuperSurvivorsLoadGridsquare(square)
 		local x = square:getX()
 		local y = square:getY()
 		local z = square:getZ()
-		local key = x .. y .. z
-		
-		if(SurvivorMap == nil) then
-			
-			local sc = 1;
-			RPresetSpawns = {};
-			while PresetSpawns[sc] do
-				if PresetSpawns[sc].Z == nil then PresetSpawns[sc].Z = 0 end
-				local pIndex = PresetSpawns[sc].X .. PresetSpawns[sc].Y .. PresetSpawns[sc].Z;
-				--print("pIndex:"..pIndex.." for index: "..sc);
-				RPresetSpawns[pIndex] = PresetSpawns[sc];
-				RPresetSpawns[pIndex].ID = sc;
-				sc = sc + 1;
-			end
-			--print(tostring(sc).." preset survivors set into RPresetSpawns");
-			
-			SSM:init()
-			SSGM:Load()
-			HillTopGroup:AllSpokeTo()
-			BlockadeGroup:AllSpokeTo()
-			
-			-- I don't think we need this now? But Further testing is needed
-			local gameVersion = getCore():getGameVersion()
-			IsDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() > 50 and gameVersion:getMinor() < 53)
-			IsNpcDamageBroken = (gameVersion:getMajor() >= 41 and gameVersion:getMinor() >= 53)
-	
-			if IsDamageBroken then
-				MaxChanceToBeHostileNPC = 0
-			end
-			if IsDamageBroken then
-				RaidsStartAfterThisManyHours = 9999999
-			end
-			
-					
-			if(doesFileExist("SurvivorLocX")) then 
-				SurvivorMap = loadSurvivorMap()  -- matrix grid containing info on location of all survivors for re-spawning purposes
-				print("Survivor map loaded")
-			else 
-				SurvivorMap = {} 
-				SurvivorLocX = {}
-				SurvivorLocY = {}
-				SurvivorLocZ = {}
-				print("Survivor map set")
-				-- SuperSurvivorPlayerInit(getSpecificPlayer(0)) move to on create character
-			end
-			
-			
-			
-			
-			
-		end
-		
-		if(key) and (SurvivorMap[key] ~= nil) and (#SurvivorMap[key] > 0) then
-			
-			local i = 1;
-			--table.sort(SurvivorMap[key]);
-			while(SurvivorMap[key][i] ~= nil) do								
-				SSM:LoadSurvivor(SurvivorMap[key][i], square);
-				i = i + 1;		
-			end
-			i = 1;
-			--while(SurvivorMap[key][i]) do								
-			--	table.remove(SurvivorMap[key],SurvivorMap[key][i]);			
-			--	i = i + 1;
-			--end
-			SurvivorMap[key] = {} -- i think this is faster			
-		end
-		
+        if not SSPersistence.data then return end
+        if not SSM:Get(0) then SSM:init() end
+        if not SSM:Get(0) then return end
+        if not RPresetSpawns then
+            -- Preserve the existing version flags used by the damage bridge.
+            local version = getCore():getGameVersion()
+            IsDamageBroken = version:getMajor() >= 41 and version:getMinor() > 50 and version:getMinor() < 53
+            IsNpcDamageBroken = version:getMajor() >= 41 and version:getMinor() >= 53
+            if IsDamageBroken then
+                MaxChanceToBeHostileNPC = 0
+                RaidsStartAfterThisManyHours = 9999999
+            end
+            RPresetSpawns = {}
+            for id, preset in ipairs(PresetSpawns) do
+                preset.Z = preset.Z or 0
+                local key = SSPersistence.squareKey(preset.X, preset.Y, preset.Z)
+                RPresetSpawns[key], preset.ID = preset, id
+            end
+        end
+        SSPersistence.loadSquare(square)
+
 		if not SSM.AutoSpawnsSuspended and (square:getModData().SurvivorSquareLoaded == nil) and (square:getZ()==0 or square:isOutside()==false) and (not SuperSurvivorPresetSpawn(square)) then
 		
-			SurvivorMap[key] = {} 
 			square:getModData().SurvivorSquareLoaded = true
 			local hoursSurvived = math.floor(getGameTime():getWorldAgeHours())			
 			if(SuperSurvivorSpawnRate ~= 0) and (ZombRand(SuperSurvivorSpawnRate + hoursSurvived) == 0) and (square:getZoneType() == "TownZone") and (not square:isSolid()) then
@@ -672,9 +621,7 @@ function supersurvivortemp(keyNum)
 		elseif( keyNum == 1) then -- esc key
 			
 			--getSpecificPlayer(0):save()
-			SSM:SaveAll()
-			SSGM:Save()
-			saveSurvivorMap()
+            -- Persistence follows the native OnSave lifecycle, not Escape.
 		-- The 'key' in markouts are the default keys before a player changes them
 		elseif( keyNum == getCore():getKey("SSHotkey_1")) then -- Up key
 			local index = SuperSurvivorGetOption("SSHotkey1")

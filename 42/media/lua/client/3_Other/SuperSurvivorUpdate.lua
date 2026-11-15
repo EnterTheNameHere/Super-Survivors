@@ -16,8 +16,11 @@ function SuperSurvivorPlayerInit(player)
 			
 				print("initing player index 0")
 				SSM:init()
-				MyGroup = SSGM:newGroup()
-				MyGroup:addMember(SSM:Get(0),"Leader")			
+                MyGroup = SSM:Get(0):getGroup()
+                if not MyGroup then
+                    MyGroup = SSGM:newGroup()
+                    MyGroup:addMember(SSM:Get(0), "Leader")
+                end
 				local spawnBuilding = SSM:Get(0):getBuilding()
 				if(spawnBuilding) then -- spawn building is default group base
 					print("set building "..tostring(MyGroup:getID()))

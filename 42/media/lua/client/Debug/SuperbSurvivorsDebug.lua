@@ -17,7 +17,7 @@ function SuperbSurvivorsDebug.spawn(x, y, z)
     if not player or not player:getCurrentSquare() then
         return unavailable("Enter a world before running the spawn check.")
     end
-    if not SSM or not SSM.SuperSurvivors[0] or not SurvivorMap then
+    if not SSM or not SSM.SuperSurvivors[0] or not (SSPersistence and SSPersistence.data) then
         return unavailable("Survivor initialization has not completed; inspect console.txt.")
     end
     -- Either supply all three coordinates, or use a nearby tile on this floor.

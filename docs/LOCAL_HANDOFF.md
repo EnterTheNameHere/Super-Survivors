@@ -2,6 +2,24 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Persistence implementation assignment (15 November 2026)
+
+The user explicitly resumed implementation for **SSR-PERSIST-01 only**, following
+ai-workflow/index.md on canonical B42. Work is on `codex/persistence-b42`, based
+on `3a087ee8c4aceb151443848e19bbc3a999a129f5`, in this existing checkout.
+Read [../ai-workflow/index.md](../ai-workflow/index.md) and its protocol/inbox
+before further work. Acknowledgment is in the orchestrator inbox on the
+implementation ref. No unreviewed implementation merge into B42 is authorized.
+
+See [PERSISTENCE_B42.md](PERSISTENCE_B42.md) for schema/lifecycle, installed B42
+evidence, limitations and exact disposable-world checks. Persistence now uses
+world Global ModData and versioned native character snapshots. No legacy import;
+fresh worlds only. No in-game results are claimed. Old per-world metadata files
+are not used; options remain independent user preferences. AI/debug UI plans
+remain design-only and are not part of this assignment.
+
+Historical statuses below predate this bounded authorization and implementation.
+
 ## Latest direction: design only (12 November 2026)
 
 **The user explicitly stopped implementation: we are designing.** The current

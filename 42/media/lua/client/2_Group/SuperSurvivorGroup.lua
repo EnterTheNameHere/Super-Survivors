@@ -1,3 +1,5 @@
+require "0_Utilities/SuperSurvivorPersistence"
+
 SuperSurvivorGroup = {}
 SuperSurvivorGroup.__index = SuperSurvivorGroup
 
@@ -141,6 +143,7 @@ function SuperSurvivorGroup:getGroupAreaContainer(thisArea) -- returns any conta
 end
 
 function SuperSurvivorGroup:setGroupArea(thisArea,x1,x2,y1,y2,z)
+	self.GroupAreas[thisArea] = self.GroupAreas[thisArea] or {}
 	self.GroupAreas[thisArea][1] = x1
 	self.GroupAreas[thisArea][2] = x2
 	self.GroupAreas[thisArea][3] = y1
@@ -224,18 +227,17 @@ function SuperSurvivorGroup:setLeader(newLeader)
 		if(SS) then SS:setGroupRole(getActionText("Job_Worker")) end -- old leader gets demoted to worker if exists
 	end
 	self.Leader = newLeader
-	SSM:Get(self.Leader):setGroupRole(getActionText("Job_Leader"))
+	local leader = SSM:Get(self.Leader)
+	if leader then leader:setGroupRole(getActionText("Job_Leader")) end
 	
 end
 function SuperSurvivorGroup:getLeader()
 	return self.Leader 
 end
 function SuperSurvivorGroup:hasLeader()
-	if self.Leader ~= -1 then
-		local SS = SSM:Get(self.Leader)
-		if(SS) and SS:getGroupRole() == getActionText("Job_Leader") then return true end
-	end
-	return false
+    if self.Leader == -1 or not has_value(self.Members, self.Leader) then return false end
+    local record = SSPersistence.getRecord(self.Leader)
+    return record ~= nil and record.state ~= "dead"
 end
 function SuperSurvivorGroup:getID()
 	return self.ID
@@ -246,9 +248,9 @@ function SuperSurvivorGroup:getClosestIdleMember(ofThisRole,referencePoint)
 	local distance = 0
 	for i=1,#self.Members do	
 		local workingID = self.Members[i]
-		if(workingID ~= nil) then
+		if(workingID ~= nil) and SSM:Get(workingID) then
 			distance = getDistanceBetween(SSM:Get(workingID):Get(),referencePoint)
-			if(SSM:Get(workingID):isInAction()==false) and (distance ~= 0) and (distance < closestSoFar) and ( (SSM:Get(workingID):getGroupRole() == ofThisRole) or (ofThisRole == "Any") or (ofThisRole == nil) ) then
+			if(SSM:Get(workingID) ~= nil) and (SSM:Get(workingID):isInAction()==false) and (distance ~= 0) and (distance < closestSoFar) and ( (SSM:Get(workingID):getGroupRole() == ofThisRole) or (ofThisRole == "Any") or (ofThisRole == nil) ) then
 				closestID = workingID
 				closestSoFar = distance
 			end	
@@ -283,9 +285,10 @@ end
 function SuperSurvivorGroup:getMember(ofThisRole,closest)	
 	for i=1,#self.Members do	
 		local workingID = self.Members[i]
-		if( (workingID ~= nil) and (SSM:Get(workingID):getGroupRole() == ofThisRole) or (ofThisRole == "Any") or (ofThisRole == nil) ) then
-			return SSM:Get(workingID) 
-		end		
+        local member = SSM:Get(workingID)
+        if member and (member:getGroupRole() == ofThisRole or ofThisRole == "Any" or ofThisRole == nil) then
+            return member
+        end
 	end
 	return nil
 end
@@ -295,8 +298,7 @@ function SuperSurvivorGroup:getMembers()
 		local workingID = self.Members[i]
 		if( (workingID ~= nil) ) and (SSM:Get(workingID) ~= nil) then
 			table.insert(TableOut, SSM:Get(workingID))
-		elseif ( (workingID ~= nil) ) then
-			table.insert(TableOut, tonumber(workingID))
+
 		end		
 	end
 	return TableOut
@@ -330,7 +332,7 @@ end
 function SuperSurvivorGroup:getIdleMember(ofThisRole,closest)	
 	for i=1,#self.Members do
 		local workingID = self.Members[i]
-		if (workingID ~= nil) and (SSM:Get(workingID):isInAction()==false) and ( (SSM:Get(workingID):getGroupRole() == ofThisRole) or (ofThisRole == "Any") or (ofThisRole == nil) ) then
+		if (workingID ~= nil) and (SSM:Get(workingID) ~= nil) and (SSM:Get(workingID):isInAction()==false) and ( (SSM:Get(workingID):getGroupRole() == ofThisRole) or (ofThisRole == "Any") or (ofThisRole == nil) ) then
 			return SSM:Get(workingID) 
 		end		
 	end
@@ -401,6 +403,8 @@ function SuperSurvivorGroup:addMember(newSurvivor, Role)
 		if(Role == getActionText("Job_Leader")) then 			
 			self:setLeader(newSurvivor:getID()) 
 		end
+		self:Save()
+		SSPersistence.observe(newSurvivor)
 		return self.Members[#self.Members]
 	elseif(newSurvivor ~= nil) then
 		newSurvivor:setGroupID(self.ID)
@@ -418,6 +422,10 @@ function SuperSurvivorGroup:checkMember(newSurvivorID)
 end
 
 function SuperSurvivorGroup:removeMember(ID)
+    if type(ID) == "table" then ID = ID:getID() end
+    local record = SSPersistence.getRecord(ID)
+    if record and record.groupID == self.ID then record.groupID = nil end
+    if self.Leader == ID then self.Leader = -1 end
 	local member = SSM:Get(ID)
 	if(member) then member:setGroupID(nil) end
 	
@@ -430,7 +438,7 @@ function SuperSurvivorGroup:removeMember(ID)
 			end
 		end
 	--	print("remove success")
-		self:Print()
+		self:Save()
 	else
 	--	print("remove failed")
 	end
@@ -481,87 +489,35 @@ function SuperSurvivorGroup:Print()
 
 end
 
+-- Runtime rectangles retain the historical array interface; persisted areas
+-- are named records, never flattened by pairs() order.
+local function rectangle(area)
+    return {x1=area[1], x2=area[2], y1=area[3], y2=area[4], z=area[5]}
+end
+local function coordinates(area)
+    return {area.x1, area.x2, area.y1, area.y2, area.z}
+end
 function SuperSurvivorGroup:Save()
-
-	local tabletoSave = {}
-	tabletoSave[1] = #self.Members
-	tabletoSave[2] = self.Leader
-	table.save(tabletoSave,"SurvivorGroup"..tostring(self.ID).."metaData")
-	table.save(self.Members,"SurvivorGroup"..tostring(self.ID))
-	table.save(self.Bounds,"SurvivorGroup"..tostring(self.ID).."Bounds")
-	
-	tabletoSave = {}
-	--print("starting save")
-	table.sort(self.GroupAreas)
-	for k,v in pairs(self.GroupAreas) do
-		--print("key "..tostring(k))
-		local area = self.GroupAreas[k]
-		for i=1,#area do
-			table.insert(tabletoSave,area[i])
-			--print("inserting "..tostring(area[i]))
-		end
-	
-	end
-	
-	table.save(tabletoSave,"SurvivorGroup"..tostring(self.ID).."Areas")
-
+    local areas = {}
+    for name, area in pairs(self.GroupAreas) do areas[name] = rectangle(area) end
+    local members, warnings = {}, {}
+    for i, id in ipairs(self.Members) do members[i] = id end
+    for id, value in pairs(self.YouBeenWarned) do warnings[id] = value end
+    SSPersistence.get().groups[self.ID] = {id=self.ID, leader=self.Leader,
+        members=members, bounds=rectangle(self.Bounds), areas=areas,
+        roe=self.ROE, warnings=warnings}
 end
-
 function SuperSurvivorGroup:Load()
-	
-	local tabletoSave = table.load("SurvivorGroup"..tostring(self.ID).."metaData")
-	if(tabletoSave) then 
-		local temp = tonumber(tabletoSave[1])
-		self.Leader = tonumber(tabletoSave[2])
-	end
-	
-	self.Members = table.load("SurvivorGroup"..tostring(self.ID))
-	if self.Members then 
-		for i=1,#self.Members do
-			if(self.Members[i] ~= nil) then 
-				self.Members[i] = tonumber(self.Members[i]) 
-				print (tostring(self.Members[i]).. " is a member of group: "..tostring(self.ID))
-			end
-		end
-	else self.Members = {} end
-	
-	self.Bounds = table.load("SurvivorGroup"..tostring(self.ID).."Bounds")
-	if(self.Bounds) then 
-		for i=1,#self.Bounds do
-			if(self.Bounds[i] ~= nil) then 
-				self.Bounds[i] = tonumber(self.Bounds[i]) 
-				--print (tostring(tabletoSave[2]).. " is a member")
-			end
-		end
-	else self.Bounds = {0,0,0,0,0}
-	end
-	
-	
-	local AreasTable = table.load("SurvivorGroup"..tostring(self.ID).."Areas")
-	
-	if(AreasTable) then
-		print("starting load")
-		table.sort(self.GroupAreas)	
-		local gcount = 1
-		for k,v in pairs(self.GroupAreas) do
-			--print("key "..tostring(k))
-			if not AreasTable[gcount] then break end
-			for i=1, 5 do
-				self.GroupAreas[k][i] = tonumber(AreasTable[gcount])			
-				--print("loading "..tostring(AreasTable[gcount]))
-				gcount = gcount + 1
-			end
-		
-		end
-	else print("no areas file found for this group")
-	end
-
-	
-	--print ("DONE loading group#"..tostring(self.ID))
+    local record = assert(SSPersistence.get().groups[self.ID])
+    self.Members, self.Leader, self.ROE = {}, record.leader, record.roe
+    for i, id in ipairs(record.members) do self.Members[i] = id end
+    self.Bounds = coordinates(record.bounds)
+    for name, area in pairs(record.areas) do self.GroupAreas[name] = coordinates(area) end
+    self.YouBeenWarned = {}
+    for id, value in pairs(record.warnings) do self.YouBeenWarned[id] = value end
 end
-
-
-
-
-
-
+function SuperSurvivorGroup:getMemberIDs()
+    local ids = {}
+    for i, id in ipairs(self.Members) do ids[i] = id end
+    return ids
+end

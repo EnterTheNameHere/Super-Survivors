@@ -191,25 +191,11 @@ end
 ---@param id any if of the npc survivor
 ---@return any
 function getCoordsFromID(id)
-
-	debugContext("----- getCoordsFromID -----")
-	debugContext("id : " .. id)
-	for k,v in pairs(SurvivorMap) do
-
-		for i=1,#v do
-
-			if(v[i] == id) then 
-				return k 
-      end
-
-		end
-
-	end
-	debugContext("no survivor found")
-	debugContext("----- getCoordsFromID -----")
-
-	return 0
-
+    local record = SSPersistence.getRecord(id)
+    local observed = record and (SSPersistence.getState(id) == "loaded" and record.lastObserved or record.saved)
+    local pos = observed and observed.position
+    if not pos then return 0 end
+    return tostring(math.floor(pos.x)) .. ", " .. tostring(math.floor(pos.y)) .. ", " .. tostring(math.floor(pos.z))
 end
 
 --- gets the distance between 2 things (objects, zombies, npcs or players)

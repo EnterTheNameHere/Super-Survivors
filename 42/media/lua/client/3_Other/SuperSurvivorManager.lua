@@ -1,3 +1,5 @@
+require "0_Utilities/SuperSurvivorPersistence"
+
 SuperSurvivorManager = {}
 SuperSurvivorManager.__index = SuperSurvivorManager
 
@@ -8,7 +10,7 @@ function SuperSurvivorManager:new()
 	self.__index = self
 		
 	o.SuperSurvivors = {}
-	o.SurvivorCount = 3
+	o.SurvivorCount = 0
 	o.MainPlayer = 0
 	
 	return o
@@ -20,8 +22,16 @@ function SuperSurvivorManager:getRealPlayerID()
 end
 
 function SuperSurvivorManager:init()
+    if not getSpecificPlayer(0) then return end
+    if self.SuperSurvivors[0] and self.SuperSurvivors[0]:Get() == getSpecificPlayer(0) then return end
 	self.SuperSurvivors[0] = SuperSurvivor:newSet(getSpecificPlayer(0))
 	self.SuperSurvivors[0]:setID(0)
+    local record = SSPersistence.getRecord(0)
+    if record then
+        self.SuperSurvivors[0]:setGroupID(record.groupID)
+        self.SuperSurvivors[0]:setGroupRole(record.role)
+    else self.SuperSurvivors[0]:setGroupID(nil) end
+    SSPersistence.observe(self.SuperSurvivors[0])
 end
 function SuperSurvivorManager:setPlayer(player,ID)
 	self.SuperSurvivors[ID] = SuperSurvivor:newSet(player)
@@ -51,37 +61,30 @@ end
 
 function SuperSurvivorManager:LoadSurvivor(ID, square)
 
-	if( not checkSaveFileExists("Survivor"..tostring(ID))) then return false end
-	
-	if(ID ~= nil) and (square ~= nil) then -- 
-		
-		if(self.SuperSurvivors[ID] ~= nil) and (self.SuperSurvivors[ID].player ~= nil) then		
-			if(self.SuperSurvivors[ID]:isInCell()) then
-				return false
-			else		
-				self.SuperSurvivors[ID]:delete()
-			end
-		end
-		print("loading survivor ".. tostring(ID) .." on " .. tostring(square:getX()) .. "," .. tostring(square:getY()))
-		
-				
-			self.SuperSurvivors[ID] = SuperSurvivor:newLoad(ID,square)
-			if(self.SuperSurvivors[ID]:Get():getPrimaryHandItem() == nil) and (self.SuperSurvivors[ID]:getWeapon() ~= nil) then self.SuperSurvivors[ID]:Get():setPrimaryHandItem(self.SuperSurvivors[ID]:getWeapon()) end
-			self.SuperSurvivors[ID]:refreshName()
-		
-		
-		
-		if(self.SuperSurvivors[ID]:Get():getModData().isHostile == true) then self.SuperSurvivors[ID]:setHostile(true) end
-		
-		if(self.SurvivorCount == nil) then self.SurvivorCount = 1 end
-		--print(tostring(ID))
-		--print(tostring(self.SurvivorCount))
-		
-		if(ID > self.SurvivorCount) then self.SurvivorCount = ID end
-		self.SuperSurvivors[ID].player:getModData().LastSquareSaveX = nil
-		self.SuperSurvivors[ID]:SaveSurvivor()
-		
-		
+    local record = SSPersistence.getRecord(ID)
+    if not record or record.issue or record.state == "dead" or not record.saved or not square then return false end
+    local pos = record.saved.position
+    if square:getX() ~= math.floor(pos.x) or square:getY() ~= math.floor(pos.y)
+        or square:getZ() ~= math.floor(pos.z) then return false end
+    if self.SuperSurvivors[ID] then return false end
+    local ok, survivor = pcall(SuperSurvivor.newLoad, SuperSurvivor, ID, square)
+    if not ok or not survivor or not survivor:Get() then
+        local partial = SSPersistence.loading[ID]
+        if partial then partial:removeFromWorld(); partial:removeFromSquare() end
+        SSPersistence.loading[ID] = nil
+        SSPersistence.issue(record, "Native load failed: " .. tostring(survivor))
+        return false
+    end
+    self.SuperSurvivors[ID] = survivor
+    SSPersistence.loading[ID] = nil
+    survivor:setGroupID(record.groupID)
+    survivor:setGroupRole(record.role)
+    SSPersistence.runtime[ID] = "loaded"
+    record.issue = nil
+    survivor:refreshName()
+    if survivor:Get():getModData().isHostile == true then survivor:setHostile(true) end
+    do
+
 		local meleeWep = self.SuperSurvivors[ID].player:getModData().meleeWeapon
 		local gunWep = self.SuperSurvivors[ID].player:getModData().gunWeapon
 		if(meleeWep ~= nil) then 
@@ -140,24 +143,22 @@ function SuperSurvivorManager:LoadSurvivor(ID, square)
 		self.SuperSurvivors[ID]:Get():setPrimaryHandItem(phi)
 		
 	end
-	
+    return survivor
 end
 
-function SuperSurvivorManager:spawnSurvivor(isFemale,square)
-	if(square ~= nil) then
-		local newSurvivor = SuperSurvivor:new(isFemale,square)
-		
-		if(newSurvivor ~= nil) then 
-			self.SuperSurvivors[self.SurvivorCount+1] = newSurvivor
-			self.SurvivorCount = self.SurvivorCount + 1;
-			self.SuperSurvivors[self.SurvivorCount]:setID(self.SurvivorCount)
-			return self.SuperSurvivors[self.SurvivorCount]
-		else
-			return nil
-		end
-	end
-
+function SuperSurvivorManager:spawnSurvivor(isFemale, square)
+    if not square then return nil end
+    local id = SSPersistence.allocateSurvivor()
+    self.SurvivorCount = math.max(self.SurvivorCount, id)
+    local survivor = SuperSurvivor:new(isFemale, square)
+    if not survivor then return nil end
+    survivor:setID(id)
+    self.SuperSurvivors[id] = survivor
+    SSPersistence.observe(survivor)
+    return survivor
 end
+function SuperSurvivorManager:getRecord(id) return SSPersistence.getRecord(id) end
+function SuperSurvivorManager:getState(id) return SSPersistence.getState(id) end
 
 function SuperSurvivorManager:Get(thisID)
 	if(not self.SuperSurvivors[thisID]) then
@@ -171,13 +172,14 @@ end
 
 function SuperSurvivorManager:OnDeath(ID)
 	
+	SSPersistence.markDead(ID)
 	self.SuperSurvivors[ID] = nil
 
 end
 
 function SuperSurvivorManager:update()
 	
-	for i=1, self.SurvivorCount+1 do
+	for i in pairs(self.SuperSurvivors) do
 		if not self.UpdateFilter or self.UpdateFilter(self.SuperSurvivors[i]) then
 		if (self.SuperSurvivors[i] ~= nil and self.MainPlayer ~= i) then
 			if (self.SuperSurvivors[i].TargetSquare ~= nil and self.SuperSurvivors[i].TargetSquare:getZ() ~= self.SuperSurvivors[i].player:getZ() and getGameSpeed() > 1) then
@@ -343,82 +345,6 @@ function SuperSurvivorManager:SaveAll()
 end
 
 SSM = SuperSurvivorManager:new()
-
-
-
-
-
-function loadSurvivorMap( )
-	local tempTable = {}
-	tempTable = table.load("SurvivorManagerInfo")
-	if (tempTable) and (tempTable[1]) then 
-		SSM.SurvivorCount = tonumber(tempTable[1])
-		print("set SurvivorCount:"..tostring(tempTable[1]) .. " from SurvivorManagerInfo file");
-	else 
-		print("SurvivorManagerInfo was not found. this save file could be corrupt");
-	end
-	
-	SurvivorLocX = kvtableload("SurvivorLocX")
-	SurvivorLocY = kvtableload("SurvivorLocY")
-	SurvivorLocZ = kvtableload("SurvivorLocZ")
-	
-	
-	local fileTable = {}
-	
-	for k,v in pairs(SurvivorLocX) do   --- trying new way of saving & loading survivor map
-	
-		local key = SurvivorLocX[k] .. SurvivorLocY[k] .. SurvivorLocZ[k]
-		
-		if(not fileTable[key]) then fileTable[key] = {} end
-		print("survivor loc: "..tostring(fileTable[key])..", "..tostring(k))
-		table.insert(fileTable[key], tonumber(k))	
-	
-	end
-	
-	return fileTable
-	--[[
-	local readFile = getModFileReader("SubparSurvivors",getWorld():getWorld()..getFileSeparator().."SurvivorMap.lua", true)
-	local scanLine = readFile:readLine()
-	while scanLine do
-	
-		local values = {}
-		for input in scanLine:gmatch("%S+") do table.insert(values,input) end
-		--print("loading line: "..values[1] .. " " .. values[2])
-		if(fileTable[ values[1] ] == nil) then fileTable[ values[1] ] = {} end
-			table.insert(fileTable[ values[1] ], tonumber(values[2]))
-		scanLine = readFile:readLine()
-		if not scanLine then break end
-	end
-	readFile:close()
-	return fileTable ]]
-end
-
-
-function saveSurvivorMap(  )
-	
-	
-	local tempTable = {}
-	tempTable[1] = SSM.SurvivorCount
-	table.save(tempTable,"SurvivorManagerInfo")
-	
-	--[[
-	if(not SurvivorMap) then return false end
-	local destFile = getWorld():getWorld()..getFileSeparator().."SurvivorMap.lua"
-	local writeFile = getModFileWriter("SubparSurvivors", destFile, true, false)
-	--print("saving SurvivorMap:".. tostring(SurvivorMap))
-	for index,value in pairs(SurvivorMap) do
-		
-		for i = 1,#value do
-			writeFile:write(tostring(index) .. " " .. tostring(value[i]) .. "\r\n");
-			--print("saving: " .. tostring(index) .. " " .. tostring(value[i]))
-		end
-	end
-	writeFile:close();
-	]]
-	kvtablesave(SurvivorLocX,"SurvivorLocX")
-	kvtablesave(SurvivorLocY,"SurvivorLocY")
-	kvtablesave(SurvivorLocZ,"SurvivorLocZ")
-end
 
 
 

@@ -35,8 +35,7 @@ class StartupChecks(unittest.TestCase):
             assert(type(SuperSurvivor.new) == 'function')
             assert(type(SuperSurvivorPresetSpawnThis) == 'function')
             assert(#PresetSpawns > 0)
-            assert(SSGM:Get(0) == HillTopGroup)
-            assert(SSGM:Get(5) == Gang2Group)
+            assert(SSGM:getCount() == 0 and next(SSGM.Groups) == nil)
         """)
 
     def test_spawn_marks_npc_before_initializing_perks(self):
@@ -246,7 +245,7 @@ class StartupChecks(unittest.TestCase):
                 spawnCount = spawnCount + 1
                 return survivor
             end}
-            SurvivorMap = {}
+            SSPersistence = {data = {}}
         """)
         self.load("Debug/SuperbSurvivorsDebug.lua")
         self.lua.execute("assert(spawnCount == 0)")
@@ -269,7 +268,7 @@ class StartupChecks(unittest.TestCase):
             player = nil
             assert(SuperbSurvivorsDebug.spawn() == nil)
             player = {getCurrentSquare = function() return {} end}
-            SurvivorMap = nil
+            SSPersistence.data = nil
             assert(SuperbSurvivorsDebug.spawn() == nil)
             assert(spawnCount == 0)
         """)
