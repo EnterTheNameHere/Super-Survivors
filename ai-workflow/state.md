@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: IMPLEMENTATION REVIEWED — bounded R1 CORRECTION REQUESTED; automated checks passed at dc4dde2; in-game validation pending
+Execution: IMPLEMENTATION DELIVERED / REVIEW IN PROGRESS; R1 ENGINE INVESTIGATION AND USER-RUN PROBE ASSIGNED; no gameplay validation yet
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -34,6 +34,8 @@ Legacy B42 static findings:
 
 Current objective: new-world native B42 persistence; dynamic stable survivor/group registry; no legacy loaders or compatibility; world-owned state; loaded/unloaded/dead handling; report engine-backed verification.
 
-Review: ai-workflow/mail/implementer/inbox/2026-11-15-persist-01-r1-review.md (B42). R1 needed: avoid scanning every saved survivor square on every OnTick; validate unload/pending add/remove lifecycle against installed B42. Branches diverged at 792a129d: B42 coordination commit and Codex source branch; reconcile without force updates.\n\nNext actor: local Codex implements bounded R1, reports ref + evidence. Then orchestrator review and user-led clean disposable-world engine tests. No acceptance or next assignment inferred.
+Review clarification (authoritative): ai-workflow/mail/implementer/inbox/2026-11-15-persist-01-r1-clarification.md (B42), supersedes older mandatory-optimization mail. Study installed B42 IsoPlayer save/load position and world registration; prepare SAFE opt-in diagnostic for user in fresh world; inspect streaming/add/remove and per-tick scan necessity. No automatic persistence rewrite. Report findings first. B42 coordination and codex source branches diverged; do not force-update.
+
+Next actor: local Codex acknowledges clarification, investigates and delivers diagnostic; user then executes in-game probe. Orchestrator reviews observed results before deciding fixes or acceptance.
 
 Not assigned: debug hub / individual inspector; future AI manager; in-game scenario runner.
