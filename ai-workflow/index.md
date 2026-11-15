@@ -77,3 +77,6 @@ next bounded assignment. See mail/orchestrator/inbox/2026-11-15-return-to-orches
 - Status: scoped diagnostic delivered and validated in-game; full SSR-PERSIST-01
   remains under review, next gate real SSR survivor/group lifecycle.
 - Source: `codex/persistence-b42`, observed head `090f424`. No production merge.
+
+## Active new request: SSR-TEST-02 — cell-only IsoPlayer construction (2026-11-15)
+User requested experiment before more persistence work. Verify installed B42.22.2 IsoPlayer.new(cell) availability/side effects and, only if safe, add opt-in Tests UI experiment for raw :load() and explicit world registration. Assignment: `assignments/test-cell-only-isoplayer-02.md`; inbox: `mail/implementer/inbox/2026-11-15-test-02-cell-only.md`. NOT ACKNOWLEDGED; no implementation or live test yet. Preserve existing SSR-PERSIST-01 code and no automatic merge.
