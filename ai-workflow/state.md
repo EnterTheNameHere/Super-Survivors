@@ -83,3 +83,10 @@ implications; no automatic source merge or speculative rewrite.
 Direct user-requested startup fixes delivered at 29bebd0 (percent descriptions,
 B42 grave craft recipes), 178 tests/112 Lua syntax; restart/load validation
 pending. Report: mail/orchestrator/inbox/2026-11-15-startup-error-fixes.md. No persistence acceptance or production merge.
+
+
+User returned control to orchestration after runtime checks. Latest restart log
+(15 November 14:31:11) contains no prior mod recipe-property or option-format
+errors; crafting itself untested. Native probe passed, full SSR persistence
+review/lifecycle acceptance pending. Next actor: orchestrator; implementer awaits
+next bounded assignment. See mail/orchestrator/inbox/2026-11-15-return-to-orchestration.md.

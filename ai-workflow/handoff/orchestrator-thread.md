@@ -153,3 +153,10 @@ Full SSR persistence lifecycle/acceptance still pending orchestrator review.
 Report: mail/orchestrator/inbox/2026-11-15-test-01-runtime-results.md.
 Next actor: orchestrator reviews concrete engine results and loader placement
 implications; no automatic source merge or speculative rewrite.
+
+
+User returned control to orchestration after runtime checks. Latest restart log
+(15 November 14:31:11) contains no prior mod recipe-property or option-format
+errors; crafting itself untested. Native probe passed, full SSR persistence
+review/lifecycle acceptance pending. Next actor: orchestrator; implementer awaits
+next bounded assignment. See mail/orchestrator/inbox/2026-11-15-return-to-orchestration.md.
