@@ -29,6 +29,7 @@ Do not work on `master` or merge/publish without review and authorization.
 - User approved a reusable minimal in-game Tests UI via context menu, destructive-world warning with affirmative acknowledgment, independent Lua registry, and IsoPlayer native save/load position probe as first test.
 - Task: `assignments/tests-ui-01.md`
 - Outstanding inbox: `mail/implementer/inbox/2026-11-15-test-01.md`
-- Status: REQUESTED, NOT YET ACKNOWLEDGED. No Codex execution claimed.
+- Status: ACKNOWLEDGED / local Codex investigating and implementing on existing exclusive branch.
+- Acknowledgment: `mail/orchestrator/inbox/2026-11-15-test-01-r1-ack.md`.
 - Related: SSR-PERSIST-01 R1 engine investigation; no mandatory OnTick rewrite.
 - Next: same local Codex implementer claims/acknowledges within existing exclusive branch/worktree; report exact evidence. Do not merge automatically.

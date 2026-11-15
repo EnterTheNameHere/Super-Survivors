@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: IMPLEMENTATION DELIVERED / REVIEW IN PROGRESS; R1 ENGINE INVESTIGATION AND USER-RUN PROBE ASSIGNED; no gameplay validation yet
+Execution: SSR-TEST-01 AND PERSIST-01 R1 ACKNOWLEDGED / INVESTIGATION + TEST UI IMPLEMENTATION IN PROGRESS; no gameplay validation
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -41,11 +41,12 @@ Next actor: local Codex acknowledges clarification, investigates and delivers di
 Not assigned: debug hub / individual inspector; future AI manager; in-game scenario runner.
 
 
-## SSR-TEST-01 (approved, requested, not acknowledged)
+## SSR-TEST-01 (approved, acknowledged)
 User on 2026-11-15 approved adding a minimal, independently reusable Tests UI now.
 Entry: dev/testing-gated right-click menu (without -debug); UI shows destructive-world warning, explicit consent, registered tests, outcomes and observed values. First test = native IsoPlayer position save/load diagnostic tied to existing SSR-PERSIST-01 engine investigation. No full SS Debug hub, broad runner, AI or speculative persistence rewrite.
 Assignment: ai-workflow/assignments/tests-ui-01.md
 Outgoing mail: ai-workflow/mail/implementer/inbox/2026-11-15-test-01.md
 Owner: existing local Codex implementer once acknowledged; no parallel worktree ownership.
-State: REQUESTED, no implementation or in-game results yet.
-Next: Codex acknowledges and reports implementation/engine findings; user runs in fresh disposable world.
+State: ACKNOWLEDGED by existing local Codex, same exclusive source checkout; no in-game results.
+Acknowledgment: mail/orchestrator/inbox/2026-11-15-test-01-r1-ack.md
+Next: Codex reports implementation/engine findings and probe instructions; user runs in fresh disposable world.
