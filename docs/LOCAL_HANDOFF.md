@@ -2,6 +2,14 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Returned to orchestration (15 November 2026)
+
+User restarted after startup fixes; log at 14:31:11 has no prior option-format
+or grave-recipe property errors and no new gameplay Lua stack trace. Actual
+crafting remains untested. User requested return to orchestration; no further
+implementation started. Canonical addressed report:
+ai-workflow/mail/orchestrator/inbox/2026-11-15-return-to-orchestration.md.
+
 ## Startup error fixes (15 November 2026)
 
 User requested fixing mod-owned errors from the post-probe log. Three English
