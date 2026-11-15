@@ -23,7 +23,26 @@ Scenario Runner future: destructive tests in disposable world, user may knowingl
 Static review found six unconditional groups, twelve area types, four per-group mod-dir files, group loader contiguous ID assumption, location-index map errors, character IsoPlayer:save in actual world path, periodic render-tick and Escape saving. User expressly chose clean B42 fresh-world baseline: no migration of B40/B41 or experimental B42 files, no legacy fallback, dynamic group/survivor registries, native per-world data and correct lifecycle. Candidate: Global ModData (ModData.getOrCreate, OnInitGlobalModData, OnSave), but Codex must verify installed engine and NPC character serialization/reload before choosing exact mechanics. Single-player first, no new AI Manager/UI in this task.
 
 ## Coordination
-This repo now has ai-workflow inspired by Tertalis but wholly local to Super-Survivors. README explains operation; index routes. Task spec assignments/persistence-b42.md and mail/implementer/inbox/2026-11-15-persist-01.md. Current status: requested, NO Codex acknowledgment and NO implementation evidence. Writing inbox mail cannot launch Codex. Future orchestrator should read index, protocol, state, handoff, pending orchestrator inbox and exact source/ref before resuming.
+Local Codex acknowledged SSR-PERSIST-01 in commit 792a129d6561d5e35fb8ace4c03eb4fd2558f8cd,
+published on B42, then implemented on codex/persistence-b42 in the existing local
+checkout. Source delivery is dc4dde25d612d33650c1ed5ef4ad0401c02394b5, parent
+792a129d6561d5e35fb8ace4c03eb4fd2558f8cd. Read addressed delivery mail
+mail/orchestrator/inbox/2026-11-15-persist-01-delivery.md and docs/PERSISTENCE_B42.md
+on the implementation ref. Request mail has been processed and archived.
+
+161 automated tests and 109 runtime Lua syntax checks pass. Native 42.22.2 JAR
+API/order evidence is separate from mocked Lua tests. NO in-game validation was
+performed. LuaLS still reports 88 legacy diagnostics. Key tradeoff: unique native
+snapshot generations retain older checkpoints and accumulate files; no atomic
+transaction across native characters and world Global ModData is claimed.
+
+Canonical B42 contains coordination updates, not an accepted implementation merge.
+Writing delivery mail does not automatically notify/launch another live session.
+Read current index/protocol/state and exact refs before further work.
 
 ## Next
-Verify workflow files committed on B42. User explicitly starts local Codex to read ai-workflow/index.md; Codex claims owned branch, acknowledges, implements and reports to orchestrator inbox. Review actual diff, commits and test evidence; user does real disposable-world validation. Then assign SS Debug hub/inspector and later AI design implementation.
+Orchestrator reviews the exact source diff and delivery, then coordinates real
+disposable-world save/reload/unload/death/copy checks with the user. Request any
+corrections as new addressed mail. Acceptance/merge remain explicit decisions.
+SS Debug hub/inspector and AI work remain unassigned; do not start them merely
+because a persistence delivery exists.

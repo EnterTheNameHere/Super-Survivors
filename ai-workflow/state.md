@@ -5,12 +5,24 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: IMPLEMENTING on codex/persistence-b42; exclusive existing checkout
+Execution: IMPLEMENTATION DELIVERED FOR REVIEW; automated checks pass; in-game validation pending
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
-Coordination updates here are on implementation ref pending orchestrator review/reconciliation onto B42.
+Production implementation ref: codex/persistence-b42; exclusive existing checkout
+Source commit: dc4dde25d612d33650c1ed5ef4ad0401c02394b5
+Source parent: 792a129d6561d5e35fb8ace4c03eb4fd2558f8cd
+Delivery: mail/orchestrator/inbox/2026-11-15-persist-01-delivery.md
+Canonical coordination remains B42; implementation has NOT been merged into B42 or accepted.
 Task: SSR-PERSIST-01 (assignments/persistence-b42.md)
-Outgoing mail: mail/implementer/inbox/2026-11-15-persist-01.md
+Processed request: mail/implementer/archive/2026-11-15-persist-01.md
+
+Delivery evidence:
+- Installed 42.22.2 native APIs inspected read-only; no Java modification.
+- World Global ModData schema + versioned native snapshots; dynamic stable registries and named areas.
+- 161 automated tests pass, 109/109 runtime Lua syntax checks pass; no in-game results claimed.
+- LuaLS completed with 88 legacy diagnostics, not a clean whole-project result.
+- Snapshot generations are retained (disk growth); no cross-file atomicity/crash-proof guarantee.
+- Source details, limits and manual checks: docs/PERSISTENCE_B42.md on implementation ref.
 
 Legacy B42 static findings:
 - Six groups are instantiated in group manager by default. No hard-coded max of twelve groups; twelve fixed area types in group model.
@@ -22,6 +34,6 @@ Legacy B42 static findings:
 
 Current objective: new-world native B42 persistence; dynamic stable survivor/group registry; no legacy loaders or compatibility; world-owned state; loaded/unloaded/dead handling; report engine-backed verification.
 
-Next actor: local Codex verifies installed engine APIs and implements the assignment; orchestrator reviews exact delivery. User validates using disposable PZ world.
+Next actor: orchestrator reviews exact delivery/source commit; user validates in disposable new B42 world. Corrections require new addressed mail. No acceptance or next assignment inferred.
 
 Not assigned: debug hub / individual inspector; future AI manager; in-game scenario runner.
