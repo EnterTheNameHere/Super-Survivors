@@ -102,3 +102,9 @@ report docs/ISOSURVIVOR_VS_ISOPLAYER_B42.md. No runtime code/test/experiment or
 Java changes. SSR-TEST-02 and factory supplement remain pending, explicitly not
 executed under user's analysis-only instruction. Next actor: orchestrator.
 Delivery: mail/orchestrator/inbox/2026-11-15-analysis-01-delivery.md.
+
+
+SSR-TEST-02 now ACKNOWLEDGED: user explicitly resumed Test 2 after analysis.
+Existing exclusive local Codex checkout, constructor/factory research and focused
+probe only. Prior analysis-only restriction no longer applies. Ack:
+mail/orchestrator/inbox/2026-11-15-test-02-ack.md. Native test NOT RUN yet.
