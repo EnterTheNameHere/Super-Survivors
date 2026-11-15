@@ -2,6 +2,23 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Startup error fixes (15 November 2026)
+
+User requested fixing mod-owned errors from the post-probe log. Three English
+option descriptions used unescaped percent symbols, causing Translator format
+exceptions. JSON and legacy English text now spell out percent/percentage.
+Three grave recipes in SuperSurvivors.txt used legacy recipe syntax; installed
+Recipe.Load rejects every colon property except Override. Converted to craftRecipe
+with explicit inputs/outputs, preserved ingredient quantities, retained tools,
+and times 500/100/500. Grave item definitions unchanged. Added Recipes.json names
+and module-qualified timed actions for digging/cross work; installed Shoveling
+and Hammering sounds replace old digging/PZ_Hammer names. These remain legacy
+inventory-item recipes, not a rewrite of vanilla map graves/burial.
+178 automated tests and 112 Lua syntax checks pass, edited JSON and staged
+whitespace valid. Installed CraftRecipe/TimedAction examples inspected; actual
+recipe load/crafting validation awaits game restart. Unrelated game/map/vehicle
+errors and concurrent user edits left alone.
+
 ## Native position runtime results (15 November 2026)
 
 User completed same-session test, staging, game restart/world reload and resume.

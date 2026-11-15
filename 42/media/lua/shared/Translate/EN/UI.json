@@ -36,9 +36,9 @@
     "UI_Option_SS_AltSpawnAmount_5": "Random from 1 to 5 max",
     "UI_Option_SS_AltSpawnAmount_6": "Random from 1 to 6 max",
 
-    "UI_Option_SS_AltSpawnAmountDesc": "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10%, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)",
+    "UI_Option_SS_AltSpawnAmountDesc": "Along with Alternative Spawning, you can decide how big you want the groups to be, each time the dice rolls a win. Say you chose 10 percent, and the dice rolled a success and spawned an NPC that hour. Instead of just 1 NPC, it will roll another dice between 1 and 6, and you'll get that many NPCs. Be cautious for setting this to a high number along with hourly alt spawning can lead to lag. (If you have alt spawning to off, this option is also disabled)",
     "UI_Option_SS_AltSpawnPercent": "Alt Spawning - Chance:",
-    "UI_Option_SS_AltSpawnPercentDesc": "You can control the chance when a group(s) of NPCs spawn around you every hour by % chance. If your %chance dice surpass the random roll (Random 1-100) during an in game hour, groups of NPCs will spawn around you off screen.",
+    "UI_Option_SS_AltSpawnPercentDesc": "Set the percentage chance for groups of NPCs to spawn around you each in-game hour. If the random roll succeeds, a group spawns off screen.",
 
     "UI_Option_SS_NoPreSetSpawn": "Disable All Pre-set/Unique Survivors",
     "UI_Option_SS_NoPreSetSpawnDesc": "Disable All Pre-set/Unique Survivors",
@@ -53,7 +53,7 @@
     "UI_Option_SS_ChanceToBeHostile": "Hostile NPC - Spawn Hostile:",
     "UI_Option_SS_ChanceToBeHostileDesc": "This defines the chance that a random spawn survivor will be hostile when spawned",
     "UI_Option_SS_MaxHostileSpawnRate": "Hostile NPC - Hostile Over Time:",
-    "UI_Option_SS_MaxHostileSpawnRateDesc": "Chance to be hostile increases over time, but it will cap at this % and never go above this % Unsure if this option still works.",
+    "UI_Option_SS_MaxHostileSpawnRateDesc": "Hostility chance increases over time but should stop at this percentage. Whether this option still works is unverified.",
 
     "UI_Option_SS_RaidersChance": "Raider Event Spawning - Chance:",
     "UI_Option_SS_RaidersChanceDesc": "The chance a Raider event will happen after the start date has passed.",

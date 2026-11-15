@@ -25,39 +25,73 @@ module Survivors
         ResizeWorldIcon = 0.4,
     }
 
-    recipe Dig Grave
+    timedAction SSRDigGrave
     {
-        CorpseMale/CorpseFemale,
-        keep Shovel,
-        Result:Grave,
-        Category:Survivors,
-        Sound:digging,
-        Time:500.0,
+        metabolics = HeavyDomestic,
+        actionAnim = DigShovel,
+        sound = Shoveling,
     }
 
-    recipe Add Cross to Grave
+    timedAction SSRAddGraveCross
     {
-        Grave,
-        Plank=2,
-        Nails,
-        keep Hammer,
-        Result:GraveCross,
-        Category:Survivors,
-        Sound:PZ_Hammer,
-        CanBeDoneFromFloor:true,
-        Time:100.0,
+        metabolics = HeavyDomestic,
+        actionAnim = MakingHammer_Surface,
+        sound = Hammering,
     }
 
-    recipe Dig Grave with Cross
+    craftRecipe DigGrave
     {
-        CorpseMale/CorpseFemale,
-        Plank=2,
-        Nails,
-        keep Hammer,
-        keep Shovel,
-        Result:GraveCross,
-        Category:Survivors,
-        Sound:digging,
-        Time:500.0,
+        timedAction = Survivors.SSRDigGrave,
+        time = 500,
+        Tags = InHandCraft,
+        category = Survivors,
+        inputs
+        {
+            item 1 [Base.CorpseMale;Base.CorpseFemale],
+            item 1 [Base.Shovel] mode:keep flags[Prop1],
+        }
+        outputs
+        {
+            item 1 Survivors.Grave,
+        }
+    }
+
+    craftRecipe AddCrossToGrave
+    {
+        timedAction = Survivors.SSRAddGraveCross,
+        time = 100,
+        Tags = InHandCraft;CanBeDoneFromFloor,
+        category = Survivors,
+        inputs
+        {
+            item 1 [Survivors.Grave],
+            item 2 [Base.Plank] flags[Prop2],
+            item 1 [Base.Nails],
+            item 1 [Base.Hammer] mode:keep flags[Prop1],
+        }
+        outputs
+        {
+            item 1 Survivors.GraveCross,
+        }
+    }
+
+    craftRecipe DigGraveWithCross
+    {
+        timedAction = Survivors.SSRDigGrave,
+        time = 500,
+        Tags = InHandCraft,
+        category = Survivors,
+        inputs
+        {
+            item 1 [Base.CorpseMale;Base.CorpseFemale],
+            item 2 [Base.Plank],
+            item 1 [Base.Nails],
+            item 1 [Base.Hammer] mode:keep,
+            item 1 [Base.Shovel] mode:keep flags[Prop1],
+        }
+        outputs
+        {
+            item 1 Survivors.GraveCross,
+        }
     }
 }
