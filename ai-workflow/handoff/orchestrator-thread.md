@@ -181,3 +181,6 @@ Recent startup translation/recipe error fixes verified by absence of prior
 startup errors after restart, but actual crafting untested. Production source
 branch remains codex/persistence-b42; no merge. Next user-led gate:
 docs/PERSISTENCE_B42.md's real save/reload/unload/death tests.
+
+## SSR-TEST-02 requested (2026-11-15)
+User wants to verify whether a cell-only IsoPlayer construction followed by native load can simplify SSR survivor reconstruction. Do not assume such a Lua-exposed constructor is viable based on the previous assistant's claim. Codex is requested to inspect the exact installed 42.22.2 constructor and lifecycle first; if safe, implement a focused opt-in test via existing SS Tests UI. Log state before/after native load plus any explicitly safe world registration, with human guards and cleanup. No production loader changes until runtime findings reviewed; no automatic merge. Assignment: ai-workflow/assignments/test-cell-only-isoplayer-02.md; inbox: ai-workflow/mail/implementer/inbox/2026-11-15-test-02-cell-only.md. Status unacknowledged.
