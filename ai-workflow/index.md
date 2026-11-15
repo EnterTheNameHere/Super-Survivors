@@ -36,3 +36,10 @@ Do not work on `master` or merge/publish without review and authorization.
 - Delivery: `mail/orchestrator/inbox/2026-11-15-test-01-r1-delivery.md`.
 - Source: `594e65bc6af92927d8ec2c4b20c5c36806bf31a3`, parent `c1dea17a8f052a8e861635a86eec1619e791035e` on `codex/persistence-b42`.
 - Next: orchestrator review and user-led in-game checks; no automatic merge.
+
+
+Runtime follow-up: user opened Tests UI; version gate prevented running.
+Fix delivered at 4164ad7bead8d6dd2d7db3c6e514e7c9acb52a42 (parent
+5f215b056cf00908a6c84a95dfa4dde89348fef2): compare full build API; preserve
+checkbox on selection at user request; show disabled-run reason. 177 tests and
+112 syntax checks pass. Actual native roundtrip still NOT RUN. Report: mail/orchestrator/inbox/2026-11-15-test-01-runtime-fix.md.
