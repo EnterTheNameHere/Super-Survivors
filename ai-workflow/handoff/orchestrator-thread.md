@@ -184,3 +184,7 @@ docs/PERSISTENCE_B42.md's real save/reload/unload/death tests.
 
 ## SSR-TEST-02 requested (2026-11-15)
 User wants to verify whether a cell-only IsoPlayer construction followed by native load can simplify SSR survivor reconstruction. Do not assume such a Lua-exposed constructor is viable based on the previous assistant's claim. Codex is requested to inspect the exact installed 42.22.2 constructor and lifecycle first; if safe, implement a focused opt-in test via existing SS Tests UI. Log state before/after native load plus any explicitly safe world registration, with human guards and cleanup. No production loader changes until runtime findings reviewed; no automatic merge. Assignment: ai-workflow/assignments/test-cell-only-isoplayer-02.md; inbox: ai-workflow/mail/implementer/inbox/2026-11-15-test-02-cell-only.md. Status unacknowledged.
+
+
+## New source-only IsoSurvivor comparison (2026-11-15)
+User requested read-only analysis of IsoSurvivor vs IsoPlayer from installed B42.22.2 Java/Lua before in-game testing. Compare concrete class/engine use, native save/load, character lifecycle, gameplay hooks and SSR migration costs, without altering production implementation or Tests UI. Codex request: ai-workflow/assignments/isosurvivor-vs-isoplayer-analysis.md; inbox ai-workflow/mail/implementer/inbox/2026-11-15-isosurvivor-analysis.md. Pending acknowledgment; separate from active SSR-TEST-02.
