@@ -78,8 +78,8 @@ next bounded assignment. See mail/orchestrator/inbox/2026-11-15-return-to-orches
   remains under review, next gate real SSR survivor/group lifecycle.
 - Source: `codex/persistence-b42`, observed head `090f424`. No production merge.
 
-## Active new request: SSR-TEST-02 — cell-only IsoPlayer construction (2026-11-15)
-User requested experiment before more persistence work. Verify installed B42.22.2 IsoPlayer.new(cell) availability/side effects and, only if safe, add opt-in Tests UI experiment for raw :load() and explicit world registration. Assignment: `assignments/test-cell-only-isoplayer-02.md`; inbox: `mail/implementer/inbox/2026-11-15-test-02-cell-only.md`. NOT ACKNOWLEDGED; no implementation or live test yet. Preserve existing SSR-PERSIST-01 code and no automatic merge.
+## Delivered for review: SSR-TEST-02 — cell-only IsoPlayer construction (2026-11-15)
+User requested experiment before more persistence work. Verify installed B42.22.2 IsoPlayer.new(cell) availability/side effects and, only if safe, add opt-in Tests UI experiment for raw :load() and explicit world registration. Assignment: `assignments/test-cell-only-isoplayer-02.md`; inbox: `mail/implementer/archive/2026-11-15-test-02-cell-only.md`. DELIVERED FOR REVIEW; focused probe implemented, user live test pending. SSR-PERSIST-01 code preserved; no automatic merge.
 
 
 ## Completed source analysis: SSR-ANALYSIS-01
@@ -108,3 +108,16 @@ SSR-TEST-02 now ACKNOWLEDGED: user explicitly resumed Test 2 after analysis.
 Existing exclusive local Codex checkout, constructor/factory research and focused
 probe only. Prior analysis-only restriction no longer applies. Ack:
 mail/orchestrator/inbox/2026-11-15-test-02-ack.md. Native test NOT RUN yet.
+
+
+## SSR-TEST-02 delivered (15 November 2026)
+Focused cell-only/native-load/explicit-registration probe at source
+85be6306a77bc32af6fd6586bfdd5dc5f4a875c8 (parent ACK
+8e50dbf95a59d64864353d8795c89d87e937fa6d), codex/persistence-b42.
+Factory supplement answered; no arbitrary-NPC-returning managed factory found
+in inspected scope. No human loading/control helper used. New fourth selector:
+Native IsoPlayer - cell-only construction and placement. 185 tests, 112 syntax;
+LuaLS 88 legacy diagnostics, none test modules. USER IN-GAME NOT RUN.
+No production loader/scan/unload/group rewrite, Java change or automatic merge.
+Next actor: user runs the new entry after restart; orchestrator reviews observations.
+Delivery: mail/orchestrator/inbox/2026-11-15-test-02-delivery.md.

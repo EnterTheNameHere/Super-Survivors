@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: SSR-TEST-01 native probe executed successfully in-game; full SSR persistence review/validation pending
+Execution: SSR-TEST-02 delivered for user runtime test; SSR-TEST-01 native probe passed, full SSR persistence review/validation pending
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -109,7 +109,7 @@ Codex reports 178 automated tests/112 Lua syntax checks; orchestrator has
 not independently rerun those checks.
 
 ## SSR-TEST-02 new request (2026-11-15)
-User explicitly chose to test possible IsoPlayer.new(cell) / native load construction before broader SSR lifecycle. Assignment on B42: ai-workflow/assignments/test-cell-only-isoplayer-02.md; Codex inbox: ai-workflow/mail/implementer/inbox/2026-11-15-test-02-cell-only.md. First verify installed B42 constructor overload and safe registration/cleanup, then (if safe) implement a user-run Tests UI probe, observing position/currentSquare/moving-square/world lists before load, after load and after explicit placement. The alternative constructor is an UNVERIFIED hypothesis; not a design decision. Status: REQUESTED, NOT ACKNOWLEDGED. No production persistence rewrite or acceptance. Existing exclusive codex/persistence-b42 worktree owner only.
+User explicitly chose to test possible IsoPlayer.new(cell) / native load construction before broader SSR lifecycle. Assignment on B42: ai-workflow/assignments/test-cell-only-isoplayer-02.md; Codex inbox: ai-workflow/mail/implementer/archive/2026-11-15-test-02-cell-only.md. First verify installed B42 constructor overload and safe registration/cleanup, then (if safe) implement a user-run Tests UI probe, observing position/currentSquare/moving-square/world lists before load, after load and after explicit placement. The alternative constructor is an UNVERIFIED hypothesis; not a design decision. Status: REQUESTED, NOT ACKNOWLEDGED. No production persistence rewrite or acceptance. Existing exclusive codex/persistence-b42 worktree owner only.
 
 
 ## SSR-ANALYSIS-01 source-only investigation requested (2026-11-15)
@@ -137,3 +137,16 @@ SSR-TEST-02 now ACKNOWLEDGED: user explicitly resumed Test 2 after analysis.
 Existing exclusive local Codex checkout, constructor/factory research and focused
 probe only. Prior analysis-only restriction no longer applies. Ack:
 mail/orchestrator/inbox/2026-11-15-test-02-ack.md. Native test NOT RUN yet.
+
+
+## SSR-TEST-02 delivered (15 November 2026)
+Focused cell-only/native-load/explicit-registration probe at source
+85be6306a77bc32af6fd6586bfdd5dc5f4a875c8 (parent ACK
+8e50dbf95a59d64864353d8795c89d87e937fa6d), codex/persistence-b42.
+Factory supplement answered; no arbitrary-NPC-returning managed factory found
+in inspected scope. No human loading/control helper used. New fourth selector:
+Native IsoPlayer - cell-only construction and placement. 185 tests, 112 syntax;
+LuaLS 88 legacy diagnostics, none test modules. USER IN-GAME NOT RUN.
+No production loader/scan/unload/group rewrite, Java change or automatic merge.
+Next actor: user runs the new entry after restart; orchestrator reviews observations.
+Delivery: mail/orchestrator/inbox/2026-11-15-test-02-delivery.md.

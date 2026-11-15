@@ -183,7 +183,7 @@ branch remains codex/persistence-b42; no merge. Next user-led gate:
 docs/PERSISTENCE_B42.md's real save/reload/unload/death tests.
 
 ## SSR-TEST-02 requested (2026-11-15)
-User wants to verify whether a cell-only IsoPlayer construction followed by native load can simplify SSR survivor reconstruction. Do not assume such a Lua-exposed constructor is viable based on the previous assistant's claim. Codex is requested to inspect the exact installed 42.22.2 constructor and lifecycle first; if safe, implement a focused opt-in test via existing SS Tests UI. Log state before/after native load plus any explicitly safe world registration, with human guards and cleanup. No production loader changes until runtime findings reviewed; no automatic merge. Assignment: ai-workflow/assignments/test-cell-only-isoplayer-02.md; inbox: ai-workflow/mail/implementer/inbox/2026-11-15-test-02-cell-only.md. Status unacknowledged.
+User wants to verify whether a cell-only IsoPlayer construction followed by native load can simplify SSR survivor reconstruction. Do not assume such a Lua-exposed constructor is viable based on the previous assistant's claim. Codex is requested to inspect the exact installed 42.22.2 constructor and lifecycle first; if safe, implement a focused opt-in test via existing SS Tests UI. Log state before/after native load plus any explicitly safe world registration, with human guards and cleanup. No production loader changes until runtime findings reviewed; no automatic merge. Assignment: ai-workflow/assignments/test-cell-only-isoplayer-02.md; inbox: ai-workflow/mail/implementer/archive/2026-11-15-test-02-cell-only.md. Status unacknowledged.
 
 
 ## New source-only IsoSurvivor comparison (2026-11-15)
@@ -200,3 +200,16 @@ report docs/ISOSURVIVOR_VS_ISOPLAYER_B42.md. No runtime code/test/experiment or
 Java changes. SSR-TEST-02 and factory supplement remain pending, explicitly not
 executed under user's analysis-only instruction. Next actor: orchestrator.
 Delivery: mail/orchestrator/inbox/2026-11-15-analysis-01-delivery.md.
+
+
+## SSR-TEST-02 delivered (15 November 2026)
+Focused cell-only/native-load/explicit-registration probe at source
+85be6306a77bc32af6fd6586bfdd5dc5f4a875c8 (parent ACK
+8e50dbf95a59d64864353d8795c89d87e937fa6d), codex/persistence-b42.
+Factory supplement answered; no arbitrary-NPC-returning managed factory found
+in inspected scope. No human loading/control helper used. New fourth selector:
+Native IsoPlayer - cell-only construction and placement. 185 tests, 112 syntax;
+LuaLS 88 legacy diagnostics, none test modules. USER IN-GAME NOT RUN.
+No production loader/scan/unload/group rewrite, Java change or automatic merge.
+Next actor: user runs the new entry after restart; orchestrator reviews observations.
+Delivery: mail/orchestrator/inbox/2026-11-15-test-02-delivery.md.
