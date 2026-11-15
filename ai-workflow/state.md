@@ -103,7 +103,7 @@ owned-actor cleanup passed. These observations do not show a defect in the
 normal SSR loader, which constructs at saved location. Scoped test objective
 met; full SSR-PERSIST-01 acceptance remains pending live survivor/group
 save/reload/streaming/death checks. Review to implementer inbox:
-ai-workflow/mail/implementer/inbox/2026-11-15-test-01-orchestrator-review.md.
+ai-workflow/mail/implementer/archive/2026-11-15-test-01-orchestrator-review.md.
 No source merge. Latest observed implementation branch head 090f424.
 Codex reports 178 automated tests/112 Lua syntax checks; orchestrator has
 not independently rerun those checks.
@@ -113,9 +113,21 @@ User explicitly chose to test possible IsoPlayer.new(cell) / native load constru
 
 
 ## SSR-ANALYSIS-01 source-only investigation requested (2026-11-15)
-User explicitly narrowed IsoSurvivor vs IsoPlayer comparison to installed B42 Java/Lua FIRST, before in-game testing. Compare inheritance/constructors/factories, real engine use, native persistence, world lifecycle and gameplay APIs, plus potential SSR migration implications; report actual evidence and remaining uncertainties. Do not implement code, tests, or class migration. Assignment: ai-workflow/assignments/isosurvivor-vs-isoplayer-analysis.md; inbox: ai-workflow/mail/implementer/inbox/2026-11-15-isosurvivor-analysis.md. REQUESTED, NOT ACKNOWLEDGED; existing Codex worktree only, coordinate with SSR-TEST-02.
+User explicitly narrowed IsoSurvivor vs IsoPlayer comparison to installed B42 Java/Lua FIRST, before in-game testing. Compare inheritance/constructors/factories, real engine use, native persistence, world lifecycle and gameplay APIs, plus potential SSR migration implications; report actual evidence and remaining uncertainties. Do not implement code, tests, or class migration. Assignment: ai-workflow/assignments/isosurvivor-vs-isoplayer-analysis.md; inbox: ai-workflow/mail/implementer/archive/2026-11-15-isosurvivor-analysis.md. REQUESTED, NOT ACKNOWLEDGED; existing Codex worktree only, coordinate with SSR-TEST-02.
 
 
 SSR-ANALYSIS-01 acknowledged by existing exclusive local Codex, source-only
 research. Latest user instruction restricts this turn to analysis; SSR-TEST-02
 and supplement remain pending. Ack: mail/orchestrator/inbox/2026-11-15-analysis-01-ack.md.
+
+
+## SSR-ANALYSIS-01 final disposition (15 November 2026)
+Analysis complete; user requested the proposed IsoSurvivor migration be REJECTED.
+Keep IsoPlayer. Installed-source blockers: inherited getVisual throws, primary
+BodyDamage/Moodles/XP absent, shared attack state requires IsoPlayer, filename
+save/control/update contracts differ. Documentation a4c523b35cc5e1cfac5958a75d41bd0548c3802a
+(parent 6234ff63df16dcd67dbed56f7836aad4ab254420) on codex/persistence-b42;
+report docs/ISOSURVIVOR_VS_ISOPLAYER_B42.md. No runtime code/test/experiment or
+Java changes. SSR-TEST-02 and factory supplement remain pending, explicitly not
+executed under user's analysis-only instruction. Next actor: orchestrator.
+Delivery: mail/orchestrator/inbox/2026-11-15-analysis-01-delivery.md.
