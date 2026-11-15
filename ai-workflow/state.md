@@ -62,3 +62,9 @@ Fix delivered at 4164ad7bead8d6dd2d7db3c6e514e7c9acb52a42 (parent
 5f215b056cf00908a6c84a95dfa4dde89348fef2): compare full build API; preserve
 checkbox on selection at user request; show disabled-run reason. 177 tests and
 112 syntax checks pass. Actual native roundtrip still NOT RUN. Report: mail/orchestrator/inbox/2026-11-15-test-01-runtime-fix.md.
+
+
+Offset gate follow-up: a7222ebbf247313ea1738e008b2cec4e0d46184b normalizes
+boxed Java static save offsets (user reported rejection of 0/0). 178 tests and
+112 syntax checks pass; native roundtrip still pending. Report:
+mail/orchestrator/inbox/2026-11-15-test-01-offset-fix.md.
