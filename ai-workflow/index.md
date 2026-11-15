@@ -66,3 +66,14 @@ User returned control to orchestration after runtime checks. Latest restart log
 errors; crafting itself untested. Native probe passed, full SSR persistence
 review/lifecycle acceptance pending. Next actor: orchestrator; implementer awaits
 next bounded assignment. See mail/orchestrator/inbox/2026-11-15-return-to-orchestration.md.
+
+
+## SSR-TEST-01 in-game outcome (2026-11-15)
+- Tests UI usable; native position probe exercised twice in-session and once
+  after actual restart, with captured logs.
+- Native load restores X/Y and identity, not square registration after a
+  deliberately different constructor position. Z not independently varied.
+- Review: `mail/implementer/inbox/2026-11-15-test-01-orchestrator-review.md`.
+- Status: scoped diagnostic delivered and validated in-game; full SSR-PERSIST-01
+  remains under review, next gate real SSR survivor/group lifecycle.
+- Source: `codex/persistence-b42`, observed head `090f424`. No production merge.
