@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: IMPLEMENTATION DELIVERED FOR REVIEW; automated checks pass; in-game validation pending
+Execution: IMPLEMENTATION REVIEWED — bounded R1 CORRECTION REQUESTED; automated checks passed at dc4dde2; in-game validation pending
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -34,6 +34,6 @@ Legacy B42 static findings:
 
 Current objective: new-world native B42 persistence; dynamic stable survivor/group registry; no legacy loaders or compatibility; world-owned state; loaded/unloaded/dead handling; report engine-backed verification.
 
-Next actor: orchestrator reviews exact delivery/source commit; user validates in disposable new B42 world. Corrections require new addressed mail. No acceptance or next assignment inferred.
+Review: ai-workflow/mail/implementer/inbox/2026-11-15-persist-01-r1-review.md (B42). R1 needed: avoid scanning every saved survivor square on every OnTick; validate unload/pending add/remove lifecycle against installed B42. Branches diverged at 792a129d: B42 coordination commit and Codex source branch; reconcile without force updates.\n\nNext actor: local Codex implements bounded R1, reports ref + evidence. Then orchestrator review and user-led clean disposable-world engine tests. No acceptance or next assignment inferred.
 
 Not assigned: debug hub / individual inspector; future AI manager; in-game scenario runner.
