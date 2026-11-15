@@ -103,3 +103,11 @@ mail before the implementer acts on its optimization instruction. Source branch
 codex/persistence-b42 and canonical B42 have diverged; don't force-update
 either. Persistence acceptance still requires live disposable-world verification.
 SS Debug hub/inspector and AI work remain unassigned.
+
+
+## SSR-TEST-01 decision (2026-11-15)
+User approved introducing a reusable in-game Tests UI immediately, accessible via a development/testing-gated right-click context-menu entry (without requiring vanilla -debug). UI should explicitly warn that tests can irreversibly change the world and require affirmative acknowledgement before each destructive run. A small test registry decouples test definitions from UI; tests can be added/replaced/removed. Result reporting includes concrete observations, errors, inconclusive/setup error, and optional multi-tick execution. One world-mutating test at a time initially. No full SS Debug hub or generalized DSL/runner.
+
+First test: the native IsoPlayer save/load and position/world-registration diagnostic already discussed in the SSR-PERSIST-01 R1 investigation. Codex to independently inspect installed B42, implement a safe isolated test NPC/snapshot and log original vs restored X/Y/Z without forcing coordinates, then provide instructions for user to execute in a fresh disposable world. Distinguish same-session probe from restart roundtrip; do not modify human player data. No actual runtime evidence exists yet.
+
+Canonical assignment: ai-workflow/assignments/tests-ui-01.md; addressed mail: ai-workflow/mail/implementer/inbox/2026-11-15-test-01.md on B42. Status REQUESTED/NOT ACKNOWLEDGED. Coordinate with existing exclusive local Codex branch codex/persistence-b42; no second implementer, no automatic merge to B42. Previous R1 mandatory tick optimization remains superseded by engine investigation; no speculative rewrite requested.
