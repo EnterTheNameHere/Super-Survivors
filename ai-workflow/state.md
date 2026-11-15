@@ -55,3 +55,10 @@ Evidence: 174 tests, 112 Lua syntax checks; LuaLS 88 legacy diagnostics, none in
 Findings: native XYZ restoration differs from square registration; scan/unload/loader unchanged for R1.
 Instructions/findings: docs/TESTS_UI.md and docs/NATIVE_POSITION_R1.md on implementation ref.
 Next: review source and user-run same-session plus explicit restart probe. No automatic implementation merge.
+
+
+Runtime follow-up: user opened Tests UI; version gate prevented running.
+Fix delivered at 4164ad7bead8d6dd2d7db3c6e514e7c9acb52a42 (parent
+5f215b056cf00908a6c84a95dfa4dde89348fef2): compare full build API; preserve
+checkbox on selection at user request; show disabled-run reason. 177 tests and
+112 syntax checks pass. Actual native roundtrip still NOT RUN. Report: mail/orchestrator/inbox/2026-11-15-test-01-runtime-fix.md.

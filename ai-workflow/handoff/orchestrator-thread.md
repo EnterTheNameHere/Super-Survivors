@@ -136,3 +136,10 @@ in new modules. Mocks do not establish native rendering or engine correctness.
 
 Next actor: orchestrator reviews exact delivery and user runs a NEW disposable
 world probe after game restart. Full debug hub/inspector and AI remain unassigned.
+
+
+Runtime follow-up: user opened Tests UI; version gate prevented running.
+Fix delivered at 4164ad7bead8d6dd2d7db3c6e514e7c9acb52a42 (parent
+5f215b056cf00908a6c84a95dfa4dde89348fef2): compare full build API; preserve
+checkbox on selection at user request; show disabled-run reason. 177 tests and
+112 syntax checks pass. Actual native roundtrip still NOT RUN. Report: mail/orchestrator/inbox/2026-11-15-test-01-runtime-fix.md.
