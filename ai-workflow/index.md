@@ -121,3 +121,6 @@ LuaLS 88 legacy diagnostics, none test modules. USER IN-GAME NOT RUN.
 No production loader/scan/unload/group rewrite, Java change or automatic merge.
 Next actor: user runs the new entry after restart; orchestrator reviews observations.
 Delivery: mail/orchestrator/inbox/2026-11-15-test-02-delivery.md.
+
+## Saved future design direction (2026-11-16)
+- `docs/SURVIVOR_WORLD_KNOWLEDGE_DIRECTION.md` — B42 building/floor/Z correctness, unified observation, individually acquired survivor knowledge, stale resource memory, communication, possible offscreen simulation and multiplayer considerations. Direction only; no implementation assignment. Independent SSR document.
