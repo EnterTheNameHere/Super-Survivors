@@ -213,3 +213,6 @@ LuaLS 88 legacy diagnostics, none test modules. USER IN-GAME NOT RUN.
 No production loader/scan/unload/group rewrite, Java change or automatic merge.
 Next actor: user runs the new entry after restart; orchestrator reviews observations.
 Delivery: mail/orchestrator/inbox/2026-11-15-test-02-delivery.md.
+
+## SSR world/knowledge/simulation direction recorded (2026-11-16)
+User requested durable preservation of recent direction WITHOUT associating it with any other project. Read `docs/SURVIVOR_WORLD_KNOWLEDGE_DIRECTION.md` on B42. Main ideas: source-backed B42 vertical/Z and building-area correctness (concrete issue), shared technical observation but individual survivor knowledge/provenance, containers requiring inspection, remembered loot possibly becoming stale, radio/social transmission, persistent survivor identity and possible lower-frequency offscreen simulation, and hypothetical eventual multiplayer server authority/reconciliation. These are principles/possibilities, NOT a new implementation assignment or authorization to refactor; profile caching rather than assume benefit.
