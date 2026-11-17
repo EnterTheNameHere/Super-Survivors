@@ -213,3 +213,16 @@ LuaLS 88 legacy diagnostics, none test modules. USER IN-GAME NOT RUN.
 No production loader/scan/unload/group rewrite, Java change or automatic merge.
 Next actor: user runs the new entry after restart; orchestrator reviews observations.
 Delivery: mail/orchestrator/inbox/2026-11-15-test-02-delivery.md.
+
+## SSR world/knowledge/simulation direction recorded (2026-11-16)
+User requested durable preservation of recent direction WITHOUT associating it with any other project. Read `docs/SURVIVOR_WORLD_KNOWLEDGE_DIRECTION.md` on B42. Main ideas: source-backed B42 vertical/Z and building-area correctness (concrete issue), shared technical observation but individual survivor knowledge/provenance, containers requiring inspection, remembered loot possibly becoming stale, radio/social transmission, persistent survivor identity and possible lower-frequency offscreen simulation, and hypothetical eventual multiplayer server authority/reconciliation. These are principles/possibilities, NOT a new implementation assignment or authorization to refactor; profile caching rather than assume benefit.
+
+
+## SSR-TEST-02 actual result (17 November 2026)
+Cell-only/native-load/explicit-registration probe PASSED in actual B42.22.2.
+Constructor unplaced at 0.5/0.5/0; raw load restores saved X/Y/marker but remains
+unregistered; explicit current/moving-square/cell sequence establishes membership.
+Human and all four local slots unchanged; both actors cleaned up in same frame.
+No normal AI/update or full lifecycle validation. No production adoption/merge.
+Next actor: orchestrator reviews results; no implementation continues automatically.
+Report: mail/orchestrator/inbox/2026-11-17-test-02-runtime-results.md.

@@ -274,3 +274,41 @@ JAR tests verify constructor/primitives' public signatures/delegation. Tests:
 185 passed, 112 Lua syntax checks; LuaLS 88 legacy diagnostics, none test modules.
 **USER IN-GAME NOT RUN for SSR-TEST-02.** User steps and exact new selector title
 are in [TESTS_UI.md](TESTS_UI.md). No restart roundtrip is added for this test.
+
+
+## SSR-TEST-02 actual result (17 November 2026)
+
+User ran the new cell-only probe. Console records PASSED on B42.22.2 with zero
+save offsets. Filtered evidence:
+[CELL_ONLY_ISOPLAYER_2026-11-17.log](evidence/CELL_ONLY_ISOPLAYER_2026-11-17.log).
+Runtime source 85be6306a77bc32af6fd6586bfdd5dc5f4a875c8, no probe-file changes
+in working copy at inspection. Earlier NOT RUN statements describe delivery time.
+
+| Phase | XYZ | current square | Square contains actor | Cell object/add/remove |
+| --- | --- | --- | --- | --- |
+| Conventional source | 9884.5,12827.5,0 | 9884,12827,0 | true | true/false/false |
+| Cell-only constructor | 0.5,0.5,0 | nil | false | false/false/false |
+| Immediately after raw load | 9884.5,12827.5,0 | nil | false | false/false/false |
+| After explicit registration | 9884.5,12827.5,0 | 9884,12827,0 | true | true/false/false |
+
+The snapshot marker restored. NPC was true in all logged phases. In this run,
+cell-only construction did not register in the world, and raw native load did
+not place/register the actor. Setting currentSquare to the loaded saved tile,
+calling setMovingSquareNow and adding the actor through cell.addMovingObject
+established immediate square/cell invariants without changing loaded coordinates.
+This verifies the combined explicit sequence in this run; it does not test
+omitting each operation or determine a minimal alternative sequence.
+
+Human identity/XYZ/singleton/save filename and all four local-player slots
+remained unchanged. Both owned actors were removed from object/add/remove lists
+and their currentSquare was nil on cleanup. Files intentionally remain. All
+mutation and cleanup occurred at frame 1774, before a normal test-actor update.
+There was no associated probe exception/stack trace in the captured log.
+
+This establishes an available reconstruction/explicit-placement route in the
+controlled safe callback. It does not establish a simpler/better production
+loader, a defect in the saved-tile constructor path, long-term AI/animation,
+streaming/death behavior or full SSR persistence acceptance. Z stayed zero;
+only X/Y were independently changed by load. No restart roundtrip was requested
+or run for this experiment. No production changes are made from this result.
+Next actor: orchestrator reviews the measured sequence and decides further work.

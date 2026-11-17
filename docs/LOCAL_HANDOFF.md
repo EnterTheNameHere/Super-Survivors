@@ -2,6 +2,16 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## SSR-TEST-02 passed in-game (17 November 2026)
+
+Actual console shows cell-only actor at 0.5/0.5/0 without square/world membership;
+raw load restores 9884.5/12827.5/0 and marker but remains unregistered. Explicit
+currentSquare, moving-square and cell registration establishes matching
+membership without changing position. Human/all four slots unchanged; both actors
+cleaned up at same frame. Evidence: evidence/CELL_ONLY_ISOPLAYER_2026-11-17.log;
+full findings in NATIVE_POSITION_R1.md. Scoped probe passes; no long-term AI,
+streaming or full SSR lifecycle acceptance. No code changes; return to orchestration.
+
 ## SSR-TEST-02 prepared (15 November 2026)
 
 User resumed Test 2. Cell-only constructor and registration primitives verified

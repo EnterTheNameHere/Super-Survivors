@@ -1,0 +1,33 @@
+SSR-TEST-02 actual runtime evidence, 17 November 2026.
+Source: C:/Users/Enter/Zomboid/console.txt; unrelated entries excluded.
+Runtime probe source: 85be6306a77bc32af6fd6586bfdd5dc5f4a875c8.
+Console SHA256 at capture: 98af5729ff3cc876beafb2faacf59d533d460f48f5abf1e56dd173bcdb50f9cb
+
+LOG  : Lua          f:1772> [SS Tests][native-cell-only] RUNNING: Native IsoPlayer - cell-only construction and placement (user consent received)
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Installed engine: 42.22.2; boot/session=1794898444584_139130
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Native world save offsets X/Y=0/0
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Conventional constructor / saved source: actor=IsoPlayer{  Name:null,  ID:158 }; XYZ=9884.500,12827.500,0.000
+LOG  : Lua          f:1774> [SS Tests][native-cell-only]   currentSquare=zombie.iso.IsoGridSquare@70987525; square XYZ=9884.000,12827.000,0.000; matches position=true; contains actor=true
+LOG  : Lua          f:1774> [SS Tests][native-cell-only]   world/add/remove=true/false/false; safeToAdd=true; NPC=true
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Allocated isolated cell-only probe snapshot: SSR_Test_NativePosition_1794898444594_898323_1.bin
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Cell-only constructor BEFORE load: actor=IsoPlayer{  Name:null,  ID:159 }; XYZ=0.500,0.500,0.000
+LOG  : Lua          f:1774> [SS Tests][native-cell-only]   currentSquare=nil; square XYZ=nil; matches position=false; contains actor=false
+LOG  : Lua          f:1774> [SS Tests][native-cell-only]   world/add/remove=false/false/false; safeToAdd=true; NPC=true
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Cell-only immediately after RAW load / NO placement: actor=IsoPlayer{  Name:null,  ID:159 }; XYZ=9884.500,12827.500,0.000
+LOG  : Lua          f:1774> [SS Tests][native-cell-only]   currentSquare=nil; square XYZ=nil; matches position=false; contains actor=false
+LOG  : Lua          f:1774> [SS Tests][native-cell-only]   world/add/remove=false/false/false; safeToAdd=true; NPC=true
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] RAW load: position restored=true; marker restored=true
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Explicit placement: setCurrentSquare(saved tile), setMovingSquareNow(), addMovingObject if absent.
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Cell-only AFTER explicit placement: actor=IsoPlayer{  Name:null,  ID:159 }; XYZ=9884.500,12827.500,0.000
+LOG  : Lua          f:1774> [SS Tests][native-cell-only]   currentSquare=zombie.iso.IsoGridSquare@70987525; square XYZ=9884.000,12827.000,0.000; matches position=true; contains actor=true
+LOG  : Lua          f:1774> [SS Tests][native-cell-only]   world/add/remove=true/false/false; safeToAdd=true; NPC=true
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Phase | XYZ | square XYZ | square contains | world/add/remove
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Conventional | 9884.500,12827.500,0.000 | 9884.000,12827.000,0.000 | true | true/false/false
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Cell-only before | 0.500,0.500,0.000 | nil | false | false/false/false
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] RAW load | 9884.500,12827.500,0.000 | nil | false | false/false/false
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Explicit registration | 9884.500,12827.500,0.000 | 9884.000,12827.000,0.000 | true | true/false/false
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Human identity/position/singleton/save filename and all four local slots unchanged=true
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Cleanup actor=IsoPlayer{  Name:null,  ID:159 }; world/add/remove=false/false/false; currentSquare=nil
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Cleanup actor=IsoPlayer{  Name:null,  ID:158 }; world/add/remove=false/false/false; currentSquare=nil
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] Cleanup: isolated actors detached; test snapshot files retained.
+LOG  : Lua          f:1774> [SS Tests][native-cell-only] PASSED: Cell-only native load and explicit world registration succeeded; actor removed before a normal update. No long-term AI/streaming or SSR persistence certification.
