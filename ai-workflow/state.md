@@ -425,3 +425,11 @@ bd088a51425711376a3e3ebc98b42fdd6d12da79. Supersedes initial report ref for revi
 User remote documentation removal of external NPC-project references preserved;
 new report likewise uses native B41/B42 findings only. No gameplay/source merge,
 production edits or runtime experiment. Reply mail/orchestrator/inbox/2026-11-17-combat-04-final-ref.md.
+
+Combat05 ACKNOWLEDGED / IMPLEMENTING OBSERVATION ONLY, 17 November 2026.
+Exclusive existing codex/persistence-b42 from259a2f5cdf4a29d116a26509b997db8ca0b0fdf8.
+Information Diagnostics opt-in earliest-natural-request observer, false-started
+nonlocal actor only; request/StopWalk exact-once, native update/events and owned
+caps/teardown. No forced combat/flags/damage/fixture/AI/inventory/Java/slot changes.
+Ack mail/orchestrator/inbox/2026-11-17-combat-05-ack.md. User changes/saves preserved.
+Native execution pending. Test04 R1 pending, Test03 early observer deferred.
