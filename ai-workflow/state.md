@@ -186,3 +186,12 @@ none new modules. USER IN-GAME NOT RUN. No production persistence rewrite/merge.
 Instructions: docs/TESTS_UI.md; manual broader checks: docs/PERSISTENCE_LIVE_TESTS.md.
 Next actor: user stage/save/exit/full restart/resume, orchestrator reviews evidence.
 Delivery: mail/orchestrator/inbox/2026-11-17-test-03-delivery.md.
+
+
+Test 03 runtime prerequisite fix (17 November 2026): user error exposed missing
+Kahlua global next in persistence index at pre-fix line 256. Minimal pairs-based
+firstKey substitution at 786c8ea0c0d8aeb4c2dbf35b99bcb4f91839c415; parent
+ dd42788ebbc494bac6db578580f2da87b85a744c. No algorithm/loader/unload redesign.
+201 tests/112 syntax pass, including next=nil regressions and isolated export.
+Restart/native Test 03 retry pending. Report:
+mail/orchestrator/inbox/2026-11-17-test-03-next-compatibility-fix.md.
