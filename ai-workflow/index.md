@@ -239,3 +239,8 @@ unavailable, baseline capture and AFTER inconclusive, no errors/no symptom repro
 Reports: mail/orchestrator/inbox/2026-11-17-test-04-r1-delivery.md and
 mail/orchestrator/inbox/2026-11-17-test-04-runtime-results.md. Test03 R1 deferred.
 Combat01 new mail preserved at finish barrier; source diagnosis next separately.
+
+
+SSR-COMBAT-01 ACKNOWLEDGED after Test04 R1 delivery; exclusive existing local
+Codex codex/persistence-b42, read-only source/native diagnosis and diagnostic
+proposal, no gameplay fix. Ack: mail/orchestrator/inbox/2026-11-17-combat-01-ack.md.
