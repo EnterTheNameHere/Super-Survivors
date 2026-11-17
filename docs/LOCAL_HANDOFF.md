@@ -49,7 +49,7 @@ unload/replacement/debug-off/world/menu/reload. Verified swing/HitPoint events
 filtered exact attacker; no damage proof. Preexisting started flags labeled,
 not fixed. SS Tests optional7th definition retains consent. Native trace/UI NOT
 RUN. Restart, Information -> Diagnostics -> Start combat trace. Detailed docs
-COMBAT_HANDOFF_TRACE_B42.md, including B41/PZNS/current API matrix and native
+COMBAT_HANDOFF_TRACE_B42.md, including B41/legacy B41 NPC framework/current API matrix and native
 post-update ordering. Legacy PerkCount builder writes remain independent; no
 production combat/Java/flag/slot changes. Test04 R1 preserved. Prior notes below
 are earlier deliveries, not current lack-of-implementation claims.
