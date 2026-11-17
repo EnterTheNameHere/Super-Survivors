@@ -166,3 +166,8 @@ User completed the focused B42.22.2 cell-only IsoPlayer probe. Runtime log on co
 
 ## SSR-TEST-03 — real SSR persistence lifecycle tests (2026-11-17)
 User authorized repurposing/rewriting existing native diagnostic tests in the development-gated SS Tests UI; their historical findings/logs remain retained. New Codex assignment: `ai-workflow/assignments/persistence-live-tests-03.md`, request `ai-workflow/mail/implementer/inbox/2026-11-17-persistence-live-tests-03.md`. First goal: one real SSR-managed survivor/group, baseline captured at actual game OnSave, normal save/exit and user-confirmed restart, explicit consent to resume, compare saved native state, SSR registry and reconstructed actor, including square/list membership. Gradually extend/manual-check multiple survivors/groups, unload/return, death, repeated snapshots; do not overbuild framework. No auto execution, no production persistence rewrite, no source merge. Status REQUESTED/NOT ACKNOWLEDGED.
+
+
+SSR-TEST-03 ACKNOWLEDGED by existing exclusive local Codex; implementing minimal
+real SSR restart test, preserving production persistence and historical probes.
+Ack: mail/orchestrator/inbox/2026-11-17-test-03-ack.md. No engine result yet.
