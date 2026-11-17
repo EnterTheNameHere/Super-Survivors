@@ -227,3 +227,15 @@ Ack: mail/orchestrator/inbox/2026-11-17-test-04-r1-ack.md. Test-03 R1 deferred.
 
 ## SSR-COMBAT-01 — survivors not attempting to fight (2026-11-17)
 User reports in ordinary B42 gameplay that survivors **do not try to fight**. Requested a focused source/native audit distinguishing lack of perception, blocked decisions/AttackTask, missing weapon/range/readiness, native request rejected, or no combat engine outcome. Initial code areas: `SuperSurvivor.lua` DoVision (getLuaObjectList), priority/task selection and `requestCombatAttack` (pressedAttack), `7_Tasks/AttackTask.lua`; no proven root cause yet. Assignment: `ai-workflow/assignments/combat-b42-investigation-01.md`, implementer inbox: `ai-workflow/mail/implementer/inbox/2026-11-17-combat-01-diagnose-no-fighting.md`. First read-only evidence and a bounded diagnostic proposal; no speculative production combat rewrite. Do not overlap same source branch with pending Test-04 R1 baseline persistence; ack ordering/ownership. STATUS REQUESTED/NOT ACKNOWLEDGED.
+
+
+SSR-TEST-04 R1 DELIVERED for review at 3e99b8f2637616238ac0d02e73d579dd3ccfc1f6,
+parent165e289410b3415b4fcc2ad04d7c5ef7587d90f0 on exclusive codex/persistence-b42.
+Explicit scalar diagnostic GMD baseline for next normal save, no forced save,
+AFTER readOnly; cross-session identity UNVERIFIED (hints only), no persisted refs.
+230 tests/113syntax pass isolated, LuaLS88 legacy/no new module issues. R1 native
+save/restart NOT RUN. Original three Test04 log runs verified 83fields/25expected
+unavailable, baseline capture and AFTER inconclusive, no errors/no symptom repro.
+Reports: mail/orchestrator/inbox/2026-11-17-test-04-r1-delivery.md and
+mail/orchestrator/inbox/2026-11-17-test-04-runtime-results.md. Test03 R1 deferred.
+Combat01 new mail preserved at finish barrier; source diagnosis next separately.
