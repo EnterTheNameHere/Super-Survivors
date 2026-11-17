@@ -87,3 +87,16 @@ evidence preservation checked. Installed JAR SHA256 remains
 3c4a7c5f149d784758c6fb5f8fa85f3a21d572e38bc081400e89035f8120d287.
 Ignored logs: .venv/test03-index-suite.txt, .venv/test03-final-suite.txt,
 .venv/luals-test03-final-result.txt. No native Test 03 PASS is claimed.
+
+
+## Runtime prerequisite correction (17 November 2026)
+
+User error log revealed production tick calling missing global next(entries)
+before a useful restart comparison. Installed Kahlua BaseLib omits global next;
+Lua 5.1 mock runtime supplied it, masking the incompatibility. Both global-next
+uses in persistence now use a local pairs-based firstKey helper, preserving the
+same index/empty-bucket behavior. Iterator/SpiralSearch next methods are unrelated.
+[Captured error](evidence/PERSISTENCE_NEXT_ERROR_2026-11-17.log). This is a separate
+minimal compatibility fix prompted by actual runtime evidence, not a speculative
+persistence rewrite. Added next=nil regressions; 201 tests/112 syntax pass.
+Restart the game and retry stage/save/restart/resume; no native success claimed.

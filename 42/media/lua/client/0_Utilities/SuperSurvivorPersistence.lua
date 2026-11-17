@@ -8,6 +8,10 @@ local function report(text) print("[SSR persistence] " .. text) end
 local function position(actor)
     return {x = actor:getX(), y = actor:getY(), z = actor:getZ()}
 end
+local function firstKey(values)
+    -- PZ's Kahlua exposes pairs(), but not Lua's global next().
+    for key in pairs(values) do return key end
+end
 local function integer(value, minimum)
     return type(value) == "number" and value >= minimum and value < math.huge and value % 1 == 0
 end
@@ -40,7 +44,7 @@ local function unindex(id)
     local key = P.keys[id]
     if key and P.index[key] then
         P.index[key][id] = nil
-        if not next(P.index[key]) then P.index[key] = nil end
+        if not firstKey(P.index[key]) then P.index[key] = nil end
     end
     P.keys[id] = nil
 end
@@ -253,7 +257,7 @@ function P.tick()
     for _, id in ipairs(unload) do P.unload(id) end
     -- Also covers initial squares loaded before the human player's wrapper exists.
     for key, entries in pairs(P.index) do
-        local id = next(entries)
+        local id = firstKey(entries)
         local pos = id and P.getRecord(id).saved.position
         if pos then P.loadSquare(getCell():getGridSquare(math.floor(pos.x), math.floor(pos.y), math.floor(pos.z))) end
     end

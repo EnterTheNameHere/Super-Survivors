@@ -1,0 +1,31 @@
+Runtime error captured 17 November 2026, before compatibility correction.
+Source: C:/Users/Enter/Zomboid/console.txt; SHA256 at capture: 5c41dec5f90a2e7b10a0ee50f62d341ca2d4b8bd502750276f6180e3a391b3d1
+Pre-fix source: e6f08e05b3ec3805a1c8394d8de2f7dab8e261d9; persistence tick line 256 calls global next(entries).
+Only the first repeated error is retained; unrelated log lines omitted.
+
+ERROR: General      f:1> Lua((MOD:Super Survivors Reloaded)).tick> Exception thrown
+	java.lang.RuntimeException: Object tried to call nil in tick at KahluaUtil.fail(KahluaUtil.java:100).
+	Stack trace:
+		se.krka.kahlua.vm.KahluaUtil.fail(KahluaUtil.java:100)
+		Lua((MOD:Super Survivors Reloaded)).tick(SuperSurvivorPersistence.lua:256)
+		se.krka.kahlua.vm.KahluaThread.luaMainloop(KahluaThread.java:763)
+		se.krka.kahlua.vm.KahluaThread.call(KahluaThread.java:162)
+		se.krka.kahlua.vm.KahluaThread.pcall(KahluaThread.java:1740)
+		se.krka.kahlua.vm.KahluaThread.pcallvoid(KahluaThread.java:1572)
+		se.krka.kahlua.integration.LuaCaller.pcallvoid(LuaCaller.java:60)
+		se.krka.kahlua.integration.LuaCaller.protectedCallVoid(LuaCaller.java:131)
+		zombie.Lua.Event.trigger(Event.java:55)
+		zombie.Lua.LuaEventManager.triggerEvent(LuaEventManager.java:279)
+		zombie.gameStates.IngameState.onTick(IngameState.java:1657)
+		zombie.gameStates.IngameState.updateInternal(IngameState.java:1573)
+		zombie.gameStates.IngameState.update(IngameState.java:1370)
+		zombie.gameStates.GameStateMachine.update(GameStateMachine.java:65)
+		zombie.GameWindow.logic(GameWindow.java:391)
+		zombie.GameWindow.frameStep(GameWindow.java:780)
+		zombie.GameWindow.mainThreadStep(GameWindow.java:568)
+		zombie.MainThread.mainLoop(MainThread.java:69)
+		java.base/java.lang.Thread.run(Unknown Source)
+ERROR: General      f:1 at KahluaThread.flushErrorMessage      > dumping Lua stack trace
+-----------------------------------------
+STACK TRACE
+-----------------------------------------

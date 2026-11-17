@@ -60,7 +60,7 @@ class LifecycleChecks(unittest.TestCase):
             local baseActor=actor
             function upgrade(a)
                 a.current=square(math.floor(a:getX()),math.floor(a:getY()),math.floor(a:getZ()))
-                a.hasModData=function() return next(a.payload.md)~=nil end
+                a.hasModData=function() for _ in pairs(a.payload.md) do return true end return false end
                 for i,v in ipairs(a.payload.inventory) do if type(v)=='string' then a.payload.inventory[i]={kind='Base.'..v,md={}} end end
                 a.payload.forename=a.payload.forename or 'Test';a.payload.axeXP=a.payload.axeXP or 0
                 a.getDescriptor=function() return {getForename=function() return a.payload.forename end} end
@@ -258,6 +258,14 @@ class LifecycleChecks(unittest.TestCase):
             other.getModData=function() error('unexpected read allocating ModData') end
             saveGame();assert(current().checkpoint and #eventErrors==0)
             assert(other.loaded and next(other.payload.md)==nil)
+        ''')
+
+    def test_full_lifecycle_runs_without_lua_global_next(self):
+        self.lua.execute('''
+            next=nil
+            stage();saveGame();restart()
+            local result=resume();assert(result.status=='PASSED',result.summary)
+            readerClean()
         ''')
 
     def test_no_save_baseline_or_same_session_resume_cannot_run(self):

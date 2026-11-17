@@ -124,6 +124,21 @@ class PersistenceChecks(unittest.TestCase):
             SSM:init()
         ''')
 
+    def test_saved_index_load_unload_and_dead_unindex_without_global_next(self):
+        self.lua.execute('''
+            local s=SSM:spawnSurvivor(nil,square(4,5,0));events.OnSave()
+            SSPersistence.init(false);SSM:init()
+            local luaNext=next;next=nil -- Match the installed Kahlua environment.
+            SSPersistence.tick();assert(SSM:Get(1))
+            assert(SSPersistence.unload(1))
+            SSPersistence.tick();assert(SSM:Get(1))
+            SSPersistence.markDead(1)
+            assert(SSPersistence.keys[1]==nil)
+            local nonempty=false;for _ in pairs(SSPersistence.index) do nonempty=true end
+            assert(not nonempty)
+            next=luaNext
+        ''')
+
     def test_fresh_dynamic_groups_named_areas_and_stable_sparse_ids(self):
         self.lua.execute('''
             assert(SSGM:getCount()==0)

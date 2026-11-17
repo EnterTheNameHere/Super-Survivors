@@ -2,6 +2,18 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Persistence global-next compatibility fix (17 November 2026)
+
+User reports error after Test 03 deployment. Console repeats tick failure at
+SuperSurvivorPersistence.lua:256, global next(entries). Installed Kahlua BaseLib
+has no global next, unlike Lua 5.1 used by mocked tests. Small follow-up replaces
+both global next calls (index selection and empty-bucket removal) with a local
+pairs-based firstKey helper; no scan/load/unload algorithm rewrite. Native iterator
+and SpiralSearch :next methods remain unchanged. New regression disables next
+for index load/unload/dead unindex and full lifecycle test. 201 tests/112 syntax
+pass; native retry requires restart. Captured first error:
+evidence/PERSISTENCE_NEXT_ERROR_2026-11-17.log. No full Test 03 pass yet.
+
 ## SSR-TEST-03 implemented; runtime pending (17 November 2026)
 
 Read/acknowledged canonical assignment to replace visible native diagnostic
