@@ -256,3 +256,6 @@ checkout codex/persistence-b42. Separate scalar diagnostic GlobalModData baselin
 with normal-save durability and cautious cross-session identity; AFTER stays
 read-only. Prior Test04 logs verified, no symptom reproduction claimed.
 Ack: mail/orchestrator/inbox/2026-11-17-test-04-r1-ack.md. Test-03 R1 deferred.
+
+## SSR-COMBAT-01 — survivors not attempting to fight (2026-11-17)
+User reports in ordinary B42 gameplay that survivors **do not try to fight**. Requested a focused source/native audit distinguishing lack of perception, blocked decisions/AttackTask, missing weapon/range/readiness, native request rejected, or no combat engine outcome. Initial code areas: `SuperSurvivor.lua` DoVision (getLuaObjectList), priority/task selection and `requestCombatAttack` (pressedAttack), `7_Tasks/AttackTask.lua`; no proven root cause yet. Assignment: `ai-workflow/assignments/combat-b42-investigation-01.md`, implementer inbox: `ai-workflow/mail/implementer/inbox/2026-11-17-combat-01-diagnose-no-fighting.md`. First read-only evidence and a bounded diagnostic proposal; no speculative production combat rewrite. Do not overlap same source branch with pending Test-04 R1 baseline persistence; ack ordering/ownership. STATUS REQUESTED/NOT ACKNOWLEDGED.
