@@ -217,3 +217,10 @@ Test-03 R1 NOT STARTED / DEFERRED; inbox request retained pending new direction.
 Direct user AI movement observation recorded; archived Test-03 result unchanged.
 Next actor user known-good baseline/later symptom capture, orchestrator review.
 Delivery: mail/orchestrator/inbox/2026-11-17-test-04-delivery.md.
+
+
+SSR-TEST-04 R1 ACKNOWLEDGED / IMPLEMENTING by exclusive existing local Codex
+checkout codex/persistence-b42. Separate scalar diagnostic GlobalModData baseline
+with normal-save durability and cautious cross-session identity; AFTER stays
+read-only. Prior Test04 logs verified, no symptom reproduction claimed.
+Ack: mail/orchestrator/inbox/2026-11-17-test-04-r1-ack.md. Test-03 R1 deferred.
