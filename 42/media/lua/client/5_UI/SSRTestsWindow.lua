@@ -3,7 +3,7 @@ require "ISUI/ISRichTextPanel"
 require "ISUI/ISComboBox"
 require "ISUI/ISTickBox"
 require "Testing/SSRTests"
-require "Testing/SSRNativePositionTest"
+require "Testing/SSRPersistenceTest"
 
 local T = SSRTests
 SSRTestsWindow = ISCollapsableWindow:derive("SSRTestsWindow")

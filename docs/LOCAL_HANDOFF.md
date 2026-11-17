@@ -2,6 +2,25 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## SSR-TEST-03 implemented; runtime pending (17 November 2026)
+
+Read/acknowledged canonical assignment to replace visible native diagnostic
+choices with one real SSR survivor/group stage/save/restart/resume test. Current
+UI has two entries: SSR persistence - stage one survivor and group; SSR persistence
+- resume (I fully restarted the game). Restart required. See TESTS_UI.md and
+PERSISTENCE_LIVE_TESTS.md for exact steps, baseline semantics, statuses and manual
+follow-ups. Historic native instructions moved to docs/archive; native code kept
+as tests-only fixture, evidence unchanged. Production persistence/loader untouched.
+Observer appends after P.save and samples inside actual OnSave, not earlier at
+staging; it refreshes latest normal save and invalidates absent/new-generation
+failures. Resume independently reads exact native snapshot, real registry/group,
+ordinary reconstructed actor and counts; no forced load/save. Fixtures remain.
+Live AI drift is inconclusive; strict native/metadata mismatches are logged failures.
+Human slots/identity protected; temporary reader owned and detached before update.
+199 automated tests and 112 syntax checks pass in an isolated staged-tree export
+(excluding user edits); LuaLS 88 legacy diagnostics, none in new modules. No
+in-game Test 03 result. No streaming/death/multi-group acceptance claimed.
+
 ## SSR-TEST-02 passed in-game (17 November 2026)
 
 Actual console shows cell-only actor at 0.5/0.5/0 without square/world membership;

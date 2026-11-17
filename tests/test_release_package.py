@@ -16,13 +16,13 @@ class ReleaseChecks(unittest.TestCase):
             root = Path(directory)
             keep = ['42/mod.info', '42/media/lua/client/3_Other/main.lua',
                     '42/media/lua/client/Testing/SSRTests.lua',
-                    '42/media/lua/client/Testing/SSRNativePositionTest.lua',
+                    '42/media/lua/client/Testing/SSRPersistenceTest.lua',
                     '42/media/lua/client/5_UI/SSRTestsWindow.lua',
                     '42/media/maps/Hilltop Survivor Camp/spawnpoints.lua',
                     'common/media/textures/PVPOn.png']
             omit = ['42/media/lua/client/Debug/SuperbSurvivorsTests.lua',
                     '42/media/maps/SSDebug_Medical/spawnpoints.lua',
-                    'common/world/SurvivorGroup0.lua', 'reference/old.lua', 'docs/readme.md']
+                    'common/world/SurvivorGroup0.lua', 'reference/old.lua', 'docs/readme.md', 'tests/fixtures/SSRNativePositionTest.lua']
             for name in keep + omit:
                 path = root / name
                 path.parent.mkdir(parents=True, exist_ok=True)

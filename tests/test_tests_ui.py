@@ -11,6 +11,7 @@ class TestsUiChecks(unittest.TestCase):
     def setUp(self):
         self.lua = LuaRuntime(unpack_returned_tuples=True)
         self.lua.globals().clientRoot = str(CLIENT).replace('\\', '/')
+        self.lua.globals().archivedProbe = str(ROOT / 'tests/fixtures/SSRNativePositionTest.lua').replace('\\', '/')
         self.lua.execute('''
             package.path=clientRoot..'/?.lua;'..package.path
             enabled=true;multiplayer=false;players=1;clock=1000;safe=true
@@ -172,6 +173,9 @@ class TestsUiChecks(unittest.TestCase):
             for _,name in ipairs({'ISCollapsableWindow','ISRichTextPanel','ISComboBox','ISTickBox'}) do
                 package.preload['ISUI/'..name]=function() return true end
             end
+            -- Historical probe fixtures exercise registry/UI guardrails without shipping old choices.
+            package.preload['Testing/SSRPersistenceTest']=function() end
+            dofile(archivedProbe)
             require '5_UI/SSRTestsWindow'
             function run(id)
                 assert(SSRTests.start(id,true));fire('OnTick');fire('OnTick')

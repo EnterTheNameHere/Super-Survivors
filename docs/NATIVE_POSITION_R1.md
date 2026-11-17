@@ -312,3 +312,20 @@ streaming/death behavior or full SSR persistence acceptance. Z stayed zero;
 only X/Y were independently changed by load. No restart roundtrip was requested
 or run for this experiment. No production changes are made from this result.
 Next actor: orchestrator reviews the measured sequence and decides further work.
+
+
+## Current test surface (SSR-TEST-03, 17 November 2026)
+
+The four native-only diagnostic entries above are now retired from the visible
+Tests registry. Their implementation is retained as a tests-only fixture at
+tests/fixtures/SSRNativePositionTest.lua; historical UI steps are preserved in
+[archive/NATIVE_TESTS_UI_2026-11-15.md](archive/NATIVE_TESTS_UI_2026-11-15.md).
+Existing evidence files and prior conclusions are unchanged. Current UI steps:
+[TESTS_UI.md](TESTS_UI.md); real lifecycle test design:
+[PERSISTENCE_LIVE_TESTS.md](PERSISTENCE_LIVE_TESTS.md).
+
+The new test uses ordinary SSR managers/groups and the production save path,
+captures during actual OnSave, and explicitly compares after user-confirmed
+restart. A separate raw reader uses the validated cell-only constructor without
+world registration. It does not change production loading, streaming or snapshot
+algorithms. Actual Test 03 native execution is NOT RUN at this delivery.
