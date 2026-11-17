@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: Combat02 read-only snapshot delivered/native run pending; Test04 R1 restart proof pending; Test03 R1 deferred
+Execution: Combat02 native snapshots verified; ID9 recurring attack-start/no-swing state, review next; Test04 R1 restart proof pending; Test03 R1 deferred
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -311,3 +311,17 @@ observed NPC behavior. Docs/COMBAT_LIVE_SNAPSHOT_B42.md on implementation ref;
 delivery mail/orchestrator/inbox/2026-11-17-combat-02-delivery.md. Next orchestrator
 review/user native check. Test04 R1 unchanged/restart proof pending; Test03 R1
 deferred. No production combat fixes, Java changes or source merge/acceptance.
+
+
+Combat02 ACTUAL USER RUNS verified17November: Roderick(user identifies ID9),33
+snapshots277.817s, attackStarted true/initiate false/no animation/Swipe throughout
+samples;11 native in-range (7 wait0), healthy/armed/native readiness true. Attack
+front31, Flee1/building1, updates progress. No errors after first snapshot. Native
+snapshot functionality verified; not combat success/full root cause. Conditional
+request guard would reject busy; no request trace/continuous flag ordering recorded.
+Source mechanism candidate NPC control handoff; no fixes/flag resets/observer added.
+Evidence/docs commit e498ae7b248b8a49c6765332e758085e69850be8 on codex/persistence-b42;
+report mail/orchestrator/inbox/2026-11-17-combat-02-roderick-runtime-results.md.
+Next orchestrator review/bounded handoff investigation; more identical snapshots
+not needed. Original delivery NOT RUN history superseded by native user evidence.
+Test04 R1 restart proof pending separately; Test03 R1 deferred. No source merge.
