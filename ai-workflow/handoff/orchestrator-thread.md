@@ -426,3 +426,18 @@ Inventory01 ACKNOWLEDGED / READ-ONLY INVESTIGATION by exclusive existing local
 Codex codex/persistence-b42, after Combat03 runtime report; no overlapping code
 work. Native inventory reuse audit/matrix/proposal only, no UI/action edits.
 Ack: mail/orchestrator/inbox/2026-11-17-inventory-01-ack.md.
+
+Inventory01 INVESTIGATION DELIVERED FOR REVIEW, 17 November 2026.
+Report e76e662c11ad8a2af8b2e2c92515b7b6cf2c8b71, parent
+5c12e37dd76661c8e10cdcbad9b32788df494929, codex/persistence-b42.
+Read docs/INVENTORY_B42_INVESTIGATION_01.md on that ref; only report/handoff
+changed. Native displayed container differs from acting local-player binding;
+separate NPC window feasible with presentation reuse and explicit SSR actor
+adapters, not unrestricted stock inventory page. Existing bag-source mismatch,
+mutable group-index target, capacity labeling and silent rejection documented.
+Event Give To signature/normalization and phased read-only -> action -> additive
+menu proofs specified. NO production/UI/action code, new tests, engine proof or
+source merge. Delivery: mail/orchestrator/inbox/2026-11-17-inventory-01-delivery.md.
+Next actor orchestrator review/new bounded assignment. Combat03 follow-up separate,
+Test04 R1 restart proof pending, Test03 early observer deferred. Exclusive existing
+implementer ownership, user changes/saves preserved.
