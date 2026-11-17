@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: SSR-TEST-03 actual restart comparison INCONCLUSIVE due to live X/Y drift; next actor orchestrator
+Execution: SSR-TEST-04 delivered for explicit human baseline/symptom observations; native run pending; Test-03 R1 deferred
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -217,16 +217,32 @@ mail/orchestrator/inbox/2026-11-17-test-03-pause-feedback.md.
 
 ## SSR-TEST-03 actual runtime review and R1 request (2026-11-17)
 Reviewed implementer inbox delivery, missing Kahlua global-next correction, actual save/restart console result and user pause/tick feedback. Actual OnSave for survivor ID2/group3 generation4; native file checkpoint, SSR group/registry and live non-position actor data matched, actor/wrapper/record 1/1/1, square/world membership valid, human guards and temporary reader cleanup good. **Overall INCONCLUSIVE**: live X/Y at delayed UI test 9888.5/12828.3349609375 versus saved 9885.5/12824.5; no earliest reconstruct observation proves whether AI moved. XP=0 baseline and health/Z defaults do not validate nondefault values. User confirms pause blocks world context menu; OnTick runner and world-update ordering make click-speed workaround invalid. Original Kahlua global `next` error fixed narrowly by Codex at 786c8ea; did not recur in successful native comparison. No full SSR-PERSIST-01 acceptance or merge.
-Next bounded assignment SSR-TEST-03 R1: `ai-workflow/assignments/test-03-early-reconstruction-observer.md`, inbox `ai-workflow/mail/implementer/inbox/2026-11-17-test-03-r1-early-observer.md`, paired review `ai-workflow/mail/implementer/inbox/2026-11-17-test-03-orchestrator-review.md`. Inspect exact engine/SSR callback ordering; add *read-only*, ownership-scoped earliest actor reconstruction capture only if nonintrusive; compare with OnSave and later UI resume. No automatic test actions on reload, no loader behavior change, no broad fixes. STATUS REQUESTED / NOT ACKNOWLEDGED.
+Next bounded assignment SSR-TEST-03 R1: `ai-workflow/assignments/test-03-early-reconstruction-observer.md`, inbox `ai-workflow/mail/implementer/inbox/2026-11-17-test-03-r1-early-observer.md`, paired review `ai-workflow/mail/implementer/archive/2026-11-17-test-03-orchestrator-review.md`. Inspect exact engine/SSR callback ordering; add *read-only*, ownership-scoped earliest actor reconstruction capture only if nonintrusive; compare with OnSave and later UI resume. No automatic test actions on reload, no loader behavior change, no broad fixes. STATUS REQUESTED / NOT ACKNOWLEDGED.
 
 ## Direct user observation amends SSR-TEST-03 assessment (2026-11-17)
-The user **personally saw the SSR survivor moving under AI control after restart**. The delayed UI live XY change is consistent with observed ordinary movement, rather than affirmative evidence of bad persistence. The native OnSave snapshot, registry/group, identity/item fields, actor uniqueness and square/cell membership have positive real-engine results. Historical automated outcome remains INCONCLUSIVE; never claim the exact initial reconstructed XYZ was recorded, or untested nonzero XP, differential health/Z, streaming, death or multi-group passed. User evidence reduces need for the previously requested R1 earliest-reconstruction observer: new inbox `ai-workflow/mail/implementer/inbox/2026-11-17-test-03-user-observed-ai-movement.md` asks implementer to pause/deprioritize R1 if not started and report status, with no production changes. Prioritize later scoped lifecycle tests when assigned.
+The user **personally saw the SSR survivor moving under AI control after restart**. The delayed UI live XY change is consistent with observed ordinary movement, rather than affirmative evidence of bad persistence. The native OnSave snapshot, registry/group, identity/item fields, actor uniqueness and square/cell membership have positive real-engine results. Historical automated outcome remains INCONCLUSIVE; never claim the exact initial reconstructed XYZ was recorded, or untested nonzero XP, differential health/Z, streaming, death or multi-group passed. User evidence reduces need for the previously requested R1 earliest-reconstruction observer: new inbox `ai-workflow/mail/implementer/archive/2026-11-17-test-03-user-observed-ai-movement.md` asks implementer to pause/deprioritize R1 if not started and report status, with no production changes. Prioritize later scoped lifecycle tests when assigned.
 
 ## SSR-TEST-04 — Human appearance/invisibility baseline (2026-11-17)
-User observed human skin/hair/probable facial hair change during ordinary play (not active test), other character state apparently remained theirs. Separately had human invisibility; previous disabling of invisibility setting made avatar visible again without proving cause. User proposed explicit good baseline and later symptom-triggered comparisons for changed appearance or invisibility. Skills/XP, equipment and inventory are dynamic diagnostic context, not invariants. Codex assignment: `ai-workflow/assignments/human-visual-baseline-diagnostics.md`, request `ai-workflow/mail/implementer/inbox/2026-11-17-test-04-human-visual-diagnostics.md`. Read-only B42 API-backed HumanVisual/descriptor/appearance, actor/slot/singleton and visibility flags; bounded baseline/symptom snapshots; no auto checks or repairs, no runtime fix or merge. STATUS REQUESTED/NOT ACKNOWLEDGED. Test-03 R1 earliest observer remains lower priority following user's direct observation of AI movement.
+User observed human skin/hair/probable facial hair change during ordinary play (not active test), other character state apparently remained theirs. Separately had human invisibility; previous disabling of invisibility setting made avatar visible again without proving cause. User proposed explicit good baseline and later symptom-triggered comparisons for changed appearance or invisibility. Skills/XP, equipment and inventory are dynamic diagnostic context, not invariants. Codex assignment: `ai-workflow/assignments/human-visual-baseline-diagnostics.md`, request `ai-workflow/mail/implementer/archive/2026-11-17-test-04-human-visual-diagnostics.md`. Read-only B42 API-backed HumanVisual/descriptor/appearance, actor/slot/singleton and visibility flags; bounded baseline/symptom snapshots; no auto checks or repairs, no runtime fix or merge. STATUS REQUESTED/NOT ACKNOWLEDGED. Test-03 R1 earliest observer remains lower priority following user's direct observation of AI movement.
 
 
 SSR-TEST-04 ACKNOWLEDGED by existing exclusive local Codex; implementing explicit
 read-only human diagnostics after getter safety inspection. Test-03 R1 not
 started and DEFERRED per user-observed AI movement priority. Ack:
 mail/orchestrator/inbox/2026-11-17-test-04-ack.md. No native Test 04 run.
+
+
+## SSR-TEST-04 delivered (17 November 2026)
+Source 4d998eedd5e06a553a0b0cd3e58b41b1b0a23d0c, parent ACK
+d8bb5ad48c19781f34519f245fb8cf1328edb903, codex/persistence-b42.
+Three explicit observation-only Human appearance controls in SS Tests: baseline,
+compare changed, diagnose invisible. Session-only baseline/world+actor scoping,
+bounded four AFTER records; no ModData/raw reference persistence or automatic
+capture/repair. No unsafe lazy getters/animation allocation. Without -debug,
+full hair/color data explicitly unavailable; optional debug raw reads only.
+Dynamic XP/gear/inventory are context. Native Test 04 NOT RUN. 219 tests/113 syntax
+pass isolated; LuaLS 88 legacy diagnostics, none new modules. No production fix.
+Test-03 R1 NOT STARTED / DEFERRED; inbox request retained pending new direction.
+Direct user AI movement observation recorded; archived Test-03 result unchanged.
+Next actor user known-good baseline/later symptom capture, orchestrator review.
+Delivery: mail/orchestrator/inbox/2026-11-17-test-04-delivery.md.
