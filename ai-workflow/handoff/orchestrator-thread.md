@@ -485,3 +485,21 @@ nonlocal actor only; request/StopWalk exact-once, native update/events and owned
 caps/teardown. No forced combat/flags/damage/fixture/AI/inventory/Java/slot changes.
 Ack mail/orchestrator/inbox/2026-11-17-combat-05-ack.md. User changes/saves preserved.
 Native execution pending. Test04 R1 pending, Test03 early observer deferred.
+
+Combat05 DELIVERED FOR REVIEW, native execution PENDING, 17 November2026.
+Source bfcbf6fd9f7b667b6e9c13ade1123553d87554ff, parent
+9facaae08f13733cc922b405fbfd05895e31ec3d, exclusive codex/persistence-b42.
+Explicit Information -> Diagnostics earliest-natural-attack Start/Stop; existing
+nonlocal false-started NPC only, earliest OBSERVED (no provenance inference).
+Exact-once instance request/StopWalk, direct original/error/returns, filtered early
+native/tick/swing/hitpoint, frozen world/actor/Information/human slots, owned cleanup.
+10s/600ticks/120lines/8entries, three-tick follow-up, no passive capture or resets.
+Legacy trace remains mutually exclusive. No gameplay/AI/flags/fixture/slot/Java/
+inventory/save changes. 290 isolated tests/117syntax pass; LuaLS88legacy/13files,
+none changed diagnostics. Native rendering/Kahlua/first chronology/damage untested.
+Restart, Information -> Diagnostics -> Start earliest natural attack observation;
+keep Information visible, normal behavior only. Log [SS Combat][first-natural-attack].
+Report mail/orchestrator/inbox/2026-11-17-combat-05-delivery.md; docs
+COMBAT_FIRST_NATURAL_ATTACK_B42.md on source ref. Next review/user observation,
+then separate native damage path assessment. Test04 R1 pending; Test03 deferred;
+user edits/settings/common saves preserved. Canonical ai-workflow only, no merge.
