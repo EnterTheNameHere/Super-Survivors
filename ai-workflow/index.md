@@ -317,3 +317,6 @@ LuaLS88legacy/no new. Native UI/trace NOT RUN. Restart, Information -> Diagnosti
 -> Start combat trace, report trace logged. Docs COMBAT_HANDOFF_TRACE_B42.md on
 source ref; report mail/orchestrator/inbox/2026-11-17-combat-03-delivery.md.
 Prior evidence/Test04 R1 preserved; Test03 observer deferred. No source merge.
+
+## SSR-INVENTORY-01 — native inventory UI compatibility audit (2026-11-17)
+User confirmed investigate first: separate survivor-owned inventory UI reusing native B42 presentation/actions where safe (icons, bags, worn/held, wear/unequip/drop, right click) without replacing/reparenting the human inventory UI; eventually additive player inventory Give To -> Survivor Name using SSR transfer semantics. Compare installed B42.22.2 UI Java/Lua and SSR's SuperSurvivorInventory/Loadout and transfer/clothing utilities, document obsolete/unsafe local-player assumptions and phased proof. Investigation only, NO UI/action code authorized. Assignment ai-workflow/assignments/inventory-b42-investigation-01.md; implementer inbox ai-workflow/mail/implementer/inbox/2026-11-17-inventory-01-native-ui-audit.md; STATUS REQUESTED / NOT ACKNOWLEDGED. Coordinate existing exclusive implementation checkout with Combat03, no parallel owners.
