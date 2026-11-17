@@ -89,7 +89,7 @@ No supported end-to-end alternative was established by the inspected classes, Lu
 
 [B41 IsoGameCharacter documentation](https://projectzomboid.com/modding41/zombie/characters/IsoGameCharacter.html) lists old NPC controls. [Current AIComponent documentation](https://projectzomboid.com/modding/zombie/characters/component/AIComponent.html) lists getHumanControlVars/postUpdatePlayer, matching installed signatures. [Current SwipeStatePlayer documentation](https://projectzomboid.com/modding/zombie/ai/states/SwipeStatePlayer.html) describes state methods and private event listeners. These signatures do not document a supported standalone-NPC collision bypass or establish Lua exposure.
 
-The previously inspected PZNS B41 helpers at commit 20a30212f98aa891aec9cb070bb96164be27c12a use NPCSetAttack/NPCSetAiming/NPCGetAiming and custom Hit-based damage logic. Their source is historical design evidence, not a verified B42 integration. See the immutable [attack helper](https://github.com/Project-Zomboid-Community-Modding/PZNS/blob/20a30212f98aa891aec9cb070bb96164be27c12a/PZNS_Framework/media/lua/client/05_npc_actions/PZNS_WeaponAttack.lua) and prior Combat03 compatibility matrix. Do not import its attack setters, per-target damage or manually timed hit loop.
+Historical B41 NPC control calls are not a verified B42 integration. Do not import old attack setters, per-target synthetic damage or manually timed hit loops. This report retains the native B41-versus-B42 API comparison and omits external NPC-project references in accordance with the concurrent documentation cleanup.
 
 ## Smallest next experiment: design only
 

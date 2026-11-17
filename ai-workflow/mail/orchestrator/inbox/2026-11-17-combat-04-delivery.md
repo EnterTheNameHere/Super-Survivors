@@ -45,7 +45,7 @@ whole-JAR setter/caller candidate locator followed by matched-source inspection.
   alternative Lua entry/caller established. No claim full native damage can be
   fixed solely by repairing initiation. No slot swap/direct Hit/Java proposed.
 7 B41 NPCSetAttack/NPCSetAiming/NPCGetAiming absent installed hierarchy. Historical
-  PZNS setters/custom damage are not a B42 correction. Candidate/access/stage/
+  setters/custom damage are not a B42 correction. Candidate/access/stage/
   risk/acceptance matrix and public reference links in report.
 
 RECOMMEND NEXT BOUNDED ASSIGNMENT (DESIGN ONLY):
