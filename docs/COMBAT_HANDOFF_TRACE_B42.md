@@ -165,3 +165,50 @@ No speculative fix or repeated manual snapshot loop is installed.
 Final isolated delivery validation: **267 tests pass** (no skips with installed
 PZ_GAME_DIR), **116/116 Lua5.1 syntax checks pass**; LuaLS retains88 legacy
 diagnostics in13files, none new diagnostics/trace/UI code. Native run NOT RUN.
+
+
+## Actual user traces (17 November 2026)
+
+Native trace execution is now verified; initial delivery NOT RUN statements above
+are historical. Preserved full extract:
+[evidence/COMBAT_TRACE_2026-11-17.log](evidence/COMBAT_TRACE_2026-11-17.log).
+Five traces (ID9, ID1, ID5 three times),400lines total. Every trace stopped at the
+80line cap and reported ownedWrapperRestored=true, zero swing/HitPoint events and
+zero sampled false->true transitions. All started with attackStarted already true;
+none observes its original setter. No actual error/exception/stack or observer
+failure occurs from first trace through inspected EOF. Native UI start/logging,
+instance dispatch interception, bounded logging and reported restoration worked.
+Not all teardown/error/UI resizing paths were exercised natively.
+
+| ID | Native frame span | Duration seconds | Request entries | Complete logged returns |
+| --- | --- | --- | --- | --- |
+|9(Roderick per user)|3122-3433|2.212|15|15 busy|
+|1|7318-7678|2.686|17|16 busy|
+|5|13621-13851|1.616|22|21 busy|
+|5|14848-15091|1.729|24|23 busy|
+|5|16105-16351|1.788|24|23 busy|
+
+**98 observed completed natural requests all returned false,"busy".**102 request
+entries total; the four absent return records are censored by the log cap, not
+proof of hung/failed calls. The observer stops/restores at the cap even if the
+current original request continues normally without further logging. Do not count
+these four as success/failure. All15 Roderick entries/returns were captured in
+native range, Attack task, cooldown0, native started=true/initiate=false/no swing
+or attack animation. ID5 entries likewise native in-range; ID1 uses the close-range
+task fallback with native range false, so it also has a range caveat beyond busy.
+
+This advances evidence from conditional source analysis to **actual stage(d)
+request rejection**: NPCs do invoke requestCombatAttack, and the busy guard returns
+before CombatManager.pressedAttack in the observed completed calls. With the
+logged native started=true and cooldown0, that guard is sufficient to block
+further requests. Perception/Attack selection and attempted dispatch are working
+for these calls; this is not simply a failure to decide to fight. No native swing
+or hit transition was seen; it cannot be evaluated from these rejected requests.
+
+Source order still supplies a mechanism candidate (NPC AI control post-update
+clears initiate before later base update), but initial true-setting/consumption/
+reset chronology was not observed because the state predated all traces. The
+root cause of the stale state remains unproven. No reset, native-control adapter,
+production fix or extra diagnostic implemented. Repeating already-busy traces
+is not needed to establish this rejection; next orchestration decision should
+address first natural attack/handoff or a separately reviewed correction path.

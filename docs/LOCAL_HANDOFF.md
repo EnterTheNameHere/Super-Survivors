@@ -2,6 +2,19 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Combat03 actual native trace result (17 November 2026)
+
+5 user traces IDs9/1/5/5/5,400lines;98 complete natural request returns ALL false,
+"busy".102entries with4returns censored by80line caps (not failed/hung). Roderick
+ID9 has15 in-range natural calls rejectedbusy, startedtrue/initiatefalse/no swing,
+cooldown0. All traces preexisting startedtrue, no sampledrise/swing/hit event.
+All report own wrapper restored, no actual errors. Stage(d) request rejection now
+observed, not conditional; sourcebusyguard before nativepressedAttack. First setter/
+handoff chronology still unobserved, no root-cause/fix claim. Evidence
+COMBAT_TRACE_2026-11-17.log, summary COMBAT_HANDOFF_TRACE_B42.md. No extra trace,
+flag reset or production edits. Inventory01 inbox arrived separately, preserved
+and not started as part of this runtime log check. Prior delivery notes historical.
+
 ## Combat03 contextual diagnostics and bounded trace (17 November 2026)
 
 Implemented shared Diagnostics menu on BOTH reachable information UI paths,

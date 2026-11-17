@@ -1,0 +1,19 @@
+# SSR-INVENTORY-01 — Investigate B42 native inventory UI reuse and SSR inventory operations
+Date: 2026-11-17
+Status: REQUESTED / NOT ACKNOWLEDGED
+Coordination: B42. Exclusive existing implementer checkout codex/persistence-b42; confirm ownership and respect current combat work.
+Scope: INVESTIGATION ONLY. No new inventory UI, menu hook, transfer implementation or production edits.
+
+## Goal
+User wishes to replace two bespoke SSR interfaces (player/survivor rows with < and > transfer; separate wear/unequip UI) where possible with a SEPARATE survivor-owned instance of native-style PZ inventory interface: item icons, equipment/worn/held slots, wear/unequip, drop, containers, right-click actions and potentially drag/drop. Existing HUMAN inventory UI instances must remain untouched. Separately add, at a later implementation milestone, an additive player inventory right-click menu Give To -> Survivor Name, while retaining original Eat, Fill etc menu entries. This research determines what native PZ B42 actually supplies, which APIs are obsolete/unsafe, and which SSR behavior to retain.
+
+## Source audit
+1. Inspect actually installed PZ B42.22.2 vanilla Lua/Java for ISInventoryPage, ISInventoryPane, ISInventoryPaneContextMenu, ItemContainer, vanilla item icons/tooltips, equipment/clothing displays, nested bags, drag/drop, sorting, transfers, drop, wear/unequip/equip, context actions, timed queues; version and exact API contracts. Do not rely on B41 docs without B42 validation.
+2. Trace native component creation and reuse when owner is arbitrary NONLOCAL IsoPlayer: how instance binds ItemContainer vs acting player; implicit local player index/getSpecificPlayer; shared global UI instances, global context/drag state, action queue; rendering-only vs actions. Assess separate survivor window without replacing human inventory.
+3. Audit SSR source: 42/media/lua/client/5_UI/SuperSurvivorInventory.lua; SuperSurvivorLoadout.lua; 0_Utilities/SuperSurvivorTransferUtilities.lua; SuperSurvivorClothingUtilities.lua; all callers and dependencies. Report current transfer, equipment, validation, timing, ownership, role and survival semantics; which behaviors must remain. Detect actually obsolete B40/B41 code based on evidence, not code age.
+4. Check installed B42 OnFillInventoryObjectContextMenu signature, submenu, right-click selected item/stack semantics and legitimate ownership; design additive Give To submenu listing eligible nearby loaded SSR survivors by name. Validate actor/ID, source item owner/container, range/Z and actions AGAIN at execution, handle multiple selected items, stacks, worn and nested items cautiously. Don't intercept or replace vanilla Eat/Fill/etc. Check compatibility with other mods and player UI instance ownership.
+5. Produce feature-by-feature matrix: reusable native component as independent NPC window; presentation-only reuse with SSR actor-aware action; retain SSR; replace obsolete; unknown/unproven. Include wear, remove, drop, consume/use, equip, inventory transfers, container hierarchy, bag/worn display, icons, context menu, multiple selection and drag/drop.
+6. Recommend phased experimental proof strategy: a separate READ-ONLY survivor inventory UI proof with no native context actions first, then safe actor-aware transfers/equip, then player-side Give To. Propose regression tests proving no changes to human inventory UI/player slots and no item duplication/loss, stale survivor/window, unloaded NPC, interrupted actions. Do not implement these experiments under this assignment.
+
+## Delivery
+Write evidence-rich report docs/INVENTORY_B42_INVESTIGATION_01.md and handoff, source/version evidence + confidence/unknowns, scoped proof-of-concept recommendations; publish orchestrator inbox reply on B42. No production changes, source merge or in-game mutation. Combat03 remains separate/high priority; confirm order and one implementer.
