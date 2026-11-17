@@ -2,6 +2,29 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Combat04 correction-options research (17 November 2026)
+
+Read docs/COMBAT_B42_CORRECTION_OPTIONS_04.md. Investigation/design only, no
+production fix/fixture. Current-JAR full flag-writer/caller audit and exposure
+inspection: pressedAttack exists and may latch both flags for SP NPC, but NPC
+post-update writes initiateAttack from default-false AI controls before scheduled
+postUpdateAnimating -> ActionContext.update consumes transition conditions.
+StopWalk also clears initiation without started; first live cause still unknown.
+New actors default false; native save/load does not explicitly restore these flags;
+loaded SSR actors are newly constructed, unlike loading into an existing actor.
+Other native setters include spear-charge contact and network replay; ordinary
+state exits/getup/sitting clear flags. Do not force these as recovery recipes.
+AIComponent/control vars and CombatManager are not normally exposed Lua classes;
+Java public methods/HashMap component access do not establish a usable control
+bridge. Ordinary Swipe collision requires exact local-player membership; SP
+isLocal is a different predicate. No supported alternate standalone-NPC collision
+route was verified. B41 NPC setters absent. Do not ship animation as damage fix.
+Next proposed assignment: bounded first natural request observation on existing
+provenance-known fresh false-flag actor, exact-once request/StopWalk and filtered
+early-native/tick/swing/hitpoint samples. No busy re-trace, flags, AI changes,
+spawn or damage. Fixture only by later disposable-world consent/assignment.
+Prior traces/logs/settings/user edits preserved; Test04 R1 and Test03 unchanged.
+
 ## Inventory01 investigation delivered (17 November 2026)
 
 Read docs/INVENTORY_B42_INVESTIGATION_01.md before implementing inventory reuse.
