@@ -347,3 +347,8 @@ Test03 early observer remains deferred. No production source merge/acceptance.
 
 ## SSR-COMBAT-01 reviewed, SSR-COMBAT-02 requested (2026-11-17)
 Source-only investigation report `docs/COMBAT_B42_INVESTIGATION_01.md` on codex/persistence-b42, delivery `ai-workflow/mail/orchestrator/inbox/2026-11-17-combat-01-delivery.md`. Native/B42 evidence: AI-manager equip branches contradict held weapon vs empty hand; PursueTask requires SSR wrapper and ordinary zombies have none. NPC AIComponent aiming/control differs from normal IsoPlayer setters; normal SwipeStatePlayer collision callback requires actual local-player membership and excludes SSR standalone NPCs on that specific route. Perception Lua table indexing is valid, outside/outside nil-room equality passes, active AttackTask scheduling exists. No live NPC combat diagnostic or root-cause attribution yet; no combat code changes. New bounded read-only in-game diagnostic task `ai-workflow/assignments/combat-b42-observation-02.md`, inbox `ai-workflow/mail/implementer/inbox/2026-11-17-combat-02-live-snapshot.md`, STATUS REQUESTED/NOT ACKNOWLEDGED. Use only existing owned loaded SSR NPC, observe cached target/task/weapon/native flags without forcing attacks or mutating world; temporal tracing or actual fixes await separate review. Test04 R1 delivered but save/restart proof pending; Test03 early observer deferred.
+
+
+SSR-COMBAT-02 ACKNOWLEDGED / IMPLEMENTING by exclusive existing local Codex
+codex/persistence-b42: explicit existing-NPC read-only one-shot snapshot, no
+combat fix or temporal tracing. Ack: mail/orchestrator/inbox/2026-11-17-combat-02-ack.md.
