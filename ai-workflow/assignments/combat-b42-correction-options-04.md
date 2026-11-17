@@ -1,6 +1,6 @@
 # SSR-COMBAT-04 — First native attack transition and correction options
 
-Date: 2026-11-17. Status: REQUESTED / NOT ACKNOWLEDGED.
+Date: 2026-11-17. Status: SOURCE RESEARCH / EXPERIMENT DESIGN DELIVERED FOR REVIEW.
 Canonical B42. Existing exclusive Codex source branch codex/persistence-b42; confirm ownership before starting.
 Source/native API investigation and future experiment DESIGN ONLY. No production fixes or fixtures authorized.
 

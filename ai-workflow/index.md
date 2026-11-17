@@ -364,3 +364,21 @@ canonical7f0521f read. No parallel inventory/code work. Installed B42.22.2 first
 attack/control/collision contracts and correction options; no fixture/reset/hit/
 slot swap/Java/production changes. Ack mail/orchestrator/inbox/2026-11-17-combat-04-ack.md.
 Test04 R1 pending, Test03 observer deferred; inventory plan retained separately.
+
+Combat04 SOURCE RESEARCH / EXPERIMENT DESIGN DELIVERED FOR REVIEW, 17 November.
+Report f2b1686c03dcf04f03e4275fb4344ac83a285ec4, parent
+df330ac990d27925f91d4e080c5b296a90acb3a0, exclusive codex/persistence-b42.
+Read docs/COMBAT_B42_CORRECTION_OPTIONS_04.md on that ref. Native source places
+AI control write before scheduled post-update ActionContext animation consumption;
+started can stay latched while initiation clears, but first live cause UNKNOWN.
+Complete direct native flag writer inventory, fresh/native-load defaults and Lua
+exposure matrix recorded. Stock AI controls/CombatManager not registered Lua
+classes; no verified supported standalone-NPC native collision entry. Ordinary
+Swipe callback requires isLocalPlayer (different from SP isLocal). Native animation
+repair alone cannot claim damage fix. B41 NPC controls absent. Next proposed bounded
+first-natural-request observer on existing provenance-known fresh false-flag NPC;
+no busy repeat/reset/spawn/direct damage/slot/Java. Fixture only later separately
+assigned/consented. No implementation/engine proof/source merge. Prior runtime
+98busy returns remains actual evidence. Delivery mail/orchestrator/inbox/2026-11-17-combat-04-delivery.md.
+Next orchestrator review/order. Inventory implementation not started; Test04 R1
+restart proof pending, Test03 observer deferred. User edits and saves preserved.
