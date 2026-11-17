@@ -101,6 +101,16 @@ class InstalledPersistenceApiChecks(unittest.TestCase):
         entries, _ = self.metadata('zombie/iso/IsoCell')
         self.assertIn(('method', 1, 'getObjectList', '()Ljava/util/Set;'), entries)
 
+    def test_legacy_npc_control_methods_absent_and_current_control_component_contract(self):
+        for cls in ['zombie/characters/IsoGameCharacter', 'zombie/characters/IsoLivingCharacter', 'zombie/characters/IsoPlayer']:
+            entries, _ = self.metadata(cls)
+            names = {name for kind, _, name, _ in entries if kind == 'method'}
+            self.assertTrue(names.isdisjoint({'NPCSetAttack', 'NPCSetAiming', 'NPCGetAiming'}))
+        entries, component = self.metadata('zombie/characters/component/AIComponent')
+        self.assertIn(('method', 1, 'getHumanControlVars', '()Lzombie/ai/AIBrainPlayerControlVars;'), entries)
+        self.calls(component, 'postUpdatePlayer(Lzombie/characters/IsoPlayer;)V',
+                   'zombie/characters/IsoPlayer', 'setInitiateAttack')
+
     def test_build_version_api_includes_suffix_separately_from_game_version(self):
         entries, data = self.metadata('zombie/core/Core')
         public = {(n, d) for kind, flags, n, d in entries if kind == 'method' and flags & 1}

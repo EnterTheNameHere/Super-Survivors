@@ -210,3 +210,17 @@ INCONCLUSIVE is expected; no target alone does not prove broken perception.
 No automatic polling/interception. Other tests and Test04 R1 baseline preserved.
 Details/safety/API limits: [COMBAT_LIVE_SNAPSHOT_B42.md](COMBAT_LIVE_SNAPSHOT_B42.md).
 Actual native UI/snapshot **NOT RUN** at delivery.
+
+
+## Contextual combat diagnostics / bounded trace (Combat03)
+
+Preferred: restart, SSR Debug Options On, open survivor Information through world
+or group window, **Diagnostics -> Log combat state** or **Start combat trace**.
+These dedicated observation actions reuse the snapshot and exact displayed actor;
+no destructive-test confirmation or second selection. Trace stops on close/invalid
+target or at10s/600ticks/80lines/30natural calls. Stop combat trace ends early.
+Only natural requests are intercepted once, no forced attack/state repair. An
+already started flag is labeled preexisting. Button shows logged/unavailable.
+SS Tests keeps an optional Combat - trace existing survivor definition with normal
+selection/consent unchanged. Seven visible definitions. Native trace NOT RUN.
+[Safety, source timing, API research and instructions](COMBAT_HANDOFF_TRACE_B42.md).

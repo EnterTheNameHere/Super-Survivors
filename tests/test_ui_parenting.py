@@ -36,6 +36,8 @@ class UiParentingChecks(unittest.TestCase):
             function getContextMenuText(key) return key end
             Events = {OnGameStart = {Add = noop}}
             package.preload['ISUI/ISLayoutManager'] = noop
+            -- Observation wiring has dedicated UI tests; this fixture checks parenting only.
+            package.preload['5_UI/SSRCombatInfoDiagnostics'] = noop
         """)
 
     def test_dialogue_buttons_belong_only_to_window(self):

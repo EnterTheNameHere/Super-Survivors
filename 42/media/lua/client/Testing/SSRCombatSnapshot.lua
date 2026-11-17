@@ -1,7 +1,7 @@
 require "Testing/SSRTests"
 
 -- One user-run observation; no callbacks, actor mutations or test fixtures.
-SSRCombatSnapshot={}
+SSRCombatSnapshot=SSRCombatSnapshot or {}
 local C=SSRCombatSnapshot
 local ID="combat-existing-snapshot"
 local function read(object,method,...)
@@ -73,6 +73,16 @@ local function available(parameters)
     if getCore():getGameAndBuildVersion()~="42.22.2" then return false,"Snapshot getter safety reviewed for B42.22.2 only." end
     local selection,reason=validate(parameters)
     return selection~=nil,reason or "Available: one read-only snapshot; capture while observing the symptom."
+end
+C.read=read
+C.validate=validate
+function C.selection(wrapper)
+    local actor=wrapper and wrapper.player
+    local md=existingModData(actor)
+    return {id=md and md.ID,wrapper=wrapper,actor=actor,cell=getCell(),world=getWorld():getWorld()}
+end
+function C.available(parameters)
+    return SSRTests.availability(SSRTests.definitions[ID],parameters)
 end
 local function capture(ctx)
     local selection,reason=validate(ctx.parameters)
@@ -199,6 +209,22 @@ local function capture(ctx)
     ctx:log("Cached AI data sampled without refreshing perception or executing predicates/tasks. Native flags describe this instant, not an observed attack attempt/animation/hit history.")
     ctx:finish("INCONCLUSIVE",target and "Existing target/task/weapon/native state recorded. Request entry/rejection and transient cancellation are not traced; no cause or successful hit inferred."
         or "No target at snapshot. This alone does not prove broken perception; observe the NPC near a zombie and run another explicit snapshot.")
+end
+-- Dedicated observation endpoint for contextual UI. Does not start/bypass a
+-- test, change consent, or alter SSRTests.active/results/cleanupFailure.
+function C.inspect(parameters)
+    local allowed,reason=C.available(parameters)
+    if not allowed then return nil,reason end
+    local ctx={parameters=parameters,world=getWorld():getWorld(),lines={}}
+    function ctx:log(line)
+        self.lines[#self.lines+1]=line
+        print("[SS Tests]["..ID.."] "..line)
+    end
+    function ctx:finish(status,summary) self.status=status;self.summary=summary;self:log(status..": "..summary) end
+    ctx:log("RUNNING: Combat - inspect existing survivor (explicit contextual observation; no test started)")
+    local ok,failure=pcall(capture,ctx)
+    if not ok then return nil,"Observation unavailable: "..tostring(failure) end
+    return ctx
 end
 SSRTests.register({id=ID,order=60,readOnly=true,survivorSelection=true,title="Combat - inspect existing survivor",
     description="Explicitly select a loaded SSR NPC below, then Run while you observe the combat problem. Reads cached perception/task/weapon and verified native flags once. Does not force perception, task decisions, attacks or hits. No target at snapshot does not prove broken perception.",

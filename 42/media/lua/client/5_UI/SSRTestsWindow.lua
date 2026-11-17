@@ -6,6 +6,7 @@ require "Testing/SSRTests"
 require "Testing/SSRPersistenceTest"
 require "Testing/SSRHumanVisualTest"
 require "Testing/SSRCombatSnapshot"
+require "Testing/SSRCombatTrace"
 
 local T = SSRTests
 SSRTestsWindow = ISCollapsableWindow:derive("SSRTestsWindow")

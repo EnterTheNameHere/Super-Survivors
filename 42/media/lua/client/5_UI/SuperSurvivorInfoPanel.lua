@@ -1,3 +1,5 @@
+require "5_UI/SSRCombatInfoDiagnostics"
+if panel_survivor_info then SSRCombatInfoDiagnostics.close(panel_survivor_info) end
 local FONT_HGT_SMALL = getTextManager():getFontHeight(UIFont.Small)
 
 --****************************************************
@@ -58,6 +60,7 @@ end
 PanelSurvivorInfo = ISPanel:derive("PanelSurvivorInfo")
 
 function remove_panel_survivor_info()
+    SSRCombatInfoDiagnostics.close(panel_survivor_info)
     panel_survivor_info:removeFromUIManager()
 end
 
@@ -150,10 +153,26 @@ function PanelSurvivorInfo:new(x, y, width, height)
     return o
 end
 
+function PanelSurvivorInfo:update()
+    ISPanel.update(self)
+    if not self.text_panel then return end
+    SSRCombatInfoDiagnostics.update(self,function(show)
+        self.text_panel:setHeight(self.height-54-(show and 30 or 0))
+        self.button_call:setY(self.text_panel.height+2)
+        self.button_close:setY(self.button_call.y+self.button_call.height+2)
+        self.ssCombatButton:setX(0);self.ssCombatButton:setY(self.height-27);self.ssCombatButton:setWidth(self.width)
+    end)
+end
+function PanelSurvivorInfo:setVisible(visible)
+    if not visible then SSRCombatInfoDiagnostics.close(self) end
+    ISPanel.setVisible(self,visible)
+end
+
 function show_survivor_info(member_index)
     local group = get_group()
     local group_members = group:getMembers()
     local group_member = group_members[member_index]
+    SSRCombatInfoDiagnostics.bind(panel_survivor_info,group_member)
     local text_info = getText("ContextMenu_SS_SurvivorInfoName_Before")..group_member:getName()..getText("ContextMenu_SS_SurvivorInfoName_After").."\n"
     local player = group_member:Get()
     text_info = text_info.."("..tostring(group_member:getGroupRole()).."/"..group_member:getCurrentTask()..")".."\n\n"

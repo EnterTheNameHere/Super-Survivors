@@ -1,4 +1,6 @@
 require "ISUI/ISLayoutManager"
+require "5_UI/SSRCombatInfoDiagnostics"
+if mySurvivorInfoWindow then SSRCombatInfoDiagnostics.close(mySurvivorInfoWindow) end
 
 SurvivorInfoWindow = ISCollapsableWindow:derive("SurvivorInfoWindow");
 
@@ -58,6 +60,7 @@ function SurvivorInfoWindow:createChildren()
 end
 
 function SurvivorInfoWindow:Load(ASuperSurvivor)
+    SSRCombatInfoDiagnostics.bind(self,ASuperSurvivor)
 	
 	local newText = getContextMenuText("SurvivorInfoName_Before") .. ASuperSurvivor:getName() .. getContextMenuText("SurvivorInfoName_After") .. "\n"
 	local player = ASuperSurvivor:Get()
@@ -141,6 +144,28 @@ function SurvivorInfoWindow:Load(ASuperSurvivor)
 	
 	
 	
+end
+
+function SurvivorInfoWindow:update()
+    ISCollapsableWindow.update(self)
+    if not self.HomeWindow then return end
+    if not self.ssDiagnosticLayoutSaved then
+        self.ssDiagnosticLayoutSaved=true
+        self.ssOriginalTextHeight=self.HomeWindow.height;self.ssOriginalTextClip=self.HomeWindow.clip
+    end
+    SSRCombatInfoDiagnostics.update(self,function(show)
+        self.HomeWindow:setHeight(show and math.max(60,self.height-self.HomeWindow.y-36) or self.ssOriginalTextHeight)
+        self.HomeWindow.clip=show and true or self.ssOriginalTextClip
+        self.ssCombatButton:setX(10);self.ssCombatButton:setY(self.height-30);self.ssCombatButton:setWidth(self.width-20)
+    end)
+end
+function SurvivorInfoWindow:setVisible(visible)
+    if not visible then SSRCombatInfoDiagnostics.close(self) end
+    ISCollapsableWindow.setVisible(self,visible)
+end
+function SurvivorInfoWindow:close()
+    SSRCombatInfoDiagnostics.close(self)
+    ISCollapsableWindow.close(self)
 end
 
 function SurvivorInfoWindowCreate()

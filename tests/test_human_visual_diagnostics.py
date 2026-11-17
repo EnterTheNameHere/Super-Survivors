@@ -59,6 +59,7 @@ class HumanVisualChecks(unittest.TestCase):
             Perks.Strength='Strength';Perks.Fitness='Fitness';CharacterStat.ENDURANCE='endurance'
             require 'Testing/SSRHumanVisualTest'
             require 'Testing/SSRCombatSnapshot'
+            require 'Testing/SSRCombatTrace'
             H=SSRHumanVisualDiagnostics
             function humanRun(id)
                 clock=clock+100;return run(id)
@@ -69,9 +70,9 @@ class HumanVisualChecks(unittest.TestCase):
             function clean() assert(lazyCalls==0 and mutationCalls==0 and slots[0]==player and singleton==player) end
         ''')
 
-    def test_no_auto_capture_or_world_manifest_write_and_six_visible_entries(self):
+    def test_no_auto_capture_or_world_manifest_write_and_seven_visible_entries(self):
         self.lua.execute('''
-            assert(#SSRTests.list()==6 and not H.baseline)
+            assert(#SSRTests.list()==7 and not H.baseline)
             fire('OnTick');fire('OnTick');assert(not H.baseline)
             assert(not ModData.get('SSR.Tests.HumanVisual'))
             assert(#allActors==1 and lazyCalls==0 and reflectionCalls==0);clean()
