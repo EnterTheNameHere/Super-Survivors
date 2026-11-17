@@ -226,7 +226,7 @@ read-only. Prior Test04 logs verified, no symptom reproduction claimed.
 Ack: mail/orchestrator/inbox/2026-11-17-test-04-r1-ack.md. Test-03 R1 deferred.
 
 ## SSR-COMBAT-01 — survivors not attempting to fight (2026-11-17)
-User reports in ordinary B42 gameplay that survivors **do not try to fight**. Requested a focused source/native audit distinguishing lack of perception, blocked decisions/AttackTask, missing weapon/range/readiness, native request rejected, or no combat engine outcome. Initial code areas: `SuperSurvivor.lua` DoVision (getLuaObjectList), priority/task selection and `requestCombatAttack` (pressedAttack), `7_Tasks/AttackTask.lua`; no proven root cause yet. Assignment: `ai-workflow/assignments/combat-b42-investigation-01.md`, implementer inbox: `ai-workflow/mail/implementer/inbox/2026-11-17-combat-01-diagnose-no-fighting.md`. First read-only evidence and a bounded diagnostic proposal; no speculative production combat rewrite. Do not overlap same source branch with pending Test-04 R1 baseline persistence; ack ordering/ownership. STATUS REQUESTED/NOT ACKNOWLEDGED.
+User reports in ordinary B42 gameplay that survivors **do not try to fight**. Requested a focused source/native audit distinguishing lack of perception, blocked decisions/AttackTask, missing weapon/range/readiness, native request rejected, or no combat engine outcome. Initial code areas: `SuperSurvivor.lua` DoVision (getLuaObjectList), priority/task selection and `requestCombatAttack` (pressedAttack), `7_Tasks/AttackTask.lua`; no proven root cause yet. Assignment: `ai-workflow/assignments/combat-b42-investigation-01.md`, implementer inbox: `ai-workflow/mail/implementer/archive/2026-11-17-combat-01-diagnose-no-fighting.md`. First read-only evidence and a bounded diagnostic proposal; no speculative production combat rewrite. Do not overlap same source branch with pending Test-04 R1 baseline persistence; ack ordering/ownership. STATUS REQUESTED/NOT ACKNOWLEDGED.
 
 
 SSR-TEST-04 R1 DELIVERED for review at 3e99b8f2637616238ac0d02e73d579dd3ccfc1f6,
@@ -244,3 +244,16 @@ Combat01 new mail preserved at finish barrier; source diagnosis next separately.
 SSR-COMBAT-01 ACKNOWLEDGED after Test04 R1 delivery; exclusive existing local
 Codex codex/persistence-b42, read-only source/native diagnosis and diagnostic
 proposal, no gameplay fix. Ack: mail/orchestrator/inbox/2026-11-17-combat-01-ack.md.
+
+
+SSR-COMBAT-01 SOURCE DIAGNOSIS DELIVERED at79c6d10519542b174c5e3c88954615e1de19820a,
+parent913d2cef97d954e24ed345fa5d86eec57db72ea4, codex/persistence-b42. Runtime
+unchanged since Test04 R1 3e99b8f. Complete active chain/native review: correct
+one-based perception table; impossible equip predicates, zombie Pursue wrapper
+requirement, NPC control-var initiation/aiming mismatch and local-player-only
+normal attack collision gate. No observed incident stage/root cause claimed.
+Read-only existing-NPC snapshot proposed; no diagnostic/gameplay fix/Java change.
+Report docs/COMBAT_B42_INVESTIGATION_01.md on implementation ref; delivery
+mail/orchestrator/inbox/2026-11-17-combat-01-delivery.md. Next actor orchestrator
+review/new bounded authorization. Test04 R1 native save/restart pending separately.
+Test03 early observer remains deferred. No production source merge/acceptance.
