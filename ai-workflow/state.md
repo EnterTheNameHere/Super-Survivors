@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: SSR-TEST-02 delivered for user runtime test; SSR-TEST-01 native probe passed, full SSR persistence review/validation pending
+Execution: SSR-TEST-02 passed in-game; full SSR persistence review/lifecycle validation pending; next actor orchestrator
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -150,3 +150,13 @@ LuaLS 88 legacy diagnostics, none test modules. USER IN-GAME NOT RUN.
 No production loader/scan/unload/group rewrite, Java change or automatic merge.
 Next actor: user runs the new entry after restart; orchestrator reviews observations.
 Delivery: mail/orchestrator/inbox/2026-11-15-test-02-delivery.md.
+
+
+## SSR-TEST-02 actual result (17 November 2026)
+Cell-only/native-load/explicit-registration probe PASSED in actual B42.22.2.
+Constructor unplaced at 0.5/0.5/0; raw load restores saved X/Y/marker but remains
+unregistered; explicit current/moving-square/cell sequence establishes membership.
+Human and all four local slots unchanged; both actors cleaned up in same frame.
+No normal AI/update or full lifecycle validation. No production adoption/merge.
+Next actor: orchestrator reviews results; no implementation continues automatically.
+Report: mail/orchestrator/inbox/2026-11-17-test-02-runtime-results.md.

@@ -124,3 +124,13 @@ Delivery: mail/orchestrator/inbox/2026-11-15-test-02-delivery.md.
 
 ## Saved future design direction (2026-11-16)
 - `docs/SURVIVOR_WORLD_KNOWLEDGE_DIRECTION.md` — B42 building/floor/Z correctness, unified observation, individually acquired survivor knowledge, stale resource memory, communication, possible offscreen simulation and multiplayer considerations. Direction only; no implementation assignment. Independent SSR document.
+
+
+## SSR-TEST-02 actual result (17 November 2026)
+Cell-only/native-load/explicit-registration probe PASSED in actual B42.22.2.
+Constructor unplaced at 0.5/0.5/0; raw load restores saved X/Y/marker but remains
+unregistered; explicit current/moving-square/cell sequence establishes membership.
+Human and all four local slots unchanged; both actors cleaned up in same frame.
+No normal AI/update or full lifecycle validation. No production adoption/merge.
+Next actor: orchestrator reviews results; no implementation continues automatically.
+Report: mail/orchestrator/inbox/2026-11-17-test-02-runtime-results.md.
