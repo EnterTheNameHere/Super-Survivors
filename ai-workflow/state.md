@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: SSR-TEST-03 delivered for user stage/save/restart/resume; full SSR persistence acceptance pending
+Execution: SSR-TEST-03 actual restart comparison INCONCLUSIVE due to live X/Y drift; next actor orchestrator
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -195,3 +195,13 @@ firstKey substitution at 786c8ea0c0d8aeb4c2dbf35b99bcb4f91839c415; parent
 201 tests/112 syntax pass, including next=nil regressions and isolated export.
 Restart/native Test 03 retry pending. Report:
 mail/orchestrator/inbox/2026-11-17-test-03-next-compatibility-fix.md.
+
+
+## Test 03 actual restart outcome (17 November 2026)
+INCONCLUSIVE overall: native snapshot/registry/group and loaded actor properties
+match except live X/Y differs at explicit comparison. ID 2/group 3/generation 4;
+counts 1/1/1, membership/human guards/reader cleanup passed. Consistent with AI
+movement, not proven without first-reconstruction observation. Axe XP baseline
+was 0 despite setup grant: nonzero skill retention untested. No new code change,
+no full persistence acceptance or automatic next test. Next actor: orchestrator.
+Report: mail/orchestrator/inbox/2026-11-17-test-03-runtime-results.md.

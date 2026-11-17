@@ -169,3 +169,13 @@ firstKey substitution at 786c8ea0c0d8aeb4c2dbf35b99bcb4f91839c415; parent
 201 tests/112 syntax pass, including next=nil regressions and isolated export.
 Restart/native Test 03 retry pending. Report:
 mail/orchestrator/inbox/2026-11-17-test-03-next-compatibility-fix.md.
+
+
+## Test 03 actual restart outcome (17 November 2026)
+INCONCLUSIVE overall: native snapshot/registry/group and loaded actor properties
+match except live X/Y differs at explicit comparison. ID 2/group 3/generation 4;
+counts 1/1/1, membership/human guards/reader cleanup passed. Consistent with AI
+movement, not proven without first-reconstruction observation. Axe XP baseline
+was 0 despite setup grant: nonzero skill retention untested. No new code change,
+no full persistence acceptance or automatic next test. Next actor: orchestrator.
+Report: mail/orchestrator/inbox/2026-11-17-test-03-runtime-results.md.
