@@ -2,6 +2,27 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Inventory01 investigation delivered (17 November 2026)
+
+Read docs/INVENTORY_B42_INVESTIGATION_01.md before implementing inventory reuse.
+Installed B42.22.2 binds displayed ItemContainer separately from local acting
+player. Full stock page/pane/context/bag controls are not arbitrary-NPC UI.
+Use separate window ownership, native presentation pieces, explicit NPC actor,
+and existing SSR native-action adapters. Never replace human inventory/loot
+registrations, hotbar or player slots. First prove read-only presentation, then
+individual actor-aware actions, then additive human Give To event subscriber.
+Event is (playerNum, context, items); normalize grouped items with getActualItems,
+validate actual item container and stable recipient ID/actor/world at execution.
+Concrete existing issues: selected human bag displayed but transfer source assumes
+main inventory; mutable group-index recipient binding; misleading capacity header;
+silent transfer rejection. Equipment uses instant remembered-weapon changes;
+live TakeGift paths bypass some native timing. Old Back clothing accessors remain
+valid B42 APIs. Native timed actions still contain human UI callbacks even with
+explicit NPC actors; retain existing NPC transfer loot-UI isolation.
+Investigation only: no production/UI/action code changed or engine proof run.
+Combat03 follow-up remains separate; Test04 restart proof pending; Test03 early
+observer deferred. No source merge or inventory implementation acceptance.
+
 ## Combat03 actual native trace result (17 November 2026)
 
 5 user traces IDs9/1/5/5/5,400lines;98 complete natural request returns ALL false,
