@@ -1,6 +1,6 @@
 # SSR-COMBAT-05 — Observe first natural attack of a fresh nonlocal survivor
 Date: 2026-11-17
-Status: REQUESTED / NOT ACKNOWLEDGED
+Status: DELIVERED FOR REVIEW / AUTOMATED CHECKS PASS / NATIVE EXECUTION PENDING
 Priority: Combat; inventory implementation remains deferred
 Branch: exclusive codex/persistence-b42, one owner; review existing local/user edits first.
 
