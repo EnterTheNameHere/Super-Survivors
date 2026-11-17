@@ -304,3 +304,10 @@ Delivery: mail/orchestrator/inbox/2026-11-17-test-04-delivery.md.
 
 ## Test 04 execution report and persistence request (2026-11-17)
 User confirms having RUN all 3 in-game Test 04 options: baseline, compare changed, diagnose invisible. No observed outputs or symptom-at-comparison details supplied yet; do not claim reproduction or PASS. No runtime-result mail in orchestrator inbox at check. User asks for a captured baseline to persist across game restarts via normal world save, avoiding recapture every session. R1 assignment: `ai-workflow/assignments/test-04-persistent-baseline-r1.md`; implementer inbox `ai-workflow/mail/implementer/inbox/2026-11-17-test-04-r1-persist-baseline.md`. Separate versioned diagnostic GlobalModData scalar-only baseline, explicit initial capture, normal save durable, cross-session identity cautiously verified, no auto symptom test/fix, no raw Java refs, no production changes. Status REQUESTED / NOT ACKNOWLEDGED.
+
+
+SSR-TEST-04 R1 ACKNOWLEDGED / IMPLEMENTING by exclusive existing local Codex
+checkout codex/persistence-b42. Separate scalar diagnostic GlobalModData baseline
+with normal-save durability and cautious cross-session identity; AFTER stays
+read-only. Prior Test04 logs verified, no symptom reproduction claimed.
+Ack: mail/orchestrator/inbox/2026-11-17-test-04-r1-ack.md. Test-03 R1 deferred.
