@@ -2,6 +2,19 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Test 03 actual restart: inconclusive position (17 November 2026)
+
+Actual stage/OnSave/restart/resume completed: SSR survivor 2/group 3, snapshot
+SSR_Survivor_2_4.bin. Native snapshot matches all baseline fields; registry/group,
+loaded inventory/equipment/identity/health match, counts 1/1/1, membership/human
+checks/reader cleanup pass. Live X/Y shifted from 9885.5/12824.5 to
+9888.5/12828.3349609375 before comparison; overall INCONCLUSIVE. No earliest
+reconstruction observation distinguishes ordinary AI movement from loading.
+Axe XP baseline remained 0, so nonzero XP retention untested despite AddXP setup.
+No repeat next exception or new probe stack trace. Evidence:
+evidence/SSR_RESTART_2026-11-17.log; full results in PERSISTENCE_LIVE_TESTS.md.
+No code changed; send to orchestrator for scoped next decision, not forced PASS.
+
 ## Persistence global-next compatibility fix (17 November 2026)
 
 User reports error after Test 03 deployment. Console repeats tick failure at

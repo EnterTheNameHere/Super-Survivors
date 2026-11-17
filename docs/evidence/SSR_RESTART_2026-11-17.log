@@ -1,0 +1,64 @@
+SSR-TEST-03 actual stage/OnSave/restart/resume evidence, 17 November 2026.
+Runtime implementation e6f08e0 with Kahlua compatibility correction 786c8ea.
+Only [SS Tests] entries retained; unrelated log entries omitted.
+
+Source: C:\Users\Enter\Zomboid\Logs\logs_2026-11-17_09-02\2026-11-17_09-02_DebugLog.txt
+SHA256 at capture: a024d15742a3ea8ad51fb4bc5129c7749569f2fcd81e0bd5f722c2a11914edbe
+[17-11-26 09:03:10.261] LOG  : Lua          f:1418> [SS Tests][ssr-restart-stage] RUNNING: SSR persistence - stage one survivor and group (user consent received).
+[17-11-26 09:03:10.286] LOG  : Lua          f:1420> [SS Tests][ssr-restart-stage] Fixture created via ordinary SSR APIs: survivor=2; group=3; token=1794902590270_110526; Z=0.
+[17-11-26 09:03:10.286] LOG  : Lua          f:1420> [SS Tests][ssr-restart-stage] No save baseline yet and no forced P.save. Close this window, save/exit normally, fully close/restart game, reload same world, explicitly select resume..
+[17-11-26 09:03:10.286] LOG  : Lua          f:1420> [SS Tests][ssr-restart-stage] INCONCLUSIVE: Fixture staged; waiting for actual game OnSave checkpoint and user-confirmed restart. Fixtures intentionally remain..
+[17-11-26 09:03:21.077] LOG  : Lua          f:2651> [SS Tests][ssr-restart-stage] ACTUAL OnSave checkpoint: ID=2; group=3; file=SSR_Survivor_2_4.bin; generation=4.
+[17-11-26 09:03:21.077] LOG  : Lua          f:2651> [SS Tests][ssr-restart-stage] OnSave XYZ=9885.5,12824.5,0; inventory=Base.Hammer;condition=10;count=1;probe=1794902590270_110526 | Base.Jumper_RoundNeck;condition=10;count=1;probe=nil | Base.Pencil;condition=1;count=1;probe=1794902590270_110526 | Base.Shoes_TrainerTINT;condition=24;count=1;probe=nil | Base.Socks_Ankle;condition=10;count=1;probe=nil | Base.TrousersMesh_DenimLight;condition=10;count=1;probe=nil | Base.Tshirt_Rock;condition=10;count=1;probe=nil.
+[17-11-26 09:03:21.077] LOG  : Lua          f:2651> [SS Tests][ssr-restart-stage] Checkpoint updated at each normal save in this staging session. Exit normally, fully close/restart, then explicitly resume..
+
+Source: C:\Users\Enter\Zomboid\console.txt
+SHA256 at capture: 505892a70f66cdb9a010dcbb2d37def305248fdf782a7caa941f2f40a1c69256
+LOG  : Lua          f:1190> [SS Tests][ssr-restart-resume] RUNNING: SSR persistence - resume (I fully restarted the game) (user consent received)
+LOG  : Lua          f:1191> [SS Tests][ssr-restart-resume] User confirmed full game restart by running this entry. Lua-session change alone is not process-restart proof.
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Temporary native reader detached; no real SSR survivor/group removed.
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.id: expected=2; actual=2; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.identity: expected=2; actual=2; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.generation: expected=4; actual=4; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.token: expected=1794902590270_110526; actual=1794902590270_110526; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.name: expected=SSR Persistence 1794902590270_110526; actual=SSR Persistence 1794902590270_110526; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.descriptorName: expected=SSR Persistence 1794902590270_110526; actual=SSR Persistence 1794902590270_110526; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.group: expected=3; actual=3; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.role: expected=IGUI_SS_Job_Leader; actual=IGUI_SS_Job_Leader; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.x: expected=9885.5; actual=9885.5; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.y: expected=12824.5; actual=12824.5; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.z: expected=0; actual=0; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.inventory: expected=Base.Hammer;condition=10;count=1;probe=1794902590270_110526 | Base.Jumper_RoundNeck;condition=10;count=1;probe=nil | Base.Pencil;condition=1;count=1;probe=1794902590270_110526 | Base.Shoes_TrainerTINT;condition=24;count=1;probe=nil | Base.Socks_Ankle;condition=10;count=1;probe=nil | Base.TrousersMesh_DenimLight;condition=10;count=1;probe=nil | Base.Tshirt_Rock;condition=10;count=1;probe=nil; actual=Base.Hammer;condition=10;count=1;probe=1794902590270_110526 | Base.Jumper_RoundNeck;condition=10;count=1;probe=nil | Base.Pencil;condition=1;count=1;probe=1794902590270_110526 | Base.Shoes_TrainerTINT;condition=24;count=1;probe=nil | Base.Socks_Ankle;condition=10;count=1;probe=nil | Base.TrousersMesh_DenimLight;condition=10;count=1;probe=nil | Base.Tshirt_Rock;condition=10;count=1;probe=nil; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.primary: expected=Base.Hammer; actual=Base.Hammer; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.secondary: expected=none; actual=none; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.worn: expected=Base.Jumper_RoundNeck | Base.Shoes_TrainerTINT | Base.Socks_Ankle | Base.TrousersMesh_DenimLight | Base.Tshirt_Rock; actual=Base.Jumper_RoundNeck | Base.Shoes_TrainerTINT | Base.Socks_Ankle | Base.TrousersMesh_DenimLight | Base.Tshirt_Rock; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.axeXP: expected=0; actual=0; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.axeLevel: expected=0; actual=0; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.health: expected=100; actual=100; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave.dead: expected=false; actual=false; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Native file vs OnSave needs (observed, not a live equality gate): hunger=0.010991898365318775; thirst=0.08055851608514786
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.id: expected=2; actual=2; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.identity: expected=2; actual=2; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.generation: expected=4; actual=4; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.token: expected=1794902590270_110526; actual=1794902590270_110526; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.name: expected=SSR Persistence 1794902590270_110526; actual=SSR Persistence 1794902590270_110526; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.descriptorName: expected=SSR Persistence 1794902590270_110526; actual=SSR Persistence 1794902590270_110526; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.group: expected=3; actual=3; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.role: expected=IGUI_SS_Job_Leader; actual=IGUI_SS_Job_Leader; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.x: expected=9885.5; actual=9888.5; match=false
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.y: expected=12824.5; actual=12828.3349609375; match=false
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.z: expected=0; actual=0; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.inventory: expected=Base.Hammer;condition=10;count=1;probe=1794902590270_110526 | Base.Jumper_RoundNeck;condition=10;count=1;probe=nil | Base.Pencil;condition=1;count=1;probe=1794902590270_110526 | Base.Shoes_TrainerTINT;condition=24;count=1;probe=nil | Base.Socks_Ankle;condition=10;count=1;probe=nil | Base.TrousersMesh_DenimLight;condition=10;count=1;probe=nil | Base.Tshirt_Rock;condition=10;count=1;probe=nil; actual=Base.Hammer;condition=10;count=1;probe=1794902590270_110526 | Base.Jumper_RoundNeck;condition=10;count=1;probe=nil | Base.Pencil;condition=1;count=1;probe=1794902590270_110526 | Base.Shoes_TrainerTINT;condition=24;count=1;probe=nil | Base.Socks_Ankle;condition=10;count=1;probe=nil | Base.TrousersMesh_DenimLight;condition=10;count=1;probe=nil | Base.Tshirt_Rock;condition=10;count=1;probe=nil; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.primary: expected=Base.Hammer; actual=Base.Hammer; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.secondary: expected=none; actual=none; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.worn: expected=Base.Jumper_RoundNeck | Base.Shoes_TrainerTINT | Base.Socks_Ankle | Base.TrousersMesh_DenimLight | Base.Tshirt_Rock; actual=Base.Jumper_RoundNeck | Base.Shoes_TrainerTINT | Base.Socks_Ankle | Base.TrousersMesh_DenimLight | Base.Tshirt_Rock; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.axeXP: expected=0; actual=0; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.axeLevel: expected=0; actual=0; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.health: expected=100; actual=100; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave.dead: expected=false; actual=false; match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] SSR actor vs OnSave needs (observed, not a live equality gate): hunger=0.012250058352947235; thirst=0.08126593381166458
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Registry match=true; group record/runtime roster/leader match=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] ID counts actor/wrapper/record=1/1/1; square/world membership=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Human identity/XYZ/singleton/save filename/all four slots unchanged=true
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] Saved Z=0; live Z=0. No forced vertical differential; this is not a general Z-range test.
+LOG  : Lua          f:1192> [SS Tests][ssr-restart-resume] INCONCLUSIVE: Native checkpoint/metadata match, but live actor differs or moved. Ordinary AI/environment before explicit resume prevents attributing this to reconstruction.

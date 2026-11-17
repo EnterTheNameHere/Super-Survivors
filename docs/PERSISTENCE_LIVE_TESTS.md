@@ -100,3 +100,42 @@ same index/empty-bucket behavior. Iterator/SpiralSearch next methods are unrelat
 minimal compatibility fix prompted by actual runtime evidence, not a speculative
 persistence rewrite. Added next=nil regressions; 201 tests/112 syntax pass.
 Restart the game and retry stage/save/restart/resume; no native success claimed.
+
+
+## Actual first restart result (17 November 2026)
+
+**INCONCLUSIVE overall due to live position drift; positive native/metadata
+roundtrip evidence.** Filtered [stage/OnSave/resume log](evidence/SSR_RESTART_2026-11-17.log).
+The prior global-next exception did not recur in this captured session. No probe
+exception occurred; unrelated startup font/vehicle/map errors remain.
+
+Stage created real SSR survivor ID 2 / group 3. Actual OnSave at 09:03:21
+published SSR_Survivor_2_4.bin, generation 4. After the restart-confirmation
+resume action, the native reader restored every compared baseline property.
+
+| Observation | Expected / native snapshot | Reconstructed actor at comparison |
+| --- | --- | --- |
+| Identity / generation | ID 2 / generation 4 | Match |
+| Group / role / name / ownership marker | Group 3; recorded role/name/token | Match |
+| Inventory, primary/secondary, worn item types | Token-marked pencil/hammer plus original clothing; equipped hammer | Match |
+| Position XYZ | 9885.5,12824.5,0 | 9888.5,12828.3349609375,0 |
+| Axe XP / level | 0 / 0 | Match, but no nonzero skill differential |
+| Aggregate health / dead | 100 / false | Match, but no injury/health differential |
+
+Registry snapshot metadata and saved group record/runtime roster/leader matched.
+Actor/wrapper/registry counts were exactly 1/1/1, square/world membership passed,
+human identity/XYZ/singleton/save filename/all four slots remained unchanged,
+and the temporary native reader was detached. Only live X/Y comparisons failed.
+
+The result is consistent with AI movement before explicit resume, but this run
+has no first-reconstruction position observation to prove when the change
+occurred. Do not upgrade it to PASS, infer data loss, or change loader coordinates
+from this evidence. There is no full lifecycle acceptance: streaming, death,
+multiple/empty groups and differential Z remain untested.
+
+Axe XP was already zero in the actual save baseline despite the setup's AddXP
+attempt. This run therefore does not independently validate nonzero XP retention;
+review test setup/native XP rules before claiming that coverage. No skill or
+movement behavior is changed in this record-only update. Orchestrator should
+review whether an earliest read-only observation or a new bounded fixture control
+is warranted; do not silently suppress movement comparisons to manufacture PASS.
