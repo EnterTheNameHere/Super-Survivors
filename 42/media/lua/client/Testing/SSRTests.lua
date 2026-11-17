@@ -59,8 +59,9 @@ function T.start(id, consent)
     if consent ~= true then return false, "Acknowledge the world-modification warning for this run." end
     local allowed, reason = T.availability(definition)
     if not allowed then return false, reason end
-    -- Pure observation controls need no persistence session token or gameplay RNG draw.
-    if not definition.readOnly then
+    -- Observation and diagnostic-metadata capture need no native-fixture token
+    -- or gameplay RNG draw. diagnosticWrite does not bypass cleanup-failure gating.
+    if not definition.readOnly and not definition.diagnosticWrite then
         T.bootToken = T.bootToken or string.format("%.0f_%.0f",getTimestampMs(),ZombRand(1000000))
     end
     local context = {id=id, definition=definition, status="RUNNING", lines={}, ticks=0,

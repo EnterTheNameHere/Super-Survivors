@@ -173,10 +173,18 @@ Three new observation-only choices are available after restart:
 - **Human appearance - diagnose invisible**: run while invisible; prints current
   isInvisible and other draw/model/opacity fields without toggling anything.
 
-The shared acknowledgment is retained; these three controls create no actor,
-load/save nothing, change no appearance/control state and draw no gameplay RNG.
-They keep a session-only baseline and four separate AFTER observations in memory.
-After world reload/new character, explicitly capture a fresh known-good baseline.
+The shared acknowledgment is retained. Baseline capture updates only separate
+versioned diagnostic GlobalModData (`SSR.Tests.HumanVisual`) for the next normal
+world save; no forced save or confirmed disk write. AFTERs observe only. No actor
+creation/native character save/load, appearance/control changes or gameplay RNG
+draw. Four AFTER observations remain session-only. Restart to load R1, capture
+once while correct, save/exit normally, restart/load, run an AFTER **without
+recapturing**. It prints the original saved baseline timestamp. Cross-session
+human identity is UNVERIFIED; verify the intended character yourself. Matching
+name/sex hints permit warned scalar comparison, differing/unavailable hints
+withhold original-human comparison. Neither pointer equality nor hairstyle proves
+cross-session identity. Explicit recapture is needed for an intended new human.
+No completed save means capture can be lost or the older saved baseline retained.
 No automatic capture, polling, repair or restart comparison is installed.
 
 Without native -debug the controls work with partial coverage; raw hair/style/
@@ -185,4 +193,6 @@ native debug allows raw-field detail without enabling unsafe getters. No field
 is silently defaulted or treated as unchanged when unavailable. XP, inventory,
 equipment, needs and position are dynamic context. Source/API limits, procedures
 and result meaning: [HUMAN_VISUAL_DIAGNOSTICS_B42.md](HUMAN_VISUAL_DIAGNOSTICS_B42.md).
-**Actual Test 04 in-game execution NOT RUN at delivery.**
+**Original Test04 controls exercised:** all 83 fields present, baseline captured,
+AFTERs inconclusive, expected 25 unavailable fields without -debug, no errors
+during runs; no symptom reproduction confirmed. **R1 native save/restart not run.**

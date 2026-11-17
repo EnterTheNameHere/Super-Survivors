@@ -2,6 +2,23 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Test 04 R1 persistent human baseline (17 November 2026)
+
+Current implementation keeps an explicitly captured scalar baseline in separate
+versioned world GlobalModData SSR.Tests.HumanVisual for NEXT NORMAL SAVE. No forced
+save/native character IO/production change. Restart, capture once while correct,
+save/exit normally, restart/load, invoke AFTER without recapture and check original
+timestamp. R1 native roundtrip NOT RUN. Cross-session identity always UNVERIFIED;
+name/sex hints are not proof, changed hints withhold comparison. Pointers never
+persist. First explicit AFTER anchors refs only for later checks this session.
+AFTER remains readOnly, history four in memory. Capture is diagnosticWrite,
+blocked by cleanup failure but draws no RNG. Invalid/missing data explained, no
+repair; unavailable debug fields stay explicit. Existing session-only baseline
+cannot survive the upgrade without new capture/save. Prior original Test04 logs
+verified: 83 fields each, expected 25 unavailable, no errors, baseline captured,
+AFTERs inconclusive; no user-confirmed symptom reproduction. Detailed record in
+HUMAN_VISUAL_DIAGNOSTICS_B42.md. Earlier notes below are historical deliveries.
+
 ## Test 04 human visual diagnostics (17 November 2026)
 
 Priority changed by canonical inbox: user directly saw restored NPC AI movement;

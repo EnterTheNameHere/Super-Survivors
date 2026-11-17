@@ -1,0 +1,281 @@
+Original Test04 runtime evidence, read 17 November 2026.
+Source: C:/Users/Enter/Zomboid/console.txt
+Source SHA256: e837308a62b55178ea3448bdb52f79093f92276d91d95d961c755e8e924d41fc
+Extract: all human-visual control lines; original source line range 1497-1779.
+No user-confirmed symptom-at-comparison assertion.
+
+LOG  : Lua          f:559> [SS Tests][human-visual-baseline] RUNNING: Human appearance - capture baseline (user consent received)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] Capture timestamp(ms)=1794918818017; baseline=new; world=2026-11-15_14-00-00
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.health=100
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.inventoryTopLevel=total=40; sampled=40; Base.Bag_FannyPackBack;count=1;condition=10 | Base.Bag_InmateEscapedBag;count=1;condition=10 | Base.BellyButton_RingGoldRuby;count=1;condition=10 | Base.Belt2;count=1;condition=10 | Base.Bracelet_ChainRightGold;count=1;condition=10 | Base.Bullets45Box;count=1;condition=10 | Base.Hammer;count=1;condition=10 | Base.IronBar;count=1;condition=6 | Base.Key1;count=1;condition=10 | Base.Key1;count=1;condition=10 | Base.KeyRing;count=1;condition=10 | Base.Necklace_SilverSapphire;count=1;condition=10 | Base.Pistol2;count=1;condition=10 | Base.Ring_Left_MiddleFinger_GoldDiamond;count=1;condition=10 | Base.Ring_Left_RingFinger_GoldRuby;count=1;condition=10 | Base.Ring_Right_MiddleFinger_GoldDiamond;count=1;condition=10 | Base.Ring_Right_RingFinger_GoldDiamond;count=1;condition=10 | Base.RollingPin;count=1;condition=8 | Base.Screwdriver;count=1;condition=10 | Base.SewingKit;count=1;condition=10 | Base.Shirt_Lumberjack;count=1;condition=4 | Base.Shoes_Random;count=1;condition=12 | Base.Socks_Long_White;count=1;condition=10 | Base.Suit_Jacket;count=1;condition=3 | Base.TrousersMesh_DenimLight;count=1;condition=10 | Base.Tshirt_WhiteLongSleeveTINT;count=1;condition=4 | Base.Tweezers;count=1;condition=10 | Base.WristWatch_Left_DigitalDress;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.KCM_Compound;count=1;condition=10
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.level.Axe=0
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.level.Fitness=5
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.level.Strength=5
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.nativeDebug=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.primary=Base.IronBar
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.secondary=Base.IronBar
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.stat.ENDURANCE=1
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.stat.HUNGER=1.0666137768566841E-6
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.stat.THIRST=8.888448519428493E-7
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.worldHours=21.391633987426758
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.wornTypes=total=17; sampled=17; Base.Bag_FannyPackBack | Base.Bag_InmateEscapedBag | Base.BellyButton_RingGoldRuby | Base.Belt2 | Base.Bracelet_ChainRightGold | Base.Necklace_SilverSapphire | Base.Ring_Left_MiddleFinger_GoldDiamond | Base.Ring_Left_RingFinger_GoldRuby | Base.Ring_Right_MiddleFinger_GoldDiamond | Base.Ring_Right_RingFinger_GoldDiamond | Base.Shirt_Lumberjack | Base.Shoes_Random | Base.Socks_Long_White | Base.Suit_Jacket | Base.TrousersMesh_DenimLight | Base.Tshirt_WhiteLongSleeveTINT | Base.WristWatch_Left_DigitalDress
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.x=9913.8994140625
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.xp.Axe=0
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.xp.Fitness=37916
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.xp.Strength=39274
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.y=12857.7314453125
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] context.z=0
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.descriptorFemale=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.descriptorID=101
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.descriptorPresent=true
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.female=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.forename=Hubert
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.isLocalPlayer=true
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.isNpc=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.playerNum=0
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.singletonIsSlot0=true
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.singletonPresent=true
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.slot0.isCapturedActor=true
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.slot0.present=true
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.slot1.isCapturedActor=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.slot1.present=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.slot2.isCapturedActor=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.slot2.present=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.slot3.isCapturedActor=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.slot3.present=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] identity.surname=
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] render.animationPlayer=UNAVAILABLE (getter may allocate/rebind; not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] render.modelInstancePresent=true
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] render.modelName=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] render.textureCreatorPresent=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] render.textureCreatorRendered=UNAVAILABLE (object absent)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] render.textureName=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] render.tintB=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] render.tintG=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] render.tintR=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visibility.alpha0=1
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visibility.getDoRender=true
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visibility.isGhostMode=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visibility.isGodMod=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visibility.isInvisible=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visibility.isNoClip=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visibility.isSceneCulled=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visibility.isSpriteInvisible=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visibility.targetAlpha0=1
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.beardColor=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.beardModel=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.bodyHairIndex=-1
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.hairColor=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.hairModel=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.naturalBeardColor=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.naturalHairColor=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.nonAttachedHair=<null>
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.ownerMatches=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.present=true
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.skinColor=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.skinTextureIndex=3
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actor.skinTextureName=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.actorSharesDescriptorVisual=false
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.beardColor=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.beardModel=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.bodyHairIndex=-1
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.hairColor=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.hairModel=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.naturalBeardColor=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.naturalHairColor=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.nonAttachedHair=<null>
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.ownerMatches=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.present=true
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.skinColor=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.skinTextureIndex=-1
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] visual.descriptor.skinTextureName=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] Baseline is session-only: no reliable public stable human-save identity getter was verified. No raw Java references written to ModData.
+LOG  : Lua          f:560> [SS Tests][human-visual-baseline] PASSED: Known-good baseline captured at your request; coverage limits listed. No appearance validation or changes applied.
+LOG  : Lua          f:8055> [SS Tests][human-visual-changed] RUNNING: Human appearance - compare changed (user consent received)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] Same-session human actor reference unchanged=true; descriptor ref unchanged=true; visual ref unchanged=true; model ref unchanged=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] Local slot 0 reference unchanged=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] Local slot 1 reference unchanged=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] Local slot 2 reference unchanged=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] Local slot 3 reference unchanged=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] Singleton reference unchanged=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] Capture timestamp(ms)=1794918909857; baseline=1794918818017; world=2026-11-15_14-00-00
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.health: baseline=100; current=100
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.inventoryTopLevel: baseline=total=40; sampled=40; Base.Bag_FannyPackBack;count=1;condition=10 | Base.Bag_InmateEscapedBag;count=1;condition=10 | Base.BellyButton_RingGoldRuby;count=1;condition=10 | Base.Belt2;count=1;condition=10 | Base.Bracelet_ChainRightGold;count=1;condition=10 | Base.Bullets45Box;count=1;condition=10 | Base.Hammer;count=1;condition=10 | Base.IronBar;count=1;condition=6 | Base.Key1;count=1;condition=10 | Base.Key1;count=1;condition=10 | Base.KeyRing;count=1;condition=10 | Base.Necklace_SilverSapphire;count=1;condition=10 | Base.Pistol2;count=1;condition=10 | Base.Ring_Left_MiddleFinger_GoldDiamond;count=1;condition=10 | Base.Ring_Left_RingFinger_GoldRuby;count=1;condition=10 | Base.Ring_Right_MiddleFinger_GoldDiamond;count=1;condition=10 | Base.Ring_Right_RingFinger_GoldDiamond;count=1;condition=10 | Base.RollingPin;count=1;condition=8 | Base.Screwdriver;count=1;condition=10 | Base.SewingKit;count=1;condition=10 | Base.Shirt_Lumberjack;count=1;condition=4 | Base.Shoes_Random;count=1;condition=12 | Base.Socks_Long_White;count=1;condition=10 | Base.Suit_Jacket;count=1;condition=3 | Base.TrousersMesh_DenimLight;count=1;condition=10 | Base.Tshirt_WhiteLongSleeveTINT;count=1;condition=4 | Base.Tweezers;count=1;condition=10 | Base.WristWatch_Left_DigitalDress;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.KCM_Compound;count=1;condition=10; current=total=40; sampled=40; Base.Bag_FannyPackBack;count=1;condition=10 | Base.Bag_InmateEscapedBag;count=1;condition=10 | Base.BellyButton_RingGoldRuby;count=1;condition=10 | Base.Belt2;count=1;condition=10 | Base.Bracelet_ChainRightGold;count=1;condition=10 | Base.Bullets45Box;count=1;condition=10 | Base.Hammer;count=1;condition=10 | Base.IronBar;count=1;condition=6 | Base.Key1;count=1;condition=10 | Base.Key1;count=1;condition=10 | Base.KeyRing;count=1;condition=10 | Base.Necklace_SilverSapphire;count=1;condition=10 | Base.Pistol2;count=1;condition=10 | Base.Ring_Left_MiddleFinger_GoldDiamond;count=1;condition=10 | Base.Ring_Left_RingFinger_GoldRuby;count=1;condition=10 | Base.Ring_Right_MiddleFinger_GoldDiamond;count=1;condition=10 | Base.Ring_Right_RingFinger_GoldDiamond;count=1;condition=10 | Base.RollingPin;count=1;condition=8 | Base.Screwdriver;count=1;condition=10 | Base.SewingKit;count=1;condition=10 | Base.Shirt_Lumberjack;count=1;condition=4 | Base.Shoes_Random;count=1;condition=12 | Base.Socks_Long_White;count=1;condition=10 | Base.Suit_Jacket;count=1;condition=3 | Base.TrousersMesh_DenimLight;count=1;condition=10 | Base.Tshirt_WhiteLongSleeveTINT;count=1;condition=4 | Base.Tweezers;count=1;condition=10 | Base.WristWatch_Left_DigitalDress;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.KCM_Compound;count=1;condition=10
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.level.Axe: baseline=0; current=0
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.level.Fitness: baseline=5; current=5
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.level.Strength: baseline=5; current=5
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.nativeDebug: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.primary: baseline=Base.IronBar; current=Base.IronBar
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.secondary: baseline=Base.IronBar; current=Base.IronBar
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.stat.ENDURANCE: baseline=1; current=1
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.stat.HUNGER: baseline=1.0666137768566841E-6; current=1.0665984291335917E-6
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.stat.THIRST: baseline=8.888448519428493E-7; current=8.888320621736057E-7
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] CHANGED context.worldHours: baseline=21.391633987426758; current=21.63316535949707
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.wornTypes: baseline=total=17; sampled=17; Base.Bag_FannyPackBack | Base.Bag_InmateEscapedBag | Base.BellyButton_RingGoldRuby | Base.Belt2 | Base.Bracelet_ChainRightGold | Base.Necklace_SilverSapphire | Base.Ring_Left_MiddleFinger_GoldDiamond | Base.Ring_Left_RingFinger_GoldRuby | Base.Ring_Right_MiddleFinger_GoldDiamond | Base.Ring_Right_RingFinger_GoldDiamond | Base.Shirt_Lumberjack | Base.Shoes_Random | Base.Socks_Long_White | Base.Suit_Jacket | Base.TrousersMesh_DenimLight | Base.Tshirt_WhiteLongSleeveTINT | Base.WristWatch_Left_DigitalDress; current=total=17; sampled=17; Base.Bag_FannyPackBack | Base.Bag_InmateEscapedBag | Base.BellyButton_RingGoldRuby | Base.Belt2 | Base.Bracelet_ChainRightGold | Base.Necklace_SilverSapphire | Base.Ring_Left_MiddleFinger_GoldDiamond | Base.Ring_Left_RingFinger_GoldRuby | Base.Ring_Right_MiddleFinger_GoldDiamond | Base.Ring_Right_RingFinger_GoldDiamond | Base.Shirt_Lumberjack | Base.Shoes_Random | Base.Socks_Long_White | Base.Suit_Jacket | Base.TrousersMesh_DenimLight | Base.Tshirt_WhiteLongSleeveTINT | Base.WristWatch_Left_DigitalDress
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] CHANGED context.x: baseline=9913.8994140625; current=9914.0517578125
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.xp.Axe: baseline=0; current=0
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.xp.Fitness: baseline=37916; current=37916
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.xp.Strength: baseline=39274; current=39274
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] CHANGED context.y: baseline=12857.7314453125; current=12856.513671875
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED context.z: baseline=0; current=0
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.descriptorFemale: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.descriptorID: baseline=101; current=101
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.descriptorPresent: baseline=true; current=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.female: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.forename: baseline=Hubert; current=Hubert
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.isLocalPlayer: baseline=true; current=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.isNpc: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.playerNum: baseline=0; current=0
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.singletonIsSlot0: baseline=true; current=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.singletonPresent: baseline=true; current=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.slot0.isCapturedActor: baseline=true; current=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.slot0.present: baseline=true; current=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.slot1.isCapturedActor: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.slot1.present: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.slot2.isCapturedActor: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.slot2.present: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.slot3.isCapturedActor: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.slot3.present: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED identity.surname: baseline=; current=
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE render.animationPlayer: baseline=UNAVAILABLE (getter may allocate/rebind; not called); current=UNAVAILABLE (getter may allocate/rebind; not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED render.modelInstancePresent: baseline=true; current=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE render.modelName: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED render.textureCreatorPresent: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE render.textureCreatorRendered: baseline=UNAVAILABLE (object absent); current=UNAVAILABLE (object absent)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE render.textureName: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE render.tintB: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE render.tintG: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE render.tintR: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visibility.alpha0: baseline=1; current=1
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visibility.getDoRender: baseline=true; current=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visibility.isGhostMode: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visibility.isGodMod: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visibility.isInvisible: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visibility.isNoClip: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visibility.isSceneCulled: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visibility.isSpriteInvisible: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visibility.targetAlpha0: baseline=1; current=1
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.actor.beardColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.actor.beardModel: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visual.actor.bodyHairIndex: baseline=-1; current=-1
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.actor.hairColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.actor.hairModel: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.actor.naturalBeardColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.actor.naturalHairColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visual.actor.nonAttachedHair: baseline=<null>; current=<null>
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.actor.ownerMatches: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visual.actor.present: baseline=true; current=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.actor.skinColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visual.actor.skinTextureIndex: baseline=3; current=3
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.actor.skinTextureName: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visual.actorSharesDescriptorVisual: baseline=false; current=false
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.descriptor.beardColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.descriptor.beardModel: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visual.descriptor.bodyHairIndex: baseline=-1; current=-1
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.descriptor.hairColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.descriptor.hairModel: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.descriptor.naturalBeardColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.descriptor.naturalHairColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visual.descriptor.nonAttachedHair: baseline=<null>; current=<null>
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.descriptor.ownerMatches: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visual.descriptor.present: baseline=true; current=true
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.descriptor.skinColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNCHANGED visual.descriptor.skinTextureIndex: baseline=-1; current=-1
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] UNAVAILABLE visual.descriptor.skinTextureName: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] CURRENT isInvisible=false. Ghost mode aliases this flag on installed IsoPlayer; no toggle performed.
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] Dynamic XP/equipment/inventory/needs/position differences are context, not failure invariants. These fields do not fingerprint rendered pixels.
+LOG  : Lua          f:8056> [SS Tests][human-visual-changed] INCONCLUSIVE: Readable stable fields unchanged; some visual/render fields unavailable. A visible symptom can still be a rendering issue; no cause established.
+LOG  : Lua          f:11139> [SS Tests][human-visual-invisible] RUNNING: Human appearance - diagnose invisible (user consent received)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] Same-session human actor reference unchanged=true; descriptor ref unchanged=true; visual ref unchanged=true; model ref unchanged=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] Local slot 0 reference unchanged=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] Local slot 1 reference unchanged=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] Local slot 2 reference unchanged=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] Local slot 3 reference unchanged=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] Singleton reference unchanged=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] Capture timestamp(ms)=1794918931559; baseline=1794918818017; world=2026-11-15_14-00-00
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.health: baseline=100; current=100
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.inventoryTopLevel: baseline=total=40; sampled=40; Base.Bag_FannyPackBack;count=1;condition=10 | Base.Bag_InmateEscapedBag;count=1;condition=10 | Base.BellyButton_RingGoldRuby;count=1;condition=10 | Base.Belt2;count=1;condition=10 | Base.Bracelet_ChainRightGold;count=1;condition=10 | Base.Bullets45Box;count=1;condition=10 | Base.Hammer;count=1;condition=10 | Base.IronBar;count=1;condition=6 | Base.Key1;count=1;condition=10 | Base.Key1;count=1;condition=10 | Base.KeyRing;count=1;condition=10 | Base.Necklace_SilverSapphire;count=1;condition=10 | Base.Pistol2;count=1;condition=10 | Base.Ring_Left_MiddleFinger_GoldDiamond;count=1;condition=10 | Base.Ring_Left_RingFinger_GoldRuby;count=1;condition=10 | Base.Ring_Right_MiddleFinger_GoldDiamond;count=1;condition=10 | Base.Ring_Right_RingFinger_GoldDiamond;count=1;condition=10 | Base.RollingPin;count=1;condition=8 | Base.Screwdriver;count=1;condition=10 | Base.SewingKit;count=1;condition=10 | Base.Shirt_Lumberjack;count=1;condition=4 | Base.Shoes_Random;count=1;condition=12 | Base.Socks_Long_White;count=1;condition=10 | Base.Suit_Jacket;count=1;condition=3 | Base.TrousersMesh_DenimLight;count=1;condition=10 | Base.Tshirt_WhiteLongSleeveTINT;count=1;condition=4 | Base.Tweezers;count=1;condition=10 | Base.WristWatch_Left_DigitalDress;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.KCM_Compound;count=1;condition=10; current=total=40; sampled=40; Base.Bag_FannyPackBack;count=1;condition=10 | Base.Bag_InmateEscapedBag;count=1;condition=10 | Base.BellyButton_RingGoldRuby;count=1;condition=10 | Base.Belt2;count=1;condition=10 | Base.Bracelet_ChainRightGold;count=1;condition=10 | Base.Bullets45Box;count=1;condition=10 | Base.Hammer;count=1;condition=10 | Base.IronBar;count=1;condition=6 | Base.Key1;count=1;condition=10 | Base.Key1;count=1;condition=10 | Base.KeyRing;count=1;condition=10 | Base.Necklace_SilverSapphire;count=1;condition=10 | Base.Pistol2;count=1;condition=10 | Base.Ring_Left_MiddleFinger_GoldDiamond;count=1;condition=10 | Base.Ring_Left_RingFinger_GoldRuby;count=1;condition=10 | Base.Ring_Right_MiddleFinger_GoldDiamond;count=1;condition=10 | Base.Ring_Right_RingFinger_GoldDiamond;count=1;condition=10 | Base.RollingPin;count=1;condition=8 | Base.Screwdriver;count=1;condition=10 | Base.SewingKit;count=1;condition=10 | Base.Shirt_Lumberjack;count=1;condition=4 | Base.Shoes_Random;count=1;condition=12 | Base.Socks_Long_White;count=1;condition=10 | Base.Suit_Jacket;count=1;condition=3 | Base.TrousersMesh_DenimLight;count=1;condition=10 | Base.Tshirt_WhiteLongSleeveTINT;count=1;condition=4 | Base.Tweezers;count=1;condition=10 | Base.WristWatch_Left_DigitalDress;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.CrossbowBoltLarge;count=1;condition=10 | KCMweapons.KCM_Compound;count=1;condition=10
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.level.Axe: baseline=0; current=0
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.level.Fitness: baseline=5; current=5
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.level.Strength: baseline=5; current=5
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.nativeDebug: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.primary: baseline=Base.IronBar; current=Base.IronBar
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.secondary: baseline=Base.IronBar; current=Base.IronBar
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.stat.ENDURANCE: baseline=1; current=1
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.stat.HUNGER: baseline=1.0666137768566841E-6; current=1.0666291245797765E-6
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.stat.THIRST: baseline=8.888448519428493E-7; current=8.88857641712093E-7
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] CHANGED context.worldHours: baseline=21.391633987426758; current=21.729736328125
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.wornTypes: baseline=total=17; sampled=17; Base.Bag_FannyPackBack | Base.Bag_InmateEscapedBag | Base.BellyButton_RingGoldRuby | Base.Belt2 | Base.Bracelet_ChainRightGold | Base.Necklace_SilverSapphire | Base.Ring_Left_MiddleFinger_GoldDiamond | Base.Ring_Left_RingFinger_GoldRuby | Base.Ring_Right_MiddleFinger_GoldDiamond | Base.Ring_Right_RingFinger_GoldDiamond | Base.Shirt_Lumberjack | Base.Shoes_Random | Base.Socks_Long_White | Base.Suit_Jacket | Base.TrousersMesh_DenimLight | Base.Tshirt_WhiteLongSleeveTINT | Base.WristWatch_Left_DigitalDress; current=total=17; sampled=17; Base.Bag_FannyPackBack | Base.Bag_InmateEscapedBag | Base.BellyButton_RingGoldRuby | Base.Belt2 | Base.Bracelet_ChainRightGold | Base.Necklace_SilverSapphire | Base.Ring_Left_MiddleFinger_GoldDiamond | Base.Ring_Left_RingFinger_GoldRuby | Base.Ring_Right_MiddleFinger_GoldDiamond | Base.Ring_Right_RingFinger_GoldDiamond | Base.Shirt_Lumberjack | Base.Shoes_Random | Base.Socks_Long_White | Base.Suit_Jacket | Base.TrousersMesh_DenimLight | Base.Tshirt_WhiteLongSleeveTINT | Base.WristWatch_Left_DigitalDress
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] CHANGED context.x: baseline=9913.8994140625; current=9914.0517578125
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.xp.Axe: baseline=0; current=0
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.xp.Fitness: baseline=37916; current=37916
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.xp.Strength: baseline=39274; current=39274
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] CHANGED context.y: baseline=12857.7314453125; current=12856.513671875
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED context.z: baseline=0; current=0
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.descriptorFemale: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.descriptorID: baseline=101; current=101
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.descriptorPresent: baseline=true; current=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.female: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.forename: baseline=Hubert; current=Hubert
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.isLocalPlayer: baseline=true; current=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.isNpc: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.playerNum: baseline=0; current=0
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.singletonIsSlot0: baseline=true; current=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.singletonPresent: baseline=true; current=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.slot0.isCapturedActor: baseline=true; current=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.slot0.present: baseline=true; current=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.slot1.isCapturedActor: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.slot1.present: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.slot2.isCapturedActor: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.slot2.present: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.slot3.isCapturedActor: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.slot3.present: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED identity.surname: baseline=; current=
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE render.animationPlayer: baseline=UNAVAILABLE (getter may allocate/rebind; not called); current=UNAVAILABLE (getter may allocate/rebind; not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED render.modelInstancePresent: baseline=true; current=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE render.modelName: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED render.textureCreatorPresent: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE render.textureCreatorRendered: baseline=UNAVAILABLE (object absent); current=UNAVAILABLE (object absent)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE render.textureName: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE render.tintB: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE render.tintG: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE render.tintR: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visibility.alpha0: baseline=1; current=1
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visibility.getDoRender: baseline=true; current=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visibility.isGhostMode: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visibility.isGodMod: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visibility.isInvisible: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visibility.isNoClip: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visibility.isSceneCulled: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visibility.isSpriteInvisible: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visibility.targetAlpha0: baseline=1; current=1
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.actor.beardColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.actor.beardModel: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visual.actor.bodyHairIndex: baseline=-1; current=-1
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.actor.hairColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.actor.hairModel: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.actor.naturalBeardColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.actor.naturalHairColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visual.actor.nonAttachedHair: baseline=<null>; current=<null>
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.actor.ownerMatches: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visual.actor.present: baseline=true; current=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.actor.skinColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visual.actor.skinTextureIndex: baseline=3; current=3
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.actor.skinTextureName: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visual.actorSharesDescriptorVisual: baseline=false; current=false
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.descriptor.beardColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.descriptor.beardModel: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visual.descriptor.bodyHairIndex: baseline=-1; current=-1
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.descriptor.hairColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.descriptor.hairModel: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.descriptor.naturalBeardColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.descriptor.naturalHairColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visual.descriptor.nonAttachedHair: baseline=<null>; current=<null>
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.descriptor.ownerMatches: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visual.descriptor.present: baseline=true; current=true
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.descriptor.skinColor: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNCHANGED visual.descriptor.skinTextureIndex: baseline=-1; current=-1
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] UNAVAILABLE visual.descriptor.skinTextureName: baseline=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called); current=UNAVAILABLE (raw field requires native -debug; lazy public getter deliberately not called)
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] CURRENT isInvisible=false. Ghost mode aliases this flag on installed IsoPlayer; no toggle performed.
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] Dynamic XP/equipment/inventory/needs/position differences are context, not failure invariants. These fields do not fingerprint rendered pixels.
+LOG  : Lua          f:11140> [SS Tests][human-visual-invisible] INCONCLUSIVE: Readable stable fields unchanged; some visual/render fields unavailable. A visible symptom can still be a rendering issue; no cause established.

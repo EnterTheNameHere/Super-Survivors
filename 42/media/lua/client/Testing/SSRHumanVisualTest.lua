@@ -4,6 +4,74 @@ local T=SSRTests
 SSRHumanVisualDiagnostics=SSRHumanVisualDiagnostics or {}
 local H=SSRHumanVisualDiagnostics
 local BASE,CHANGED,INVISIBLE="human-visual-baseline","human-visual-changed","human-visual-invisible"
+local KEY,SCHEMA="SSR.Tests.HumanVisual",1
+H.KEY=KEY
+
+-- Copy only this schema's scalar entries. Never serialize snapshot.refs or adopt
+-- arbitrary nested data from a loaded record. Invalid records remain untouched.
+local function persisted(snapshot)
+    local fields={}
+    for name,entry in pairs(snapshot.fields) do
+        fields[name]={available=entry.available,kind=entry.kind,value=entry.value,reason=entry.reason}
+    end
+    return {schema=SCHEMA,world=snapshot.world,time=snapshot.time,engine="42.22.2",fields=fields}
+end
+local function validate(record)
+    if type(record)~="table" or getmetatable(record)~=nil then return nil,"invalid baseline record" end
+    for name in pairs(record) do
+        if name~="schema" and name~="world" and name~="time" and name~="engine" and name~="fields" then
+            return nil,"unexpected baseline member"
+        end
+    end
+    if record.schema~=SCHEMA then return nil,"unsupported baseline schema; explicitly recapture" end
+    if record.engine~="42.22.2" then return nil,"baseline engine build differs; explicitly recapture" end
+    if type(record.world)~="string" or record.world~=getWorld():getWorld() then return nil,"baseline belongs to another save world" end
+    if type(record.time)~="string" or not record.time:match("^%d+$") or #record.time>24 then return nil,"invalid capture timestamp" end
+    if type(record.fields)~="table" or getmetatable(record.fields)~=nil then return nil,"invalid baseline fields" end
+    local fields,count={},0
+    for name,entry in pairs(record.fields) do
+        count=count+1
+        if count>83 or type(name)~="string" or #name>100
+            or not name:match("^[a-zA-Z]+%.[a-zA-Z0-9%.]+$")
+            or type(entry)~="table" or getmetatable(entry)~=nil then return nil,"invalid baseline field" end
+        local value={}
+        for k,v in pairs(entry) do
+            if k~="available" and k~="kind" and k~="value" and k~="reason" then return nil,"unexpected field member" end
+            if type(v)~="string" and type(v)~="number" and type(v)~="boolean" then return nil,"non-scalar baseline field" end
+            if type(v)=="string" and #v>3000 then return nil,"oversized baseline field" end
+            if type(v)=="number" and (v~=v or math.abs(v)==math.huge) then return nil,"non-finite baseline field" end
+            value[k]=v
+        end
+        if value.available==true then
+            if value.reason~=nil then return nil,"available field has an unavailable reason" end
+            local kind=value.kind
+            if kind=="null" then
+                if value.value~="<null>" then return nil,"invalid known-null field" end
+            elseif (kind~="string" and kind~="number" and kind~="boolean") or type(value.value)~=kind then
+                return nil,"baseline scalar type mismatch"
+            end
+        elseif value.available~=false or type(value.reason)~="string" or value.kind~=nil or value.value~=nil then
+            return nil,"invalid unavailable field"
+        end
+        fields[name]=value
+    end
+    if count~=83 then return nil,"incomplete baseline field set" end
+    for _,name in ipairs({"identity.forename","identity.surname","identity.female","identity.descriptorID",
+        "visibility.isInvisible","visual.actor.skinTextureIndex","context.nativeDebug"}) do
+        if not fields[name] then return nil,"missing required baseline field" end
+    end
+    return {time=record.time,world=record.world,cell=getCell(),fields=fields,crossSession=true}
+end
+local function loadBaseline()
+    if H.baseline then return true end
+    local root=ModData.get(KEY) -- observation only: never getOrCreate on AFTER/startup
+    if root==nil then return false,"No saved baseline. Explicitly capture once, then save normally." end
+    if type(root)~="table" then return false,"Invalid diagnostic record; explicitly recapture." end
+    local baseline,reason=validate(root.baseline)
+    if not baseline then return false,"Saved baseline rejected: "..reason end
+    H.baseline=baseline
+    return true
+end
 local function unavailable(reason) return {available=false,reason=reason} end
 local function scalar(value)
     if value==nil then return {available=true,kind="null",value="<null>"} end
@@ -159,14 +227,20 @@ local function prerequisites()
     if getCore():getGameAndBuildVersion()~="42.22.2" then return false,"Human getter safety reviewed for B42.22.2 only." end
     return true
 end
+local function captureAvailable()
+    local ok,reason=prerequisites();if not ok then return false,reason end
+    if getCore():isNoSave() then return false,"Saving is disabled; persistent diagnostic capture requires normal world saving." end
+    return true
+end
 local function afterAvailable()
     local ok,reason=prerequisites();if not ok then return false,reason end
+    ok,reason=loadBaseline();if not ok then return false,reason end
     local baseline=H.baseline
     if not baseline then return false,"Capture a known-good human baseline in this gameplay session first." end
     if baseline.cell~=getCell() or baseline.world~=getWorld():getWorld() then
         return false,"Baseline belongs to another world/gameplay session; explicitly capture a new one."
     end
-    return true
+    return true,baseline.crossSession and "Saved baseline available; cross-session human identity UNVERIFIED. Matching name/sex hints do not prove same character." or "Available (same-session baseline)"
 end
 local function display(value)
     if not value or not value.available then return "UNAVAILABLE ("..tostring(value and value.reason or "not recorded")..")" end
@@ -200,36 +274,66 @@ end
 local function compare(ctx,kind)
     local allowed,reason=afterAvailable();if not allowed then ctx:finish("SETUP ERROR",reason);return end
     local baseline=H.baseline;local snapshot=capture()
-    local identitySame=snapshot.refs.actor==baseline.refs.actor
-    local function refMatch(a,b) return a and b and tostring(a==b) or "UNAVAILABLE (reference absent)" end
-    ctx:log("Same-session human actor reference unchanged="..tostring(identitySame).."; descriptor ref unchanged="..refMatch(snapshot.refs.descriptor,baseline.refs.descriptor)
-        .."; visual ref unchanged="..refMatch(snapshot.refs.visual,baseline.refs.visual).."; model ref unchanged="..refMatch(snapshot.refs.model,baseline.refs.model))
-    local slotsSame=true
-    for i=0,3 do
-        local match=snapshot.refs.slots[i]==baseline.refs.slots[i];slotsSame=slotsSame and match
-        ctx:log("Local slot "..i.." reference unchanged="..tostring(match))
+    local crossSession=baseline.crossSession==true
+    local referenceBaseline=baseline.refs or H.sessionRefs
+    local identitySame=referenceBaseline and snapshot.refs.actor==referenceBaseline.actor
+    local hintsMatch=true
+    if crossSession then
+        ctx:log("CROSS-SESSION identity UNVERIFIED: no robust public human database identity getter verified. You must verify this is the intended character; matching name/sex hints are not proof. No Java reference comparison across sessions.")
+        ctx:log("Loaded saved scalar baseline timestamp(ms)="..baseline.time.."; durability depends on a completed normal world save. Descriptor ID is only a hint, not a stable database identity.")
+        for _,name in ipairs({"identity.forename","identity.surname","identity.female"}) do
+            if same(baseline.fields[name],snapshot.fields[name])~=true then hintsMatch=false end
+        end
+        ctx:log("Cross-session name/sex hints match="..tostring(hintsMatch))
     end
-    ctx:log("Singleton reference unchanged="..tostring(snapshot.refs.singleton==baseline.refs.singleton))
+    local function refMatch(a,b) return a and b and tostring(a==b) or "UNAVAILABLE (reference absent)" end
+    local slotsSame=true
     local refChanges=0
-    for _,name in ipairs({"descriptor","visual","model","creator"}) do
-        local before,after=baseline.refs[name],snapshot.refs[name]
-        if before and after and before~=after then refChanges=refChanges+1 end
+    if referenceBaseline then
+        if crossSession then ctx:log("Reference checks below cover this session since its first explicit AFTER, not the saved baseline.") end
+        ctx:log("Same-session human actor reference unchanged="..tostring(identitySame).."; descriptor ref unchanged="..refMatch(snapshot.refs.descriptor,referenceBaseline.descriptor)
+            .."; visual ref unchanged="..refMatch(snapshot.refs.visual,referenceBaseline.visual).."; model ref unchanged="..refMatch(snapshot.refs.model,referenceBaseline.model))
+        for i=0,3 do
+            local match=snapshot.refs.slots[i]==referenceBaseline.slots[i];slotsSame=slotsSame and match
+            ctx:log("Local slot "..i.." reference unchanged="..tostring(match))
+        end
+        ctx:log("Singleton reference unchanged="..tostring(snapshot.refs.singleton==referenceBaseline.singleton))
+        for _,name in ipairs({"descriptor","visual","model","creator"}) do
+            local before,after=referenceBaseline[name],snapshot.refs[name]
+            if before and after and before~=after then refChanges=refChanges+1 end
+        end
+    end
+    if crossSession and not H.sessionRefs then
+        H.sessionRefs=snapshot.refs
+        ctx:log("First explicit AFTER in this session: reference anchor retained only in memory for later same-session checks.")
     end
     local changes
-    if identitySame then changes=logSnapshot(ctx,snapshot,baseline)
+    if (not crossSession and identitySame) or (crossSession and hintsMatch and (not referenceBaseline or identitySame)) then changes=logSnapshot(ctx,snapshot,baseline)
     else
-        ctx:log("IDENTITY CHANGE: slot 0 now refers to a different actor. Current data follows; visual differences are not attributed to the original human.")
+        ctx:log("IDENTITY CHANGE: actor changed or saved name/sex hints differ/unavailable. Current data follows; visual differences are not attributed to the original human.")
         logSnapshot(ctx,snapshot)
     end
     local flag=snapshot.fields["visibility.isInvisible"]
     ctx:log("CURRENT isInvisible="..display(flag)..". Ghost mode aliases this flag on installed IsoPlayer; no toggle performed.")
     ctx:log("Dynamic XP/equipment/inventory/needs/position differences are context, not failure invariants. These fields do not fingerprint rendered pixels.")
     H.history=H.history or {}
-    H.history[#H.history+1]={time=snapshot.time,kind=kind,fields=snapshot.fields,sameActor=identitySame,changes=changes}
+    local history={time=snapshot.time,kind=kind,fields=snapshot.fields,crossSession=crossSession,
+        sessionActorUnchanged=identitySame,changes=changes}
+    if not crossSession then history.sameActor=identitySame end
+    H.history[#H.history+1]=history
     if #H.history>4 then table.remove(H.history,1) end
-    ctx.observations={sameActor=identitySame,slotsUnchanged=slotsSame,changes=changes,currentInvisible=flag,
+    ctx.observations={sameActor=identitySame,crossSession=crossSession,
+        crossSessionIdentityVerified=false,hintsMatch=hintsMatch,
+        slotsUnchanged=slotsSame,changes=changes,currentInvisible=flag,
+        sessionActorUnchanged=identitySame,sessionReferencesChecked=referenceBaseline~=nil,
         baselineTimestamp=baseline.time,currentTimestamp=snapshot.time,referenceChanges=refChanges}
-    if not identitySame or not slotsSame or snapshot.refs.singleton~=baseline.refs.singleton then
+    if crossSession then
+        ctx.observations.sameActor=nil;ctx.observations.slotsUnchanged=nil
+        ctx:finish("INCONCLUSIVE",(referenceBaseline and (not identitySame or not slotsSame or snapshot.refs.singleton~=referenceBaseline.singleton))
+            and "Same-session actor/slot/singleton changed since first AFTER. Saved baseline preserved; cross-session identity still UNVERIFIED."
+            or hintsMatch and "Saved baseline comparison recorded; cross-session human identity UNVERIFIED. No cause or repair inferred."
+            or "Saved baseline name/sex hints differ or unavailable; original-human comparison withheld. Baseline preserved; verify character before explicitly recapturing.")
+    elseif not identitySame or not slotsSame or snapshot.refs.singleton~=baseline.refs.singleton then
         ctx:finish("INCONCLUSIVE","Actor/slot/singleton identity changed. Baseline preserved; verify intentional character change before rebaselining.")
     elseif changes and (refChanges>0 or changes.identity>0 or changes.visual>0 or changes.visibility>0 or changes.render>0) then
         ctx:finish("INCONCLUSIVE","Observed identity/visual/visibility/render-state or reference changes; see categories. No cause or repair inferred.")
@@ -237,23 +341,27 @@ local function compare(ctx,kind)
         ctx:finish("INCONCLUSIVE","Readable stable fields unchanged; some visual/render fields unavailable. A visible symptom can still be a rendering issue; no cause established.")
     else ctx:finish("PASSED","Comparison recorded; readable stable fields unchanged. This is not proof the displayed appearance is correct.") end
 end
-local requirements="Intended local human in a single-player gameplay session. Session-only baseline; recapture after world reload/new character. Full raw hair/color detail requires native -debug; never enabled by this test."
-local risk="Observation only. Stores bounded data in Lua memory, not the save. No appearance/control/visibility/model/inventory changes. Existing shared-window acknowledgment remains."
-T.register({id=BASE,order=30,readOnly=true,title="Human appearance - capture baseline",
-    description="Run ONLY when your human looks correct. Capture stable visual/descriptor/identity and visibility fields plus dynamic inventory/XP context. Explicitly replaces the session baseline; later comparisons never overwrite it. Unsafe lazy getters are skipped, with missing data marked unavailable.",
-    requirements=requirements,risk=risk,available=prerequisites,
+local requirements="Intended local human in single-player. Explicit baseline persists after normal world save; after reload human identity is UNVERIFIED (name/sex hints only). Full raw hair/color detail requires native -debug; never enabled by this test."
+local risk="Observation only. AFTER history is session-only; comparisons never update the saved baseline. No appearance/control/visibility/model/inventory changes. Existing shared-window acknowledgment remains."
+T.register({id=BASE,order=30,diagnosticWrite=true,title="Human appearance - capture baseline",
+    description="Run ONLY when your human looks correct. Explicitly replace the scalar diagnostic baseline for the NEXT NORMAL WORLD SAVE. No forced save; disk durability is not yet confirmed. Later comparisons never overwrite it. Unsafe lazy getters are skipped, with missing data marked unavailable.",
+    requirements=requirements,risk="Updates only SSR.Tests.HumanVisual diagnostic GlobalModData; next normal save controls durability. No actor or appearance changes.",available=captureAvailable,
     run=function(ctx)
-        local snapshot=capture();H.baseline=snapshot;H.history={}
+        local snapshot=capture()
+        local record=persisted(snapshot)
+        local valid,reason=validate(record);assert(valid,reason)
+        ModData.getOrCreate(KEY).baseline=record
+        H.baseline=snapshot;H.history={};H.sessionRefs=nil
         logSnapshot(ctx,snapshot)
-        ctx:log("Baseline is session-only: no reliable public stable human-save identity getter was verified. No raw Java references written to ModData.")
-        ctx:finish("PASSED","Known-good baseline captured at your request; coverage limits listed. No appearance validation or changes applied.")
+        ctx:log("Scalar baseline queued in diagnostic GlobalModData for NEXT NORMAL WORLD SAVE. No forced save; disk write NOT confirmed. No Java references persisted. After restart human identity remains UNVERIFIED.")
+        ctx:finish("PASSED","Known-good baseline captured at your request; save normally to retain it after restart. No appearance validation or changes applied.")
     end})
 T.register({id=CHANGED,order=40,readOnly=true,title="Human appearance - compare changed",
-    description="Run after a visible appearance change. Compare with your known-good baseline; record current state separately (last four AFTER captures). Dynamic skills/equipment/inventory are observations. Unavailable fields are not treated as matching. No automatic capture, reset or root-cause attribution.",
+    description="Run after a visible appearance change. Compare with your known-good baseline, including one loaded from a normal save. Cross-session identity is UNVERIFIED; verify the intended character yourself. Last four AFTER captures remain in memory. Dynamic skills/equipment/inventory are observations. Unavailable fields are not treated as matching. No automatic capture, reset or root-cause attribution.",
     requirements=requirements,risk=risk,available=afterAvailable,run=function(ctx) compare(ctx,"appearance changed") end})
 T.register({id=INVISIBLE,order=50,readOnly=true,title="Human appearance - diagnose invisible",
     description="Run while your human is invisible. Record current isInvisible, ghost/sprite/culling/draw flags, opacity for viewport 0 and model presence; compare data with baseline. Does NOT call setInvisible, refresh/resetModel or getAnimationPlayer. Captures current data at execution time, not the exact earlier rendered frame.",
     requirements=requirements,risk=risk,available=afterAvailable,run=function(ctx) compare(ctx,"invisible symptom") end})
 if H.startCallback then Events.OnGameStart.Remove(H.startCallback) end
-H.startCallback=function() H.baseline=nil;H.history={} end -- Clear own memory only; never capture on startup.
+H.startCallback=function() H.baseline=nil;H.history={};H.sessionRefs=nil end -- Clear own memory only; never capture on startup.
 Events.OnGameStart.Add(H.startCallback)
