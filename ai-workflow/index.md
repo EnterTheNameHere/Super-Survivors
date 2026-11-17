@@ -333,3 +333,9 @@ on codex/persistence-b42; report mail/orchestrator/inbox/2026-11-17-combat-03-ru
 Inventory01 mail preserved/read but not acknowledged/started during this user log
 check; separate startup/priority next. Test04 R1 restart proof pending; Test03
 early observer deferred. No production source merge or combat success claimed.
+
+
+Inventory01 ACKNOWLEDGED / READ-ONLY INVESTIGATION by exclusive existing local
+Codex codex/persistence-b42, after Combat03 runtime report; no overlapping code
+work. Native inventory reuse audit/matrix/proposal only, no UI/action edits.
+Ack: mail/orchestrator/inbox/2026-11-17-inventory-01-ack.md.
