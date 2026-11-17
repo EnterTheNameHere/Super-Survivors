@@ -398,7 +398,7 @@ explicit bounded passive trace, no destructive consent or global test bypass.
 10s/600ticks/80lines/30natural calls, instance-only exact-once request observer,
 returns/errors unchanged (no protected call around original; deferred aborted-call
 cleanup), owned callback/method teardown. No extra attack/flags/slots/Hit/Java/fix.
-B41/PZNS/current API matrix delivered; old NPC setters absent installed B42, native
+B41/legacy B41 NPC framework/current API matrix delivered; old NPC setters absent installed B42, native
 AI control handoff candidate still unproven.267tests/116syntax pass isolated,
 LuaLS88legacy/no new. Native UI/trace NOT RUN. Restart, Information -> Diagnostics
 -> Start combat trace, report trace logged. Docs COMBAT_HANDOFF_TRACE_B42.md on
@@ -441,3 +441,13 @@ source merge. Delivery: mail/orchestrator/inbox/2026-11-17-inventory-01-delivery
 Next actor orchestrator review/new bounded assignment. Combat03 follow-up separate,
 Test04 R1 restart proof pending, Test03 early observer deferred. Exclusive existing
 implementer ownership, user changes/saves preserved.
+
+## Saved inventory plan and Combat04 decision (2026-11-17)
+Agreed SSR inventory roadmap saved at `docs/INVENTORY_UI_IMPLEMENTATION_PLAN_B42.md` on B42: independent read-only NPC display; validated actor-aware transfers/wear/remove/equip/drop; additive human inventory Give To -> Survivor; future action families. Preserve human UI unchanged, old panels until parity; no inventory implementation assigned. Combat03 measured 98 actual completed natural attack requests `false,busy` with `isAttackStarted=true`, no swing/animation, and no trace of first flag setter. legacy B41 NPC framework's Workshop framework is B41; its old NPCSetAttack/NPCSetAiming helpers are not validated and absent in installed B42.22.2. Combat04 source-only native handoff and correction options assignment `ai-workflow/assignments/combat-b42-correction-options-04.md` and implementer inbox `ai-workflow/mail/implementer/inbox/2026-11-17-combat-04-correction-options.md` published, status REQUESTED/NOT ACKNOWLEDGED; first transition and native collision route to be researched before any fix. No combat production change/flag reset/Java patch authorized.
+
+Combat04 ACKNOWLEDGED / SOURCE RESEARCH + EXPERIMENT DESIGN ONLY, 17 November.
+Exclusive existing codex/persistence-b42, base1b7a72533d85218d486bf7e1601819506fc08a40;
+canonical7f0521f read. No parallel inventory/code work. Installed B42.22.2 first
+attack/control/collision contracts and correction options; no fixture/reset/hit/
+slot swap/Java/production changes. Ack mail/orchestrator/inbox/2026-11-17-combat-04-ack.md.
+Test04 R1 pending, Test03 observer deferred; inventory plan retained separately.
