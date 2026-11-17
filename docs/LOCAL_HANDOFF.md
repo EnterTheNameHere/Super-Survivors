@@ -2,6 +2,19 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Combat01 source diagnosis (17 November 2026)
+
+Analysis only after Test04 R1 delivery. See COMBAT_B42_INVESTIGATION_01.md:
+perception list is one-based Kahlua table, native moving list is Set and ordinary
+zombies are registered there. Definite impossible equipped-and-empty equip rules,
+zombie Pursue requiring nonexistent SSR wrapper; active Attack branches remain.
+Native NPC controls override aiming/initiation semantics and usual collision
+callback gates on local-player membership. No runtime combat-stage evidence yet;
+no root cause/reproduction or animation/hit success claimed. Proposed existing-NPC
+snapshot first, bounded passive request/event observation if needed, separately
+reviewed Lua defects/native adapter. No gameplay code or test diagnostic added.
+Java changes/direct Hit/local-slot manipulation excluded. User edits preserved.
+
 ## Test 04 R1 persistent human baseline (17 November 2026)
 
 Current implementation keeps an explicitly captured scalar baseline in separate
