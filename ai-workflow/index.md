@@ -382,3 +382,11 @@ assigned/consented. No implementation/engine proof/source merge. Prior runtime
 98busy returns remains actual evidence. Delivery mail/orchestrator/inbox/2026-11-17-combat-04-delivery.md.
 Next orchestrator review/order. Inventory implementation not started; Test04 R1
 restart proof pending, Test03 observer deferred. User edits and saves preserved.
+
+Combat04 FINAL REVIEW REF after concurrent user documentation cleanup:
+7576d8eb8d2c51982510a5d65f7b16d0352d3ed2 on codex/persistence-b42,
+parents b7e5f52a460b56cdbe867e9309374ce0536608fc and
+bd088a51425711376a3e3ebc98b42fdd6d12da79. Supersedes initial report ref for review.
+User remote documentation removal of external NPC-project references preserved;
+new report likewise uses native B41/B42 findings only. No gameplay/source merge,
+production edits or runtime experiment. Reply mail/orchestrator/inbox/2026-11-17-combat-04-final-ref.md.
