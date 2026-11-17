@@ -2,6 +2,18 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Combat02 actual ID9 observations (17 November 2026)
+
+User identifies Roderick as ID9.33 native snapshots/277.817s: all native attackStarted
+true, initiate false, no attack animation/SwipeState, readiness true, healthy/armed;
+11 in-range (7 wait0), Attack front31, Flee1, Enter New Building1; updates progress.
+No errors after first snapshot. Strong recurring stale attack flag/animation handoff
+candidate: requestCombatAttack would reject busy at these flags, but no request
+trace/first-set/reset transition recorded. Not a proven full cause or continuous
+trace. Evidence COMBAT_SNAPSHOT_RODERICK_ID9_2026-11-17.log, summary in
+COMBAT_LIVE_SNAPSHOT_B42.md. No fixes/flag resets or temporal observer implemented.
+Orchestrator review next; additional identical snapshots not needed for this pattern.
+
 ## Combat02 read-only existing-NPC snapshot (17 November 2026)
 
 Implemented Combat - inspect existing survivor in SS Tests with explicit loaded

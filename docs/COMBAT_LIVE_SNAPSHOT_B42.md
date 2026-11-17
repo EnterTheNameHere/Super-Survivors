@@ -1,7 +1,8 @@
 # Combat: inspect an existing survivor — B42
 
 17 November 2026, SSR-COMBAT-02. **Implemented; native UI/snapshot NOT RUN.**
-One explicit read-only snapshot of an existing loaded SSR survivor. No combat
+Latest native execution findings are appended below; original delivery status
+above is historical. One explicit read-only snapshot of an existing loaded SSR survivor. No combat
 fix, test spawn, zombie creation, forced attack, task update or event interception.
 Findings motivating this diagnostic: [COMBAT_B42_INVESTIGATION_01.md](COMBAT_B42_INVESTIGATION_01.md).
 
@@ -149,3 +150,58 @@ PZ_GAME_DIR, and **114/114 Lua5.1 syntax checks pass** in an isolated staged exp
 excluding user edits. LuaLS retains88 legacy diagnostics in13 files, none in the
 new snapshot or registry/Tests window. Human baseline persistence tests remain
 passing. Actual native UI/layout and snapshot execution still NOT RUN.
+
+
+## Native execution: Roderick / ID9 (17 November 2026)
+
+User identifies Roderick as ID9. Actual console contains34 completed snapshots:
+one ID3 (Follow) and33 ID9, all with expected INCONCLUSIVE result and no errors/
+exceptions/stacks after the first snapshot through inspected EOF. Preserved extract:
+[evidence/COMBAT_SNAPSHOT_RODERICK_ID9_2026-11-17.log](evidence/COMBAT_SNAPSHOT_RODERICK_ID9_2026-11-17.log).
+ID9 observations span277.817 seconds, native frames25138-40478. Variable field counts
+93-95 follow queue length (1-3entries); no missing mandatory output found. Native
+frame getter/selection/loaded ownership and public read fields worked in-game.
+This is user-driven UI execution, not a complete native visual/layout audit.
+
+Across all33 ID9 observations:
+
+| State | Observed |
+| --- | --- |
+| Native attackStarted | true,33/33 |
+| Native initiateAttack | false,33/33 |
+| Native performing attack animation / exact SwipeState | false,33/33 each |
+| Native state name | IdleState18, PlayerMovementState15 |
+| Native weapon ready | true,33/33 |
+| Native attack range | true11, false22 |
+| Queue front | Attack31, Flee1, Enter New Building1 |
+| AtkTicks | 0,33/33 |
+| Health / unbandaged injuries | 100 /0,33/33 |
+
+ID9 holds Base.WoodenMallet condition8, isNpc true/nonlocal, human guards/membership
+valid. Target is a living IsoZombie. Cached perception sees17-18 enemies (not a
+controlled one-zombie experiment); danger3-5 in most attack observations. AI update
+count rises from7 through895 before a brief Flee/building transition and renewed
+Attack. No queue/update freeze demonstrated. Eleven in-range Attack snapshots
+include seven with WaitTicks0 (e.g frame35666/update661, distance0.778), four with
+WaitTicks1. No observed swing even when those safe readiness/range conditions hold.
+The initial out-of-range-only observation is superseded by these additional data.
+
+Conditional source consequence: requestCombatAttack with a valid living target,
+AtkTicks0 and this native attackStarted=true would return false,"busy" before
+range/weapon/native pressedAttack. This is a directly supported blocking gate,
+not a traced return value. AttackTask dispatch and request-return timing were not
+instrumented. Discrete snapshots cannot prove flags remained continuously unchanged
+between runs or establish who first set the flag. Native NPC control post-update
+writing initiateAttack from default control vars remains a strong mechanism
+candidate from the prior source audit; not yet an observed causal transition.
+
+Classification now narrows beyond perception/no decision: Roderick selects a
+zombie and queues/updates Attack, has a weapon and reaches native range. Strong
+evidence of stale native attack-start state/failed animation handoff, with a
+known busy guard that blocks additional requests when sampled. Source-proven
+collision locality restriction remains a subsequent limitation; no evidence it
+was reached. Do not call the root cause fully established or claim damage passed.
+No gameplay fix/reset/forced attack, temporal observer or Java change made.
+Next: orchestration reviews evidence and chooses a separately bounded native
+attack-handoff observation/adapter investigation. More identical manual snapshots
+are not required to establish this recurring state pattern.
