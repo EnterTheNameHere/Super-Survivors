@@ -382,10 +382,25 @@ not needed. Original delivery NOT RUN history superseded by native user evidence
 Test04 R1 restart proof pending separately; Test03 R1 deferred. No source merge.
 
 ## SSR-COMBAT-02 actual run and SSR-COMBAT-03 request (2026-11-17)
-User ran Combat02; local Codex inspected 34 real-game snapshots (33 Roderick SSR ID9). Evidence docs/evidence/COMBAT_SNAPSHOT_RODERICK_ID9_2026-11-17.log on source branch, inbox ai-workflow/mail/orchestrator/inbox/2026-11-17-combat-02-roderick-runtime-results.md. Of ID9 33 samples, 31 Attack-front, 11 native in-range, 7 in-range+WaitTicks0. ALL33 isAttackStarted=true, isInitiateAttack=false, swing/animation false, native weapon-ready=true, AtkTicks0; healthy, equipped mallet, living zombie target, AI updates advance. Source requestCombatAttack would return busy if called with these flags, but request-return/first flag setter not observed. Evidence supports recurrent native attack-state stall, not proven root cause or collision stage. No more repeated still-frame sampling recommended. New bounded user-invoked existing-owned-NPC temporal trace assignment ai-workflow/assignments/combat-b42-handoff-trace-03.md and mail ai-workflow/mail/implementer/inbox/2026-11-17-combat-03-attack-handoff-trace.md; verify native order, strict scope/log/time/cancellation, no forced attacks/flag changes/hits/slot edits, no production fix/merge. Status REQUESTED / NOT ACKNOWLEDGED.
+User ran Combat02; local Codex inspected 34 real-game snapshots (33 Roderick SSR ID9). Evidence docs/evidence/COMBAT_SNAPSHOT_RODERICK_ID9_2026-11-17.log on source branch, inbox ai-workflow/mail/orchestrator/inbox/2026-11-17-combat-02-roderick-runtime-results.md. Of ID9 33 samples, 31 Attack-front, 11 native in-range, 7 in-range+WaitTicks0. ALL33 isAttackStarted=true, isInitiateAttack=false, swing/animation false, native weapon-ready=true, AtkTicks0; healthy, equipped mallet, living zombie target, AI updates advance. Source requestCombatAttack would return busy if called with these flags, but request-return/first flag setter not observed. Evidence supports recurrent native attack-state stall, not proven root cause or collision stage. No more repeated still-frame sampling recommended. New bounded user-invoked existing-owned-NPC temporal trace assignment ai-workflow/assignments/combat-b42-handoff-trace-03.md and mail ai-workflow/mail/implementer/archive/2026-11-17-combat-03-attack-handoff-trace.md; verify native order, strict scope/log/time/cancellation, no forced attacks/flag changes/hits/slot edits, no production fix/merge. Status REQUESTED / NOT ACKNOWLEDGED.
 
 
 Combat03 ACKNOWLEDGED / IMPLEMENTING by exclusive existing local Codex on
 codex/persistence-b42. Includes source/API research and contextual read-only
 Diagnostics on both reachable info paths; bounded natural-call trace, no combat
 fix. Ack: mail/orchestrator/inbox/2026-11-17-combat-03-ack.md.
+
+
+Combat03 DELIVERED for review ata5b166d45e83a7450acc31b135f31cba937332a2,
+parenta65e33a4606f436623d7023a27b6ae774f9d1e34, exclusive codex/persistence-b42.
+Shared Diagnostics on both reachable information paths: immediate reused snapshot,
+explicit bounded passive trace, no destructive consent or global test bypass.
+10s/600ticks/80lines/30natural calls, instance-only exact-once request observer,
+returns/errors unchanged (no protected call around original; deferred aborted-call
+cleanup), owned callback/method teardown. No extra attack/flags/slots/Hit/Java/fix.
+B41/PZNS/current API matrix delivered; old NPC setters absent installed B42, native
+AI control handoff candidate still unproven.267tests/116syntax pass isolated,
+LuaLS88legacy/no new. Native UI/trace NOT RUN. Restart, Information -> Diagnostics
+-> Start combat trace, report trace logged. Docs COMBAT_HANDOFF_TRACE_B42.md on
+source ref; report mail/orchestrator/inbox/2026-11-17-combat-03-delivery.md.
+Prior evidence/Test04 R1 preserved; Test03 observer deferred. No source merge.
