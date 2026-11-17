@@ -5,7 +5,7 @@ Repo/ref: EnterTheNameHere/Super-Survivors / B42
 Initial inspected tree: 857543978dbc2571a164666f1f6c864acb88b4da
 Coordinator: ChatGPT design/orchestrator thread
 Implementer: Local Codex; acknowledged 2026-11-15
-Execution: Combat03 trace/contextual diagnostics delivered, native run pending; Test04 R1 restart proof pending; Test03 early observer deferred
+Execution: Combat03 native busy rejections confirmed/review next; Inventory01 requested/unacknowledged; Test04 R1 restart proof pending; Test03 observer deferred
 Implementation base: 3a087ee8c4aceb151443848e19bbc3a999a129f5 (origin/B42)
 Acknowledgment: mail/orchestrator/inbox/2026-11-15-persist-01-ack.md
 Production implementation ref: codex/persistence-b42; exclusive existing checkout
@@ -352,3 +352,16 @@ Prior evidence/Test04 R1 preserved; Test03 observer deferred. No source merge.
 
 ## SSR-INVENTORY-01 — native inventory UI compatibility audit (2026-11-17)
 User confirmed investigate first: separate survivor-owned inventory UI reusing native B42 presentation/actions where safe (icons, bags, worn/held, wear/unequip/drop, right click) without replacing/reparenting the human inventory UI; eventually additive player inventory Give To -> Survivor Name using SSR transfer semantics. Compare installed B42.22.2 UI Java/Lua and SSR's SuperSurvivorInventory/Loadout and transfer/clothing utilities, document obsolete/unsafe local-player assumptions and phased proof. Investigation only, NO UI/action code authorized. Assignment ai-workflow/assignments/inventory-b42-investigation-01.md; implementer inbox ai-workflow/mail/implementer/inbox/2026-11-17-inventory-01-native-ui-audit.md; STATUS REQUESTED / NOT ACKNOWLEDGED. Coordinate existing exclusive implementation checkout with Combat03, no parallel owners.
+
+
+Combat03 ACTUAL NATIVE TRACE verified17November:5traces IDs9/1/5/5/5,98complete
+natural request returns ALLfalse,busy (102entries,4returns log-cap-censored).
+Roderick15 in-range Attack requests rejectedbusy; all startedtrue/initiatefalse/
+no swing, preexisting at every start. All5 hit80line cap and report own method
+restored, no actual errors. Stage(d) request rejection now observed, original
+flag setter/handoff cause remains unobserved. No more alreadybusy traces needed
+for gate; no fixes/resets/extra observer added. Evidence/docs6a51060e0c8f451c70fef2927e8bdcf7b642d0a8
+on codex/persistence-b42; report mail/orchestrator/inbox/2026-11-17-combat-03-runtime-results.md.
+Inventory01 mail preserved/read but not acknowledged/started during this user log
+check; separate startup/priority next. Test04 R1 restart proof pending; Test03
+early observer deferred. No production source merge or combat success claimed.

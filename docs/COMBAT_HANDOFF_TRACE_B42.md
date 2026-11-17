@@ -176,8 +176,10 @@ Five traces (ID9, ID1, ID5 three times),400lines total. Every trace stopped at t
 80line cap and reported ownedWrapperRestored=true, zero swing/HitPoint events and
 zero sampled false->true transitions. All started with attackStarted already true;
 none observes its original setter. No actual error/exception/stack or observer
-failure occurs from first trace through inspected EOF. Native UI start/logging,
+failure occurs from first trace through inspected EOF. Native trace start/logging,
 instance dispatch interception, bounded logging and reported restoration worked.
+Logs do not identify Information versus SS Tests launch surface; both native UI
+layouts are not thereby proven tested.
 Not all teardown/error/UI resizing paths were exercised natively.
 
 | ID | Native frame span | Duration seconds | Request entries | Complete logged returns |
