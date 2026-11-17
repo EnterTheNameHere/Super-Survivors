@@ -52,12 +52,17 @@ end
 local function changed() T.revision = T.revision + 1 end
 function T.start(id, consent)
     if T.active then return false, "Another test is already running." end
-    if T.cleanupFailure then return false, "Cleanup failed. Restart the game before running further tests." end
-    if consent ~= true then return false, "Acknowledge the world-modification warning for this run." end
     local definition = T.definitions[id]
+    if T.cleanupFailure and not (definition and definition.readOnly) then
+        return false, "Cleanup failed. Restart the game before running further mutating tests."
+    end
+    if consent ~= true then return false, "Acknowledge the world-modification warning for this run." end
     local allowed, reason = T.availability(definition)
     if not allowed then return false, reason end
-    T.bootToken = T.bootToken or string.format("%.0f_%.0f",getTimestampMs(),ZombRand(1000000))
+    -- Pure observation controls need no persistence session token or gameplay RNG draw.
+    if not definition.readOnly then
+        T.bootToken = T.bootToken or string.format("%.0f_%.0f",getTimestampMs(),ZombRand(1000000))
+    end
     local context = {id=id, definition=definition, status="RUNNING", lines={}, ticks=0,
         cell=getCell(), world=getWorld():getWorld()}
     function context:log(line)

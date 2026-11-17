@@ -161,3 +161,28 @@ automatically on startup. Merely moving the whole test to OnTickEvenPaused is
 not an adequate fix and the callback boundary must be independently verified.
 This could remove timing pressure and the need for a paused-menu workaround.
 Orchestrator should assign the bounded observation/test-harness adjustment first.
+
+
+## Human appearance controls (SSR-TEST-04)
+
+Three new observation-only choices are available after restart:
+
+- **Human appearance - capture baseline**: run when the intended human looks
+  correct, then continue ordinary gameplay.
+- **Human appearance - compare changed**: run after the skin/hair/beard changes.
+- **Human appearance - diagnose invisible**: run while invisible; prints current
+  isInvisible and other draw/model/opacity fields without toggling anything.
+
+The shared acknowledgment is retained; these three controls create no actor,
+load/save nothing, change no appearance/control state and draw no gameplay RNG.
+They keep a session-only baseline and four separate AFTER observations in memory.
+After world reload/new character, explicitly capture a fresh known-good baseline.
+No automatic capture, polling, repair or restart comparison is installed.
+
+Without native -debug the controls work with partial coverage; raw hair/style/
+color fields are UNAVAILABLE because public getters can mutate them. Existing
+native debug allows raw-field detail without enabling unsafe getters. No field
+is silently defaulted or treated as unchanged when unavailable. XP, inventory,
+equipment, needs and position are dynamic context. Source/API limits, procedures
+and result meaning: [HUMAN_VISUAL_DIAGNOSTICS_B42.md](HUMAN_VISUAL_DIAGNOSTICS_B42.md).
+**Actual Test 04 in-game execution NOT RUN at delivery.**

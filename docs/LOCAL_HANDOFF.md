@@ -2,6 +2,23 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Test 04 human visual diagnostics (17 November 2026)
+
+Priority changed by canonical inbox: user directly saw restored NPC AI movement;
+Test-03 machine INCONCLUSIVE history retained, R1 observer not started/deferred.
+Human skin/hair/probable beard change occurred during ordinary play, not active
+test; separate invisibility-off recovery has no identified origin. Implemented
+three explicit Human appearance baseline/changed/invisible controls in SS Tests.
+No production fixes, setters/reset/model reconstruction, native load/save or
+automatic captures. Read-only definitions retain consent but skip gameplay RNG.
+Baseline is session-only (no verified stable public human DB identity getter),
+world/cell/actor scoped; after captures never overwrite it, bounded history four.
+Full raw colors/styles require native-debug reflection; unsafe lazy public getters
+and getAnimationPlayer are never called. Without -debug unavailable fields stay
+explicit, safe indices/flags/identity/context still work. See
+HUMAN_VISUAL_DIAGNOSTICS_B42.md. 219 tests/113 syntax pass working-copy; native
+Test 04 NOT RUN. Concurrent source/settings/save edits preserved.
+
 ## Test 03 actual restart: inconclusive position (17 November 2026)
 
 Actual stage/OnSave/restart/resume completed: SSR survivor 2/group 3, snapshot

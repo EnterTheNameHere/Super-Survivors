@@ -17,6 +17,7 @@ class ReleaseChecks(unittest.TestCase):
             keep = ['42/mod.info', '42/media/lua/client/3_Other/main.lua',
                     '42/media/lua/client/Testing/SSRTests.lua',
                     '42/media/lua/client/Testing/SSRPersistenceTest.lua',
+                    '42/media/lua/client/Testing/SSRHumanVisualTest.lua',
                     '42/media/lua/client/5_UI/SSRTestsWindow.lua',
                     '42/media/maps/Hilltop Survivor Camp/spawnpoints.lua',
                     'common/media/textures/PVPOn.png']

@@ -4,6 +4,7 @@ require "ISUI/ISComboBox"
 require "ISUI/ISTickBox"
 require "Testing/SSRTests"
 require "Testing/SSRPersistenceTest"
+require "Testing/SSRHumanVisualTest"
 
 local T = SSRTests
 SSRTestsWindow = ISCollapsableWindow:derive("SSRTestsWindow")
@@ -103,7 +104,7 @@ function Window:update()
     local definition=self.tests[self.selector.selected]
     local available,reason=T.availability(definition)
     local blocked
-    if T.cleanupFailure then blocked="Cleanup failed: restart the game before further tests."
+    if T.cleanupFailure and not (definition and definition.readOnly) then blocked="Cleanup failed: restart the game before further mutating tests."
     elseif T.active then blocked="Another test is already running."
     elseif not available then blocked=reason
     elseif not self.consent:isSelected(1) then blocked="Acknowledge the warning to enable Run." end

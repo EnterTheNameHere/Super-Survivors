@@ -70,6 +70,17 @@ class InstalledPersistenceApiChecks(unittest.TestCase):
         _, cell = self.metadata('zombie/iso/IsoCell')
         self.calls(cell, 'addMovingObject(Lzombie/iso/IsoMovingObject;)V', 'zombie/iso/IsoCell', 'isSafeToAdd')
 
+    def test_visual_diagnostic_direct_getters_are_field_reads_not_lazy_initializers(self):
+        _, visual = self.metadata('zombie/core/skinnedmodel/visual/HumanVisual')
+        for key, return_op in [('getSkinTextureIndex()I', 0xac), ('getBodyHairIndex()I', 0xac),
+                               ('getNonAttachedHair()Ljava/lang/String;', 0xb0)]:
+            code = visual['bytecode'][key]
+            self.assertEqual(len(code), 5, key)
+            self.assertEqual(code[:2], bytes([0x2a, 0xb4]), key)  # aload_0/getfield
+            self.assertEqual(code[-1], return_op, key)
+        _, player = self.metadata('zombie/characters/IsoPlayer')
+        self.calls(player, 'isGhostMode()Z', 'zombie/characters/IsoPlayer', 'isInvisible')
+
     def test_build_version_api_includes_suffix_separately_from_game_version(self):
         entries, data = self.metadata('zombie/core/Core')
         public = {(n, d) for kind, flags, n, d in entries if kind == 'method' and flags & 1}

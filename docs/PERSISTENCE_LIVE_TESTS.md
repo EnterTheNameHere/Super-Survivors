@@ -168,3 +168,13 @@ automatically on startup. Merely moving the whole test to OnTickEvenPaused is
 not an adequate fix and the callback boundary must be independently verified.
 This could remove timing pressure and the need for a paused-menu workaround.
 Orchestrator should assign the bounded observation/test-harness adjustment first.
+
+
+## Priority update from direct user evidence (17 November 2026)
+
+Orchestrator relayed the user's direct observation of the restored NPC moving
+under AI control after restart. Record this as user evidence, beyond the earlier
+coordinate-only inference. Historical machine INCONCLUSIVE and missing exact
+first-position/XP/health/Z coverage remain; no archived log is rewritten to PASS.
+R1 early observer not started and deferred per amended request. Next assigned
+work is separate read-only human appearance diagnostics, not persistence fixes.

@@ -226,6 +226,18 @@ class TestsUiChecks(unittest.TestCase):
             assert(window.runButton.tooltip==nil)
         ''')
 
+    def test_read_only_selection_remains_available_without_clearing_cleanup_failure(self):
+        self.lua.execute('''
+            SSRTests.register({id='read-only',title='Read only',description='Observe only',order=0,readOnly=true,
+                run=function(ctx) ctx:finish('PASSED','Observed') end})
+            local failure={};SSRTests.cleanupFailure=failure
+            local window=SSRTests.openWindow();window.consent:setSelected(1,true);window:update()
+            assert(window.runButton.enabled)
+            window:onRun();fire('OnTick')
+            assert(SSRTests.results['read-only'].status=='PASSED' and SSRTests.cleanupFailure==failure)
+            assert(not SSRTests.start('native-position',true))
+        ''')
+
     def test_same_session_probe_reports_raw_square_mismatch_without_correcting_it(self):
         self.lua.execute('''
             local result=run('native-position')
