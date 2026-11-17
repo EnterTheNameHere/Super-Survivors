@@ -2,6 +2,20 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Combat02 read-only existing-NPC snapshot (17 November 2026)
+
+Implemented Combat - inspect existing survivor in SS Tests with explicit loaded
+ID/name selector and manual Refresh survivors. One protected next-tick snapshot:
+cached perception/queue/weapon/policy/scheduler plus safe native flags and engine
+frame. No task predicates, updates, attacks, spawn or temporal tracing; latest
+result in memory only. Input identity/world/cell frozen/revalidated, all local
+slots/singleton/MainPlayer excluded. ControlVars Class token unverified -> explicit
+UNAVAILABLE; native actual aiming/start/swing reported independently. INCONCLUSIVE,
+no root cause or hit proof. Restart to load, select existing NPC near a zombie,
+acknowledge/Run and report what user saw. Native UI/snapshot NOT RUN. See
+COMBAT_LIVE_SNAPSHOT_B42.md. Test04 R1 GMD baseline unchanged; restart proof pending.
+No proven combat defects fixed; no Java/slot/damage modifications. User edits kept.
+
 ## Combat01 source diagnosis (17 November 2026)
 
 Analysis only after Test04 R1 delivery. See COMBAT_B42_INVESTIGATION_01.md:

@@ -81,6 +81,26 @@ class InstalledPersistenceApiChecks(unittest.TestCase):
         _, player = self.metadata('zombie/characters/IsoPlayer')
         self.calls(player, 'isGhostMode()Z', 'zombie/characters/IsoPlayer', 'isInvisible')
 
+    def test_combat_snapshot_direct_flags_and_world_frame_are_pure_field_reads(self):
+        checks = {
+            'zombie/iso/IsoWorld': ['getFrameNo()I'],
+            'zombie/characters/IsoGameCharacter': [
+                'isPerformingAttackAnimation()Z', 'isPerformingShoveAnimation()Z', 'isAimAtFloor()Z'],
+            'zombie/characters/IsoPlayer': ['isAttackStarted()Z', 'isInitiateAttack()Z', 'isBlockMovement()Z'],
+            'zombie/inventory/InventoryItem': ['getCurrentAmmoCount()I'],
+            'zombie/inventory/types/HandWeapon': ['isJammed()Z', 'isRoundChambered()Z', 'isContainsClip()Z'],
+            'zombie/characters/BodyDamage/BodyPart': ['bandaged()Z'],
+        }
+        for cls, methods in checks.items():
+            _, metadata = self.metadata(cls)
+            for method in methods:
+                code = metadata['bytecode'][method]
+                self.assertEqual(len(code), 5, (cls, method))
+                self.assertEqual(code[:2], bytes([0x2a, 0xb4]), (cls, method))
+                self.assertEqual(code[-1], 0xac, (cls, method))
+        entries, _ = self.metadata('zombie/iso/IsoCell')
+        self.assertIn(('method', 1, 'getObjectList', '()Ljava/util/Set;'), entries)
+
     def test_build_version_api_includes_suffix_separately_from_game_version(self):
         entries, data = self.metadata('zombie/core/Core')
         public = {(n, d) for kind, flags, n, d in entries if kind == 'method' and flags & 1}

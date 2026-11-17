@@ -5,6 +5,7 @@ require "ISUI/ISTickBox"
 require "Testing/SSRTests"
 require "Testing/SSRPersistenceTest"
 require "Testing/SSRHumanVisualTest"
+require "Testing/SSRCombatSnapshot"
 
 local T = SSRTests
 SSRTestsWindow = ISCollapsableWindow:derive("SSRTestsWindow")
@@ -43,6 +44,11 @@ function Window:createChildren()
     self.selector:initialise()
     self:addChild(self.selector)
     y=y+row+6
+    self.survivorSelector=ISComboBox:new(10,y,self.width-160,row,self,self.onSurvivorSelection)
+    self.survivorSelector:initialise();self:addChild(self.survivorSelector)
+    self.refreshSurvivorsButton=ISButton:new(self.width-140,y,130,row,"Refresh survivors",self,self.refreshSurvivors)
+    self.refreshSurvivorsButton:initialise();self:addChild(self.refreshSurvivorsButton)
+    y=y+row+6
     local detailsHeight=math.max(100,math.floor(self.height*0.25))
     self.details=panel(self,10,y,self.width-20,detailsHeight,true)
     y=y+detailsHeight+6
@@ -78,13 +84,34 @@ end
 function Window:onSelection()
     self.notice=nil
     self.seenRevision=nil
+    if self.survivorSelector then self:refreshSurvivors() end
+end
+function Window:refreshSurvivors()
+    local previous=self.survivors and self.survivors[self.survivorSelector.selected-1]
+    local definition=self.tests and self.tests[self.selector.selected]
+    local limited=false
+    self.survivors={}
+    if definition and definition.survivorSelection then self.survivors,limited=SSRCombatSnapshot.choices() end
+    self.survivorSelector:clear()
+    self.survivorSelector:addOption(limited and "Select survivor (list capped; 128 max)" or "Combat: select existing survivor")
+    for i,entry in ipairs(self.survivors) do
+        self.survivorSelector:addOption(entry.label)
+        if previous and previous.id==entry.id and previous.actor==entry.actor and previous.wrapper==entry.wrapper
+            and previous.cell==entry.cell and previous.world==entry.world then self.survivorSelector.selected=i+1 end
+    end
+    self.seenRevision=nil
+end
+function Window:onSurvivorSelection() self.seenRevision=nil end
+function Window:parameters()
+    local definition=self.tests[self.selector.selected]
+    if definition and definition.survivorSelection then return self.survivors[self.survivorSelector.selected-1] end
 end
 function Window:onConsent() self.seenRevision=nil end
 function Window:onRun()
     local definition=self.tests[self.selector.selected]
     local consent=self.consent:isSelected(1)
     self:resetConsent() -- Every attempted new run consumes that acknowledgment.
-    local ok,reason=T.start(definition and definition.id,consent)
+    local ok,reason=T.start(definition and definition.id,consent,self:parameters())
     self.notice=not ok and reason or nil
     self.seenRevision=nil
 end
@@ -102,7 +129,9 @@ function Window:update()
     if not T.enabled() then self:close();return end
     if self.seenDefinitions~=T.definitionRevision then self:refreshRegistry() end
     local definition=self.tests[self.selector.selected]
-    local available,reason=T.availability(definition)
+    local available,reason=T.availability(definition,self:parameters())
+    self.survivorSelector:setEnabled(definition~=nil and definition.survivorSelection==true and not T.active)
+    self.refreshSurvivorsButton:setEnable(definition~=nil and definition.survivorSelection==true and not T.active)
     local blocked
     if T.cleanupFailure and not (definition and definition.readOnly) then blocked="Cleanup failed: restart the game before further mutating tests."
     elseif T.active then blocked="Another test is already running."

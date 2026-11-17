@@ -31,7 +31,7 @@ function T.list()
     end)
     return result
 end
-function T.availability(definition)
+function T.availability(definition,parameters)
     if not definition then return false, "No test selected." end
     if not T.enabled() then return false, "Enable Debug Options in the mod options." end
     if isClient() or isServer() or getNumActivePlayers() ~= 1 then
@@ -42,7 +42,7 @@ function T.availability(definition)
         return false, "Enter gameplay with a living player in a loaded world."
     end
     if definition.available then
-        local ok, allowed, reason = pcall(definition.available)
+        local ok, allowed, reason = pcall(definition.available,parameters)
         if not ok then return false, "Prerequisite error: " .. tostring(allowed) end
         if not allowed then return false, reason or "Test prerequisites are not satisfied." end
     end
@@ -50,14 +50,15 @@ function T.availability(definition)
 end
 
 local function changed() T.revision = T.revision + 1 end
-function T.start(id, consent)
+function T.start(id, consent,parameters)
     if T.active then return false, "Another test is already running." end
+    if parameters~=nil and type(parameters)~="table" then return false,"Test parameters must be a table." end
     local definition = T.definitions[id]
     if T.cleanupFailure and not (definition and definition.readOnly) then
         return false, "Cleanup failed. Restart the game before running further mutating tests."
     end
     if consent ~= true then return false, "Acknowledge the world-modification warning for this run." end
-    local allowed, reason = T.availability(definition)
+    local allowed, reason = T.availability(definition,parameters)
     if not allowed then return false, reason end
     -- Observation and diagnostic-metadata capture need no native-fixture token
     -- or gameplay RNG draw. diagnosticWrite does not bypass cleanup-failure gating.
@@ -66,6 +67,11 @@ function T.start(id, consent)
     end
     local context = {id=id, definition=definition, status="RUNNING", lines={}, ticks=0,
         cell=getCell(), world=getWorld():getWorld()}
+    -- Freeze the explicit selection's flat input table; references remain session-only.
+    if parameters then
+        context.parameters={}
+        for key,value in pairs(parameters) do context.parameters[key]=value end
+    end
     function context:log(line)
         line = tostring(line)
         self.lines[#self.lines+1] = line

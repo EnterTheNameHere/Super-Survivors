@@ -196,3 +196,17 @@ and result meaning: [HUMAN_VISUAL_DIAGNOSTICS_B42.md](HUMAN_VISUAL_DIAGNOSTICS_B
 **Original Test04 controls exercised:** all 83 fields present, baseline captured,
 AFTERs inconclusive, expected 25 unavailable fields without -debug, no errors
 during runs; no symptom reproduction confirmed. **R1 native save/restart not run.**
+
+
+## Combat: inspect an existing survivor
+
+Restart, enable mod Debug Options, open SS Tests..., select **Combat - inspect
+existing survivor**, choose an explicit ID/name in the survivor dropdown, acknowledge
+and Run. **Refresh survivors** populates currently owned loaded NPCs; it selects
+nobody by default. Capture near one visible zombie while observing the problem.
+One next-tick read-only snapshot logs cached target/queue/weapon/AI inputs and
+safe native flags. No task refresh, native attack, actor creation or repair.
+INCONCLUSIVE is expected; no target alone does not prove broken perception.
+No automatic polling/interception. Other tests and Test04 R1 baseline preserved.
+Details/safety/API limits: [COMBAT_LIVE_SNAPSHOT_B42.md](COMBAT_LIVE_SNAPSHOT_B42.md).
+Actual native UI/snapshot **NOT RUN** at delivery.

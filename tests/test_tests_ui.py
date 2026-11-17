@@ -155,6 +155,7 @@ class TestsUiChecks(unittest.TestCase):
             function Node:bringToTop() end
             function Node:getBottom() return self.y+self.height end
             function Node:setEnable(value) self.enabled=value end
+            function Node:setEnabled(value) self.enabled=value end
             function Node:setText(value) self.text=value end
             function Node:paginate() if self.autosetheight then self.height=80 end end
             function Node:addScrollBars() end
@@ -224,6 +225,32 @@ class TestsUiChecks(unittest.TestCase):
             assert(window.output.text:find('Run disabled:',1,true))
             noSave=false;window:update();assert(window.runButton.enabled)
             assert(window.runButton.tooltip==nil)
+        ''')
+
+    def test_combat_ui_requires_explicit_survivor_selection_and_refresh_does_not_adopt_replacements(self):
+        self.lua.execute('''
+            local npcActor=actor(105,100,0,false);npcActor.kind='IsoPlayer';npcActor.md.ID=4;npcActor.md.Name='Ada'
+            npcActor.getCell=function() return cell end;npcActor.hasModData=function() return true end
+            getGameTime=function() return {getWorldAgeHours=function() return 1 end} end
+            SSM={MainPlayer=0,SuperSurvivors={[4]={player=npcActor}}}
+            instanceof=function(obj,kind) return obj and obj.kind==kind end
+            local window=SSRTests.openWindow()
+            for i,definition in ipairs(window.tests) do
+                if definition.id=='combat-existing-snapshot' then window.selector.selected=i end
+            end
+            window:onSelection();window.consent:setSelected(1,true);window:update()
+            assert(#window.survivors==1 and not window.runButton.enabled)
+            assert(window.survivorSelector.selected==1)
+            window.survivorSelector.selected=2;window:onSurvivorSelection();window:update()
+            assert(window.runButton.enabled)
+            window:onRun();assert(SSRTests.active.parameters.id==4 and not window.consent:isSelected(1))
+            window:update();assert(not window.refreshSurvivorsButton.enabled and not window.survivorSelector.enabled)
+            fire('OnTick');assert(SSRTests.results['combat-existing-snapshot'].status=='INCONCLUSIVE')
+            window:refreshSurvivors();assert(window.survivorSelector.selected==2)
+            SSM.SuperSurvivors[4]={player=npcActor}
+            window:refreshSurvivors();assert(window.survivorSelector.selected==1)
+            window.selector.selected=1;window:onSelection();window:update()
+            assert(not window.survivorSelector.enabled and not window.refreshSurvivorsButton.enabled)
         ''')
 
     def test_read_only_selection_remains_available_without_clearing_cleanup_failure(self):

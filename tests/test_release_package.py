@@ -18,6 +18,7 @@ class ReleaseChecks(unittest.TestCase):
                     '42/media/lua/client/Testing/SSRTests.lua',
                     '42/media/lua/client/Testing/SSRPersistenceTest.lua',
                     '42/media/lua/client/Testing/SSRHumanVisualTest.lua',
+                    '42/media/lua/client/Testing/SSRCombatSnapshot.lua',
                     '42/media/lua/client/5_UI/SSRTestsWindow.lua',
                     '42/media/maps/Hilltop Survivor Camp/spawnpoints.lua',
                     'common/media/textures/PVPOn.png']
