@@ -398,7 +398,7 @@ explicit bounded passive trace, no destructive consent or global test bypass.
 10s/600ticks/80lines/30natural calls, instance-only exact-once request observer,
 returns/errors unchanged (no protected call around original; deferred aborted-call
 cleanup), owned callback/method teardown. No extra attack/flags/slots/Hit/Java/fix.
-B41/PZNS/current API matrix delivered; old NPC setters absent installed B42, native
+B41/legacy B41 NPC framework/current API matrix delivered; old NPC setters absent installed B42, native
 AI control handoff candidate still unproven.267tests/116syntax pass isolated,
 LuaLS88legacy/no new. Native UI/trace NOT RUN. Restart, Information -> Diagnostics
 -> Start combat trace, report trace logged. Docs COMBAT_HANDOFF_TRACE_B42.md on
