@@ -179,3 +179,12 @@ movement, not proven without first-reconstruction observation. Axe XP baseline
 was 0 despite setup grant: nonzero skill retention untested. No new code change,
 no full persistence acceptance or automatic next test. Next actor: orchestrator.
 Report: mail/orchestrator/inbox/2026-11-17-test-03-runtime-results.md.
+
+
+Test 03 pause feedback: user cannot open world context menu while paused, and
+Run itself needs simulation ticks. Source confirms setup then measurement on
+successive OnTick callbacks, after native world update. Manual pause is not a
+reliable control. Proposed audited, owned read-only earliest-reconstruction
+observation (not implemented) before explicit comparison; no automatic mutation
+or blanket paused-callback execution. Next actor orchestrator. Report:
+mail/orchestrator/inbox/2026-11-17-test-03-pause-feedback.md.

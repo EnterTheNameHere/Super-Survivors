@@ -139,3 +139,32 @@ review test setup/native XP rules before claiming that coverage. No skill or
 movement behavior is changed in this record-only update. Orchestrator should
 review whether an earliest read-only observation or a new bounded fixture control
 is warranted; do not silently suppress movement comparisons to manufacture PASS.
+
+
+## Pause/tick limitation reported by user (17 November 2026)
+
+User retried and reports: paused game prevents opening the world context menu,
+so the Tests entry is inaccessible then; after Run, detailed results arrive only
+when gameplay is unpaused. These are user observations, not a new native UI test
+performed by Codex. They rule out reliable manual-pause/quick-click guidance.
+
+Current source confirms an additional timing issue: T.start queues context only;
+one OnTick invokes definition.run, which assigns ctx.step; a subsequent OnTick
+executes the snapshot/comparison step. The first captured resume run was at frames
+1190 (start), 1191 (setup) and 1192 (measurement). Installed IngameState normal
+update runs IsoWorld.update before onTick. OnTickEvenPaused is a separate event,
+not permission to run world-mutating native operations from paused UI processing.
+Even immediate pausing after reload cannot guarantee an untouched initial position
+when current test measurement itself requires later simulation ticks.
+
+The current position result remains INCONCLUSIVE, not proof of movement timing
+or a loading defect. Repeated quick retries cannot remove this ambiguity.
+Proposed next design, NOT implemented: arm an ownership-scoped, read-only earliest
+reconstruction observation while staging; audit a point after real SSR load and
+before AI/movement can advance, cache properties/timestamp/membership in memory,
+and compare that stored observation only after explicit user resume. Do not
+construct/load/save actors, freeze AI, move coordinates or run a destructive test
+automatically on startup. Merely moving the whole test to OnTickEvenPaused is
+not an adequate fix and the callback boundary must be independently verified.
+This could remove timing pressure and the need for a paused-menu workaround.
+Orchestrator should assign the bounded observation/test-harness adjustment first.
