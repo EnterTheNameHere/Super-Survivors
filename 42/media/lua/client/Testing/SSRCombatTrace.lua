@@ -1,4 +1,5 @@
 require "Testing/SSRCombatSnapshot"
+if SSRCombatFirstAttack and SSRCombatFirstAttack.stop then SSRCombatFirstAttack.stop(nil,"trace module reloaded") end
 if SSRCombatTrace and SSRCombatTrace.stop then SSRCombatTrace.stop(nil,"trace module reloaded") end
 SSRCombatTrace=SSRCombatTrace or {}
 local R,C=SSRCombatTrace,SSRCombatSnapshot
@@ -124,7 +125,7 @@ local function watchdog(r,checkAborted)
     return true
 end
 function R.start(parameters,owner)
-    if R.active then return nil,"Another combat trace is running." end
+    if R.active or (SSRCombatFirstAttack and SSRCombatFirstAttack.active) then return nil,"Another combat trace is running." end
     local allowed,reason=C.available(parameters)
     if not allowed then return nil,reason end
     local p={};for k,v in pairs(parameters) do p[k]=v end

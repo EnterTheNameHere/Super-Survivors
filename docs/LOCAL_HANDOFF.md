@@ -2,6 +2,26 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Combat05 earliest natural attack diagnostic (17 November 2026)
+
+Implemented explicit Information -> Diagnostics -> Start earliest natural attack
+observation (up to 10s), both Information paths. Restart to load update. Existing
+live nonlocal NPC, flags false/no known active swing only; already-started rejected,
+no reset/spawn/attack. Always earliest OBSERVED: registry has no never-attacked
+provenance. Module SSRCombatFirstAttack observes two instance-local Lua methods,
+requestCombatAttack and StopWalk, exact-once/direct original invocation/results/
+errors; filtered early OnPlayerUpdate, tick, swing/hitpoint. Frozen actor/world/
+Information binding and human singleton/MainPlayer/all slots; owned hook cleanup
+on close/hide/rebind/unload/death/debug/menu/reload/error/caps. Legacy trace remains,
+mutually exclusive. No SS Tests consent/state bypass, gameplay/AI/Java/flag changes.
+10s/600ticks/120lines/8request cap, three ticks after acceptance/event; caps first.
+Console prefix [SS Combat][first-natural-attack]. No request -> INCONCLUSIVE.
+Moving positions/timers alone don't fill log. First-ever setter, exact chronology,
+animation/hit/damage unproved; collision gate remains. Docs
+COMBAT_FIRST_NATURAL_ATTACK_B42.md. 290 isolated tests/117 syntax pass; native UI/
+execution PENDING. Test04 R1 baseline/restart proof and Test03 deferred observer
+unchanged; inventory implementation deferred. User edits/saves preserved.
+
 ## Combat04 correction-options research (17 November 2026)
 
 Read docs/COMBAT_B42_CORRECTION_OPTIONS_04.md. Investigation/design only, no

@@ -118,7 +118,7 @@ class CombatInfoChecks(unittest.TestCase):
     def test_contextual_menu_has_explicit_log_start_stop_and_never_autostarts(self):
         self.lua.execute('''
             local w=legacy();w:update();D.menu(w)
-            assert(#menu.options==3 and not R.active)
+            assert(#menu.options==5 and not R.active and not SSRCombatFirstAttack.active)
             menu.options[2].fn();assert(R.active)
             menu.options[3].fn();assert(not R.active and w.ssCombatStatus=='trace stopped')
             assert(mutations==0)
@@ -133,6 +133,60 @@ class CombatInfoChecks(unittest.TestCase):
             local g=groupInfo();r=D.start(g,g.ssCombatSelection)
             package.loaded['5_UI/SuperSurvivorInfoPanel']=nil;require '5_UI/SuperSurvivorInfoPanel'
             assert(r.finished and not R.active)
+        ''')
+
+    def test_first_observation_both_ui_paths_and_stop_callbacks(self):
+        self.lua.execute('''
+            local F=SSRCombatFirstAttack
+            npc.player.isNpc=function() return true end
+            npc.player.isAttackStarted=function() return false end
+            npc.player.isInitiateAttack=function() return false end
+            npc.StopWalk=function() end
+            for _,create in ipairs({legacy,groupInfo}) do
+                local w=create();D.menu(w);assert(not F.active)
+                menu.options[4].fn();local r=F.active
+                assert(r and r.owner==w and r.p.actor==npc.player)
+                assert(w.ssCombatStatus=='observing earliest attack (10s cap)')
+                menu.options[5].fn();assert(r.finished and not F.active)
+                assert(w.ssCombatStatus=='observation stopped' and mutations==0)
+            end
+        ''')
+
+    def test_first_observation_stale_menu_two_windows_close_hide_rebind_and_reload(self):
+        self.lua.execute('''
+            local F=SSRCombatFirstAttack
+            npc.player.isNpc=function() return true end
+            npc.player.isAttackStarted=function() return false end
+            npc.player.isInitiateAttack=function() return false end
+            npc.StopWalk=function() end
+            local w=legacy();D.menu(w);local old=menu
+            w:Load(other);w:update();old.options[4].fn();assert(not F.active)
+            w:Load(npc);w:update();local r=assert(D.startFirst(w,w.ssCombatSelection))
+            local g=groupInfo();assert(not D.startFirst(g,g.ssCombatSelection))
+            D.close(g);assert(F.active==r);g:setVisible(false);assert(F.active==r)
+            w:setVisible(false);assert(r.finished and not F.active)
+            w:setVisible(true);w:update();r=assert(D.startFirst(w,w.ssCombatSelection))
+            w:Load(other);assert(r.finished and not F.active)
+            w:Load(npc);w:update();r=assert(D.startFirst(w,w.ssCombatSelection))
+            package.loaded['5_UI/SSRCombatInfoDiagnostics']=nil;require '5_UI/SSRCombatInfoDiagnostics'
+            assert(r.finished and not F.active)
+            r=assert(D.startFirst(w,w.ssCombatSelection));w:close();assert(r.finished)
+            assert(mutations==0)
+        ''')
+
+    def test_first_observation_preexisting_rejection_reason_and_finished_status(self):
+        self.lua.execute('''
+            local F=SSRCombatFirstAttack;local w=legacy()
+            npc.player.isNpc=function() return true end
+            npc.player.isAttackStarted=function() return true end
+            assert(not D.startFirst(w,w.ssCombatSelection))
+            assert(w.ssCombatStatus=='unavailable' and w.ssCombatButton.tooltip:find('Already',1,true))
+            npc.player.isAttackStarted=function() return false end
+            npc.player.isInitiateAttack=function() return false end;npc.StopWalk=function() end
+            local r=assert(D.startFirst(w,w.ssCombatSelection));F.stop(w,'deadline')
+            w:update();assert(w.ssCombatStatus=='observation logged')
+            assert(w.ssCombatButton.tooltip:find('deadline',1,true))
+            assert(not SSRTests.active and mutations==0)
         ''')
 
 

@@ -1,12 +1,18 @@
 require "ISUI/ISContextMenu"
 require "Testing/SSRCombatTrace"
+require "Testing/SSRCombatFirstAttack"
 
-if SSRCombatInfoDiagnostics then SSRCombatTrace.stop(nil,"information diagnostics module reloaded") end
+if SSRCombatInfoDiagnostics then
+    SSRCombatTrace.stop(nil,"information diagnostics module reloaded")
+    SSRCombatFirstAttack.stop(nil,"information diagnostics module reloaded")
+end
 SSRCombatInfoDiagnostics=SSRCombatInfoDiagnostics or {}
 local D,C,R=SSRCombatInfoDiagnostics,SSRCombatSnapshot,SSRCombatTrace
+local F=SSRCombatFirstAttack
 function D.close(window)
     if not window then return end
     R.stop(window,"owning information window closed/rebound")
+    F.stop(window,"owning information window closed/rebound")
 end
 function D.bind(window,wrapper)
     D.close(window)
@@ -37,6 +43,13 @@ function D.start(window,p)
     status(window,result and "tracing (10s cap)" or "unavailable",failure)
     return result,failure
 end
+function D.startFirst(window,p)
+    local ok,reason=valid(window,p)
+    if not ok then status(window,"unavailable",reason);return nil,reason end
+    local result,failure=F.start(p,window)
+    status(window,result and "observing earliest attack (10s cap)" or "unavailable",failure)
+    return result,failure
+end
 function D.menu(window)
     local p=window.ssCombatSelection
     local ok,reason=valid(window,p)
@@ -48,6 +61,10 @@ function D.menu(window)
     menu:addOption("Start combat trace (up to 10s)",nil,function() D.start(window,p) end)
     menu:addOption("Stop combat trace",nil,function()
         if window.ssCombatSelection==p then R.stop(window,"user stopped trace");status(window,"trace stopped") end
+    end)
+    menu:addOption("Start earliest natural attack observation (up to 10s)",nil,function() D.startFirst(window,p) end)
+    menu:addOption("Stop earliest attack observation",nil,function()
+        if window.ssCombatSelection==p then F.stop(window,"user stopped observation");status(window,"observation stopped") end
     end)
 end
 function D.update(window,layout)
@@ -61,5 +78,8 @@ function D.update(window,layout)
         window.ssCombatButton:setVisible(allowed==true)
         layout(allowed==true)
         if window.ssCombatStatus=="tracing (10s cap)" and not (R.active and R.active.owner==window) then status(window,"trace logged") end
+        if window.ssCombatStatus=="observing earliest attack (10s cap)" and not (F.active and F.active.owner==window) then
+            status(window,"observation logged",F.last and F.last.owner==window and F.last.reason or nil)
+        end
     end
 end
