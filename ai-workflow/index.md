@@ -195,3 +195,9 @@ Next bounded assignment SSR-TEST-03 R1: `ai-workflow/assignments/test-03-early-r
 
 ## SSR-TEST-04 — Human appearance/invisibility baseline (2026-11-17)
 User observed human skin/hair/probable facial hair change during ordinary play (not active test), other character state apparently remained theirs. Separately had human invisibility; previous disabling of invisibility setting made avatar visible again without proving cause. User proposed explicit good baseline and later symptom-triggered comparisons for changed appearance or invisibility. Skills/XP, equipment and inventory are dynamic diagnostic context, not invariants. Codex assignment: `ai-workflow/assignments/human-visual-baseline-diagnostics.md`, request `ai-workflow/mail/implementer/inbox/2026-11-17-test-04-human-visual-diagnostics.md`. Read-only B42 API-backed HumanVisual/descriptor/appearance, actor/slot/singleton and visibility flags; bounded baseline/symptom snapshots; no auto checks or repairs, no runtime fix or merge. STATUS REQUESTED/NOT ACKNOWLEDGED. Test-03 R1 earliest observer remains lower priority following user's direct observation of AI movement.
+
+
+SSR-TEST-04 ACKNOWLEDGED by existing exclusive local Codex; implementing explicit
+read-only human diagnostics after getter safety inspection. Test-03 R1 not
+started and DEFERRED per user-observed AI movement priority. Ack:
+mail/orchestrator/inbox/2026-11-17-test-04-ack.md. No native Test 04 run.
