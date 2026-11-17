@@ -129,7 +129,7 @@ will probably be labeled preexisting/busy, not repaired. A different existing NP
 before its first natural engagement may provide a false->true observation, but
 this tooling never creates/provokes one. No continuous-history or root-cause claim.
 
-## Documented / older / replaced / current API matrix
+## Historical versus installed B42 API compatibility
 
 Research inspected17November2026. Public Javadoc is a reference; installed JAR
 and exposure are the contract for this build. No downloaded NPC code was executed
@@ -140,9 +140,6 @@ or copied into runtime.
 | [B41 IsoGameCharacter docs](https://projectzomboid.com/modding41/zombie/characters/IsoGameCharacter.html) | Lists NPCSetAttack/NPCSetAiming/NPCGetAiming. Historical API, not safe B42 names. |
 | [B42 character docs](https://projectzomboid.com/modding/zombie/characters/IsoGameCharacter.html) | Older setters absent in document search. Actual installed IsoGameCharacter/IsoLivingCharacter/IsoPlayer member inspection also finds none; no call attempted. |
 | [B42 AIComponent docs](https://projectzomboid.com/modding/zombie/characters/component/AIComponent.html) | Public getHumanControlVars/postUpdatePlayer match installed signatures. Native control vars replace that part of behavior, but a safe Lua Class-token path is still unverified. Documentation alone does not establish Lua access. |
-| [PZNS weapon helper](https://github.com/Project-Zomboid-Community-Modding/PZNS/blob/20a30212f98aa891aec9cb070bb96164be27c12a/PZNS_Framework/media/lua/client/05_npc_actions/PZNS_WeaponAttack.lua) | Inspected main commit20a30212 (2026-08-15); helper last-path commit f05334fd (2023-09-19). It uses old NPC setters and custom Hit-based damage helpers. Historical design evidence, unsuitable for copying into this native-only B42 path. |
-| [PZNS aiming helper](https://github.com/Project-Zomboid-Community-Modding/PZNS/blob/20a30212f98aa891aec9cb070bb96164be27c12a/PZNS_Framework/media/lua/client/05_npc_actions/PZNS_WeaponAiming.lua) | Uses NPCSetAiming/NPCGetAiming. It does not validate those calls on installed B42. |
-| [PZNS issue44](https://github.com/Project-Zomboid-Community-Modding/PZNS/issues/44) | Earlier animation/damage timing reports provide precedent, not proof of Roderick's current flag stall. |
 
 ## Verification and next action
 
