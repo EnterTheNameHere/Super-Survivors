@@ -1,6 +1,12 @@
 # Combat05: earliest natural attack observation
 
-2026-11-17 implementation; runtime guard correction 2026-11-18. Native start/guarded teardown observed twice; execution after the correction **PENDING**. This does not fix combat, initiate an attack or establish a native NPC damage route. Prior source analysis: COMBAT_B42_CORRECTION_OPTIONS_04.md.
+2026-11-17 implementation; runtime guard correction 2026-11-18. Two post-fix native observations completed; natural attack interception/first transition **NOT YET OBSERVED**. This does not fix combat, initiate an attack or establish a native NPC damage route. Prior source analysis: COMBAT_B42_CORRECTION_OPTIONS_04.md.
+
+## Post-fix native results, 18 November
+
+Evidence: docs/evidence/COMBAT_FIRST_ATTACK_POSTFIX_2026-11-18.log (190 records, source console SHA256). ID 1 ran frames 20028–20628, 108 records, about 8.820 seconds; ID 3 ran 22549–23149, 82 records, about 8.451 seconds. Both hit the 600-tick cap, with zero natural requests/accepted calls/swings/hitpoints/sampled flag rises. Natural StopWalk calls were recorded twice for ID 1 and six times for ID 3; both hooks report restored=true in both summaries. No errors/exception/stack trace occurred from the first start through the inspected console EOF.
+
+The erroneous singleton guard no longer prevents early OnPlayerUpdate observation. Both actors stayed started=false/initiate=false in recorded samples, had a ready held weapon (Golfclub/Hammer), and a cached target; every logged native range check was false. ID 1 tasks included Follow/Attack/Flee; ID 3 Follow/Attack, with a fence-climb state also sampled. This proves bounded native sampling, natural StopWalk interception and cap/owned restoration reporting. It does not prove successful request interception/accepted attack/error propagation or first-ever history. Range/state samples cannot rule out an unsampled transient. No combat, movement or diagnostic behavior change is warranted from this evidence alone. Next useful observation is an eligible existing survivor's natural close-range engagement, rather than another unchanged out-of-range interval.
 
 ## Runtime follow-up, 18 November
 

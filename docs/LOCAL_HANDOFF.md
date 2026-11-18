@@ -2,6 +2,20 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Combat05 post-fix native results (18 November 2026)
+
+Two full native observations ID1/ID3, frames20028-20628 /22549-23149, 108/82lines,
+8.820/8.451seconds, both600tickcap. Zero request/accept/swing/hitpoint/rise; natural
+StopWalk2/6, both hooks report restoredtrue. Early OnPlayerUpdate now survives,
+singleton correction validated. No errors from first start to inspected EOF.
+All recorded flagsfalse, readyGolfclub/Hammer, cached target/native rangefalse
+in every logged sample. Tasks Follow/Attack/Flee and Follow/Attack (fence sampled).
+No first attack captured; do not infer attack cause or movement failure. Preserve
+docs/evidence/COMBAT_FIRST_ATTACK_POSTFIX_2026-11-18.log, 190records+consoleSHA256.
+Next useful evidence is normal close-range engagement of eligible existing actor;
+no new code/fixture/forced request here. Natural request/error/first transition/
+damage remain unverified. Previous post-fix-PENDING notes superseded to this extent.
+
 ## Combat05 native guard correction (18 November 2026)
 
 User ran two ID5 observations: frames14268/15209, stopped next frame with human/
