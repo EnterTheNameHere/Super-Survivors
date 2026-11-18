@@ -547,3 +547,11 @@ User edits preserved; other milestone statuses unchanged.
 
 ## Combat06 conditional prototype request (2026-11-18)
 User authorized next combat step after Combat05 ID3 actual accepted natural request followed by lost initiateAttack while attackStarted remained true. Existing Combat04 installed B42.22.2 audit identified nonexposed AI control vars and isLocalPlayer-gated normal native melee collision, so **no validated Lua-only full damage route yet**. Combat06 assignment `ai-workflow/assignments/combat-b42-native-prototype-06.md` and implementer inbox `ai-workflow/mail/implementer/inbox/2026-11-18-combat-06-native-prototype.md` published, REQUESTED/NOT ACKNOWLEDGED. Scope: native source/API feasibility first; only if both initiation and nonlocal native collision supported routes verified, implement isolated opt-in reversible disposable-world experiment; otherwise STOP, report BLOCKED/alternative for user approval. No routine flag reset, player-slot spoof, direct Hit, Java patch, production edits, or automatic merge. Inventory plan remains deferred.
+
+Combat06 ACKNOWLEDGED / STAGE A FEASIBILITY GATE18November. Exclusive existing
+codex/persistence-b42 from077a608d18b2926e0be9cc9ce15ce37e9ec77834, canonical39b18b9.
+Verify BOTH normal Lua-native attack lifecycle AND nonlocal collision/damage;
+conditional opt-in adapter only if both supported. Otherwise documented BLOCKED
+full native combat/design alternative, stop. No fake prototype/reflection/flags/
+state/slot/Hit/Java/global hooks/production edits. Existing observers/user changes/
+saves protected. Ack mail/orchestrator/inbox/2026-11-18-combat-06-ack.md.
