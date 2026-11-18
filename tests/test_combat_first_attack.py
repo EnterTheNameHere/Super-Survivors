@@ -221,7 +221,7 @@ class CombatFirstAttackChecks(unittest.TestCase):
             'SSM.SuperSurvivors[7]={player=npcActor}', 'npc.player=player',
             "world='B'", 'enabled=false', 'npcActor.npc=false',
             'getSpecificPlayer=function() return player end',
-            'IsoPlayer.getInstance=function() return npcActor end', 'SSM.MainPlayer=99',
+            'SSM.MainPlayer=99',
         ):
             with self.subTest(change=change):
                 self.setUp()
@@ -235,6 +235,23 @@ class CombatFirstAttackChecks(unittest.TestCase):
             npc.StopWalk=replacement;event('OnTick')
             assert(r.finished and npc.StopWalk==replacement and not rawget(npc,'requestCombatAttack'))
             assert(callbackCount()==before and output(r):find('StopWalk:false',1,true))
+        ''')
+
+    def test_native_update_singleton_changes_do_not_imply_human_ownership(self):
+        self.lua.execute('''
+            local before=callbackCount();local r=start()
+            -- Installed updateInternal2 assigns instance=this before this event.
+            IsoPlayer.getInstance=function() return npcActor end
+            event('OnPlayerUpdate',npcActor);event('OnTick')
+            assert(F.active==r and not r.finished)
+            local result=SSRCombatSnapshot.inspect(w.ssCombatSelection)
+            assert(result and result.observations.id==7)
+            -- The observation must never depend on this process-wide update cursor.
+            IsoPlayer.getInstance=forbidden
+            event('OnPlayerUpdate',npcActor);npc:requestCombatAttack({});event('OnTick')
+            assert(F.active==r and r.requests==1)
+            F.stop(w,'done');clean(r,before)
+            r=start();event('OnPlayerUpdate',npcActor);F.stop(w,'done');clean(r,before)
         ''')
 
     def test_reload_menu_session_and_observer_failure_cleanup(self):

@@ -135,11 +135,11 @@ class CombatSnapshotChecks(unittest.TestCase):
             assert(not SSRTests.start(D.id,true,p));clean()
         ''')
 
-    def test_human_singleton_main_player_and_all_local_slots_excluded(self):
+    def test_transient_singleton_allowed_main_player_and_all_local_slots_excluded(self):
         self.lua.execute('''
             local p=choice()
             for i=1,3 do slots[i]=npcActor;assert(not SSRTests.start(D.id,true,p));slots[i]=nil end
-            singleton=npcActor;assert(not SSRTests.start(D.id,true,p));singleton=player
+            singleton=npcActor;assert(SSRCombatSnapshot.available(p));singleton=player
             SSM.MainPlayer=7;assert(not SSRTests.start(D.id,true,p));SSM.MainPlayer=0
             npcActor.isLocalPlayer=function() return true end
             assert(not SSRTests.start(D.id,true,p));clean()

@@ -2,6 +2,22 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Combat05 native guard correction (18 November 2026)
+
+User ran two ID5 observations: frames14268/15209, stopped next frame with human/
+control guard, all counters0 and both raw hooks restored. Initially flagsfalse,
+SpearScrewdriver/readiness true, target out of range, Follow then Attack. No Lua
+exception/new attack evidence. Preserved docs/evidence/COMBAT_FIRST_ATTACK_2026-11-18.log.
+Installed updateInternal2 assigns IsoPlayer.instance=this before OnPlayerUpdate,
+including NPC. Old snapshot guard falsely classified it human; first observer's
+singleton freeze was also invalid. Removed singleton ownership/freeze conditions;
+retain SSR MainPlayer ID, all real human slots/isLocalPlayer, actor/world registry
+and lifecycle guards. No singleton setter, combat/AI/flag/world change. Existing
+snapshot/general trace share corrected validator. Native-start false positive
+covered by regression, 291 isolated tests/117 syntax pass. Restart to load fix;
+post-fix natural attack observation PENDING, no cause or native damage fix claim.
+Earlier singleton-freeze wording is historical and superseded by this correction.
+
 ## Combat05 earliest natural attack diagnostic (17 November 2026)
 
 Implemented explicit Information -> Diagnostics -> Start earliest natural attack

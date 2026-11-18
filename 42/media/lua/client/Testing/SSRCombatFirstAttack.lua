@@ -99,7 +99,7 @@ local function valid(r)
     if r.owner.ssCombatSelection~=r.binding or C.read(r.owner,"getIsVisible")~=true then
         return false,"information window hidden or rebound"
     end
-    if IsoPlayer.getInstance()~=r.instance or SSM.MainPlayer~=r.main then return false,"human/control identity changed" end
+    if SSM.MainPlayer~=r.main then return false,"human/control identity changed" end
     for i=0,3 do if getSpecificPlayer(i)~=r.slots[i] then return false,"local player slots changed" end end
     for _,hook in ipairs(r.hooks) do
         if rawget(r.p.wrapper,hook.name)~=hook.fn then return false,"observed Lua method replaced: "..hook.name end
@@ -181,7 +181,7 @@ function F.start(parameters,owner)
         if type(parameters.wrapper[name])~="function" then return nil,"Lua method unavailable: "..name end
     end
     local p={id=parameters.id,wrapper=parameters.wrapper,actor=actor,world=parameters.world,cell=parameters.cell}
-    local r={p=p,owner=owner,binding=parameters,instance=IsoPlayer.getInstance(),main=SSM.MainPlayer,slots={},
+    local r={p=p,owner=owner,binding=parameters,main=SSM.MainPlayer,slots={},
         ticks=0,lines=0,requests=0,walks=0,accepted=0,swings=0,hitPoints=0,rises=0,inFlight=0,
         output={},hooks={},bindings={},deadline=getTimestampMs()+MAX_MS}
     for i=0,3 do r.slots[i]=getSpecificPlayer(i) end

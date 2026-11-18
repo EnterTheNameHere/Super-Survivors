@@ -31,7 +31,9 @@ local function validate(p)
     local actor=wrapper and wrapper.player
     if not actor or wrapper~=p.wrapper or actor~=p.actor then return nil,"Selected survivor unloaded/replaced; refresh and select again." end
     if not instanceof(actor,"IsoPlayer") then return nil,"Selected SSR actor is not an IsoPlayer survivor." end
-    if actor==IsoPlayer.getInstance() or id==SSM.MainPlayer then return nil,"Human/control actor cannot be inspected as an NPC." end
+    -- B42 sets IsoPlayer.instance to each actor during updateInternal2, including
+    -- NPCs before OnPlayerUpdate. It is not a stable human ownership identity.
+    if id==SSM.MainPlayer then return nil,"Human/control actor cannot be inspected as an NPC." end
     for i=0,3 do if actor==getSpecificPlayer(i) then return nil,"Local player cannot be inspected as an NPC." end end
     local localPlayer,localKnown=read(actor,"isLocalPlayer")
     if not localKnown or localPlayer~=false then return nil,"Cannot verify selected actor is nonlocal." end
