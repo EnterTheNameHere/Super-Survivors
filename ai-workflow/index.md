@@ -430,3 +430,15 @@ COMBAT_FIRST_ATTACK_2026-11-18.log. 291isolated tests/117syntax pass. Restart an
 repeat explicit earliest observation; post-fix native first request still PENDING.
 Report mail/orchestrator/inbox/2026-11-18-combat-05-runtime-guard-fix.md.
 User changes preserved; Test04R1/Test03/inventory statuses unchanged, no merge.
+
+Combat05 POST-FIX NATIVE RESULTS18November: ID1/ID3 runs600ticks each,108/82records,
+8.820/8.451seconds. StopWalk2/6; requests/accepted/swing/hitpoint/rises all0; both
+hooks report restoredtrue, no errors from first start to inspected EOF. Early
+OnPlayerUpdate works after singleton fix. All recorded range checksfalse, ready
+Golfclub/Hammer, tasks Follow/Attack/Flee or Follow/Attack. First request/transition/
+damage still UNOBSERVED, no movement/root-cause claim.190records+consoleSHA saved
+in docs/evidence/COMBAT_FIRST_ATTACK_POSTFIX_2026-11-18.log. Docs31826ae27c608ae78e5b24ae41f6a405153dc5ac,
+parentc1f0f229a67a22451f1fbfd51ab3c1788d88297f on codex/persistence-b42.
+Report mail/orchestrator/inbox/2026-11-18-combat-05-postfix-native-results.md.
+No code or new test run, user edits preserved; first close-range natural engagement
+needed before inference. Other milestone statuses unchanged, no merge.
