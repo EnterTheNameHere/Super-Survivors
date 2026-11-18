@@ -451,3 +451,17 @@ Report mail/orchestrator/inbox/2026-11-17-combat-05-delivery.md; docs
 COMBAT_FIRST_NATURAL_ATTACK_B42.md on source ref. Next review/user observation,
 then separate native damage path assessment. Test04 R1 pending; Test03 deferred;
 user edits/settings/common saves preserved. Canonical ai-workflow only, no merge.
+
+Combat05 native runtime correction18November: two ID5 starts frames14268/15209
+stop nextframe human/control guard, all counters0, hooksrestoredtrue, no Lua errors.
+Installed updateInternal2 sets IsoPlayer.instance=this before OnPlayerUpdate:
+shared validator falsely rejects NPC; frozen singleton check likewise invalid.
+Fix c69ff48099395a82f9ea6de6b8b5d0e705d9253e, parent
+f6d360b0d69d1859298c5b2d0ba6870fd3b87025 on exclusive codex/persistence-b42.
+Use actual local slots/isLocalPlayer + SSR MainPlayer identity, not transient
+singleton; retain all actor/registry/world and frozen slot guards. No singleton
+setter, combat/AI/flag/damage/Java/world changes. Evidence preserved in docs/evidence/
+COMBAT_FIRST_ATTACK_2026-11-18.log. 291isolated tests/117syntax pass. Restart and
+repeat explicit earliest observation; post-fix native first request still PENDING.
+Report mail/orchestrator/inbox/2026-11-18-combat-05-runtime-guard-fix.md.
+User changes preserved; Test04R1/Test03/inventory statuses unchanged, no merge.
