@@ -2,6 +2,25 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Combat06 feasibility gate: BLOCKED (18 November 2026)
+
+docs/COMBAT_NATIVE_INTEGRATION_PROTOTYPE_06.md and evidence/COMBAT_NATIVE_API_06.txt:
+recomputed same installed JAR hash/current cached bytes, entire actor superclass/
+interface API plus controls/input/state/config/ballistics and native caller audit.
+Neither ordinary Lua NPC control bridge nor nonlocal native melee collision route
+verified. Public Java/control fields aren't registered/mutable Lua API. Human
+force-input methods target different component; AttemptAttack/DoAttack funnel to
+pressedAttack. Exposed IsoSurvivor inherits old state-forcing attack; Swipe entry
+expects IsoPlayer, no compatible alternative. Event broadcaster retains local gate;
+synthetic HitPoint triggers reload effects without native hit. No prototype, flag/
+state forcing, reflection/Class bypass, slots, direct damage, Java or production
+change. StageB gate NOT met. Design-only capability-separated combat backend:
+native backend awaits ordinary supported control+damage API; custom Lua backend
+would require separate scope approval relaxing native damage requirement. No
+empty/no-op adapter installed. Existing Combat05 evidence preserved, no repeatbusy
+trace or new runtime test. No restart needed for docs. User edits/saves protected.
+Next orchestrator reviews BLOCKED decision/alternative; inventory still deferred.
+
 ## Combat05 accepted handoff observed (18 November 2026)
 
 Newconsole ID3 trace frames729-1192,103records,6.761seconds. At1189 natural

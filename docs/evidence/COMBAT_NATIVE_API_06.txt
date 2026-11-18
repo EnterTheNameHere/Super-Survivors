@@ -1,0 +1,171 @@
+Combat06 source-only member/byte provenance witness, 2026-11-18.
+Not a game execution or Lua runtime exposure test.
+Reference-byte candidates followed by CFR source review; raw matching is not an instruction decoder.
+
+JAR SHA256 3c4a7c5f149d784758c6fb5f8fa85f3a21d572e38bc081400e89035f8120d287
+zombie/characters/IsoPlayer cached native bytes equal installed: True
+zombie/characters/IsoGameCharacter cached native bytes equal installed: True
+zombie/characters/IsoLivingCharacter cached native bytes equal installed: True
+zombie/characters/component/AIComponent cached native bytes equal installed: True
+zombie/ai/AIBrainPlayerControlVars cached native bytes equal installed: True
+zombie/ai/states/SwipeStatePlayer cached native bytes equal installed: True
+zombie/CombatManager cached native bytes equal installed: True
+zombie/Lua/LuaManager$Exposer cached native bytes equal installed: True
+se/krka/kahlua/integration/expose/LuaJavaClassExposer cached native bytes equal installed: True
+PUBLIC ACTOR-HIERARCHY COMBAT METHODS
+zombie/characters/IsoPlayer isAttacking ()Z
+zombie/characters/IsoPlayer nullifyAiming ()V
+zombie/characters/IsoPlayer IsInMeleeAttack ()Z
+zombie/characters/IsoPlayer getAimVector (Lzombie/iso/Vector2;)Lzombie/iso/Vector2;
+zombie/characters/IsoPlayer getInvAimingMod ()F
+zombie/characters/IsoPlayer getAimingMod ()F
+zombie/characters/IsoPlayer getReloadingMod ()F
+zombie/characters/IsoPlayer getAimingRangeMod ()F
+zombie/characters/IsoPlayer isBannedAttacking ()Z
+zombie/characters/IsoPlayer setBannedAttacking (Z)V
+zombie/characters/IsoPlayer getInvAimingRangeMod ()F
+zombie/characters/IsoPlayer setNpc (Z)V
+zombie/characters/IsoPlayer pressedAttack ()V
+zombie/characters/IsoPlayer setAttackVariationX (F)V
+zombie/characters/IsoPlayer setAttackVariationY (F)V
+zombie/characters/IsoPlayer clearHandToHandAttack ()V
+zombie/characters/IsoPlayer setAttackAnimThrowTimer (J)V
+zombie/characters/IsoPlayer isAttackAnimThrowTimeOut ()Z
+zombie/characters/IsoPlayer isAiming ()Z
+zombie/characters/IsoPlayer isAimControlActive ()Z
+zombie/characters/IsoPlayer setAngleFromAim ()V
+zombie/characters/IsoPlayer AttemptAttack ()Z
+zombie/characters/IsoPlayer DoAttack (F)Z
+zombie/characters/IsoPlayer DoAttack (FLjava/lang/String;)Z
+zombie/characters/IsoPlayer IsUsingAimWeapon ()Z
+zombie/characters/IsoPlayer pressedAim ()Z
+zombie/characters/IsoPlayer isPlayingAttackLoopSound (Ljava/lang/String;)Z
+zombie/characters/IsoPlayer startAttackLoopSound (Ljava/lang/String;)V
+zombie/characters/IsoPlayer isAttackStarted ()Z
+zombie/characters/IsoPlayer setAttackStarted (Z)V
+zombie/characters/IsoPlayer setInitiateAttack (Z)V
+zombie/characters/IsoPlayer isInitiateAttack ()Z
+zombie/characters/IsoPlayer isAttackType (Lzombie/AttackType;)Z
+zombie/characters/IsoPlayer getAttackType ()Lzombie/AttackType;
+zombie/characters/IsoPlayer setAttackType (Lzombie/AttackType;)V
+zombie/characters/IsoPlayer setAttackFromBehind (Z)V
+zombie/characters/IsoPlayer isAttackFromBehind ()Z
+zombie/characters/IsoPlayer setCombatSpeed (F)V
+zombie/characters/IsoPlayer getCombatSpeed ()F
+zombie/characters/IsoPlayer wasLastAttackHandToHand ()Z
+zombie/characters/IsoPlayer setLastAttackWasHandToHand (Z)V
+zombie/characters/IsoLivingCharacter AttemptAttack (F)Z
+zombie/characters/IsoLivingCharacter DoAttack (F)Z
+zombie/characters/IsoLivingCharacter getAttackingWeapon ()Lzombie/inventory/types/HandWeapon;
+zombie/characters/IsoLivingCharacter clearHandToHandAttack ()V
+zombie/characters/IsoLivingCharacter isDoHandToHandAttack ()Z
+zombie/characters/IsoLivingCharacter isShovingWhileAiming ()Z
+zombie/characters/IsoLivingCharacter isGrapplingWhileAiming ()Z
+zombie/characters/IsoGameCharacter isPerformingNoAimShortStrafe ()Z
+zombie/characters/IsoGameCharacter reloadOutfit ()V
+zombie/characters/IsoGameCharacter isVisibleToNPCs ()Z
+zombie/characters/IsoGameCharacter setVisibleToNPCs (Z)V
+zombie/characters/IsoGameCharacter getAttackedBy ()Lzombie/characters/IsoGameCharacter;
+zombie/characters/IsoGameCharacter setAttackedBy (Lzombie/characters/IsoGameCharacter;)V
+zombie/characters/IsoGameCharacter getFireKillRate ()F
+zombie/characters/IsoGameCharacter setFireKillRate (F)V
+zombie/characters/IsoGameCharacter getFireSpreadProbability ()I
+zombie/characters/IsoGameCharacter setFireSpreadProbability (I)V
+zombie/characters/IsoGameCharacter getAttackingWeapon ()Lzombie/inventory/types/HandWeapon;
+zombie/characters/IsoGameCharacter isOnFire ()Z
+zombie/characters/IsoGameCharacter setOnFire (Z)V
+zombie/characters/IsoGameCharacter getAttackTargetSquare ()Lzombie/iso/IsoGridSquare;
+zombie/characters/IsoGameCharacter setAttackTargetSquare (Lzombie/iso/IsoGridSquare;)V
+zombie/characters/IsoGameCharacter StopAllActionQueueAiming ()V
+zombie/characters/IsoGameCharacter FireCheck ()V
+zombie/characters/IsoGameCharacter getAimOriginPosX ()F
+zombie/characters/IsoGameCharacter getAimOriginPosY ()F
+zombie/characters/IsoGameCharacter getAimOriginPosZ ()F
+zombie/characters/IsoGameCharacter IsAttackRange (FFF)Z
+zombie/characters/IsoGameCharacter isMeleeAttackRange (Lzombie/inventory/types/HandWeapon;Lzombie/iso/IsoMovingObject;Lzombie/iso/Vector3;)Z
+zombie/characters/IsoGameCharacter IsSpeakingNPC ()Z
+zombie/characters/IsoGameCharacter CanAttack ()Z
+zombie/characters/IsoGameCharacter SetOnFire ()V
+zombie/characters/IsoGameCharacter SpreadFireMP ()V
+zombie/characters/IsoGameCharacter SpreadFire ()V
+zombie/characters/IsoGameCharacter calculateCombatSpeed ()F
+zombie/characters/IsoGameCharacter getAimingDelay ()F
+zombie/characters/IsoGameCharacter setAimingDelay (F)V
+zombie/characters/IsoGameCharacter resetAimingDelay ()V
+zombie/characters/IsoGameCharacter updateAimingDelay ()V
+zombie/characters/IsoGameCharacter getMeleeCombatMod ()I
+zombie/characters/IsoGameCharacter isAttacking ()Z
+zombie/characters/IsoGameCharacter isZombieAttacking ()Z
+zombie/characters/IsoGameCharacter isZombieAttacking (Lzombie/iso/IsoMovingObject;)Z
+zombie/characters/IsoGameCharacter setZombiesDontAttack (Z)V
+zombie/characters/IsoGameCharacter isZombiesDontAttack ()Z
+zombie/characters/IsoGameCharacter isAimAtFloor ()Z
+zombie/characters/IsoGameCharacter setAimAtFloor (Z)V
+zombie/characters/IsoGameCharacter setAimAtFloor (ZF)V
+zombie/characters/IsoGameCharacter aimAtFloorTargetDistance ()F
+zombie/characters/IsoGameCharacter getAimAtFloorAmount ()F
+zombie/characters/IsoGameCharacter getCurrentVerticalAimAngle ()F
+zombie/characters/IsoGameCharacter setCurrentVerticalAimAngle (F)V
+zombie/characters/IsoGameCharacter setTargetVerticalAimAngle (F)V
+zombie/characters/IsoGameCharacter getTargetVerticalAimAngle ()F
+zombie/characters/IsoGameCharacter getSurroundingAttackingZombies ()I
+zombie/characters/IsoGameCharacter getSurroundingAttackingZombies (Z)I
+zombie/characters/IsoGameCharacter setIsAiming (Z)V
+zombie/characters/IsoGameCharacter setFireMode (Ljava/lang/String;)V
+zombie/characters/IsoGameCharacter getFireMode ()Ljava/lang/String;
+zombie/characters/IsoGameCharacter isAiming ()Z
+zombie/characters/IsoGameCharacter isNpc ()Z
+zombie/characters/IsoGameCharacter addHoleFromZombieAttacks (Lzombie/characterTextures/BloodBodyPartType;Z)Z
+zombie/characters/IsoGameCharacter attackFromWindowsLunge (Lzombie/characters/IsoZombie;)V
+zombie/characters/IsoGameCharacter DoSwingCollisionBoneCheck (Lzombie/characters/IsoGameCharacter;IF)Z
+zombie/characters/IsoGameCharacter canPerformHandToHandCombat ()Z
+zombie/characters/IsoGameCharacter canPerformHandToHandCombatWithPrimary ()Z
+zombie/characters/IsoGameCharacter canPerformHandToHandCombatWithSecondary ()Z
+zombie/characters/IsoGameCharacter isPerformingAttackAnimation ()Z
+zombie/characters/IsoGameCharacter setPerformingAttackAnimation (Z)V
+zombie/characters/IsoGameCharacter getRagdollController ()Lzombie/core/physics/RagdollController;
+zombie/characters/IsoGameCharacter releaseRagdollController ()V
+zombie/characters/IsoGameCharacter getBallisticsController ()Lzombie/core/physics/BallisticsController;
+zombie/characters/IsoGameCharacter releaseBallisticsController ()V
+zombie/characters/IsoGameCharacter getAimingMode ()Lzombie/input/AimingMode;
+zombie/characters/IsoGameCharacter isAimingFirearmEquipped ()Z
+zombie/characters/IsoGameCharacter getAttackVars ()Lzombie/network/fields/hit/AttackVars;
+zombie/characters/IsoGameCharacter addCombatMuscleStrain (Lzombie/inventory/InventoryItem;)V
+zombie/characters/IsoGameCharacter addCombatMuscleStrain (Lzombie/inventory/InventoryItem;I)V
+zombie/characters/IsoGameCharacter addCombatMuscleStrain (Lzombie/inventory/InventoryItem;IF)V
+zombie/characters/IsoGameCharacter isActuallyAttackingWithMeleeWeapon ()Z
+zombie/characters/IsoGameCharacter onFireLightSourceCheck ()V
+zombie/characters/IsoGameCharacter removeOnFireLightSource ()V
+zombie/characters/CharacterInputComponentEntity isForceAim ()Z
+zombie/characters/CharacterInputComponentEntity setForceAim (Z)V
+zombie/characters/CharacterInputComponentEntity toggleForceAim ()Z
+zombie/characters/CharacterInputComponentEntity isAimKeyDown ()Z
+zombie/characters/CharacterInputComponentEntity isPrecisionAimKeyDown ()Z
+zombie/characters/CharacterInputComponentEntity isAnyAimKeyDown ()Z
+zombie/characters/CharacterInputComponentEntity isAttackButtonDown ()Z
+zombie/characters/CharacterInputComponentEntity setJoypadIgnoreAim (Z)V
+zombie/characters/CharacterInputComponentEntity setJoypadIgnoreAimUntilCentered (Z)V
+zombie/characters/CharacterInputComponentEntity isJoypadIgnoreAimUntilCentered ()Z
+zombie/characters/CharacterInputComponentEntity setIgnoreAimingInput (Z)V
+zombie/characters/CharacterInputComponentEntity isIgnoringAimingInput ()Z
+zombie/ai/IStateCharacter isCurrentStateAttacking ()Z
+zombie/characters/ILuaGameCharacter isAiming ()Z
+zombie/characters/ILuaGameCharacterDamage isOnFire ()Z
+zombie/iso/IsoMovingObject getTimeSinceZombieAttack ()I
+zombie/iso/IsoMovingObject setTimeSinceZombieAttack (I)V
+zombie/iso/IsoObject AttackObject (Lzombie/characters/IsoGameCharacter;)V
+zombie/iso/IsoObject isFireInteractionObject ()Z
+HIERARCHY fmod/fmod/IFMODParameterUpdater,zombie/ai/IStateCharacter,zombie/ai/astar/Mover,zombie/characters/CharacterInputComponentEntity,zombie/characters/ILuaGameCharacter,zombie/characters/ILuaGameCharacterAttachedItems,zombie/characters/ILuaGameCharacterClothing,zombie/characters/ILuaGameCharacterDamage,zombie/characters/ILuaGameCharacterHealth,zombie/characters/ILuaVariableSource,zombie/characters/IsoGameCharacter,zombie/characters/IsoLivingCharacter,zombie/characters/IsoPlayer,zombie/characters/Talker,zombie/characters/action/IActionStateChanged,zombie/characters/ecs/ECSEntity,zombie/chat/ChatElementOwner,zombie/core/skinnedmodel/IGrappleable,zombie/core/skinnedmodel/IGrappleableWrapper,zombie/core/skinnedmodel/advancedanimation/IAnimatable,zombie/core/skinnedmodel/advancedanimation/IAnimationVariableMap,zombie/core/skinnedmodel/advancedanimation/IAnimationVariableRegistry,zombie/core/skinnedmodel/advancedanimation/IAnimationVariableSource,zombie/core/skinnedmodel/advancedanimation/IAnimationVariableSourceContainer,zombie/core/skinnedmodel/advancedanimation/events/IAnimEventCallback,zombie/core/skinnedmodel/advancedanimation/events/IAnimEventListener,zombie/core/skinnedmodel/advancedanimation/events/IAnimEventWrappedBroadcaster,zombie/core/skinnedmodel/population/IClothingItemListener,zombie/core/skinnedmodel/visual/IAnimalVisual,zombie/core/skinnedmodel/visual/IHumanVisual,zombie/entity/GameEntity,zombie/iso/ILuaIsoObject,zombie/iso/IsoMovingObject,zombie/iso/IsoObject,zombie/iso/IsoRenderable,zombie/iso/objects/interfaces/Thumpable,zombie/network/fields/IPositional
+
+CONTROL FIELD REFERENCE CANDIDATES
+zombie/characters/IsoGameCharacter.class isAiming()Z GETFIELD zombie/ai/AIBrainPlayerControlVars.aiming.Z
+zombie/characters/IsoPlayer.class updateInternal2()Z GETFIELD zombie/ai/AIBrainPlayerControlVars.strafeX.F
+zombie/characters/IsoPlayer.class updateInternal2()Z GETFIELD zombie/ai/AIBrainPlayerControlVars.strafeY.F
+zombie/characters/component/AIComponent.class doUpdatePlayerControls(Lzombie/characters/IsoPlayer;)Z GETFIELD zombie/ai/AIBrainPlayerControlVars.bannedAttacking.Z
+zombie/characters/component/AIComponent.class doUpdatePlayerControls(Lzombie/characters/IsoPlayer;)Z GETFIELD zombie/ai/AIBrainPlayerControlVars.melee.Z
+zombie/characters/component/AIComponent.class postUpdatePlayer(Lzombie/characters/IsoPlayer;)V GETFIELD zombie/ai/AIBrainPlayerControlVars.initiateAttack.Z
+zombie/characters/component/AIComponent.class postUpdatePlayer(Lzombie/characters/IsoPlayer;)V GETFIELD zombie/ai/AIBrainPlayerControlVars.running.Z
+zombie/characters/component/AIComponent.class postUpdatePlayer(Lzombie/characters/IsoPlayer;)V GETFIELD zombie/ai/AIBrainPlayerControlVars.justMoved.Z
+
+NATIVE COLLISION CALLER CANDIDATES
+zombie/ai/states/SwipeStatePlayer.class OnAnimEvent_AttackCollisionCheck(Lzombie/characters/IsoGameCharacter;Lzombie/AttackType;)V -> zombie/CombatManager.attackCollisionCheck.(Lzombie/characters/IsoGameCharacter;Lzombie/inventory/types/HandWeapon;Lzombie/ai/states/SwipeStatePlayer;Lzombie/AttackType;)V
