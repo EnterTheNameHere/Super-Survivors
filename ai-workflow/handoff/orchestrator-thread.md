@@ -555,3 +555,19 @@ conditional opt-in adapter only if both supported. Otherwise documented BLOCKED
 full native combat/design alternative, stop. No fake prototype/reflection/flags/
 state/slot/Hit/Java/global hooks/production edits. Existing observers/user changes/
 saves protected. Ack mail/orchestrator/inbox/2026-11-18-combat-06-ack.md.
+
+Combat06 STAGE A DELIVERED / BLOCKED FOR FULL NATIVE COMBAT18November.
+Report349a180019a6125578599c179f41ef0c95a69c72,parent4c554a04da65015f92eb238a6baaa68c58772c96,
+exclusive codex/persistence-b42. docs/COMBAT_NATIVE_INTEGRATION_PROTOTYPE_06.md +
+evidence/COMBAT_NATIVE_API_06.txt. Same installed JAR, inherited actor/input/ECS/
+state/config/ballistics surface and whole-JAR callers checked. No ordinary Lua
+NPC control bridge or supported nonlocal melee collision route verified. Event
+replay retains local gate or fakes reload side effects; IsoSurvivor old inherited
+attack forces Swipe whose enter requires IsoPlayer. Both gates NOT met, no StageB
+prototype. Design-only capability-separated backend/native API support or separate
+custom-Lua backend scope decision; no dummy adapter/directdamage/flags/slots/Java.
+Source-only checks/diff--check, no new tests/native run. Existing Combat05 evidence/
+observers/persistence/UI/settings/saves untouched. Report
+mail/orchestrator/inbox/2026-11-18-combat-06-blocked-delivery.md. Next orchestration
+reviews blocked decision/alternative; no restart or repeated busy diagnostics,
+no merge. Other milestones unchanged, inventory remains deferred.
