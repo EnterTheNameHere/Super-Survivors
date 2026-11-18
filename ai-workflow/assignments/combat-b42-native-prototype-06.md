@@ -1,7 +1,7 @@
 # SSR-COMBAT-06 — B42 native combat integration feasibility and reversible prototype
 
 Date: 2026-11-18
-Status: REQUESTED / NOT ACKNOWLEDGED
+Status: STAGE A DELIVERED / BLOCKED FOR FULL NATIVE COMBAT / STAGE B NOT ENTERED
 Priority: Combat. Implementation authorization is **bounded and conditional** below.
 Ownership: one existing Codex implementer, exclusive source checkout codex/persistence-b42. Do not edit/integrate protected B42 gameplay code.
 
