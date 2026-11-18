@@ -571,3 +571,6 @@ observers/persistence/UI/settings/saves untouched. Report
 mail/orchestrator/inbox/2026-11-18-combat-06-blocked-delivery.md. Next orchestration
 reviews blocked decision/alternative; no restart or repeated busy diagnostics,
 no merge. Other milestones unchanged, inventory remains deferred.
+
+## Combat07 MP remote-player API audit (2026-11-18)
+User reaffirmed NO JAVA (including loaders/bytecode patches) as project axiom. Combat06 native Lua-only route remains BLOCKED. User approved one narrow source-only check of installed B42.22.2 remote-player replication/animation/combat authority to see whether any supported Lua path is reusable by SSR, without spoofed packets, fake player slots or multiplayer server authority. Assignment `ai-workflow/assignments/combat-b42-remote-player-api-audit-07.md`, implementer request `ai-workflow/mail/implementer/inbox/2026-11-18-combat-07-remote-player-research.md`; REQUESTED / NOT ACKNOWLEDGED. Require closed negative finding if interfaces remain remote-network-only. No gameplay/source change or merge authorized.
