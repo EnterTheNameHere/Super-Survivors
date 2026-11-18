@@ -529,3 +529,18 @@ parentc1f0f229a67a22451f1fbfd51ab3c1788d88297f on codex/persistence-b42.
 Report mail/orchestrator/inbox/2026-11-18-combat-05-postfix-native-results.md.
 No code or new test run, user edits preserved; first close-range natural engagement
 needed before inference. Other milestone statuses unchanged, no merge.
+
+Combat05 ACCEPTED NATURAL HANDOFF OBSERVED18November, ID3 frames729-1192,
+103records/6.761s.1189 ENTRYstarted/initiatefalse, natural nestedStopWalk before
+latch, POSTbothtrue, actualreturn1/true.1190tickstartedtrue/initiatefalse, Idle/
+noanimation/swing, Attack/Hammerready/rangetrue. No later StopWalk recorded.
+1192followup ends1request/1accept/5StopWalk/1sampledrise/0swing/hitpoint, both
+hooksrestoredtrue; no errors. AI post-update loss mechanism corroborated, exact
+setter/first-ever history not proved; shortfollowup not permanent no-animation
+proof. Independent collision gate unchanged. Evidence103records+consoleSHA:
+docs/evidence/COMBAT_FIRST_ACCEPTED_ATTACK_2026-11-18.log. Docs commit
+2a4150ca0e9b4c57843d4a70766b5b466c7619c6,parent195196ac3486f564497366d5ccc44bb7eecd3c20,
+codex/persistence-b42. Report mail/orchestrator/inbox/2026-11-18-combat-05-accepted-handoff-results.md.
+Next orchestrator control-handoff/collision review; no more unchanged busy traces
+needed for this interval. No new code/tests/reset/attack/Java/damage/source merge.
+User edits preserved; other milestone statuses unchanged.
