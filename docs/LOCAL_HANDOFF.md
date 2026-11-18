@@ -2,6 +2,21 @@
 
 Repository: `EnterTheNameHere/Super-Survivors`, branch `B42`.
 
+## Combat05 accepted handoff observed (18 November 2026)
+
+Newconsole ID3 trace frames729-1192,103records,6.761seconds. At1189 natural
+request entryflagsfalse, nestedStopWalk#5 runs before latch, requestpost bothtrue,
+returncount1/true, Hammerready/Attack/native range true. At1190 tick startedtrue/
+initiatefalse, IdleState/no animation/no swing; no later StopWalk recorded.
+1192 three-tickfollowup completes,1request/1accept/5StopWalk/1sampledrise/0events,
+bothhooksrestoredtrue. No errors from firststart to inspectedEOF. Preserved
+docs/evidence/COMBAT_FIRST_ACCEPTED_ATTACK_2026-11-18.log +consoleSHA256.
+Natural accepted request and subsequent flag loss now ACTUALLY OBSERVED; AI
+post-update mechanism corroborated, exactsetter/first-ever history not proved.
+Short3tick absence not permanent-animation proof. No need repeated alreadybusy
+traces. Next orchestrator reviews handoff options and independent collision gate.
+No new code/reset/forcedattack/Java/damage. Prior unobserved notes historical.
+
 ## Combat05 post-fix native results (18 November 2026)
 
 Two full native observations ID1/ID3, frames20028-20628 /22549-23149, 108/82lines,

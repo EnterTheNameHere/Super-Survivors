@@ -2,6 +2,8 @@
 
 2026-11-17. SSR-COMBAT-04. Source research and future experiment design only. No fixture, combat fix, flag reset, damage injection, Java change or runtime experiment was performed.
 
+Runtime addendum, 2026-11-18: Combat05 subsequently captured an accepted natural ID3 request at frame1189, initially started/initiate false then both true on return. Next tick1190 shows startedtrue/initiatefalse, no swing/attack animation; no later StopWalk recorded before the three-tick stop1192. This corroborates the lost-handoff mechanism below, without identifying the exact Java setter or proving first-ever history. See COMBAT_FIRST_NATURAL_ATTACK_B42.md and evidence/COMBAT_FIRST_ACCEPTED_ATTACK_2026-11-18.log. The ordinary nonlocal collision barrier and absence of a verified complete correction remain separate. Source-only statements below describe the earlier investigation date.
+
 ## Decision
 
 There is no verified end-to-end Lua-native combat correction for a standalone nonlocal SSR IsoPlayer in the inspected build. pressedAttack is a real, Lua-exposed initiation entry point, and its body does not categorically exclude a single-player NPC. It is not sufficient to establish a swing or native damage. Two independent boundaries remain:

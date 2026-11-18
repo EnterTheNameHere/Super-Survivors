@@ -1,6 +1,16 @@
 # Combat05: earliest natural attack observation
 
-2026-11-17 implementation; runtime guard correction 2026-11-18. Two post-fix native observations completed; natural attack interception/first transition **NOT YET OBSERVED**. This does not fix combat, initiate an attack or establish a native NPC damage route. Prior source analysis: COMBAT_B42_CORRECTION_OPTIONS_04.md.
+2026-11-17 implementation; runtime guard correction 2026-11-18. An earliest-observed accepted natural request and subsequent initiation loss are now recorded. This does not fix combat, initiate an attack or establish a native NPC damage route. Prior source analysis: COMBAT_B42_CORRECTION_OPTIONS_04.md.
+
+## Accepted natural request captured, 18 November
+
+Evidence: docs/evidence/COMBAT_FIRST_ACCEPTED_ATTACK_2026-11-18.log (103 records, source console SHA256), new console session. ID 3 ran frames 729–1192, about 6.761 seconds. Hammer equipped and ready, Attack task active. Native range becomes true in the recorded interval; request #1 at frame 1189 matches the cached target. Entry: started=false/initiate=false. Natural nested StopWalk #5 (depth 1) runs with both flags false. Request post: started=true/initiate=true, cooldown=2, animation=false/swing=false. Actual original return is one value, true.
+
+At frame 1190 the next recorded tick shows started=true/initiate=false, IdleState, Attack task/range=true, animation/swing=false. No StopWalk is recorded after the request's flags rose. At frame 1192 the three-tick follow-up ends: requests=1, accepted=1, StopWalks=5, sampled rises=1, swing/hitpoint events=0; both hooks restored=true. No errors/exception/stack trace from the first start to inspected console EOF.
+
+This is actual native evidence of an accepted natural request's false→true flags, followed by loss of initiation while started stays latched, with no sampled swing in the short follow-up. It corroborates Combat04's pre-animation AI control-write mechanism and rules out a *recorded later StopWalk* for this interval. It does not identify the exact native setter, prove first-ever history, or exclude unsampled/direct Java/other-mod writes. Three ticks are a short observation interval, not proof that animation can never occur later. Existing long-running busy evidence remains separate. Natural request and StopWalk interception plus native flag transitions are now exercised; original-error propagation remains automated-only coverage.
+
+No more unchanged busy/out-of-range traces are needed to establish this interval. Next actor is orchestration: review native control-handoff correction options and the independent nonlocal collision barrier. No artificial reset, extra attack, AI control mutation, Java patch or direct damage is added here.
 
 ## Post-fix native results, 18 November
 
